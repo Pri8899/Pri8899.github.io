@@ -338,9 +338,9 @@
   • contact      - Reach out directly via email
   • clear        - Clear the terminal console output`,
 
-    whoami: () => `Partho Prithom Paul Sujoy
-BSc in Computer Science and Engineering (Batch 54)
-Ahsanullah University of Science and Technology (AUST) · 2nd Year 1st Sem`,
+    whoami: () => `Partho Paul
+B.Sc. in Computer Science and Engineering · CSE Batch 54
+Ahsanullah University of Science and Technology · 2nd Year, 1st Semester`,
 
     projects: () => {
       setTimeout(() => goToSlide(2, true), 300);
@@ -365,8 +365,8 @@ Total Solved: 52 problems (46 CF + 6 CSES) | Current Streak: 14 days | Submissio
 
     about: () => {
       setTimeout(() => goToSlide(1, true), 300);
-      return `Ahsanullah University of Science and Technology (AUST)
-Degree: B.Sc. in Computer Science & Engineering (2nd Year, 1st Semester · Batch 54)
+      return `Ahsanullah University of Science and Technology
+Degree: B.Sc. in Computer Science & Engineering (2nd Year, 1st Semester · CSE Batch 54)
 Location: Dhaka, Bangladesh`;
     },
 

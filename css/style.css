@@ -1006,9 +1006,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 16px 24px;
+  padding: 24px 28px;
   gap: 16px;
-  height: calc(100% - 42px);
+  height: 100%;
   min-height: 0;
   overflow-y: auto;
 }
@@ -1239,7 +1239,7 @@ a {
   display: grid;
   grid-template-columns: 210px 1fr;
   flex: 1;
-  height: calc(100% - 42px);
+  height: 100%;
   min-height: 0;
   overflow: hidden;
 }
@@ -1402,7 +1402,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(100% - 42px);
+  height: 100%;
   min-height: 0;
   overflow-y: auto;
 }
@@ -1485,7 +1485,56 @@ a {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.28s var(--spring-ease);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+.contact-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  color: #ffffff;
+}
+.contact-btn-email {
+  border-color: rgba(0, 242, 254, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(0, 242, 254, 0.12);
+}
+.contact-btn-email:hover {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.3), rgba(0, 242, 254, 0.25));
+  border-color: rgba(0, 242, 254, 0.8);
+  box-shadow: 0 8px 28px rgba(0, 122, 255, 0.4), 0 0 24px rgba(0, 242, 254, 0.45);
+}
+.contact-btn-github {
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(168, 85, 247, 0.12);
+}
+.contact-btn-github:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.25));
+  border-color: rgba(168, 85, 247, 0.8);
+  box-shadow: 0 8px 28px rgba(168, 85, 247, 0.4), 0 0 24px rgba(168, 85, 247, 0.45);
+}
+.contact-btn-cf {
+  border-color: rgba(255, 159, 10, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(255, 159, 10, 0.12);
+}
+.contact-btn-cf:hover {
+  background: linear-gradient(135deg, rgba(255, 159, 10, 0.3), rgba(255, 69, 58, 0.25));
+  border-color: rgba(255, 159, 10, 0.8);
+  box-shadow: 0 8px 28px rgba(255, 159, 10, 0.4), 0 0 24px rgba(255, 159, 10, 0.45);
 }
 
 /* ── 13. Interactive 3D Card Tilt & Cursor Spotlight ───────── */
@@ -1651,10 +1700,12 @@ a {
 }
 .spec-row {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  padding: 6px 0;
+  grid-template-columns: 165px 1fr;
+  align-items: center;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 13px;
+  line-height: 1.5;
 }
 .spec-key {
   color: var(--text-secondary);
@@ -1709,7 +1760,7 @@ a {
   .finder-sidebar { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .cp-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .skills-deck { grid-template-columns: repeat(3, 1fr); }
-  .spec-row { grid-template-columns: 120px 1fr; font-size: 12.5px; }
+  .spec-row { grid-template-columns: 145px 1fr; font-size: 12.5px; }
   .sections-box { padding: 4px; gap: 2px; }
   .section-box-item { padding: 7px 12px; font-size: 12px; }
   .desk-nav-btn { width: 38px; height: 38px; }
