@@ -1544,7 +1544,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 0;
+  margin-bottom: 12px;
 }
 .tile-tag {
   font-size: 11px;
@@ -1553,6 +1553,43 @@ a {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted);
+}
+
+.tile-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 10px;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+}
+
+.tile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--apple-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.tile-link span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tile-link svg {
+  flex-shrink: 0;
+}
+.tile-link:hover {
+  color: var(--apple-cyan);
+  gap: 8px;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
 }
 
 /* ── 11. Skills: macOS System Settings Grid ────────────────── */
