@@ -141,7 +141,7 @@
                   <span class="stat-label">Repositories</span>
                 </div>
                 <div class="quick-stat">
-                  <span class="stat-number" data-count="52">0</span>
+                  <span class="stat-number" id="about-stat-solved" data-count="52">52</span>
                   <span class="stat-label">Problems Solved</span>
                 </div>
               </div>
@@ -170,7 +170,7 @@
                   <span class="detail-icon">⚡</span>
                   <div>
                     <strong>Focus Areas</strong>
-                    <p>Competitive Programming · Web Development · Browser Extensions · Discord Bots</p>
+                    <p>Competitive Programming · Flutter App Development · C/C++ · Java</p>
                   </div>
                 </div>
                 <div class="detail-row">
@@ -335,25 +335,30 @@
           <div class="window-actions"></div>
         </div>
         <div class="window-body stats-body">
+          <div class="cp-sync-bar">
+            <span class="live-pulse"></span>
+            <span id="cf-sync-text">Auto-syncing live from Codeforces API...</span>
+          </div>
+
           <div class="stats-grid">
             <div class="stat-card stat-solved">
               <div class="stat-icon">🎯</div>
-              <div class="stat-value" data-count="52">0</div>
+              <div class="stat-value" id="stat-solved-total" data-count="52">52</div>
               <div class="stat-title">Total Solved</div>
             </div>
             <div class="stat-card stat-streak">
               <div class="stat-icon">🔥</div>
-              <div class="stat-value" data-count="14">0</div>
+              <div class="stat-value" id="stat-streak" data-count="14">14</div>
               <div class="stat-title">Day Streak</div>
             </div>
             <div class="stat-card stat-accuracy">
               <div class="stat-icon">✅</div>
-              <div class="stat-value stat-percent" data-count="54.2">0</div>
+              <div class="stat-value stat-percent" id="stat-accuracy" data-count="54.2">54.2</div>
               <div class="stat-title">AC Accuracy</div>
             </div>
             <div class="stat-card stat-submissions">
               <div class="stat-icon">📤</div>
-              <div class="stat-value" data-count="96">0</div>
+              <div class="stat-value" id="stat-submissions" data-count="96">96</div>
               <div class="stat-title">Submissions</div>
             </div>
           </div>
@@ -367,9 +372,9 @@
                   Codeforces
                 </span>
                 <div class="platform-bar-track">
-                  <div class="platform-bar-fill" data-width="88" style="background:linear-gradient(90deg,#1F8DD6,#60a5fa)"></div>
+                  <div class="platform-bar-fill" id="cf-bar-fill" data-width="88" style="background:linear-gradient(90deg,#1F8DD6,#60a5fa); width: 88%;"></div>
                 </div>
-                <span class="platform-count">46</span>
+                <span class="platform-count" id="cf-bar-count">46</span>
               </div>
               <div class="platform-row">
                 <span class="platform-name">
@@ -377,15 +382,15 @@
                   CSES
                 </span>
                 <div class="platform-bar-track">
-                  <div class="platform-bar-fill" data-width="12" style="background:linear-gradient(90deg,#00C853,#69f0ae)"></div>
+                  <div class="platform-bar-fill" id="cses-bar-fill" data-width="12" style="background:linear-gradient(90deg,#00C853,#69f0ae); width: 12%;"></div>
                 </div>
-                <span class="platform-count">6</span>
+                <span class="platform-count" id="cses-bar-count">6</span>
               </div>
             </div>
           </div>
 
           <div class="cp-note">
-            <p>📈 These stats are auto-synced from my <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer">CodeSync Pro Extension</a> — numbers update as I grind!</p>
+            <p>⚡ <strong>Real-Time API Sync:</strong> When you solve a problem on Codeforces, this page automatically detects the new submission and updates your solve count and stats in real time.</p>
           </div>
         </div>
       </div>
@@ -401,47 +406,39 @@
 
       <div class="skills-categories">
         <div class="skill-category reveal" data-reveal="up" data-delay="0">
-          <h3 class="category-title">Languages</h3>
+          <h3 class="category-title">Programming Languages</h3>
           <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">🔷</span> C++</span>
-            <span class="skill-pill"><span class="pill-icon">🟡</span> JavaScript</span>
-            <span class="skill-pill"><span class="pill-icon">🐍</span> Python</span>
+            <span class="skill-pill"><span class="pill-icon">🔷</span> C</span>
+            <span class="skill-pill"><span class="pill-icon">⚡</span> C++</span>
             <span class="skill-pill"><span class="pill-icon">☕</span> Java</span>
-            <span class="skill-pill"><span class="pill-icon">🌐</span> HTML / CSS</span>
+            <span class="skill-pill"><span class="pill-icon">🎯</span> Dart</span>
           </div>
         </div>
 
         <div class="skill-category reveal" data-reveal="up" data-delay="100">
-          <h3 class="category-title">Frameworks &amp; Tools</h3>
+          <h3 class="category-title">Frameworks &amp; Web UI</h3>
           <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">🟢</span> Node.js</span>
-            <span class="skill-pill"><span class="pill-icon">🤖</span> Discord.js</span>
-            <span class="skill-pill"><span class="pill-icon">🧩</span> Chrome Extensions API</span>
-            <span class="skill-pill"><span class="pill-icon">📝</span> Monaco Editor</span>
-            <span class="skill-pill"><span class="pill-icon">🗄️</span> SQLite</span>
+            <span class="skill-pill"><span class="pill-icon">📱</span> Flutter</span>
+            <span class="skill-pill"><span class="pill-icon">🌐</span> HTML5</span>
+            <span class="skill-pill"><span class="pill-icon">🎨</span> CSS3</span>
           </div>
         </div>
 
         <div class="skill-category reveal" data-reveal="up" data-delay="200">
-          <h3 class="category-title">CP &amp; Algorithms</h3>
+          <h3 class="category-title">Algorithms &amp; Core CS</h3>
           <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">🔄</span> Dynamic Programming</span>
-            <span class="skill-pill"><span class="pill-icon">🌲</span> Graph Theory</span>
-            <span class="skill-pill"><span class="pill-icon">🔢</span> Number Theory</span>
             <span class="skill-pill"><span class="pill-icon">📊</span> Data Structures</span>
-            <span class="skill-pill"><span class="pill-icon">💡</span> Greedy</span>
-            <span class="skill-pill"><span class="pill-icon">🔍</span> Binary Search</span>
+            <span class="skill-pill"><span class="pill-icon">🔄</span> Algorithms</span>
+            <span class="skill-pill"><span class="pill-icon">🧩</span> Object-Oriented Programming (OOP)</span>
+            <span class="skill-pill"><span class="pill-icon">🏆</span> Competitive Programming</span>
           </div>
         </div>
 
         <div class="skill-category reveal" data-reveal="up" data-delay="300">
-          <h3 class="category-title">Developer Tools</h3>
+          <h3 class="category-title">Development Tools</h3>
           <div class="skill-pills">
             <span class="skill-pill"><span class="pill-icon">🐙</span> Git &amp; GitHub</span>
-            <span class="skill-pill"><span class="pill-icon">🐳</span> Docker</span>
             <span class="skill-pill"><span class="pill-icon">💻</span> VS Code</span>
-            <span class="skill-pill"><span class="pill-icon">🖥️</span> Linux / macOS</span>
-            <span class="skill-pill"><span class="pill-icon">📦</span> npm</span>
           </div>
         </div>
       </div>
