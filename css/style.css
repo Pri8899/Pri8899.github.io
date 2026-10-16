@@ -480,7 +480,7 @@ img { max-width: 100%; display: block; }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 310px 1fr;
   gap: 40px;
   align-items: start;
 }
@@ -522,30 +522,41 @@ img { max-width: 100%; display: block; }
 }
 
 .about-quick-stats {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
   margin-top: 20px;
-  gap: 8px;
+  padding: 12px 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .quick-stat {
   text-align: center;
-  flex: 1;
+  min-width: 0;
+  padding: 0 4px;
 }
 .quick-stat .stat-number {
   display: block;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
+  font-family: var(--font-mono);
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.2;
 }
 .quick-stat .stat-label {
-  font-size: 11px;
+  font-size: 9.5px;
+  font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  display: block;
+  margin-top: 3px;
 }
 
 .about-name {
