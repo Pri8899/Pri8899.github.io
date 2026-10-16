@@ -143,13 +143,22 @@
     });
   });
 
-  // Next & Prev Chevrons
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
-  }
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
-  }
+  // Next & Prev Chevrons (Pill arrows & Floating Side arrows)
+  const prevBtns = document.querySelectorAll('.desk-prev-action, #desk-prev-btn');
+  const nextBtns = document.querySelectorAll('.desk-next-action, #desk-next-btn');
+
+  prevBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToSlide(currentSlideIndex - 1);
+    });
+  });
+  nextBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToSlide(currentSlideIndex + 1);
+    });
+  });
 
   // Keyboard Navigation: Left/Right arrows & 1-6 keys
   window.addEventListener('keydown', (e) => {

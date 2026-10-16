@@ -159,54 +159,51 @@
     <div class="container">
       <!-- ── 1. Interactive Sections Box (Slide Controller Desk) ── -->
       <div class="sections-desk-controller" role="navigation" aria-label="Info Desk Navigation">
-        <div class="sections-box" id="sections-box">
-          <div class="section-glider" id="section-glider"></div>
-          <button class="section-box-item active" data-index="0" data-target="terminal" aria-label="Slide to Terminal">
-            <span class="box-icon">&gt;_</span>
-            <span class="box-label">Terminal</span>
+        <div class="sections-pill-wrapper">
+          <button class="desk-pill-arrow desk-prev-action" id="desk-prev-pill" aria-label="Previous Slide" title="Previous Slide (←)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
           </button>
-          <button class="section-box-item" data-index="1" data-target="about" aria-label="Slide to About Me">
-            <span class="box-icon">👤</span>
-            <span class="box-label">About Me</span>
-          </button>
-          <button class="section-box-item" data-index="2" data-target="projects" aria-label="Slide to Projects">
-            <span class="box-icon">📁</span>
-            <span class="box-label">Projects</span>
-          </button>
-          <button class="section-box-item" data-index="3" data-target="cp" aria-label="Slide to CP Monitor">
-            <span class="box-icon">⚡</span>
-            <span class="box-label">CP Monitor</span>
-          </button>
-          <button class="section-box-item" data-index="4" data-target="skills" aria-label="Slide to Tech Stack">
-            <span class="box-icon">🛠️</span>
-            <span class="box-label">Tech Stack</span>
-          </button>
-          <button class="section-box-item" data-index="5" data-target="contact" aria-label="Slide to Contact">
-            <span class="box-icon">✉️</span>
-            <span class="box-label">Contact</span>
-          </button>
-        </div>
-
-        <div class="desk-control-meta">
-          <div class="desk-status-pill">
-            <span class="pulse-dot"></span>
-            <span id="desk-counter">DESK 01 / 06 · TERMINAL</span>
+          <div class="sections-box" id="sections-box">
+            <div class="section-glider" id="section-glider"></div>
+            <button class="section-box-item active" data-index="0" data-target="terminal" aria-label="Slide to Terminal">
+              <span class="box-icon">&gt;_</span>
+              <span class="box-label">Terminal</span>
+            </button>
+            <button class="section-box-item" data-index="1" data-target="about" aria-label="Slide to About Me">
+              <span class="box-icon">👤</span>
+              <span class="box-label">About Me</span>
+            </button>
+            <button class="section-box-item" data-index="2" data-target="projects" aria-label="Slide to Projects">
+              <span class="box-icon">📁</span>
+              <span class="box-label">Projects</span>
+            </button>
+            <button class="section-box-item" data-index="3" data-target="cp" aria-label="Slide to CP Monitor">
+              <span class="box-icon">⚡</span>
+              <span class="box-label">CP Monitor</span>
+            </button>
+            <button class="section-box-item" data-index="4" data-target="skills" aria-label="Slide to Tech Stack">
+              <span class="box-icon">🛠️</span>
+              <span class="box-label">Tech Stack</span>
+            </button>
+            <button class="section-box-item" data-index="5" data-target="contact" aria-label="Slide to Contact">
+              <span class="box-icon">✉️</span>
+              <span class="box-label">Contact</span>
+            </button>
           </div>
-          <div class="desk-hint-pill">
-            <span>Hover box to slide · </span>
-            <kbd>←</kbd> <kbd>→</kbd>
-          </div>
+          <button class="desk-pill-arrow desk-next-action" id="desk-next-pill" aria-label="Next Slide" title="Next Slide (→)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
       </div>
 
       <!-- ── 2. Horizontal Sliding Info Desk Viewport ── -->
       <div class="desk-slider-viewport" id="desk-slider-viewport">
-        <!-- Floating Navigation Chevrons -->
-        <button class="desk-nav-btn desk-prev-btn" id="desk-prev-btn" aria-label="Previous Slide" title="Previous Slide (←)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <!-- Floating Navigation Chevrons (Centered to uniform desk height) -->
+        <button class="desk-nav-btn desk-prev-btn desk-prev-action" id="desk-prev-btn" aria-label="Previous Slide" title="Previous Slide (←)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
-        <button class="desk-nav-btn desk-next-btn" id="desk-next-btn" aria-label="Next Slide" title="Next Slide (→)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <button class="desk-nav-btn desk-next-btn desk-next-action" id="desk-next-btn" aria-label="Next Slide" title="Next Slide (→)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
 
         <div class="desk-slider-track" id="desk-slider-track">
@@ -273,18 +270,8 @@
           </div>
           <!-- SLIDE 1: ABOUT -->
           <div class="desk-slide" data-slide="1" id="slide-about">
-<section id="about" class="section">
-        <div class="section-head">
-          <div class="section-label">
-            <div class="section-icon-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-            </div>
-            <h2 class="section-title">About This Developer</h2>
-          </div>
-          <span class="window-actions">Overview &amp; System Specs</span>
-        </div>
-
-        <div class="macos-window about-window spotlight-card" data-tilt>
+            <section id="about" class="section">
+              <div class="macos-window about-window spotlight-card" data-tilt>
           <div class="window-header">
             <div class="traffic-lights">
               <span class="traffic-light traffic-red"></span>
@@ -353,18 +340,8 @@
           </div>
           <!-- SLIDE 2: PROJECTS -->
           <div class="desk-slide" data-slide="2" id="slide-projects">
-<section id="projects" class="section">
-        <div class="section-head">
-          <div class="section-label">
-            <div class="section-icon-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-            </div>
-            <h2 class="section-title">Projects — Project Explorer</h2>
-          </div>
-          <span class="window-actions">Pinned Repositories</span>
-        </div>
-
-        <div class="macos-window spotlight-card" data-tilt>
+            <section id="projects" class="section">
+              <div class="macos-window spotlight-card" data-tilt>
           <div class="window-header">
             <div class="traffic-lights">
               <span class="traffic-light traffic-red"></span>
@@ -483,18 +460,8 @@
           </div>
           <!-- SLIDE 3: CP -->
           <div class="desk-slide" data-slide="3" id="slide-cp">
-<section id="cp" class="section">
-        <div class="section-head">
-          <div class="section-label">
-            <div class="section-icon-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h2 class="section-title">Activity Monitor — Competitive Programming</h2>
-          </div>
-          <span class="window-actions">Auto-Sync Engine</span>
-        </div>
-
-        <div class="macos-window spotlight-card" data-tilt>
+            <section id="cp" class="section">
+              <div class="macos-window spotlight-card" data-tilt>
           <div class="window-header">
             <div class="traffic-lights">
               <span class="traffic-light traffic-red"></span>
@@ -586,18 +553,8 @@
           </div>
           <!-- SLIDE 4: SKILLS -->
           <div class="desk-slide" data-slide="4" id="slide-skills">
-<section id="skills" class="section">
-        <div class="section-head">
-          <div class="section-label">
-            <div class="section-icon-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            </div>
-            <h2 class="section-title">System Settings — Developer Toolchain</h2>
-          </div>
-          <span class="window-actions">Languages &amp; Core Disciplines</span>
-        </div>
-
-        <div class="macos-window spotlight-card" data-tilt>
+            <section id="skills" class="section">
+              <div class="macos-window spotlight-card" data-tilt>
           <div class="window-header">
             <div class="traffic-lights">
               <span class="traffic-light traffic-red"></span>

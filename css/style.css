@@ -549,10 +549,51 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
   margin: 16px auto 14px auto;
   position: relative;
   z-index: 15;
+}
+
+.sections-pill-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+.desk-pill-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(18, 20, 30, 0.85);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s var(--spring-ease);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+  user-select: none;
+}
+.desk-pill-arrow:hover {
+  color: #fff;
+  border-color: rgba(0, 242, 254, 0.65);
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.4), rgba(0, 242, 254, 0.25));
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(0, 242, 254, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+.desk-pill-arrow:active {
+  transform: scale(0.94);
 }
 
 .sections-box {
@@ -635,44 +676,6 @@ a {
   transform: scale(1.25);
 }
 
-.desk-control-meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.desk-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 14px;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  letter-spacing: 0.04em;
-}
-
-.desk-hint-pill {
-  font-size: 11.5px;
-  color: var(--text-muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.desk-hint-pill kbd {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 2px 6px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  color: var(--text-secondary);
-}
-
 /* Horizontal Sliding Info Desk Viewport */
 .desk-slider-viewport {
   position: relative;
@@ -681,12 +684,14 @@ a {
   margin: 0 auto;
   overflow: hidden;
   border-radius: var(--radius-xl);
-  padding: 6px 0 24px 0;
+  padding: 10px 0;
+  height: 560px;
 }
 
 .desk-slider-track {
   display: flex;
   width: 600%;
+  height: 100%;
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
@@ -695,7 +700,8 @@ a {
   width: 16.666667%;
   flex: 0 0 16.666667%;
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 8px;
+  height: 100%;
   opacity: 0.35;
   transform: scale(0.975);
   transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -705,43 +711,92 @@ a {
   transform: scale(1);
 }
 
-/* Floating Navigation Chevrons */
+/* Uniform Desk Window Architecture Across All 6 Slides */
+.desk-slide .section {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.desk-slide .hero-window {
+  margin-top: 0;
+}
+.desk-slide .macos-window {
+  height: 540px;
+  min-height: 540px;
+  max-height: 540px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* Minimalist Glass Scrollbar for Desk Windows */
+.finder-content::-webkit-scrollbar,
+.finder-sidebar::-webkit-scrollbar,
+.skills-wrapper::-webkit-scrollbar,
+.terminal-body::-webkit-scrollbar,
+.about-body::-webkit-scrollbar {
+  width: 5px;
+}
+.finder-content::-webkit-scrollbar-track,
+.finder-sidebar::-webkit-scrollbar-track,
+.skills-wrapper::-webkit-scrollbar-track,
+.terminal-body::-webkit-scrollbar-track,
+.about-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.finder-content::-webkit-scrollbar-thumb,
+.finder-sidebar::-webkit-scrollbar-thumb,
+.skills-wrapper::-webkit-scrollbar-thumb,
+.terminal-body::-webkit-scrollbar-thumb,
+.about-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+}
+.finder-content::-webkit-scrollbar-thumb:hover,
+.finder-sidebar::-webkit-scrollbar-thumb:hover,
+.skills-wrapper::-webkit-scrollbar-thumb:hover,
+.terminal-body::-webkit-scrollbar-thumb:hover,
+.about-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.45);
+}
+
+/* Floating Navigation Chevrons - Centered to uniform 540px desk */
 .desk-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(20, 24, 36, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(18, 22, 34, 0.88);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 25;
+  z-index: 30;
   transition: all 0.25s var(--spring-ease);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 
+    0 10px 28px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 .desk-nav-btn:hover {
-  background: rgba(0, 122, 255, 0.35);
-  border-color: rgba(0, 242, 254, 0.6);
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.45), rgba(0, 242, 254, 0.3));
+  border-color: rgba(0, 242, 254, 0.7);
   color: #fff;
-  transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 
+    0 14px 34px rgba(0, 0, 0, 0.7),
+    0 0 28px rgba(0, 242, 254, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.desk-prev-btn { left: 6px; }
-.desk-next-btn { right: 6px; }
-
-.section {
-  padding: 10px 0 20px 0;
-}
-.desk-slide .hero-window {
-  margin-top: 0;
-}
+.desk-prev-btn { left: 8px; }
+.desk-next-btn { right: 8px; }
 
 .section-head {
   display: flex;
@@ -780,12 +835,16 @@ a {
 }
 
 .terminal-body {
-  padding: 28px 24px;
+  padding: 22px 24px;
   font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 13.5px;
+  line-height: 1.65;
   color: #e2e8f0;
-  min-height: 380px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
 }
 
 .term-line {
@@ -793,7 +852,7 @@ a {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .term-prompt {
@@ -816,8 +875,8 @@ a {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  padding: 20px;
-  margin: 16px 0 24px 0;
+  padding: 16px 20px;
+  margin: 10px 0 14px 0;
 }
 
 .term-name-hero {
@@ -899,7 +958,7 @@ a {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 14px;
 }
 
 .mac-btn {
@@ -937,18 +996,22 @@ a {
 }
 
 /* ── 9. CP Monitor Window (Activity Monitor Style) ─────────── */
+.desk-slide #slide-cp .macos-window {
+  justify-content: space-between;
+}
+
 .cp-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  padding: 24px;
+  padding: 28px 24px 20px 24px;
 }
 
 .cp-widget {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 22px 18px;
   position: relative;
   transition: all 0.3s var(--spring-ease);
 }
@@ -1000,8 +1063,9 @@ a {
 }
 
 .cp-stream-row {
-  padding: 18px 24px 24px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 24px 24px 28px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
 }
 
 .cp-bar-container {
@@ -1077,14 +1141,19 @@ a {
 /* ── 10. Projects: macOS Finder Style ──────────────────────── */
 .finder-layout {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  min-height: 460px;
+  grid-template-columns: 210px 1fr;
+  flex: 1;
+  height: calc(100% - 42px);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .finder-sidebar {
   background: var(--bg-sidebar);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 18px 12px;
+  padding: 16px 12px;
+  height: 100%;
+  overflow-y: auto;
   user-select: none;
 }
 
@@ -1120,19 +1189,21 @@ a {
 }
 
 .finder-content {
-  padding: 24px;
+  padding: 18px 20px;
   background: rgba(0, 0, 0, 0.2);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
   align-content: start;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .project-tile {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  padding: 22px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1143,15 +1214,15 @@ a {
 .project-tile:hover {
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
 }
 
 .tile-icon-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 .tile-type-pill {
   font-size: 10.5px;
@@ -1164,17 +1235,17 @@ a {
 }
 
 .tile-title {
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #fff;
 }
 
 .tile-desc {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.55;
+  margin-bottom: 14px;
 }
 
 .tile-tags {
@@ -1208,25 +1279,29 @@ a {
 
 /* ── 11. Skills: macOS System Settings Grid ────────────────── */
 .skills-wrapper {
-  padding: 24px;
+  padding: 22px 24px;
+  flex: 1;
+  height: calc(100% - 42px);
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .skills-deck {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 14px;
+  gap: 12px;
 }
 
 .tech-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  padding: 16px 12px;
+  padding: 14px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.25s var(--spring-ease);
   cursor: default;
 }
@@ -1256,12 +1331,17 @@ a {
 
 /* ── 12. Contact Card ──────────────────────────────────────── */
 .contact-window {
-  margin-bottom: 60px;
+  margin: 0;
 }
 
 .contact-body {
-  padding: 40px 24px;
+  padding: 40px 28px;
   text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-hero-text {
@@ -1359,30 +1439,32 @@ a {
 
 /* ── 8B. About Window: macOS System Information ──────────── */
 .about-window {
-  margin-top: 10px;
+  margin: 0;
 }
 .about-body {
-  padding: 32px 28px;
+  padding: 24px 30px;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 36px;
+  grid-template-columns: 270px 1fr;
+  gap: 32px;
   align-items: center;
+  flex: 1;
+  overflow-y: auto;
 }
 .about-identity-pane {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 24px;
+  padding: 24px 20px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-lg);
 }
 .about-avatar-wrapper {
   position: relative;
-  width: 96px;
-  height: 96px;
-  margin-bottom: 16px;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 14px;
 }
 .about-avatar-ring {
   position: absolute;
@@ -1405,7 +1487,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36px;
+  font-size: 34px;
   font-weight: 800;
   color: var(--apple-cyan);
 }
@@ -1436,7 +1518,7 @@ a {
 .about-specs-pane {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
 }
 .specs-title {
   font-size: 11px;
@@ -1449,9 +1531,9 @@ a {
 .spec-row {
   display: grid;
   grid-template-columns: 140px 1fr;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 13.5px;
+  font-size: 13px;
 }
 .spec-key {
   color: var(--text-secondary);
