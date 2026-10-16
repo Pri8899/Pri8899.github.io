@@ -339,7 +339,7 @@
   • clear        - Clear the terminal console output`,
 
     whoami: () => `Partho Prithom Paul Sujoy
-BSc in Computer Science and Engineering
+BSc in Computer Science and Engineering (Batch 54)
 Ahsanullah University of Science and Technology (AUST) · 2nd Year 1st Sem`,
 
     projects: () => {
@@ -352,7 +352,7 @@ Ahsanullah University of Science and Technology (AUST) · 2nd Year 1st Sem`,
 
     skills: () => {
       setTimeout(() => goToSlide(4, true), 300);
-      return `Toolchain: C, C++, Java, Dart, Flutter, HTML5, CSS3, Data Structures, Algorithms, OOP, Git, GitHub, VS Code.`;
+      return `Toolchain: C, C++, Java, Dart, Flutter, Android Studio, Xcode, VS Code, Git, GitHub, DSA (DP, DFS, BFS, Trees, Binary Search, Math, Greedy), HTML, OOP, Unreal Engine, iGraphics, Discord Bots, Browser Extensions.`;
     },
 
     cf: () => {
@@ -366,7 +366,7 @@ Total Solved: 52+ problems | Current Streak: 14 days | Submissions: 84`;
     about: () => {
       setTimeout(() => goToSlide(1, true), 300);
       return `Ahsanullah University of Science and Technology (AUST)
-Degree: B.Sc. in Computer Science & Engineering (2nd Year, 1st Semester)
+Degree: B.Sc. in Computer Science & Engineering (2nd Year, 1st Semester · Batch 54)
 Location: Dhaka, Bangladesh`;
     },
 
