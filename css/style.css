@@ -1197,6 +1197,28 @@ a {
   align-content: start;
   height: 100%;
   overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+.finder-content.single-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.finder-content.single-item .project-tile {
+  width: 100%;
+  max-width: 540px;
+  min-height: 250px;
+  margin: auto;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 242, 254, 0.22);
+}
+
+.finder-content.single-item .project-tile:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.2);
+  border-color: rgba(0, 242, 254, 0.4);
 }
 
 .project-tile {

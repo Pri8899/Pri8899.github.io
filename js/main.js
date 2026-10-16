@@ -432,6 +432,8 @@ Location: Dhaka, Bangladesh`;
   // ── 5. Finder Sidebar Category Filter ─────────────────────────
   const sidebarItems = document.querySelectorAll('.finder-sidebar .sidebar-item');
   const projectTiles = document.querySelectorAll('.project-tile');
+  const finderContent = document.querySelector('.finder-content');
+  const finderItemCount = document.getElementById('finder-item-count');
 
   sidebarItems.forEach((item) => {
     item.addEventListener('click', () => {
@@ -439,19 +441,36 @@ Location: Dhaka, Bangladesh`;
       item.classList.add('active');
 
       const filter = item.getAttribute('data-filter');
+      let visibleCount = 0;
+
       projectTiles.forEach((tile) => {
         const cat = tile.getAttribute('data-cat');
         if (filter === 'all' || cat === filter) {
           tile.style.display = 'flex';
           tile.style.opacity = '0';
+          tile.style.transform = 'scale(0.96)';
+          visibleCount++;
           setTimeout(() => {
-            tile.style.transition = 'opacity 0.25s ease';
+            tile.style.transition = 'opacity 0.25s ease, transform 0.25s var(--spring-ease)';
             tile.style.opacity = '1';
-          }, 10);
+            tile.style.transform = 'scale(1)';
+          }, 15);
         } else {
           tile.style.display = 'none';
         }
       });
+
+      if (finderContent) {
+        if (visibleCount === 1) {
+          finderContent.classList.add('single-item');
+        } else {
+          finderContent.classList.remove('single-item');
+        }
+      }
+
+      if (finderItemCount) {
+        finderItemCount.textContent = `${visibleCount} Item${visibleCount === 1 ? '' : 's'}`;
+      }
     });
   });
 
