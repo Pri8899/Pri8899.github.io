@@ -33,40 +33,170 @@
   const yearEl = document.getElementById('current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ── 2. Smooth Navigation with Menubar Offset ─────────────────
+  // ── 2. Interactive Info Desk Slide Controller ───────────────
+  const slideMap = {
+    'terminal': 0,
+    'about': 1,
+    'projects': 2,
+    'cp': 3,
+    'skills': 4,
+    'contact': 5
+  };
+
+  const slideTitles = [
+    'TERMINAL & PROFILE',
+    'ABOUT DEVELOPER',
+    'PROJECTS EXPLORER',
+    'CP ACTIVITY MONITOR',
+    'TECH STACK & CS',
+    'CONTACT & CONNECT'
+  ];
+
+  let currentSlideIndex = 0;
+  const deskTrack = document.getElementById('desk-slider-track');
+  const deskSlides = document.querySelectorAll('.desk-slide');
+  const boxItems = document.querySelectorAll('.section-box-item');
+  const glider = document.getElementById('section-glider');
+  const deskCounter = document.getElementById('desk-counter');
+  const menuNavItems = document.querySelectorAll('.menubar-item[href^="#"]');
+  const prevBtn = document.getElementById('desk-prev-btn');
+  const nextBtn = document.getElementById('desk-next-btn');
+
+  function updateGlider(activeItem) {
+    if (!glider || !activeItem) return;
+    const left = activeItem.offsetLeft;
+    const width = activeItem.offsetWidth;
+    glider.style.left = `${left}px`;
+    glider.style.width = `${width}px`;
+  }
+
+  function goToSlide(targetIdx, smoothScroll = false) {
+    if (isNaN(targetIdx)) return;
+    const index = (targetIdx % 6 + 6) % 6; // wrap around cleanly
+    currentSlideIndex = index;
+
+    // Shift 600% track: each slide is 16.6667% (100% / 6)
+    if (deskTrack) {
+      deskTrack.style.transform = `translateX(-${(index * (100 / 6)).toFixed(4)}%)`;
+    }
+
+    // Update active slide class
+    deskSlides.forEach((s, i) => {
+      s.classList.toggle('active-slide', i === index);
+    });
+
+    // Update sections-box buttons & sliding glider
+    boxItems.forEach((btn, i) => {
+      const isActive = i === index;
+      btn.classList.toggle('active', isActive);
+      if (isActive) {
+        updateGlider(btn);
+      }
+    });
+
+    // Update top menubar navigation links
+    menuNavItems.forEach((m) => {
+      const href = m.getAttribute('href');
+      const targetKey = href ? href.replace('#', '') : '';
+      m.classList.toggle('active', slideMap[targetKey] === index);
+    });
+
+    // Update status counter
+    if (deskCounter) {
+      deskCounter.textContent = `DESK 0${index + 1} / 06 · ${slideTitles[index]}`;
+    }
+
+    // Smooth scroll into viewport if needed
+    if (smoothScroll) {
+      const viewport = document.getElementById('desk-slider-viewport');
+      if (viewport) {
+        const rect = viewport.getBoundingClientRect();
+        if (rect.top < 0 || rect.top > 300) {
+          window.scrollTo({ top: viewport.offsetTop - 120, behavior: 'smooth' });
+        }
+      }
+    }
+  }
+
+  // Initial Glider setup
+  setTimeout(() => {
+    const initialActive = document.querySelector('.section-box-item.active') || boxItems[0];
+    if (initialActive) updateGlider(initialActive);
+  }, 100);
+
+  // Resize listener to re-align glider
+  window.addEventListener('resize', () => {
+    const active = boxItems[currentSlideIndex];
+    if (active) updateGlider(active);
+  }, { passive: true });
+
+  // Hover & Click on Section Boxes ("when I hover the mouse in the sections box, it slide to the exact side")
+  boxItems.forEach((btn) => {
+    btn.addEventListener('mouseenter', () => {
+      const idx = parseInt(btn.getAttribute('data-index'), 10);
+      goToSlide(idx, false);
+    });
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idx = parseInt(btn.getAttribute('data-index'), 10);
+      goToSlide(idx, false);
+    });
+  });
+
+  // Next & Prev Chevrons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
+  }
+
+  // Keyboard Navigation: Left/Right arrows & 1-6 keys
+  window.addEventListener('keydown', (e) => {
+    if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) {
+      return;
+    }
+    if (e.key === 'ArrowLeft') {
+      goToSlide(currentSlideIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      goToSlide(currentSlideIndex + 1);
+    } else if (e.key >= '1' && e.key <= '6') {
+      goToSlide(parseInt(e.key, 10) - 1);
+    }
+  });
+
+  // Touch Swipe on mobile
+  const sliderViewport = document.getElementById('desk-slider-viewport');
+  if (sliderViewport) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    sliderViewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    sliderViewport.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) goToSlide(currentSlideIndex + 1);
+        else goToSlide(currentSlideIndex - 1);
+      }
+    }, { passive: true });
+  }
+
+  // Menubar and In-Page Anchor Links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const href = anchor.getAttribute('href');
       if (!href || href === '#') return;
-
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const navOffset = 48;
-        const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+      const key = href.replace('#', '');
+      if (key in slideMap) {
+        e.preventDefault();
+        goToSlide(slideMap[key], true);
       }
     });
   });
-
-  // Track active menubar section
-  const sections = document.querySelectorAll('section[id]');
-  const menuItems = document.querySelectorAll('.menubar-item[href^="#"]');
-
-  window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + 100;
-    sections.forEach((sec) => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      const id = sec.getAttribute('id');
-
-      if (scrollPos >= top && scrollPos < top + height) {
-        menuItems.forEach((item) => {
-          item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  }, { passive: true });
 
   // ── 3. macOS Spotlight Search (⌘K / Ctrl+K) ──────────────────
   const spotlightBtn = document.getElementById('spotlight-btn');
@@ -158,11 +288,9 @@
           const action = active.getAttribute('data-action');
           closeSpotlight();
           if (action && action.startsWith('#')) {
-            const target = document.querySelector(action);
-            if (target) {
-              const navOffset = 48;
-              const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-              window.scrollTo({ top: targetPos, behavior: 'smooth' });
+            const key = action.replace('#', '');
+            if (key in slideMap) {
+              goToSlide(slideMap[key], true);
             }
           }
         }
@@ -176,11 +304,9 @@
         const action = item.getAttribute('data-action');
         closeSpotlight();
         if (action && action.startsWith('#')) {
-          const target = document.querySelector(action);
-          if (target) {
-            const navOffset = 48;
-            const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
-            window.scrollTo({ top: targetPos, behavior: 'smooth' });
+          const key = action.replace('#', '');
+          if (key in slideMap) {
+            goToSlide(slideMap[key], true);
           }
         }
       });
@@ -208,29 +334,20 @@ BSc in Computer Science and Engineering
 Ahsanullah University of Science and Technology (AUST) · 2nd Year 1st Sem`,
 
     projects: () => {
-      setTimeout(() => {
-        const p = document.getElementById('projects');
-        if (p) p.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-      return `Navigating to Projects Finder...
+      setTimeout(() => goToSlide(2, true), 300);
+      return `Navigating to Projects Explorer...
 [1] CodeSync Pro Extension (Chrome / Browser CP Auto-Sync)
 [2] BigOof (Production Discord Bot)
 [3] CP Archive (Systematic Algorithmic Problem Solutions)`;
     },
 
     skills: () => {
-      setTimeout(() => {
-        const s = document.getElementById('skills');
-        if (s) s.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+      setTimeout(() => goToSlide(4, true), 300);
       return `Toolchain: C, C++, Java, Dart, Flutter, HTML5, CSS3, Data Structures, Algorithms, OOP, Git, GitHub, VS Code.`;
     },
 
     cf: () => {
-      setTimeout(() => {
-        const c = document.getElementById('cp');
-        if (c) c.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+      setTimeout(() => goToSlide(3, true), 300);
       return `Codeforces Handle: pri8899
 Total Solved: 52+ problems | Current Streak: 14 days | Submissions: 84`;
     },
@@ -238,20 +355,14 @@ Total Solved: 52+ problems | Current Streak: 14 days | Submissions: 84`;
     codeforces: () => terminalCommands.cf(),
 
     about: () => {
-      setTimeout(() => {
-        const a = document.getElementById('about');
-        if (a) a.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+      setTimeout(() => goToSlide(1, true), 300);
       return `Ahsanullah University of Science and Technology (AUST)
 Degree: B.Sc. in Computer Science & Engineering (2nd Year, 1st Semester)
 Location: Dhaka, Bangladesh`;
     },
 
     contact: () => {
-      setTimeout(() => {
-        const c = document.getElementById('contact');
-        if (c) c.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+      setTimeout(() => goToSlide(5, true), 300);
       return `Email: parthopaul8899@gmail.com | GitHub: https://github.com/Pri8899`;
     },
 
@@ -363,6 +474,20 @@ Location: Dhaka, Bangladesh`;
 
     card.addEventListener('mouseenter', () => {
       card.style.transition = 'none';
+    });
+  });
+
+  // ── 6A. Magnetic Button Hover Interaction ───────────────────
+  const magneticElements = document.querySelectorAll('.mac-btn, .spotlight-trigger, .desk-nav-btn');
+  magneticElements.forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate3d(${(x * 0.22).toFixed(1)}px, ${(y * 0.22).toFixed(1)}px, 0) scale(1.04)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
     });
   });
 
