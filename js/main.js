@@ -366,12 +366,13 @@ Location: Dhaka, Bangladesh`;
     });
   });
 
-  // ── 6B. Dynamic Background Hover, Grid Spotlight & Particle Canvas ─
+  // ── 6B. Dynamic Background Hover, Liquid Waves & Particle Canvas ─
   (function initBackgroundInteractive() {
     const root = document.documentElement;
     const aurora1 = document.getElementById('aurora-1');
     const aurora2 = document.getElementById('aurora-2');
     const aurora3 = document.getElementById('aurora-3');
+    const aurora4 = document.getElementById('aurora-4');
     const ambientScene = document.getElementById('ambient-scene');
     const canvas = document.getElementById('bg-canvas');
 
@@ -379,66 +380,112 @@ Location: Dhaka, Bangladesh`;
     let mouseY = window.innerHeight / 2;
     let targetX = mouseX;
     let targetY = mouseY;
+    let lastMouseX = mouseX;
+    let lastMouseY = mouseY;
 
-    // Track mouse with passive event listener for maximum performance
+    // Track mouse with passive event listener for performance
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      lastMouseX = mouseX;
+      lastMouseY = mouseY;
     }, { passive: true });
 
-    // Smooth Lerp Engine (Runs at locked 60/120Hz)
+    // Smooth Lerp Engine
     function updateCursorLighting() {
-      // Fluid ease toward cursor coordinates
       targetX += (mouseX - targetX) * 0.12;
       targetY += (mouseY - targetY) * 0.12;
 
       root.style.setProperty('--cursor-x', `${targetX.toFixed(1)}px`);
       root.style.setProperty('--cursor-y', `${targetY.toFixed(1)}px`);
 
-      // Gentle organic parallax shift on the 3 background aurora orbs
+      // Gentle organic parallax shift on the 4 background aurora orbs
       const normX = (targetX / window.innerWidth) - 0.5;
       const normY = (targetY / window.innerHeight) - 0.5;
 
-      if (aurora1) aurora1.style.transform = `translate(${(normX * 45).toFixed(1)}px, ${(normY * 35).toFixed(1)}px)`;
-      if (aurora2) aurora2.style.transform = `translate(${(-normX * 55).toFixed(1)}px, ${(normY * 40).toFixed(1)}px)`;
-      if (aurora3) aurora3.style.transform = `translate(${(normX * 35).toFixed(1)}px, ${(-normY * 45).toFixed(1)}px)`;
+      if (aurora1) aurora1.style.transform = `translate3d(${(normX * 50).toFixed(1)}px, ${(normY * 40).toFixed(1)}px, 0)`;
+      if (aurora2) aurora2.style.transform = `translate3d(${(-normX * 60).toFixed(1)}px, ${(normY * 45).toFixed(1)}px, 0)`;
+      if (aurora3) aurora3.style.transform = `translate3d(${(normX * 40).toFixed(1)}px, ${(-normY * 50).toFixed(1)}px, 0)`;
+      if (aurora4) aurora4.style.transform = `translate3d(${(-normX * 45).toFixed(1)}px, ${(-normY * 35).toFixed(1)}px, 0)`;
 
       requestAnimationFrame(updateCursorLighting);
     }
     requestAnimationFrame(updateCursorLighting);
 
-    // Click Ripple Wave on Background
+    // Shockwave Ripples & Sparks collection
+    const ripples = [];
+    const sparks = [];
+
+    function triggerShockwave(x, y) {
+      ripples.push({
+        x,
+        y,
+        radius: 4,
+        maxRadius: Math.min(window.innerWidth, window.innerHeight) * 0.5,
+        alpha: 0.85,
+        speed: 6.5
+      });
+
+      // Spawn 14 glowing sparks bursting outward
+      for (let i = 0; i < 14; i++) {
+        const angle = (Math.PI * 2 * i) / 14 + (Math.random() - 0.5) * 0.4;
+        const speed = Math.random() * 4.5 + 2;
+        sparks.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: Math.random() * 2 + 1,
+          alpha: 1,
+          decay: Math.random() * 0.024 + 0.018,
+          color: i % 2 === 0 ? 'rgba(0, 242, 254,' : 'rgba(191, 90, 242,'
+        });
+      }
+    }
+
     window.addEventListener('click', (e) => {
-      if (!ambientScene) return;
-      const ripple = document.createElement('div');
-      ripple.className = 'click-ripple';
-      ripple.style.left = `${e.clientX}px`;
-      ripple.style.top = `${e.clientY}px`;
-      ambientScene.appendChild(ripple);
-      setTimeout(() => { ripple.remove(); }, 800);
+      triggerShockwave(e.clientX, e.clientY);
+
+      // Subtle CSS pulse ring
+      if (ambientScene) {
+        const ripple = document.createElement('div');
+        ripple.className = 'click-ripple';
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        ambientScene.appendChild(ripple);
+        setTimeout(() => { ripple.remove(); }, 800);
+      }
     });
 
-    // Interactive Floating Constellation Particle Canvas
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }, { passive: true });
+    function resizeCanvas() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
-    // Generate ~45 subtle floating particles
-    const particleCount = Math.min(48, Math.max(25, Math.floor(window.innerWidth / 32)));
+    // Luminous Stardust Particles
+    const particleCount = Math.min(48, Math.max(26, Math.floor(window.innerWidth / 30)));
     const particles = [];
     const colors = [
       'rgba(0, 242, 254, ',   // Neon Cyan
       'rgba(191, 90, 242, ',  // Neon Purple
       'rgba(0, 122, 255, ',   // Electric Blue
-      'rgba(255, 255, 255, '   // Pure Star White
+      'rgba(255, 255, 255, '   // Star White
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -447,79 +494,218 @@ Location: Dhaka, Bangladesh`;
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.45,
         vy: (Math.random() - 0.5) * 0.45,
-        radius: Math.random() * 1.5 + 0.8,
+        radius: Math.random() * 1.6 + 0.8,
         colorBase: colors[Math.floor(Math.random() * colors.length)],
-        baseAlpha: Math.random() * 0.35 + 0.15,
-        pulseSpeed: Math.random() * 0.02 + 0.01,
+        baseAlpha: Math.random() * 0.35 + 0.18,
+        pulseSpeed: Math.random() * 0.02 + 0.012,
         pulseOffset: Math.random() * Math.PI * 2
       });
     }
 
-    let frame = 0;
-    function renderParticles() {
+    // Harmonic Wave Ribbon Configurations
+    const waves = [
+      {
+        baseYFactor: 0.36,
+        freq1: 0.0032,
+        freq2: 0.0068,
+        amp1: 26,
+        amp2: 16,
+        speed1: 0.016,
+        speed2: 0.022,
+        strokeGradient: ['rgba(0, 242, 254, 0.28)', 'rgba(0, 122, 255, 0.16)'],
+        fillGradient: ['rgba(0, 242, 254, 0.04)', 'rgba(0, 122, 255, 0.00)'],
+        lineWidth: 1.8
+      },
+      {
+        baseYFactor: 0.58,
+        freq1: 0.0026,
+        freq2: 0.0055,
+        amp1: 32,
+        amp2: 20,
+        speed1: -0.014,
+        speed2: 0.018,
+        strokeGradient: ['rgba(191, 90, 242, 0.26)', 'rgba(121, 40, 202, 0.14)'],
+        fillGradient: ['rgba(191, 90, 242, 0.035)', 'rgba(121, 40, 202, 0.00)'],
+        lineWidth: 1.6
+      },
+      {
+        baseYFactor: 0.78,
+        freq1: 0.0038,
+        freq2: 0.0076,
+        amp1: 24,
+        amp2: 15,
+        speed1: 0.02,
+        speed2: -0.015,
+        strokeGradient: ['rgba(0, 210, 255, 0.24)', 'rgba(16, 185, 129, 0.16)'],
+        fillGradient: ['rgba(0, 210, 255, 0.035)', 'rgba(16, 185, 129, 0.00)'],
+        lineWidth: 1.5
+      }
+    ];
+
+    let time = 0;
+    function renderCanvasScene() {
       if (document.hidden) {
-        requestAnimationFrame(renderParticles);
+        requestAnimationFrame(renderCanvasScene);
         return;
       }
-      ctx.clearRect(0, 0, width, height);
-      frame++;
 
+      ctx.clearRect(0, 0, width, height);
+      time += 1;
+
+      // 1. Draw Liquid Energy Silk Waves
+      waves.forEach((w) => {
+        const baseY = height * w.baseYFactor;
+        const step = Math.max(12, Math.floor(width / 75));
+
+        ctx.beginPath();
+        ctx.moveTo(0, height);
+
+        for (let x = 0; x <= width + step; x += step) {
+          // Harmonic wave elevation
+          let y = baseY +
+            Math.sin(x * w.freq1 + time * w.speed1) * w.amp1 +
+            Math.cos(x * w.freq2 + time * w.speed2) * w.amp2;
+
+          // Interactive Cursor Proximity Distortion (Waves bow and ripple around cursor)
+          const distToCursorX = x - targetX;
+          const distToCursorY = baseY - targetY;
+          const cursorDist = Math.hypot(distToCursorX, distToCursorY);
+          const maxCursorDist = 260;
+
+          if (cursorDist < maxCursorDist) {
+            const factor = Math.cos((cursorDist / maxCursorDist) * (Math.PI / 2));
+            y += distToCursorY * -0.28 * factor;
+          }
+
+          // Shockwave perturbation on waves
+          for (let r = 0; r < ripples.length; r++) {
+            const rip = ripples[r];
+            const distToRip = Math.hypot(x - rip.x, y - rip.y);
+            const ripDiff = Math.abs(distToRip - rip.radius);
+            if (ripDiff < 60) {
+              const ripFactor = (1 - ripDiff / 60) * rip.alpha;
+              y += Math.sin(ripDiff * 0.15) * 16 * ripFactor;
+            }
+          }
+
+          if (x === 0) {
+            ctx.lineTo(0, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+
+        ctx.lineTo(width, height);
+        ctx.closePath();
+
+        // Stroke & Fill with gradients
+        const strokeGrad = ctx.createLinearGradient(0, 0, width, 0);
+        strokeGrad.addColorStop(0, w.strokeGradient[0]);
+        strokeGrad.addColorStop(1, w.strokeGradient[1]);
+
+        const fillGrad = ctx.createLinearGradient(0, baseY - w.amp1, 0, height);
+        fillGrad.addColorStop(0, w.fillGradient[0]);
+        fillGrad.addColorStop(1, w.fillGradient[1]);
+
+        ctx.fillStyle = fillGrad;
+        ctx.fill();
+
+        ctx.strokeStyle = strokeGrad;
+        ctx.lineWidth = w.lineWidth;
+        ctx.stroke();
+      });
+
+      // 2. Render Shockwave Rings
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const rip = ripples[i];
+        rip.radius += rip.speed;
+        rip.alpha -= 0.014;
+
+        if (rip.alpha <= 0 || rip.radius > rip.maxRadius) {
+          ripples.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(rip.x, rip.y, rip.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 242, 254, ${(rip.alpha * 0.45).toFixed(3)})`;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+      }
+
+      // 3. Render Sparks Burst
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vx *= 0.95;
+        s.vy *= 0.95;
+        s.alpha -= s.decay;
+
+        if (s.alpha <= 0) {
+          sparks.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `${s.color} ${s.alpha.toFixed(3)})`;
+        ctx.fill();
+      }
+
+      // 4. Render Floating Stardust Particles & Constellations
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Drift particle
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap around boundaries
         if (p.x < 0) p.x = width;
         else if (p.x > width) p.x = 0;
         if (p.y < 0) p.y = height;
         else if (p.y > height) p.y = 0;
 
-        // Distance from smoothed cursor position
         const dx = targetX - p.x;
         const dy = targetY - p.y;
         const dist = Math.hypot(dx, dy);
-        const maxDist = 160;
+        const maxDist = 180;
 
-        let alpha = p.baseAlpha + Math.sin(frame * p.pulseSpeed + p.pulseOffset) * 0.1;
+        let alpha = p.baseAlpha + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.12;
         let radius = p.radius;
 
-        // Proximity hover interaction: illuminate & draw glowing laser beam
+        // Proximity hover interaction
         if (dist < maxDist) {
           const proxFactor = (1 - dist / maxDist);
-          alpha = Math.min(0.9, alpha + proxFactor * 0.5);
-          radius = p.radius * (1 + proxFactor * 0.8);
+          alpha = Math.min(0.95, alpha + proxFactor * 0.55);
+          radius = p.radius * (1 + proxFactor * 0.9);
 
-          // Glowing connecting energy beam to cursor
+          // Ethereal laser beam connection to cursor
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(targetX, targetY);
-          ctx.strokeStyle = `rgba(0, 242, 254, ${(proxFactor * 0.22).toFixed(3)})`;
-          ctx.lineWidth = 0.8;
+          ctx.strokeStyle = `rgba(0, 242, 254, ${(proxFactor * 0.24).toFixed(3)})`;
+          ctx.lineWidth = 0.9;
           ctx.stroke();
 
-          // Subtle gentle repulsion to avoid cluttering right on cursor
-          p.x -= (dx / dist) * 0.35;
-          p.y -= (dy / dist) * 0.35;
+          // Subtle gentle magnetic attraction / fluid deflection
+          p.x += (dx / dist) * 0.25;
+          p.y += (dy / dist) * 0.25;
         }
 
-        // Draw particle dot with glow
         ctx.beginPath();
         ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
         ctx.fillStyle = `${p.colorBase}${alpha.toFixed(3)})`;
-        ctx.shadowColor = 'rgba(0, 242, 254, 0.6)';
-        ctx.shadowBlur = dist < maxDist ? 10 : 3;
+        ctx.shadowColor = 'rgba(0, 242, 254, 0.7)';
+        ctx.shadowBlur = dist < maxDist ? 12 : 4;
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Constellation lines between nearby particles
+        // Constellation connections between neighbors
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const pDist = Math.hypot(p.x - p2.x, p.y - p2.y);
           if (pDist < 85) {
-            const lineAlpha = (1 - pDist / 85) * 0.08;
+            const lineAlpha = (1 - pDist / 85) * 0.09;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -530,9 +716,9 @@ Location: Dhaka, Bangladesh`;
         }
       }
 
-      requestAnimationFrame(renderParticles);
+      requestAnimationFrame(renderCanvasScene);
     }
-    requestAnimationFrame(renderParticles);
+    requestAnimationFrame(renderCanvasScene);
   })();
 
   // ── 7. Number Counting Animation ─────────────────────────────
