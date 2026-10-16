@@ -23,12 +23,15 @@
 </head>
 <body>
 
-  <!-- ═══ 1. Ambient Aurora Lights & Grid ═══ -->
-  <div class="ambient-scene" aria-hidden="true">
-    <div class="ambient-aurora aurora-1"></div>
-    <div class="ambient-aurora aurora-2"></div>
-    <div class="ambient-aurora aurora-3"></div>
-    <div class="wallpaper-grid"></div>
+  <!-- ═══ 1. Ambient Aurora Lights & Interactive Hover Grid ═══ -->
+  <div class="ambient-scene" id="ambient-scene" aria-hidden="true">
+    <div class="ambient-aurora aurora-1" id="aurora-1"></div>
+    <div class="ambient-aurora aurora-2" id="aurora-2"></div>
+    <div class="ambient-aurora aurora-3" id="aurora-3"></div>
+    <div class="wallpaper-grid base-grid"></div>
+    <div class="interactive-grid-highlight"></div>
+    <div class="cursor-spotlight"></div>
+    <canvas id="bg-canvas" class="bg-canvas"></canvas>
   </div>
 
   <!-- ═══ 2. Top System Menu Bar ═══ -->

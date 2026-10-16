@@ -1,12 +1,12 @@
 /* ══════════════════════════════════════════════════════════════
-   Partho Paul — macOS Web Experience Scripts
-   Spotlight Search, Interactive Terminal, 3D Tilt, Live CF Sync
+   Partho Paul — Developer Portfolio Scripts
+   Interactive Background Grid, Spotlight, Terminal, Live CF Sync
    ══════════════════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
-  // ── 1. Live macOS Top Menu Bar Clock ─────────────────────────
+  // ── 1. Live Top Menu Bar Clock ──────────────────────────────
   function updateSystemClock() {
     const clockEl = document.getElementById('system-clock');
     if (!clockEl) return;
@@ -365,6 +365,175 @@ Location: Dhaka, Bangladesh`;
       card.style.transition = 'none';
     });
   });
+
+  // ── 6B. Dynamic Background Hover, Grid Spotlight & Particle Canvas ─
+  (function initBackgroundInteractive() {
+    const root = document.documentElement;
+    const aurora1 = document.getElementById('aurora-1');
+    const aurora2 = document.getElementById('aurora-2');
+    const aurora3 = document.getElementById('aurora-3');
+    const ambientScene = document.getElementById('ambient-scene');
+    const canvas = document.getElementById('bg-canvas');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let targetX = mouseX;
+    let targetY = mouseY;
+
+    // Track mouse with passive event listener for maximum performance
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, { passive: true });
+
+    // Smooth Lerp Engine (Runs at locked 60/120Hz)
+    function updateCursorLighting() {
+      // Fluid ease toward cursor coordinates
+      targetX += (mouseX - targetX) * 0.12;
+      targetY += (mouseY - targetY) * 0.12;
+
+      root.style.setProperty('--cursor-x', `${targetX.toFixed(1)}px`);
+      root.style.setProperty('--cursor-y', `${targetY.toFixed(1)}px`);
+
+      // Gentle organic parallax shift on the 3 background aurora orbs
+      const normX = (targetX / window.innerWidth) - 0.5;
+      const normY = (targetY / window.innerHeight) - 0.5;
+
+      if (aurora1) aurora1.style.transform = `translate(${(normX * 45).toFixed(1)}px, ${(normY * 35).toFixed(1)}px)`;
+      if (aurora2) aurora2.style.transform = `translate(${(-normX * 55).toFixed(1)}px, ${(normY * 40).toFixed(1)}px)`;
+      if (aurora3) aurora3.style.transform = `translate(${(normX * 35).toFixed(1)}px, ${(-normY * 45).toFixed(1)}px)`;
+
+      requestAnimationFrame(updateCursorLighting);
+    }
+    requestAnimationFrame(updateCursorLighting);
+
+    // Click Ripple Wave on Background
+    window.addEventListener('click', (e) => {
+      if (!ambientScene) return;
+      const ripple = document.createElement('div');
+      ripple.className = 'click-ripple';
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+      ambientScene.appendChild(ripple);
+      setTimeout(() => { ripple.remove(); }, 800);
+    });
+
+    // Interactive Floating Constellation Particle Canvas
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, { passive: true });
+
+    // Generate ~45 subtle floating particles
+    const particleCount = Math.min(48, Math.max(25, Math.floor(window.innerWidth / 32)));
+    const particles = [];
+    const colors = [
+      'rgba(0, 242, 254, ',   // Neon Cyan
+      'rgba(191, 90, 242, ',  // Neon Purple
+      'rgba(0, 122, 255, ',   // Electric Blue
+      'rgba(255, 255, 255, '   // Pure Star White
+    ];
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 1.5 + 0.8,
+        colorBase: colors[Math.floor(Math.random() * colors.length)],
+        baseAlpha: Math.random() * 0.35 + 0.15,
+        pulseSpeed: Math.random() * 0.02 + 0.01,
+        pulseOffset: Math.random() * Math.PI * 2
+      });
+    }
+
+    let frame = 0;
+    function renderParticles() {
+      if (document.hidden) {
+        requestAnimationFrame(renderParticles);
+        return;
+      }
+      ctx.clearRect(0, 0, width, height);
+      frame++;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        // Drift particle
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap around boundaries
+        if (p.x < 0) p.x = width;
+        else if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        else if (p.y > height) p.y = 0;
+
+        // Distance from smoothed cursor position
+        const dx = targetX - p.x;
+        const dy = targetY - p.y;
+        const dist = Math.hypot(dx, dy);
+        const maxDist = 160;
+
+        let alpha = p.baseAlpha + Math.sin(frame * p.pulseSpeed + p.pulseOffset) * 0.1;
+        let radius = p.radius;
+
+        // Proximity hover interaction: illuminate & draw glowing laser beam
+        if (dist < maxDist) {
+          const proxFactor = (1 - dist / maxDist);
+          alpha = Math.min(0.9, alpha + proxFactor * 0.5);
+          radius = p.radius * (1 + proxFactor * 0.8);
+
+          // Glowing connecting energy beam to cursor
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(targetX, targetY);
+          ctx.strokeStyle = `rgba(0, 242, 254, ${(proxFactor * 0.22).toFixed(3)})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          // Subtle gentle repulsion to avoid cluttering right on cursor
+          p.x -= (dx / dist) * 0.35;
+          p.y -= (dy / dist) * 0.35;
+        }
+
+        // Draw particle dot with glow
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `${p.colorBase}${alpha.toFixed(3)})`;
+        ctx.shadowColor = 'rgba(0, 242, 254, 0.6)';
+        ctx.shadowBlur = dist < maxDist ? 10 : 3;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Constellation lines between nearby particles
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const pDist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (pDist < 85) {
+            const lineAlpha = (1 - pDist / 85) * 0.08;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha.toFixed(3)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(renderParticles);
+    }
+    requestAnimationFrame(renderParticles);
+  })();
 
   // ── 7. Number Counting Animation ─────────────────────────────
   function animateValue(el, target, isDecimal = false) {
