@@ -3,529 +3,533 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Partho Paul — Portfolio</title>
-  <meta name="description" content="Partho Prithom Paul Sujoy — CS Undergrad, Competitive Programmer, and Full-Stack Builder. Portfolio showcasing projects, CP journey, and skills." />
+  <title>Partho Paul — Software Developer &amp; Competitive Programmer</title>
+  <meta name="description" content="Portfolio of Partho Prithom Paul Sujoy. CS Undergrad at AUST, competitive programmer, and developer of CodeSync Pro &amp; BigOof." />
   <meta name="author" content="Partho Paul" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Partho Paul — Portfolio" />
-  <meta property="og:description" content="CS Undergrad @ AUST | Competitive Programmer | Builder" />
+  <meta property="og:description" content="CS Undergrad @ AUST · Competitive Programmer · Flutter &amp; Software Developer" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pri8899.github.io" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-  <!-- Favicon -->
   <link rel="icon" href="https://github.com/Pri8899.png" type="image/png" />
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- ═══ Animated Background Gradient ═══ -->
-  <div class="bg-gradient" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
+  <!-- Ambient Light Backdrops -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
 
-  <!-- ═══ macOS Menu Bar ═══ -->
-  <header class="menubar" id="menubar">
-    <div class="menu-left">
-      <span class="apple-logo" aria-hidden="true"></span>
-      <span class="menu-name">Partho Paul</span>
-    </div>
-    <nav class="menu-center" aria-label="Main navigation">
-      <a href="#home" class="menu-link active" data-section="home">Home</a>
-      <a href="#about" class="menu-link" data-section="about">About</a>
-      <a href="#projects" class="menu-link" data-section="projects">Projects</a>
-      <a href="#cp" class="menu-link" data-section="cp">CP Journey</a>
-      <a href="#skills" class="menu-link" data-section="skills">Skills</a>
-      <a href="#contact" class="menu-link" data-section="contact">Contact</a>
-    </nav>
-    <div class="menu-right">
-      <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="menu-github" title="GitHub Profile">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+  <!-- ═══ Floating Capsule Navigation Bar ═══ -->
+  <header class="site-header">
+    <nav class="nav-pill" aria-label="Main navigation">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-dot"></span>
+        <span>Partho Paul</span>
       </a>
-    </div>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#cp" class="nav-link">CP Stats</a>
+        <a href="#skills" class="nav-link">Tech Stack</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub Profile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="icon-btn" title="Codeforces Profile">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+        </a>
+      </div>
+    </nav>
   </header>
 
-  <!-- ═══ SECTION 1: Hero — Terminal Window ═══ -->
-  <section id="home" class="section hero-section">
-    <div class="hero-content">
-      <div class="macos-window terminal-window reveal" data-reveal="scale">
-        <div class="window-titlebar">
-          <div class="traffic-lights">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
+  <main>
+    <!-- ═══ 1. Hero Section ═══ -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="pulse-indicator"></span>
+            <span>Available for Collaborations &amp; Projects</span>
           </div>
-          <span class="window-title">Terminal — partho@macbook</span>
-          <div class="window-actions"></div>
-        </div>
-        <div class="window-body terminal-body">
-          <div class="terminal-line">
-            <span class="prompt">partho@macbook</span>
-            <span class="prompt-sep">~</span>
-            <span class="prompt-dollar">$</span>
-            <span class="typed-command">whoami</span>
+
+          <h1 class="hero-name">Partho Prithom Paul</h1>
+          <p class="hero-headline">
+            Computer Science Undergrad at <strong>Ahsanullah University of Science &amp; Technology</strong>.
+            Passionate about <strong>Competitive Programming</strong>, <strong>Flutter Development</strong>, and building performant developer tools.
+          </p>
+
+          <p class="hero-description">
+            Creator of <strong>CodeSync Pro</strong> and <strong>BigOof</strong>. Focused on writing elegant C++, Java, and Flutter applications while constantly sharpening algorithmic problem-solving skills.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+            </a>
+            <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+              <span>Codeforces (pri8899)</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
           </div>
-          <div class="terminal-output-block">
-            <p class="terminal-greeting" id="typed-greeting"></p>
-            <p class="terminal-subtitle" id="typed-subtitle"></p>
-          </div>
-          <div class="terminal-line">
-            <span class="prompt">partho@macbook</span>
-            <span class="prompt-sep">~</span>
-            <span class="prompt-dollar">$</span>
-            <span class="cursor-blink">▊</span>
+
+          <div class="quick-stats-strip">
+            <div class="strip-stat">
+              <span class="strip-num" id="hero-solved-count">52+</span>
+              <span class="strip-label">Problems Solved</span>
+            </div>
+            <div class="strip-stat">
+              <span class="strip-num">239</span>
+              <span class="strip-label">GitHub Contributions</span>
+            </div>
+            <div class="strip-stat">
+              <span class="strip-num">AUST</span>
+              <span class="strip-label">BSc in CSE '28</span>
+            </div>
+            <div class="strip-stat">
+              <span class="strip-num">Dhaka</span>
+              <span class="strip-label">Bangladesh</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="hero-cta reveal" data-reveal="up" data-delay="600">
-        <a href="#projects" class="btn btn-primary">
-          <span>View My Work</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-outline">Get In Touch</a>
-      </div>
-    </div>
-
-    <div class="scroll-indicator" aria-hidden="true">
-      <div class="mouse">
-        <div class="mouse-wheel"></div>
-      </div>
-      <span>Scroll Down</span>
-    </div>
-  </section>
-
-  <!-- ═══ SECTION 2: About — "About This Mac" Style ═══ -->
-  <section id="about" class="section about-section">
-    <div class="container">
-      <h2 class="section-heading reveal" data-reveal="up">
-        <span class="heading-accent">01.</span> About Me
-      </h2>
-
-      <div class="macos-window about-window reveal" data-reveal="up" data-delay="200">
-        <div class="window-titlebar">
-          <div class="traffic-lights">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-          <span class="window-title"> About This Developer</span>
-          <div class="window-actions"></div>
+    <!-- ═══ 2. About Section (Bento Grid) ═══ -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Overview</span>
+          <h2 class="section-title">About Me</h2>
         </div>
-        <div class="window-body about-body">
-          <div class="about-grid">
-            <div class="about-photo-col">
-              <div class="photo-frame">
-                <img
-                  src="https://github.com/Pri8899.png"
-                  alt="Partho Paul"
-                  class="about-photo"
-                  loading="lazy"
-                />
-                <div class="photo-overlay">
-                  <span>📸 Photo coming soon</span>
-                </div>
-              </div>
-              <div class="about-quick-stats">
-                <div class="quick-stat">
-                  <span class="stat-number" data-count="239">239</span>
-                  <span class="stat-label">Contributions</span>
-                </div>
-                <div class="quick-stat">
-                  <span class="stat-number" data-count="3">3</span>
-                  <span class="stat-label">Repositories</span>
-                </div>
-                <div class="quick-stat">
-                  <span class="stat-number" id="about-stat-solved" data-count="52">52</span>
-                  <span class="stat-label">Problems Solved</span>
-                </div>
+
+        <div class="bento-grid">
+          <!-- Profile Card -->
+          <div class="bento-card">
+            <div class="profile-card-header">
+              <div class="avatar-monogram">PP</div>
+              <div class="profile-title-group">
+                <h3>Partho Prithom Paul Sujoy</h3>
+                <p>Sophomore Computer Science Student</p>
               </div>
             </div>
 
-            <div class="about-info-col">
-              <h3 class="about-name">Partho Prithom Paul Sujoy</h3>
-              <p class="about-tagline">Computer Science Undergraduate · Competitive Programmer · Builder</p>
+            <p class="about-text">
+              I am a 2nd year, 1st semester Computer Science and Engineering student at <strong>Ahsanullah University of Science and Technology (AUST)</strong>.
+              I enjoy solving algorithmic challenges on Codeforces and crafting practical software with C++, Java, Flutter, and web technologies.
+            </p>
 
-              <div class="about-details">
-                <div class="detail-row">
-                  <span class="detail-icon">🎓</span>
-                  <div>
-                    <strong>Ahsanullah University of Science &amp; Technology</strong>
-                    <p>BSc in Computer Science &amp; Engineering</p>
-                  </div>
+            <div class="info-rows">
+              <div class="info-row">
+                <div class="info-row-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                 </div>
-                <div class="detail-row">
-                  <span class="detail-icon">📅</span>
-                  <div>
-                    <strong>2nd Year, 1st Semester</strong>
-                    <p>Currently studying core CS fundamentals</p>
-                  </div>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-icon">⚡</span>
-                  <div>
-                    <strong>Focus Areas</strong>
-                    <p>Competitive Programming · Flutter App Development · C/C++ · Java</p>
-                  </div>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-icon">📍</span>
-                  <div>
-                    <strong>Location</strong>
-                    <p>Dhaka, Bangladesh</p>
-                  </div>
+                <div>
+                  <strong>University:</strong>
+                  <span>Ahsanullah University of Science and Technology</span>
                 </div>
               </div>
+              <div class="info-row">
+                <div class="info-row-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                </div>
+                <div>
+                  <strong>Academic Standing:</strong>
+                  <span>2nd Year, 1st Semester · BSc in CSE</span>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-row-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
+                </div>
+                <div>
+                  <strong>Core Interests:</strong>
+                  <span>Competitive Programming, Algorithms, Flutter Mobile Apps</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              <p class="about-bio">
-                I'm a sophomore CS student who loves building tools that solve real problems.
-                From crafting a full-featured <strong>browser extension</strong> for competitive programmers,
-                to engineering an <strong>autonomous Discord bot</strong> for coding clubs, I believe the best
-                way to learn is to ship. Currently grinding CP on Codeforces and CSES, and always looking
-                for the next challenge.
+          <!-- Developer Philosophy Card -->
+          <div class="bento-card code-card">
+            <div class="code-card-header">
+              <div class="code-dots">
+                <span class="code-dot"></span>
+                <span class="code-dot"></span>
+                <span class="code-dot"></span>
+              </div>
+              <span class="code-filename">solver.cpp</span>
+            </div>
+            <pre class="code-pre"><code><span class="token-comment">// Philosophy: Think clearly, code cleanly</span>
+<span class="token-keyword">#include</span> <span class="token-str">&lt;bits/stdc++.h&gt;</span>
+<span class="token-keyword">using namespace</span> std;
+
+<span class="token-type">int</span> <span class="token-func">main</span>() {
+    ios_base::sync_with_stdio(<span class="token-keyword">false</span>);
+    cin.tie(<span class="token-keyword">nullptr</span>);
+
+    Developer partho;
+    partho.university = <span class="token-str">"AUST"</span>;
+    partho.languages  = {<span class="token-str">"C++"</span>, <span class="token-str">"Java"</span>, <span class="token-str">"C"</span>, <span class="token-str">"Dart"</span>};
+    partho.framework  = <span class="token-str">"Flutter"</span>;
+    partho.mission    = <span class="token-str">"Build &amp; Solve Daily"</span>;
+
+    <span class="token-keyword">while</span> (partho.hasGoal()) {
+        partho.solveProblem();
+        partho.shipSoftware();
+    }
+    <span class="token-keyword">return</span> <span class="token-type">0</span>;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. Real-Time CP Dashboard ═══ -->
+    <section id="cp" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Performance Analytics</span>
+          <h2 class="section-title">Competitive Programming Journey</h2>
+        </div>
+
+        <div class="cp-stats-grid">
+          <div class="stat-widget">
+            <div class="stat-header">
+              <span class="stat-label-title">Total Solved</span>
+              <span class="stat-badge-tag">CF + CSES</span>
+            </div>
+            <div class="stat-big-val" id="stat-solved-total">52</div>
+          </div>
+
+          <div class="stat-widget">
+            <div class="stat-header">
+              <span class="stat-label-title">Active Streak</span>
+              <span class="stat-badge-tag">Days</span>
+            </div>
+            <div class="stat-big-val" id="stat-streak">14</div>
+          </div>
+
+          <div class="stat-widget">
+            <div class="stat-header">
+              <span class="stat-label-title">AC Accuracy</span>
+              <span class="stat-badge-tag">Ratio</span>
+            </div>
+            <div class="stat-big-val with-unit" id="stat-accuracy">56.0</div>
+          </div>
+
+          <div class="stat-widget">
+            <div class="stat-header">
+              <span class="stat-label-title">Submissions</span>
+              <span class="stat-badge-tag">Tracked</span>
+            </div>
+            <div class="stat-big-val" id="stat-submissions">84</div>
+          </div>
+        </div>
+
+        <div class="cp-breakdown-card">
+          <div class="breakdown-header">
+            <span class="breakdown-title">Platform Problem Distribution</span>
+            <div class="breakdown-sync-status">
+              <span class="pulse-indicator"></span>
+              <span id="cf-sync-text">Live Auto-Sync from Codeforces API</span>
+            </div>
+          </div>
+
+          <div class="platform-tracks">
+            <div class="platform-track-row">
+              <div class="platform-brand">
+                <span class="platform-brand-dot cf"></span>
+                <span>Codeforces</span>
+              </div>
+              <div class="track-outer">
+                <div class="track-inner cf" id="cf-bar-fill" style="width: 88%;"></div>
+              </div>
+              <span class="track-val" id="cf-bar-count">46</span>
+            </div>
+
+            <div class="platform-track-row">
+              <div class="platform-brand">
+                <span class="platform-brand-dot cses"></span>
+                <span>CSES</span>
+              </div>
+              <div class="track-outer">
+                <div class="track-inner cses" id="cses-bar-fill" style="width: 12%;"></div>
+              </div>
+              <span class="track-val" id="cses-bar-count">6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. Featured Projects ═══ -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Portfolio</span>
+          <h2 class="section-title">Featured Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div>
+              <div class="project-top-row">
+                <span class="project-category">Browser Extension</span>
+                <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="View Source">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+              </div>
+              <h3 class="project-title">CodeSync Pro Workstation</h3>
+              <p class="project-desc">
+                Competitive programming workstation &amp; automated GitHub sync engine for Chrome and Edge. Features Monaco IDE, CPH testcase runner, 1-click submit, and multi-language archiving across Codeforces, AtCoder, and CSES.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SECTION 3: Projects — Finder Style ═══ -->
-  <section id="projects" class="section projects-section">
-    <div class="container">
-      <h2 class="section-heading reveal" data-reveal="up">
-        <span class="heading-accent">02.</span> Featured Projects
-      </h2>
-
-      <div class="projects-grid">
-        <!-- Project 1: CodeSync Pro Extension -->
-        <div class="macos-window project-card reveal" data-reveal="up" data-delay="0">
-          <div class="window-titlebar">
-            <div class="traffic-lights">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <span class="window-title">CodeSync-Pro-Extension</span>
-            <div class="window-actions"></div>
-          </div>
-          <div class="window-body project-body">
-            <div class="project-badge">🏆 Featured</div>
-            <h3 class="project-name">CodeSync Pro Extension</h3>
-            <p class="project-desc">
-              All-in-one Competitive Programming Workstation &amp; automated GitHub sync engine for Chrome &amp; Edge.
-              Monaco IDE, CPH Testcase runner, 1-click submit, and multi-language archiving across Codeforces, AtCoder, CSES, and more.
-            </p>
             <div class="project-tags">
-              <span class="tag">Chrome Extension</span>
-              <span class="tag">Monaco Editor</span>
-              <span class="tag">GitHub API</span>
-              <span class="tag">JavaScript</span>
-            </div>
-            <div class="project-footer">
-              <div class="project-lang">
-                <span class="lang-dot" style="background:#f1e05a"></span> JavaScript
-              </div>
-              <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="project-link">
-                View on GitHub
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-              </a>
+              <span class="tag-badge">JavaScript</span>
+              <span class="tag-badge">Monaco IDE</span>
+              <span class="tag-badge">Chrome API</span>
+              <span class="tag-badge">GitHub API</span>
             </div>
           </div>
-        </div>
 
-        <!-- Project 2: BigOof -->
-        <div class="macos-window project-card reveal" data-reveal="up" data-delay="150">
-          <div class="window-titlebar">
-            <div class="traffic-lights">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div>
+              <div class="project-top-row">
+                <span class="project-category">Discord Bot</span>
+                <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="View Source">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+              </div>
+              <h3 class="project-title">BigOof — CP Discord Bot</h3>
+              <p class="project-desc">
+                Autonomous, multi-tenant Discord companion for university coding clubs and ICPC teams. Powered by 26 slash commands, 60s live submission feed, 1v1 duels, automated rank tier roles, and head-to-head comparison stats.
+              </p>
             </div>
-            <span class="window-title">BigOof</span>
-            <div class="window-actions"></div>
-          </div>
-          <div class="window-body project-body">
-            <div class="project-badge project-badge-alt">🤖 Bot</div>
-            <h3 class="project-name">BigOof — CP Discord Bot</h3>
-            <p class="project-desc">
-              Autonomous, multi-tenant Discord companion for competitive programmers and ICPC teams.
-              26 slash commands, live submission tracking, daily challenges, 1v1 duels, virtual contests,
-              rating sync, and team builder — all self-hosted.
-            </p>
             <div class="project-tags">
-              <span class="tag">Discord.js v14</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">Cron Scheduler</span>
-              <span class="tag">Node.js</span>
-            </div>
-            <div class="project-footer">
-              <div class="project-lang">
-                <span class="lang-dot" style="background:#f1e05a"></span> JavaScript
-              </div>
-              <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="project-link">
-                View on GitHub
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-              </a>
+              <span class="tag-badge">Node.js</span>
+              <span class="tag-badge">Discord.js v14</span>
+              <span class="tag-badge">SQLite WAL</span>
+              <span class="tag-badge">Cron</span>
             </div>
           </div>
-        </div>
 
-        <!-- Project 3: CP -->
-        <div class="macos-window project-card reveal" data-reveal="up" data-delay="300">
-          <div class="window-titlebar">
-            <div class="traffic-lights">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div>
+              <div class="project-top-row">
+                <span class="project-category">Algorithms &amp; DS</span>
+                <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="View Source">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+              </div>
+              <h3 class="project-title">Competitive Programming Archive</h3>
+              <p class="project-desc">
+                Personal collection of clean, optimized solutions for algorithmic problems on Codeforces and CSES. Automatically categorized and synced directly from CodeSync Pro.
+              </p>
             </div>
-            <span class="window-title">CP</span>
-            <div class="window-actions"></div>
-          </div>
-          <div class="window-body project-body">
-            <div class="project-badge project-badge-cp">🧠 CP</div>
-            <h3 class="project-name">Competitive Programming Archive</h3>
-            <p class="project-desc">
-              My competitive programming solutions synced automatically by CodeSync Pro.
-              Covers Codeforces, CSES, and more. A living record of my problem-solving journey
-              with organized solutions in C++.
-            </p>
             <div class="project-tags">
-              <span class="tag">C++</span>
-              <span class="tag">Algorithms</span>
-              <span class="tag">Data Structures</span>
-              <span class="tag">Problem Solving</span>
-            </div>
-            <div class="project-footer">
-              <div class="project-lang">
-                <span class="lang-dot" style="background:#f34b7d"></span> C++
-              </div>
-              <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="project-link">
-                View on GitHub
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-              </a>
+              <span class="tag-badge">C++23</span>
+              <span class="tag-badge">Algorithms</span>
+              <span class="tag-badge">Data Structures</span>
+              <span class="tag-badge">Problem Solving</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ SECTION 4: CP Journey — Stats Dashboard ═══ -->
-  <section id="cp" class="section cp-section">
-    <div class="container">
-      <h2 class="section-heading reveal" data-reveal="up">
-        <span class="heading-accent">03.</span> CP Journey
-      </h2>
-
-      <div class="macos-window stats-window reveal" data-reveal="up" data-delay="200">
-        <div class="window-titlebar">
-          <div class="traffic-lights">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-          <span class="window-title">📊 CodeSync Pro — Performance Dashboard</span>
-          <div class="window-actions"></div>
+    <!-- ═══ 5. Skills Section (Pure Vector Icons) ═══ -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Capabilities</span>
+          <h2 class="section-title">Technical Skills</h2>
         </div>
-        <div class="window-body stats-body">
-          <div class="cp-sync-bar">
-            <span class="live-pulse"></span>
-            <span id="cf-sync-text">Auto-syncing live from Codeforces API...</span>
-          </div>
 
-          <div class="stats-grid">
-            <div class="stat-card stat-solved">
-              <div class="stat-icon">🎯</div>
-              <div class="stat-value" id="stat-solved-total" data-count="52">52</div>
-              <div class="stat-title">Total Solved</div>
-            </div>
-            <div class="stat-card stat-streak">
-              <div class="stat-icon">🔥</div>
-              <div class="stat-value" id="stat-streak" data-count="14">14</div>
-              <div class="stat-title">Day Streak</div>
-            </div>
-            <div class="stat-card stat-accuracy">
-              <div class="stat-icon">✅</div>
-              <div class="stat-value stat-percent" id="stat-accuracy" data-count="54.2">54.2</div>
-              <div class="stat-title">AC Accuracy</div>
-            </div>
-            <div class="stat-card stat-submissions">
-              <div class="stat-icon">📤</div>
-              <div class="stat-value" id="stat-submissions" data-count="96">96</div>
-              <div class="stat-title">Submissions</div>
-            </div>
-          </div>
-
-          <div class="platform-breakdown">
-            <h4 class="breakdown-title">Platform Breakdown</h4>
-            <div class="platform-bars">
-              <div class="platform-row">
-                <span class="platform-name">
-                  <span class="platform-dot" style="background:#1F8DD6"></span>
-                  Codeforces
-                </span>
-                <div class="platform-bar-track">
-                  <div class="platform-bar-fill" id="cf-bar-fill" data-width="88" style="background:linear-gradient(90deg,#1F8DD6,#60a5fa); width: 88%;"></div>
-                </div>
-                <span class="platform-count" id="cf-bar-count">46</span>
+        <div class="skills-grid">
+          <!-- Programming Languages -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">Programming Languages</h3>
+            <div class="pills-flow">
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#00599C" d="M117.1 23.3L67.7 2.1c-2.4-1-5.1-1-7.5 0L10.8 23.3c-2.8 1.2-4.6 3.9-4.6 6.9v67.6c0 3 1.8 5.7 4.6 6.9l49.4 21.2c1.2.5 2.5.8 3.8.8s2.6-.3 3.8-.8l49.4-21.2c2.8-1.2 4.6-3.9 4.6-6.9V30.2c-.1-3-1.9-5.7-4.7-6.9z"/>
+                  <path fill="#004482" d="M64 2v124c1.3 0 2.6-.3 3.8-.8l49.4-21.2c2.8-1.2 4.6-3.9 4.6-6.9V30.2c0-3-1.8-5.7-4.6-6.9L67.8 2.1C66.6 1.6 65.3 1.3 64 2z"/>
+                  <path fill="#FFF" d="M64 35.7c-15.6 0-28.3 12.7-28.3 28.3s12.7 28.3 28.3 28.3c11.3 0 21.1-6.7 25.5-16.3h-15.1c-2.7 3.8-7.2 6.3-12.2 6.3-8.3 0-15-6.7-15-15s6.7-15 15-15c5 0 9.4 2.5 12.2 6.3h15.1c-4.4-9.6-14.2-16.3-25.5-16.3z"/>
+                </svg>
+                <span>C</span>
               </div>
-              <div class="platform-row">
-                <span class="platform-name">
-                  <span class="platform-dot" style="background:#00C853"></span>
-                  CSES
-                </span>
-                <div class="platform-bar-track">
-                  <div class="platform-bar-fill" id="cses-bar-fill" data-width="12" style="background:linear-gradient(90deg,#00C853,#69f0ae); width: 12%;"></div>
-                </div>
-                <span class="platform-count" id="cses-bar-count">6</span>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#00599C" d="M117.1 23.3L67.7 2.1c-2.4-1-5.1-1-7.5 0L10.8 23.3c-2.8 1.2-4.6 3.9-4.6 6.9v67.6c0 3 1.8 5.7 4.6 6.9l49.4 21.2c1.2.5 2.5.8 3.8.8s2.6-.3 3.8-.8l49.4-21.2c2.8-1.2 4.6-3.9 4.6-6.9V30.2c-.1-3-1.9-5.7-4.7-6.9z"/>
+                  <path fill="#004482" d="M64 2v124c1.3 0 2.6-.3 3.8-.8l49.4-21.2c2.8-1.2 4.6-3.9 4.6-6.9V30.2c0-3-1.8-5.7-4.6-6.9L67.8 2.1C66.6 1.6 65.3 1.3 64 2z"/>
+                  <path fill="#FFF" d="M64 35.7c-15.6 0-28.3 12.7-28.3 28.3s12.7 28.3 28.3 28.3c11.3 0 21.1-6.7 25.5-16.3h-15.1c-2.7 3.8-7.2 6.3-12.2 6.3-8.3 0-15-6.7-15-15s6.7-15 15-15c5 0 9.4 2.5 12.2 6.3h15.1c-4.4-9.6-14.2-16.3-25.5-16.3zm29.8 24.3h-4.3v-4.3h-3.6v4.3h-4.3v3.6h4.3v4.3h3.6V68h4.3v-3.6zm15.7 0h-4.3v-4.3h-3.6v4.3h-4.3v3.6h4.3v4.3h3.6V68h4.3v-3.6z"/>
+                </svg>
+                <span>C++</span>
+              </div>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#EA2D2E" d="M46.7 94.6c0 1.2.9 2.2 2.1 2.2h19.5c1.2 0 2.1-1 2.1-2.2v-7.1c0-1.2-.9-2.2-2.1-2.2H48.8c-1.2 0-2.1 1-2.1 2.2v7.1zM58.3 15.6c-4.6 5.8-6.1 11.2-4.5 16.3 2.9 9.1 16.4 13.9 16.4 25.3 0 7.8-5.6 14.5-13.6 15.6 9.8-3.4 16.4-12.5 16.4-23.1 0-14.4-14.7-20.9-14.7-34.1z"/>
+                  <path fill="#5382A1" d="M78.6 63.8c-1.2-.7-2.6-1-4-1-6.1 0-10.4 4.5-10.4 10.9 0 6.6 4.6 11.2 11 11.2 5.1 0 9.6-2.9 11.4-7.5l-6-2.6c-.9 2.3-2.9 3.6-5.4 3.6-2.8 0-4.8-1.8-4.8-4.7h17.3c.3-1.6.4-3.1.4-4.5.1-6-3.8-11.4-9.5-11.4zm-3.5 6.7c1.7 0 3.1 1.2 3.4 2.9H71.7c.4-1.7 1.8-2.9 3.4-2.9z"/>
+                </svg>
+                <span>Java</span>
+              </div>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#0175C2" d="M23.1 12.3l43.8 43.8-27.4 27.4L2.8 46.8c-3.7-3.7-3.7-9.8 0-13.5l20.3-21z"/>
+                  <path fill="#02569B" d="M66.9 56.1L45.4 34.6l59.5-22.3c3.7-1.4 7.9.3 9.7 4l-47.7 39.8z"/>
+                  <path fill="#0175C2" d="M66.9 56.1L88.4 77.6 28.9 99.9c-3.7 1.4-7.9-.3-9.7-4l47.7-39.8z"/>
+                  <path fill="#29B6F6" d="M88.4 77.6l16.5 16.5c3.7 3.7 3.7 9.8 0 13.5l-20.3 21-43.8-43.8 47.6-7.2z"/>
+                </svg>
+                <span>Dart</span>
               </div>
             </div>
           </div>
 
-          <div class="cp-note">
-            <p>⚡ <strong>Real-Time API Sync:</strong> When you solve a problem on Codeforces, this page automatically detects the new submission and updates your solve count and stats in real time.</p>
+          <!-- Frameworks & UI -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">Frameworks &amp; Web UI</h3>
+            <div class="pills-flow">
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#02569B" d="M78.6 63.8L40.9 26.1l23.5-23.5c1.8-1.8 4.7-1.8 6.5 0l54.5 54.5c1.8 1.8 1.8 4.7 0 6.5L88.6 100.4 78.6 63.8z"/>
+                  <path fill="#0175C2" d="M40.9 26.1L2.6 64.4c-1.8 1.8-1.8 4.7 0 6.5l23.5 23.5 38.3-38.3L40.9 26.1z"/>
+                  <path fill="#29B6F6" d="M64.4 56.1L26.1 94.4l23.5 23.5c1.8 1.8 4.7 1.8 6.5 0l54.5-54.5-46.2-7.3z"/>
+                  <path fill="#40C4FF" d="M88.6 100.4l-24.2 24.2c-1.8 1.8-4.7 1.8-6.5 0L49.6 116.3l39-15.9z"/>
+                </svg>
+                <span>Flutter</span>
+              </div>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#E44D26" d="M19.3 113.8L9.1 0h109.8l-10.2 113.8L64 128"/>
+                  <path fill="#F16529" d="M64 117.8l36.5-10.1 8.4-94.4H64v104.5z"/>
+                  <path fill="#EBEBEB" d="M64 48.7H47.1l-1.2-13.1H64V22.8H31.6l3.5 38.8H64v-12.9zm0 39.8l-.1.1-15.7-4.2-1-11.2H34.4l2 22.4 27.5 7.6.1-14.7z"/>
+                  <path fill="#FFF" d="M64 48.7h16.9l-1.6 17.8H64v12.9h14.7l-1.4 15.6-13.3 3.6v14.7l27.5-7.6.3-3.3 3.1-34.9.8-9.1.9-9.8H64V48.7zm0-25.9v12.8h33.3l.9-9.8.3-3H64z"/>
+                </svg>
+                <span>HTML5</span>
+              </div>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#1572B6" d="M19.3 113.8L9.1 0h109.8l-10.2 113.8L64 128"/>
+                  <path fill="#33A9DC" d="M64 117.8l36.5-10.1 8.4-94.4H64v104.5z"/>
+                  <path fill="#EBEBEB" d="M64 48.7H47.1l-1.2-13.1H64V22.8H31.6l3.5 38.8H64v-12.9zm0 39.8l-.1.1-15.7-4.2-1-11.2H34.4l2 22.4 27.5 7.6.1-14.7z"/>
+                  <path fill="#FFF" d="M64 48.7h16.9l-1.6 17.8H64v12.9h14.7l-1.4 15.6-13.3 3.6v14.7l27.5-7.6.3-3.3 3.1-34.9.8-9.1.9-9.8H64V48.7zm0-25.9v12.8h33.3l.9-9.8.3-3H64z"/>
+                </svg>
+                <span>CSS3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Algorithms & Problem Solving -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">Computer Science &amp; CP</h3>
+            <div class="pills-flow">
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span>Data Structures</span>
+              </div>
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                <span>Algorithms</span>
+              </div>
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+                <span>OOP (Object-Oriented)</span>
+              </div>
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                <span>Competitive Programming</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Developer Tools -->
+          <div class="skill-category-card">
+            <h3 class="skill-cat-title">Development Tools</h3>
+            <div class="pills-flow">
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#F05032" d="M125.7 57.5L70.5 2.3c-3.1-3.1-8.1-3.1-11.2 0L46.8 14.8l14.2 14.2c3.3-1.1 7.2-.4 9.9 2.3 2.7 2.7 3.4 6.5 2.3 9.9l13.7 13.7c3.3-1.1 7.2-.4 9.9 2.3 3.9 3.9 3.9 10.2 0 14.1s-10.2 3.9-14.1 0c-2.9-2.9-3.5-7.2-2-10.6L68 47.9v35.3c1 .6 2 1.4 2.8 2.3 3.9 3.9 3.9 10.2 0 14.1s-10.2 3.9-14.1 0c-3.9-3.9-3.9-10.2 0-14.1 1.1-1.1 2.3-1.9 3.7-2.4V47.3c-1.4-.5-2.6-1.3-3.7-2.4-2.9-2.9-3.5-7.2-2-10.6L40.7 20.3 2.3 58.7c-3.1 3.1-3.1 8.1 0 11.2l55.2 55.2c3.1 3.1 8.1 3.1 11.2 0l57-56.4c3.1-3.1 3.1-8.1 0-11.2z"/>
+                </svg>
+                <span>Git</span>
+              </div>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 24 24" fill="#f4f4f5"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>GitHub</span>
+              </div>
+
+              <div class="tech-pill">
+                <svg class="tech-icon-svg" viewBox="0 0 128 128">
+                  <path fill="#0065A9" d="M92.6 125.9c3.2 1.5 7-.4 7.7-3.9l26.9-114c.7-3.1-1.3-6.1-4.4-6.8L93.7.2c-3.1-.7-6.2 1.3-6.9 4.4L73 62.5l19.6 63.4z"/>
+                  <path fill="#007ACC" d="M92.6 125.9L36.8 82.2l20.4-15.6 35.4 59.3z"/>
+                  <path fill="#1F9CF0" d="M57.2 66.6L36.8 51.1 92.6 7.4 57.2 66.6z"/>
+                  <path fill="#0065A9" d="M36.8 51.1L7.5 73.5c-2.4 1.8-2.4 5.4 0 7.3l29.3 22.4V51.1z"/>
+                </svg>
+                <span>VS Code</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ SECTION 5: Skills — System Preferences Style ═══ -->
-  <section id="skills" class="section skills-section">
-    <div class="container">
-      <h2 class="section-heading reveal" data-reveal="up">
-        <span class="heading-accent">04.</span> Tech Stack
-      </h2>
+    <!-- ═══ 6. Contact Section ═══ -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-card">
+          <h2 class="contact-title">Let's Connect</h2>
+          <p class="contact-subtitle">
+            Whether you want to discuss algorithmic problems, collaborate on a project, or just say hi — feel free to reach out anytime.
+          </p>
 
-      <div class="skills-categories">
-        <div class="skill-category reveal" data-reveal="up" data-delay="0">
-          <h3 class="category-title">Programming Languages</h3>
-          <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">🔷</span> C</span>
-            <span class="skill-pill"><span class="pill-icon">⚡</span> C++</span>
-            <span class="skill-pill"><span class="pill-icon">☕</span> Java</span>
-            <span class="skill-pill"><span class="pill-icon">🎯</span> Dart</span>
-          </div>
-        </div>
+          <div class="contact-channels">
+            <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="channel-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub (@Pri8899)</span>
+            </a>
 
-        <div class="skill-category reveal" data-reveal="up" data-delay="100">
-          <h3 class="category-title">Frameworks &amp; Web UI</h3>
-          <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">📱</span> Flutter</span>
-            <span class="skill-pill"><span class="pill-icon">🌐</span> HTML5</span>
-            <span class="skill-pill"><span class="pill-icon">🎨</span> CSS3</span>
-          </div>
-        </div>
+            <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="channel-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#38bdf8"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+              <span>Codeforces (pri8899)</span>
+            </a>
 
-        <div class="skill-category reveal" data-reveal="up" data-delay="200">
-          <h3 class="category-title">Algorithms &amp; Core CS</h3>
-          <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">📊</span> Data Structures</span>
-            <span class="skill-pill"><span class="pill-icon">🔄</span> Algorithms</span>
-            <span class="skill-pill"><span class="pill-icon">🧩</span> Object-Oriented Programming (OOP)</span>
-            <span class="skill-pill"><span class="pill-icon">🏆</span> Competitive Programming</span>
-          </div>
-        </div>
-
-        <div class="skill-category reveal" data-reveal="up" data-delay="300">
-          <h3 class="category-title">Development Tools</h3>
-          <div class="skill-pills">
-            <span class="skill-pill"><span class="pill-icon">🐙</span> Git &amp; GitHub</span>
-            <span class="skill-pill"><span class="pill-icon">💻</span> VS Code</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SECTION 6: Contact ═══ -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <h2 class="section-heading reveal" data-reveal="up">
-        <span class="heading-accent">05.</span> Get In Touch
-      </h2>
-
-      <div class="contact-content reveal" data-reveal="up" data-delay="200">
-        <p class="contact-text">
-          I'm always open to collaborating on interesting projects, discussing competitive programming strategies,
-          or just chatting about tech. Feel free to reach out!
-        </p>
-
-        <div class="contact-links">
-          <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="contact-card">
-            <div class="contact-card-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            </div>
-            <div class="contact-card-info">
-              <strong>GitHub</strong>
-              <span>@Pri8899</span>
-            </div>
-          </a>
-
-          <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="contact-card">
-            <div class="contact-card-icon cf-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
-            </div>
-            <div class="contact-card-info">
-              <strong>Codeforces</strong>
-              <span>pri8899</span>
-            </div>
-          </a>
-
-          <a href="mailto:parthopaul8899@gmail.com" class="contact-card">
-            <div class="contact-card-icon email-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </div>
-            <div class="contact-card-info">
-              <strong>Email</strong>
+            <a href="mailto:parthopaul8899@gmail.com" class="channel-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               <span>parthopaul8899@gmail.com</span>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- ═══ Footer ═══ -->
-  <footer class="footer">
-    <p>Designed &amp; Built by <strong>Partho Paul</strong></p>
-    <p class="footer-sub">© 2026 · Made with ☕ and too many O(n²) submissions</p>
-  </footer>
-
-  <!-- ═══ macOS Dock ═══ -->
-  <nav class="dock" id="dock" aria-label="Section navigation">
-    <div class="dock-container">
-      <a href="#home" class="dock-item active" data-section="home" data-tooltip="Home">
-        <div class="dock-icon">🏠</div>
-      </a>
-      <a href="#about" class="dock-item" data-section="about" data-tooltip="About">
-        <div class="dock-icon">👤</div>
-      </a>
-      <a href="#projects" class="dock-item" data-section="projects" data-tooltip="Projects">
-        <div class="dock-icon">💼</div>
-      </a>
-      <a href="#cp" class="dock-item" data-section="cp" data-tooltip="CP Journey">
-        <div class="dock-icon">📊</div>
-      </a>
-      <a href="#skills" class="dock-item" data-section="skills" data-tooltip="Skills">
-        <div class="dock-icon">⚡</div>
-      </a>
-      <a href="#contact" class="dock-item" data-section="contact" data-tooltip="Contact">
-        <div class="dock-icon">✉️</div>
-      </a>
-      <div class="dock-separator"></div>
-      <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="GitHub">
-        <div class="dock-icon">🐙</div>
-      </a>
+  <footer class="site-footer">
+    <div class="container">
+      <p>Designed &amp; Developed by <strong>Partho Prithom Paul</strong></p>
+      <p>BSc in Computer Science &amp; Engineering · Ahsanullah University of Science and Technology</p>
     </div>
-  </nav>
+  </footer>
 
   <script src="js/main.js"></script>
 </body>
