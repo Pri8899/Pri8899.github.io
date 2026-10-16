@@ -997,52 +997,68 @@ a {
 
 /* ── 9. CP Monitor Window (Activity Monitor Style) ─────────── */
 .desk-slide #slide-cp .macos-window {
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-monitor-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 24px;
+  gap: 16px;
+  height: calc(100% - 42px);
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .cp-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  padding: 28px 24px 20px 24px;
+  gap: 14px;
 }
 
 .cp-widget {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  padding: 22px 18px;
+  padding: 16px 16px;
   position: relative;
   transition: all 0.3s var(--spring-ease);
 }
 .cp-widget:hover {
-  border-color: rgba(0, 242, 254, 0.3);
-  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 242, 254, 0.35);
+  background: rgba(0, 0, 0, 0.45);
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.15);
 }
 
 .widget-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .widget-title {
-  font-size: 11.5px;
+  font-size: 11px;
   text-transform: uppercase;
   color: var(--text-muted);
   font-weight: 600;
   letter-spacing: 0.05em;
 }
 .widget-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   color: var(--apple-cyan);
+}
+.widget-icon.flame-icon {
+  color: #ff9f0a;
+  filter: drop-shadow(0 0 6px rgba(255, 159, 10, 0.5));
 }
 
 .widget-value {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 800;
   font-family: var(--font-mono);
   color: #fff;
@@ -1051,7 +1067,13 @@ a {
 }
 .widget-value.unit-pct::after {
   content: '%';
-  font-size: 20px;
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+.unit-sub {
+  font-size: 16px;
+  font-weight: 500;
   color: var(--text-muted);
   margin-left: 2px;
 }
@@ -1059,83 +1081,157 @@ a {
 .widget-subtext {
   font-size: 11px;
   color: var(--text-secondary);
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
-.cp-stream-row {
-  padding: 24px 24px 28px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: auto;
-}
-
-.cp-bar-container {
+/* Multi-Platform Segmented Section */
+.cp-segmented-section {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
-.bar-row {
+.segmented-bar-label-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  font-size: 11.5px;
 }
-.bar-brand {
-  min-width: 100px;
-  font-size: 13px;
+.segmented-title {
+  color: var(--text-muted);
+  text-transform: uppercase;
   font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.segmented-ratio {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+.segmented-ratio strong {
+  color: #fff;
+}
+
+/* Continuous Segmented Bar with Animated Laser Sweep */
+.segmented-laser-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+.laser-segment {
+  height: 100%;
+  transition: width 1s var(--spring-ease);
+}
+.seg-cf {
+  background: linear-gradient(90deg, #007aff, #00f2fe);
+}
+.seg-cses {
+  background: linear-gradient(90deg, #30d158, #34d399);
+}
+
+.laser-sweep-beam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  filter: blur(2px);
+  animation: laserSweep 3s infinite linear;
+  pointer-events: none;
+}
+@keyframes laserSweep {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(850px); }
+}
+
+/* 5 Platform Status Pills */
+.platform-pills-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.platform-pill {
+  flex: 1;
+  min-width: 90px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  padding: 6px 10px;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 11.5px;
+  transition: all 0.25s ease;
 }
-.brand-cf   { color: #3b82f6; }
-.brand-cses { color: #30d158; }
-
-.bar-track {
-  flex: 1;
-  height: 8px;
+.platform-pill:hover {
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 99px;
-  overflow: hidden;
+  border-color: rgba(255, 255, 255, 0.15);
 }
-.bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  transition: width 1.5s var(--spring-ease);
+.platform-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
-.fill-cf   { background: linear-gradient(90deg, #007aff, #00f2fe); }
-.fill-cses { background: linear-gradient(90deg, #30d158, #34d399); }
-
-.bar-count {
-  min-width: 32px;
+.dot-cf {
+  background: #00f2fe;
+  box-shadow: 0 0 8px #00f2fe;
+}
+.dot-cses {
+  background: #30d158;
+  box-shadow: 0 0 8px #30d158;
+}
+.dot-standby {
+  background: #6e7681;
+}
+.platform-name {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.platform-val {
+  margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 13.5px;
   font-weight: 700;
-  text-align: right;
   color: #fff;
+}
+.platform-status {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Sonar radar pulse in header */
+.sonar-radar-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #30d158;
+  margin-right: 6px;
+  vertical-align: middle;
+  box-shadow: 0 0 0 rgba(48, 209, 88, 0.7);
+  animation: pulseGreen 2s infinite;
 }
 
 .cp-sync-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
+  padding: 4px 0;
   font-size: 12px;
   color: var(--text-muted);
 }
-.sync-live-pill {
+.sync-links {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--apple-green);
-  font-weight: 500;
-}
-.pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--apple-green);
-  box-shadow: 0 0 0 rgba(48, 209, 88, 0.7);
-  animation: pulseGreen 2s infinite;
+  gap: 14px;
 }
 
 /* ── 10. Projects: macOS Finder Style ──────────────────────── */
@@ -1301,8 +1397,11 @@ a {
 
 /* ── 11. Skills: macOS System Settings Grid ────────────────── */
 .skills-wrapper {
-  padding: 22px 24px;
+  padding: 24px 28px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: calc(100% - 42px);
   min-height: 0;
   overflow-y: auto;
@@ -1310,8 +1409,8 @@ a {
 
 .skills-deck {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
 }
 
 .tech-card {

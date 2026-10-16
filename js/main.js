@@ -352,13 +352,13 @@ Ahsanullah University of Science and Technology (AUST) · 2nd Year 1st Sem`,
 
     skills: () => {
       setTimeout(() => goToSlide(4, true), 300);
-      return `Toolchain: C, C++, Java, Dart, Flutter, Android Studio, Xcode, VS Code, Git, GitHub, DSA, CP, OOP, HTML, Unreal Engine, Roblox Studio, iGraphics, Discord Bots, Browser Extensions.`;
+      return `Toolchain: C, C++, Java, Flutter, HTML, iGraphics, Unreal Engine, Roblox Studio, Android Studio, Xcode, VS Code, Git & GitHub.`;
     },
 
     cf: () => {
       setTimeout(() => goToSlide(3, true), 300);
       return `Codeforces Handle: pri8899
-Total Solved: 52+ problems | Current Streak: 14 days | Submissions: 84`;
+Total Solved: 52 problems (46 CF + 6 CSES) | Current Streak: 14 days | Submissions: 96 | AC Rate: 54.2%`;
     },
 
     codeforces: () => terminalCommands.cf(),
@@ -889,8 +889,8 @@ Location: Dhaka, Bangladesh`;
         const cfSolved = solvedSet.size || 46;
         const csesSolved = 6;
         const totalSolved = cfSolved + csesSolved;
-        const totalSubs = submissions.length || 84;
-        const accuracy = totalSubs > 0 ? parseFloat(((acCount / totalSubs) * 100).toFixed(1)) : 56.0;
+        const totalSubs = submissions.length || 96;
+        const accuracy = totalSubs > 0 ? parseFloat(((acCount / totalSubs) * 100).toFixed(1)) : 54.2;
 
         // Calculate consecutive streak
         let streak = 0;
@@ -916,33 +916,38 @@ Location: Dhaka, Bangladesh`;
         const streakEl = document.getElementById('stat-streak');
         const accuracyEl = document.getElementById('stat-accuracy');
         const subsEl = document.getElementById('stat-submissions');
-        const cfCountEl = document.getElementById('cf-bar-count');
-        const csesCountEl = document.getElementById('cses-bar-count');
+        const cfCountLabel = document.getElementById('cf-count-label');
+        const csesCountLabel = document.getElementById('cses-count-label');
+        const pillCfVal = document.getElementById('pill-cf-val');
+        const pillCsesVal = document.getElementById('pill-cses-val');
 
         animateValue(totalSolvedEl, totalSolved);
         animateValue(streakEl, streak);
         animateValue(accuracyEl, accuracy, true);
         animateValue(subsEl, totalSubs);
 
-        if (cfCountEl) cfCountEl.textContent = cfSolved;
-        if (csesCountEl) csesCountEl.textContent = csesSolved;
+        const cfPercent = totalSolved > 0 ? ((cfSolved / totalSolved) * 100).toFixed(1) : '88.5';
+        const csesPercent = totalSolved > 0 ? (100 - parseFloat(cfPercent)).toFixed(1) : '11.5';
 
-        // Update progress bar track fills
-        const cfPercent = Math.min(100, Math.round((cfSolved / totalSolved) * 100));
-        const csesPercent = 100 - cfPercent;
-        const cfBar = document.getElementById('cf-bar-fill');
-        const csesBar = document.getElementById('cses-bar-fill');
-        if (cfBar) cfBar.style.width = `${cfPercent}%`;
-        if (csesBar) csesBar.style.width = `${csesPercent}%`;
+        if (cfCountLabel) cfCountLabel.textContent = `${cfSolved} CF`;
+        if (csesCountLabel) csesCountLabel.textContent = `${csesSolved} CSES`;
+        if (pillCfVal) pillCfVal.textContent = cfSolved;
+        if (pillCsesVal) pillCsesVal.textContent = csesSolved;
+
+        // Update segmented laser bar widths
+        const cfLaserBar = document.getElementById('cf-laser-bar');
+        const csesLaserBar = document.getElementById('cses-laser-bar');
+        if (cfLaserBar) cfLaserBar.style.width = `${cfPercent}%`;
+        if (csesLaserBar) csesLaserBar.style.width = `${csesPercent}%`;
 
         if (syncText) {
-          syncText.textContent = `Live Auto-Sync: ${cfSolved} CF + ${csesSolved} CSES`;
+          syncText.innerHTML = `⚡ Live Auto-Sync: <strong>${cfSolved} CF</strong> + <strong>${csesSolved} CSES</strong> · Pipeline Active`;
         }
       }
     } catch (err) {
       console.warn('Live Codeforces fetch fallback active:', err);
       if (syncText) {
-        syncText.textContent = 'Auto-Synced via CodeSync Pro';
+        syncText.innerHTML = '⚡ Automated Pipeline via <strong>CodeSync Pro</strong> · Auto-synced to <code>Pri8899/CP</code>';
       }
     }
   }
