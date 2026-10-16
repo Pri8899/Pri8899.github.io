@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partho Paul — Portfolio</title>
+  <meta name="description" content="Partho Prithom Paul Sujoy — CS Undergrad, Competitive Programmer, and Full-Stack Builder. Portfolio showcasing projects, CP journey, and skills." />
+  <meta name="author" content="Partho Paul" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Partho Paul — Portfolio" />
+  <meta property="og:description" content="CS Undergrad @ AUST | Competitive Programmer | Builder" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pri8899.github.io" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://github.com/Pri8899.png" type="image/png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ Animated Background Gradient ═══ -->
+  <div class="bg-gradient" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- ═══ macOS Menu Bar ═══ -->
+  <header class="menubar" id="menubar">
+    <div class="menu-left">
+      <span class="apple-logo" aria-hidden="true"></span>
+      <span class="menu-name">Partho Paul</span>
+    </div>
+    <nav class="menu-center" aria-label="Main navigation">
+      <a href="#home" class="menu-link active" data-section="home">Home</a>
+      <a href="#about" class="menu-link" data-section="about">About</a>
+      <a href="#projects" class="menu-link" data-section="projects">Projects</a>
+      <a href="#cp" class="menu-link" data-section="cp">CP Journey</a>
+      <a href="#skills" class="menu-link" data-section="skills">Skills</a>
+      <a href="#contact" class="menu-link" data-section="contact">Contact</a>
+    </nav>
+    <div class="menu-right">
+      <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="menu-github" title="GitHub Profile">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══ SECTION 1: Hero — Terminal Window ═══ -->
+  <section id="home" class="section hero-section">
+    <div class="hero-content">
+      <div class="macos-window terminal-window reveal" data-reveal="scale">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="window-title">Terminal — partho@macbook</span>
+          <div class="window-actions"></div>
+        </div>
+        <div class="window-body terminal-body">
+          <div class="terminal-line">
+            <span class="prompt">partho@macbook</span>
+            <span class="prompt-sep">~</span>
+            <span class="prompt-dollar">$</span>
+            <span class="typed-command">whoami</span>
+          </div>
+          <div class="terminal-output-block">
+            <p class="terminal-greeting" id="typed-greeting"></p>
+            <p class="terminal-subtitle" id="typed-subtitle"></p>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">partho@macbook</span>
+            <span class="prompt-sep">~</span>
+            <span class="prompt-dollar">$</span>
+            <span class="cursor-blink">▊</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta reveal" data-reveal="up" data-delay="600">
+        <a href="#projects" class="btn btn-primary">
+          <span>View My Work</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="mouse">
+        <div class="mouse-wheel"></div>
+      </div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: About — "About This Mac" Style ═══ -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <h2 class="section-heading reveal" data-reveal="up">
+        <span class="heading-accent">01.</span> About Me
+      </h2>
+
+      <div class="macos-window about-window reveal" data-reveal="up" data-delay="200">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="window-title"> About This Developer</span>
+          <div class="window-actions"></div>
+        </div>
+        <div class="window-body about-body">
+          <div class="about-grid">
+            <div class="about-photo-col">
+              <div class="photo-frame">
+                <img
+                  src="https://github.com/Pri8899.png"
+                  alt="Partho Paul"
+                  class="about-photo"
+                  loading="lazy"
+                />
+                <div class="photo-overlay">
+                  <span>📸 Photo coming soon</span>
+                </div>
+              </div>
+              <div class="about-quick-stats">
+                <div class="quick-stat">
+                  <span class="stat-number" data-count="239">0</span>
+                  <span class="stat-label">Contributions</span>
+                </div>
+                <div class="quick-stat">
+                  <span class="stat-number" data-count="3">0</span>
+                  <span class="stat-label">Repositories</span>
+                </div>
+                <div class="quick-stat">
+                  <span class="stat-number" data-count="52">0</span>
+                  <span class="stat-label">Problems Solved</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-info-col">
+              <h3 class="about-name">Partho Prithom Paul Sujoy</h3>
+              <p class="about-tagline">Computer Science Undergraduate · Competitive Programmer · Builder</p>
+
+              <div class="about-details">
+                <div class="detail-row">
+                  <span class="detail-icon">🎓</span>
+                  <div>
+                    <strong>Ahsanullah University of Science &amp; Technology</strong>
+                    <p>BSc in Computer Science &amp; Engineering</p>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-icon">📅</span>
+                  <div>
+                    <strong>2nd Year, 1st Semester</strong>
+                    <p>Currently studying core CS fundamentals</p>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-icon">⚡</span>
+                  <div>
+                    <strong>Focus Areas</strong>
+                    <p>Competitive Programming · Web Development · Browser Extensions · Discord Bots</p>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-icon">📍</span>
+                  <div>
+                    <strong>Location</strong>
+                    <p>Dhaka, Bangladesh</p>
+                  </div>
+                </div>
+              </div>
+
+              <p class="about-bio">
+                I'm a sophomore CS student who loves building tools that solve real problems.
+                From crafting a full-featured <strong>browser extension</strong> for competitive programmers,
+                to engineering an <strong>autonomous Discord bot</strong> for coding clubs, I believe the best
+                way to learn is to ship. Currently grinding CP on Codeforces and CSES, and always looking
+                for the next challenge.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: Projects — Finder Style ═══ -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <h2 class="section-heading reveal" data-reveal="up">
+        <span class="heading-accent">02.</span> Featured Projects
+      </h2>
+
+      <div class="projects-grid">
+        <!-- Project 1: CodeSync Pro Extension -->
+        <div class="macos-window project-card reveal" data-reveal="up" data-delay="0">
+          <div class="window-titlebar">
+            <div class="traffic-lights">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="window-title">CodeSync-Pro-Extension</span>
+            <div class="window-actions"></div>
+          </div>
+          <div class="window-body project-body">
+            <div class="project-badge">🏆 Featured</div>
+            <h3 class="project-name">CodeSync Pro Extension</h3>
+            <p class="project-desc">
+              All-in-one Competitive Programming Workstation &amp; automated GitHub sync engine for Chrome &amp; Edge.
+              Monaco IDE, CPH Testcase runner, 1-click submit, and multi-language archiving across Codeforces, AtCoder, CSES, and more.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Chrome Extension</span>
+              <span class="tag">Monaco Editor</span>
+              <span class="tag">GitHub API</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-lang">
+                <span class="lang-dot" style="background:#f1e05a"></span> JavaScript
+              </div>
+              <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="project-link">
+                View on GitHub
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: BigOof -->
+        <div class="macos-window project-card reveal" data-reveal="up" data-delay="150">
+          <div class="window-titlebar">
+            <div class="traffic-lights">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="window-title">BigOof</span>
+            <div class="window-actions"></div>
+          </div>
+          <div class="window-body project-body">
+            <div class="project-badge project-badge-alt">🤖 Bot</div>
+            <h3 class="project-name">BigOof — CP Discord Bot</h3>
+            <p class="project-desc">
+              Autonomous, multi-tenant Discord companion for competitive programmers and ICPC teams.
+              26 slash commands, live submission tracking, daily challenges, 1v1 duels, virtual contests,
+              rating sync, and team builder — all self-hosted.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Discord.js v14</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Cron Scheduler</span>
+              <span class="tag">Node.js</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-lang">
+                <span class="lang-dot" style="background:#f1e05a"></span> JavaScript
+              </div>
+              <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="project-link">
+                View on GitHub
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: CP -->
+        <div class="macos-window project-card reveal" data-reveal="up" data-delay="300">
+          <div class="window-titlebar">
+            <div class="traffic-lights">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="window-title">CP</span>
+            <div class="window-actions"></div>
+          </div>
+          <div class="window-body project-body">
+            <div class="project-badge project-badge-cp">🧠 CP</div>
+            <h3 class="project-name">Competitive Programming Archive</h3>
+            <p class="project-desc">
+              My competitive programming solutions synced automatically by CodeSync Pro.
+              Covers Codeforces, CSES, and more. A living record of my problem-solving journey
+              with organized solutions in C++.
+            </p>
+            <div class="project-tags">
+              <span class="tag">C++</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Problem Solving</span>
+            </div>
+            <div class="project-footer">
+              <div class="project-lang">
+                <span class="lang-dot" style="background:#f34b7d"></span> C++
+              </div>
+              <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="project-link">
+                View on GitHub
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: CP Journey — Stats Dashboard ═══ -->
+  <section id="cp" class="section cp-section">
+    <div class="container">
+      <h2 class="section-heading reveal" data-reveal="up">
+        <span class="heading-accent">03.</span> CP Journey
+      </h2>
+
+      <div class="macos-window stats-window reveal" data-reveal="up" data-delay="200">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="window-title">📊 CodeSync Pro — Performance Dashboard</span>
+          <div class="window-actions"></div>
+        </div>
+        <div class="window-body stats-body">
+          <div class="stats-grid">
+            <div class="stat-card stat-solved">
+              <div class="stat-icon">🎯</div>
+              <div class="stat-value" data-count="52">0</div>
+              <div class="stat-title">Total Solved</div>
+            </div>
+            <div class="stat-card stat-streak">
+              <div class="stat-icon">🔥</div>
+              <div class="stat-value" data-count="14">0</div>
+              <div class="stat-title">Day Streak</div>
+            </div>
+            <div class="stat-card stat-accuracy">
+              <div class="stat-icon">✅</div>
+              <div class="stat-value stat-percent" data-count="54.2">0</div>
+              <div class="stat-title">AC Accuracy</div>
+            </div>
+            <div class="stat-card stat-submissions">
+              <div class="stat-icon">📤</div>
+              <div class="stat-value" data-count="96">0</div>
+              <div class="stat-title">Submissions</div>
+            </div>
+          </div>
+
+          <div class="platform-breakdown">
+            <h4 class="breakdown-title">Platform Breakdown</h4>
+            <div class="platform-bars">
+              <div class="platform-row">
+                <span class="platform-name">
+                  <span class="platform-dot" style="background:#1F8DD6"></span>
+                  Codeforces
+                </span>
+                <div class="platform-bar-track">
+                  <div class="platform-bar-fill" data-width="88" style="background:linear-gradient(90deg,#1F8DD6,#60a5fa)"></div>
+                </div>
+                <span class="platform-count">46</span>
+              </div>
+              <div class="platform-row">
+                <span class="platform-name">
+                  <span class="platform-dot" style="background:#00C853"></span>
+                  CSES
+                </span>
+                <div class="platform-bar-track">
+                  <div class="platform-bar-fill" data-width="12" style="background:linear-gradient(90deg,#00C853,#69f0ae)"></div>
+                </div>
+                <span class="platform-count">6</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cp-note">
+            <p>📈 These stats are auto-synced from my <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer">CodeSync Pro Extension</a> — numbers update as I grind!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: Skills — System Preferences Style ═══ -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <h2 class="section-heading reveal" data-reveal="up">
+        <span class="heading-accent">04.</span> Tech Stack
+      </h2>
+
+      <div class="skills-categories">
+        <div class="skill-category reveal" data-reveal="up" data-delay="0">
+          <h3 class="category-title">Languages</h3>
+          <div class="skill-pills">
+            <span class="skill-pill"><span class="pill-icon">🔷</span> C++</span>
+            <span class="skill-pill"><span class="pill-icon">🟡</span> JavaScript</span>
+            <span class="skill-pill"><span class="pill-icon">🐍</span> Python</span>
+            <span class="skill-pill"><span class="pill-icon">☕</span> Java</span>
+            <span class="skill-pill"><span class="pill-icon">🌐</span> HTML / CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal" data-reveal="up" data-delay="100">
+          <h3 class="category-title">Frameworks &amp; Tools</h3>
+          <div class="skill-pills">
+            <span class="skill-pill"><span class="pill-icon">🟢</span> Node.js</span>
+            <span class="skill-pill"><span class="pill-icon">🤖</span> Discord.js</span>
+            <span class="skill-pill"><span class="pill-icon">🧩</span> Chrome Extensions API</span>
+            <span class="skill-pill"><span class="pill-icon">📝</span> Monaco Editor</span>
+            <span class="skill-pill"><span class="pill-icon">🗄️</span> SQLite</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal" data-reveal="up" data-delay="200">
+          <h3 class="category-title">CP &amp; Algorithms</h3>
+          <div class="skill-pills">
+            <span class="skill-pill"><span class="pill-icon">🔄</span> Dynamic Programming</span>
+            <span class="skill-pill"><span class="pill-icon">🌲</span> Graph Theory</span>
+            <span class="skill-pill"><span class="pill-icon">🔢</span> Number Theory</span>
+            <span class="skill-pill"><span class="pill-icon">📊</span> Data Structures</span>
+            <span class="skill-pill"><span class="pill-icon">💡</span> Greedy</span>
+            <span class="skill-pill"><span class="pill-icon">🔍</span> Binary Search</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal" data-reveal="up" data-delay="300">
+          <h3 class="category-title">Developer Tools</h3>
+          <div class="skill-pills">
+            <span class="skill-pill"><span class="pill-icon">🐙</span> Git &amp; GitHub</span>
+            <span class="skill-pill"><span class="pill-icon">🐳</span> Docker</span>
+            <span class="skill-pill"><span class="pill-icon">💻</span> VS Code</span>
+            <span class="skill-pill"><span class="pill-icon">🖥️</span> Linux / macOS</span>
+            <span class="skill-pill"><span class="pill-icon">📦</span> npm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 6: Contact ═══ -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2 class="section-heading reveal" data-reveal="up">
+        <span class="heading-accent">05.</span> Get In Touch
+      </h2>
+
+      <div class="contact-content reveal" data-reveal="up" data-delay="200">
+        <p class="contact-text">
+          I'm always open to collaborating on interesting projects, discussing competitive programming strategies,
+          or just chatting about tech. Feel free to reach out!
+        </p>
+
+        <div class="contact-links">
+          <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <div class="contact-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div class="contact-card-info">
+              <strong>GitHub</strong>
+              <span>@Pri8899</span>
+            </div>
+          </a>
+
+          <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <div class="contact-card-icon cf-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+            </div>
+            <div class="contact-card-info">
+              <strong>Codeforces</strong>
+              <span>pri8899</span>
+            </div>
+          </a>
+
+          <a href="mailto:parthopaul8899@gmail.com" class="contact-card">
+            <div class="contact-card-icon email-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div class="contact-card-info">
+              <strong>Email</strong>
+              <span>parthopaul8899@gmail.com</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="footer">
+    <p>Designed &amp; Built by <strong>Partho Paul</strong></p>
+    <p class="footer-sub">© 2026 · Made with ☕ and too many O(n²) submissions</p>
+  </footer>
+
+  <!-- ═══ macOS Dock ═══ -->
+  <nav class="dock" id="dock" aria-label="Section navigation">
+    <div class="dock-container">
+      <a href="#home" class="dock-item active" data-section="home" data-tooltip="Home">
+        <div class="dock-icon">🏠</div>
+      </a>
+      <a href="#about" class="dock-item" data-section="about" data-tooltip="About">
+        <div class="dock-icon">👤</div>
+      </a>
+      <a href="#projects" class="dock-item" data-section="projects" data-tooltip="Projects">
+        <div class="dock-icon">💼</div>
+      </a>
+      <a href="#cp" class="dock-item" data-section="cp" data-tooltip="CP Journey">
+        <div class="dock-icon">📊</div>
+      </a>
+      <a href="#skills" class="dock-item" data-section="skills" data-tooltip="Skills">
+        <div class="dock-icon">⚡</div>
+      </a>
+      <a href="#contact" class="dock-item" data-section="contact" data-tooltip="Contact">
+        <div class="dock-icon">✉️</div>
+      </a>
+      <div class="dock-separator"></div>
+      <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="GitHub">
+        <div class="dock-icon">🐙</div>
+      </a>
+    </div>
+  </nav>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
