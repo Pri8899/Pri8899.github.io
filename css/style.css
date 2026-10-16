@@ -87,45 +87,45 @@ a {
 .ambient-aurora {
   position: absolute;
   border-radius: 54% 46% 42% 58% / 58% 50% 50% 42%;
-  filter: blur(100px);
-  opacity: 0.38;
+  filter: blur(140px);
+  opacity: 0.26;
   will-change: transform, border-radius;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   mix-blend-mode: screen;
 }
 .aurora-1 {
-  top: -80px;
-  left: 12%;
-  width: 720px;
-  height: 560px;
-  background: radial-gradient(circle at 40% 40%, rgba(0, 242, 254, 0.85), rgba(0, 122, 255, 0.6), transparent 70%);
-  animation: auroraMorph1 20s ease-in-out infinite alternate;
+  top: -100px;
+  left: 14%;
+  width: 750px;
+  height: 580px;
+  background: radial-gradient(circle at 40% 40%, rgba(0, 242, 254, 0.75), rgba(0, 122, 255, 0.5), transparent 70%);
+  animation: auroraMorph1 22s ease-in-out infinite alternate;
 }
 .aurora-2 {
-  top: 300px;
-  right: 6%;
-  width: 650px;
-  height: 520px;
-  background: radial-gradient(circle at 50% 50%, rgba(191, 90, 242, 0.8), rgba(121, 40, 202, 0.55), transparent 70%);
-  animation: auroraMorph2 24s ease-in-out infinite alternate;
+  top: 320px;
+  right: 5%;
+  width: 680px;
+  height: 540px;
+  background: radial-gradient(circle at 50% 50%, rgba(191, 90, 242, 0.7), rgba(121, 40, 202, 0.45), transparent 70%);
+  animation: auroraMorph2 26s ease-in-out infinite alternate;
   animation-delay: -6s;
 }
 .aurora-3 {
-  bottom: 60px;
-  left: 6%;
-  width: 680px;
-  height: 540px;
-  background: radial-gradient(circle at 45% 45%, rgba(0, 210, 255, 0.7), rgba(58, 123, 213, 0.55), transparent 70%);
-  animation: auroraMorph3 26s ease-in-out infinite alternate;
+  bottom: 80px;
+  left: 5%;
+  width: 700px;
+  height: 560px;
+  background: radial-gradient(circle at 45% 45%, rgba(0, 210, 255, 0.6), rgba(58, 123, 213, 0.45), transparent 70%);
+  animation: auroraMorph3 28s ease-in-out infinite alternate;
   animation-delay: -12s;
 }
 .aurora-4 {
-  top: 45%;
-  left: 42%;
-  width: 520px;
-  height: 440px;
-  background: radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.45), rgba(139, 92, 246, 0.5), transparent 70%);
-  animation: auroraMorph4 28s ease-in-out infinite alternate;
+  top: 48%;
+  left: 45%;
+  width: 550px;
+  height: 460px;
+  background: radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.4), rgba(139, 92, 246, 0.45), transparent 70%);
+  animation: auroraMorph4 30s ease-in-out infinite alternate;
   animation-delay: -18s;
 }
 
@@ -206,11 +206,11 @@ a {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    580px circle at var(--cursor-x, 50vw) var(--cursor-y, 50vh),
-    rgba(0, 242, 254, 0.15) 0%,
-    rgba(191, 90, 242, 0.09) 30%,
-    rgba(0, 122, 255, 0.03) 60%,
-    transparent 76%
+    650px circle at var(--cursor-x, 50vw) var(--cursor-y, 50vh),
+    rgba(0, 242, 254, 0.12) 0%,
+    rgba(191, 90, 242, 0.08) 28%,
+    rgba(0, 122, 255, 0.02) 60%,
+    transparent 75%
   );
   pointer-events: none;
   z-index: 2;
@@ -1101,15 +1101,49 @@ a {
 .spotlight-card {
   position: relative;
 }
-.spotlight-card::after {
+
+/* Linear/Vercel-style Iridescent Glowing Border Beam on Hover */
+.spotlight-card::before {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: radial-gradient(350px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.12), transparent 80%);
+  padding: 1.5px;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 242, 254, 0.65),
+    rgba(168, 85, 247, 0.45),
+    rgba(0, 122, 255, 0.2),
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Soft Inner Glare */
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 242, 254, 0.08),
+    rgba(168, 85, 247, 0.04),
+    transparent 65%
+  );
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s ease;
   z-index: 2;
 }
 .spotlight-card:hover::after {
