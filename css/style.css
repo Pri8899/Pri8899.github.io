@@ -1478,6 +1478,21 @@ a {
   color: var(--apple-blue);
   border: 1px solid rgba(0, 122, 255, 0.25);
 }
+.tile-type-pill.pill-flutter {
+  background: rgba(2, 86, 155, 0.15);
+  color: #54c5f8;
+  border: 1px solid rgba(84, 197, 248, 0.3);
+}
+.tile-type-pill.pill-bot {
+  background: rgba(88, 101, 242, 0.15);
+  color: #7983f5;
+  border: 1px solid rgba(121, 131, 245, 0.3);
+}
+.tile-type-pill.pill-algo {
+  background: rgba(175, 82, 222, 0.15);
+  color: #d084f7;
+  border: 1px solid rgba(208, 132, 247, 0.3);
+}
 
 .tile-source-btn {
   display: inline-flex;
@@ -1529,7 +1544,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 14px;
+  margin-bottom: 0;
 }
 .tile-tag {
   font-size: 11px;
@@ -1538,29 +1553,6 @@ a {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted);
-}
-
-.tile-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  padding-top: 11px;
-  margin-top: auto;
-}
-
-.tile-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11.5px;
-  font-weight: 600;
-  font-family: var(--font-mono);
-  color: var(--apple-blue);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-.tile-link:hover {
-  color: var(--apple-cyan);
-  gap: 9px;
-  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
 }
 
 /* ── 11. Skills: macOS System Settings Grid ────────────────── */
