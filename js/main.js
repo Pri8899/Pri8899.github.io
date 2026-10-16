@@ -863,7 +863,6 @@ Location: Dhaka, Bangladesh`;
 
   // ── 8. Live Codeforces REST API Auto-Sync ────────────────────
   async function syncCodeforcesLive() {
-    const syncText = document.getElementById('cf-sync-text');
     try {
       const url = 'https://codeforces.com/api/user.status?handle=pri8899&from=1&count=2000';
       const res = await fetch(url);
@@ -913,24 +912,20 @@ Location: Dhaka, Bangladesh`;
 
         // Update DOM elements with live numbers
         const totalSolvedEl = document.getElementById('stat-solved-total');
-        const streakEl = document.getElementById('stat-streak');
-        const accuracyEl = document.getElementById('stat-accuracy');
+        const streakEl = document.getElementById('stat-streak-num');
+        const accuracyEl = document.getElementById('stat-accuracy-num');
         const subsEl = document.getElementById('stat-submissions');
-        const cfCountLabel = document.getElementById('cf-count-label');
-        const csesCountLabel = document.getElementById('cses-count-label');
         const pillCfVal = document.getElementById('pill-cf-val');
         const pillCsesVal = document.getElementById('pill-cses-val');
 
-        animateValue(totalSolvedEl, totalSolved);
-        animateValue(streakEl, streak);
-        animateValue(accuracyEl, accuracy, true);
-        animateValue(subsEl, totalSubs);
+        if (totalSolvedEl) animateValue(totalSolvedEl, totalSolved);
+        if (streakEl) animateValue(streakEl, streak);
+        if (accuracyEl) animateValue(accuracyEl, accuracy, true);
+        if (subsEl) animateValue(subsEl, totalSubs);
 
         const cfPercent = totalSolved > 0 ? ((cfSolved / totalSolved) * 100).toFixed(1) : '88.5';
         const csesPercent = totalSolved > 0 ? (100 - parseFloat(cfPercent)).toFixed(1) : '11.5';
 
-        if (cfCountLabel) cfCountLabel.textContent = `${cfSolved} CF`;
-        if (csesCountLabel) csesCountLabel.textContent = `${csesSolved} CSES`;
         if (pillCfVal) pillCfVal.textContent = cfSolved;
         if (pillCsesVal) pillCsesVal.textContent = csesSolved;
 
@@ -939,16 +934,9 @@ Location: Dhaka, Bangladesh`;
         const csesLaserBar = document.getElementById('cses-laser-bar');
         if (cfLaserBar) cfLaserBar.style.width = `${cfPercent}%`;
         if (csesLaserBar) csesLaserBar.style.width = `${csesPercent}%`;
-
-        if (syncText) {
-          syncText.innerHTML = `⚡ Live Auto-Sync: <strong>${cfSolved} CF</strong> + <strong>${csesSolved} CSES</strong> · Pipeline Active`;
-        }
       }
     } catch (err) {
       console.warn('Live Codeforces fetch fallback active:', err);
-      if (syncText) {
-        syncText.innerHTML = '⚡ Automated Pipeline via <strong>CodeSync Pro</strong> · Auto-synced to <code>Pri8899/CP</code>';
-      }
     }
   }
 
