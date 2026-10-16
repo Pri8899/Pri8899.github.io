@@ -352,7 +352,7 @@ Ahsanullah University of Science and Technology (AUST) · 2nd Year 1st Sem`,
 
     skills: () => {
       setTimeout(() => goToSlide(4, true), 300);
-      return `Toolchain: C, C++, Java, Dart, Flutter, Android Studio, Xcode, VS Code, Git, GitHub, DSA (DP, DFS, BFS, Trees, Binary Search, Math, Greedy), HTML, OOP, Unreal Engine, iGraphics, Discord Bots, Browser Extensions.`;
+      return `Toolchain: C, C++, Java, Dart, Flutter, Android Studio, Xcode, VS Code, Git, GitHub, DSA, CP, OOP, HTML, Unreal Engine, Roblox Studio, iGraphics, Discord Bots, Browser Extensions.`;
     },
 
     cf: () => {
