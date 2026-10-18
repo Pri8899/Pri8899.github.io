@@ -861,179 +861,43 @@ Location: Dhaka, Bangladesh`;
     requestAnimationFrame(step);
   }
 
-  // ── 8. Live Auto-Sync from CodeSync Pro SVG + Codeforces API ──
-  // Primary source: Parse codesync-stats.svg from the CP repo (always accurate,
-  //   updated by CodeSync Pro extension on every accepted submission).
-  // Fallback source: Codeforces REST API for CF-specific live data.
-  // Final fallback: The hardcoded HTML values remain untouched.
+  // ── 8. 100% Fully Automated Live CP Monitor from Pri8899/CP ──
+  // Fetches codesync-stats.svg directly from the CP repository with cache-busting.
+  // Inlines the SVG so all SVG SMIL animations (electric border, flame gradient, laser sweep,
+  // sonar radar rings) execute natively in full 60 FPS vector quality.
+  // Whenever CodeSync Pro pushes a new problem to GitHub, the portfolio reflects it automatically.
+  async function autoSyncCPFromRepo() {
+    const mount = document.getElementById('cp-svg-mount');
+    if (!mount) return;
 
-  async function syncFromCodeSyncSVG() {
-    // Append timestamp query parameter to bypass GitHub raw CDN cache (5 min default)
+    // Cache-busting timestamp URL ensures zero-delay updates whenever CodeSync Pro pushes to Pri8899/CP
     const SVG_URL = `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`;
-    const res = await fetch(SVG_URL);
-    if (!res.ok) throw new Error(`SVG fetch HTTP ${res.status}`);
-    const svgText = await res.text();
-
-    let totalSolved, streak, accuracy, totalSubs;
-    let pillValues = [];
-
-    // 1. Try DOMParser (image/svg+xml)
-    try {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(svgText, 'image/svg+xml');
-      const statVals = doc.querySelectorAll('text.stat-val');
-      if (statVals.length >= 4) {
-        totalSolved = parseInt(statVals[0].textContent.trim(), 10);
-        streak = parseInt(statVals[1].textContent.trim(), 10);
-        accuracy = parseFloat(statVals[2].textContent.trim().replace('%', ''));
-        totalSubs = parseInt(statVals[3].textContent.trim(), 10);
-      }
-    } catch (_) {}
-
-    // 2. Bulletproof regex fallback
-    if (!totalSolved || isNaN(totalSolved)) {
-      totalSolved = parseInt(svgText.match(/x="0"[^>]*class="stat-val"[^>]*>(\d+)/)?.[1] || svgText.match(/class="stat-val"[^>]*>(\d+)/)?.[1] || "55", 10);
-    }
-    if (!streak || isNaN(streak)) {
-      streak = parseInt(svgText.match(/x="120"[^>]*class="stat-val"[^>]*>(\d+)/)?.[1] || "15", 10);
-    }
-    if (!accuracy || isNaN(accuracy)) {
-      accuracy = parseFloat(svgText.match(/x="245"[^>]*class="stat-val"[^>]*>([0-9.]+)/)?.[1] || "54.5");
-    }
-    if (!totalSubs || isNaN(totalSubs)) {
-      totalSubs = parseInt(svgText.match(/x="360"[^>]*class="stat-val"[^>]*>(\d+)/)?.[1] || "101", 10);
-    }
-
-    // Platform pills (CF, CSES, AC, LC, Toph)
-    const pillMatches = [...svgText.matchAll(/font-weight="700"[^>]*>(\d+)<\/text>/g)].map(m => parseInt(m[1], 10));
-    if (pillMatches.length > 0) {
-      pillValues = pillMatches;
-    }
-
-    const cfSolved = pillValues.length >= 1 ? pillValues[0] : totalSolved - 6;
-    const csesSolved = pillValues.length >= 2 ? pillValues[1] : 6;
-
-    return { totalSolved, streak, accuracy, totalSubs, cfSolved, csesSolved, pillValues };
-  }
-
-  async function syncFromCodeforcesAPI() {
-    const url = 'https://codeforces.com/api/user.status?handle=pri8899&from=1&count=2000';
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-
-    if (data.status !== 'OK' || !Array.isArray(data.result)) throw new Error('Bad CF response');
-
-    const submissions = data.result;
-    const solvedSet = new Set();
-    let acCount = 0;
-    const activeDays = new Set();
-
-    submissions.forEach((sub) => {
-      if (sub.verdict === 'OK') {
-        solvedSet.add(`${sub.problem.contestId}-${sub.problem.index}`);
-        acCount++;
-        const d = new Date(sub.creationTimeSeconds * 1000);
-        const dateKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        activeDays.add(dateKey);
-      }
-    });
-
-    const cfSolved = solvedSet.size;
-    const csesSolved = 6;
-    const totalSolved = cfSolved + csesSolved;
-    const totalSubs = submissions.length;
-    const accuracy = totalSubs > 0 ? parseFloat(((acCount / totalSubs) * 100).toFixed(1)) : 54.5;
-
-    // Calculate consecutive streak
-    let streak = 0;
-    const today = new Date();
-    let check = new Date(today);
-    const todayKey = `${check.getFullYear()}-${String(check.getMonth() + 1).padStart(2, '0')}-${String(check.getDate()).padStart(2, '0')}`;
-    if (!activeDays.has(todayKey)) {
-      check.setDate(check.getDate() - 1);
-    }
-    while (true) {
-      const k = `${check.getFullYear()}-${String(check.getMonth() + 1).padStart(2, '0')}-${String(check.getDate()).padStart(2, '0')}`;
-      if (activeDays.has(k)) {
-        streak++;
-        check.setDate(check.getDate() - 1);
-      } else {
-        break;
-      }
-    }
-    if (streak === 0) streak = 15;
-
-    return { totalSolved, streak, accuracy, totalSubs, cfSolved, csesSolved, pillValues: [cfSolved, csesSolved, 0, 0, 0] };
-  }
-
-  function applyStatsToDOM(stats) {
-    const { totalSolved, streak, accuracy, totalSubs, cfSolved, csesSolved, pillValues } = stats;
-
-    // Update DOM elements with live numbers (animated count-up)
-    const totalSolvedEl = document.getElementById('stat-solved-total');
-    const streakEl = document.getElementById('stat-streak-num');
-    const accuracyEl = document.getElementById('stat-accuracy-num');
-    const subsEl = document.getElementById('stat-submissions');
-    const pillCfVal = document.getElementById('pill-cf-val');
-    const pillCsesVal = document.getElementById('pill-cses-val');
-
-    if (totalSolvedEl) animateValue(totalSolvedEl, totalSolved);
-    if (streakEl) animateValue(streakEl, streak);
-    if (accuracyEl) animateValue(accuracyEl, accuracy, true);
-    if (subsEl) animateValue(subsEl, totalSubs);
-
-    // Platform pills
-    if (pillCfVal) pillCfVal.textContent = cfSolved;
-    if (pillCsesVal) pillCsesVal.textContent = csesSolved;
-
-    // Also update AC, LC, Toph pills if available
-    const pillAcVal = document.getElementById('pill-ac-val');
-    const pillLcVal = document.getElementById('pill-lc-val');
-    const pillTophVal = document.getElementById('pill-toph-val');
-    if (pillValues.length >= 3 && pillAcVal) pillAcVal.textContent = pillValues[2];
-    if (pillValues.length >= 4 && pillLcVal) pillLcVal.textContent = pillValues[3];
-    if (pillValues.length >= 5 && pillTophVal) pillTophVal.textContent = pillValues[4];
-
-    // Update segmented laser bar widths
-    const cfPercent = totalSolved > 0 ? ((cfSolved / totalSolved) * 100).toFixed(1) : '89.1';
-    const csesPercent = totalSolved > 0 ? ((csesSolved / totalSolved) * 100).toFixed(1) : '10.9';
-
-    const cfLaserBar = document.getElementById('cf-laser-bar');
-    const csesLaserBar = document.getElementById('cses-laser-bar');
-    if (cfLaserBar) cfLaserBar.style.width = `${cfPercent}%`;
-    if (csesLaserBar) csesLaserBar.style.width = `${csesPercent}%`;
-
-    // Update AC, LC, Toph bars
-    const acBar = document.getElementById('ac-laser-bar');
-    const lcBar = document.getElementById('lc-laser-bar');
-    const tophBar = document.getElementById('toph-laser-bar');
-    if (pillValues.length >= 3 && acBar) acBar.style.width = `${totalSolved > 0 ? ((pillValues[2] / totalSolved) * 100).toFixed(1) : 0}%`;
-    if (pillValues.length >= 4 && lcBar) lcBar.style.width = `${totalSolved > 0 ? ((pillValues[3] / totalSolved) * 100).toFixed(1) : 0}%`;
-    if (pillValues.length >= 5 && tophBar) tophBar.style.width = `${totalSolved > 0 ? ((pillValues[4] / totalSolved) * 100).toFixed(1) : 0}%`;
-  }
-
-  async function autoSyncCPStats() {
-    try {
-      // PRIMARY: Fetch from CodeSync Pro SVG in CP repo
-      const stats = await syncFromCodeSyncSVG();
-      applyStatsToDOM(stats);
-      console.log('✅ CP Stats auto-synced from codesync-stats.svg');
-      return;
-    } catch (svgErr) {
-      console.warn('SVG fetch failed, trying Codeforces API...', svgErr);
-    }
 
     try {
-      // FALLBACK: Fetch from Codeforces REST API
-      const stats = await syncFromCodeforcesAPI();
-      applyStatsToDOM(stats);
-      console.log('✅ CP Stats auto-synced from Codeforces API');
-      return;
-    } catch (cfErr) {
-      console.warn('Codeforces API also failed. Using hardcoded HTML values.', cfErr);
+      const res = await fetch(SVG_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const svgText = await res.text();
+
+      if (svgText.includes('<svg') && svgText.includes('</svg>')) {
+        mount.innerHTML = svgText;
+        const svgEl = mount.querySelector('svg');
+        if (svgEl) {
+          svgEl.removeAttribute('width');
+          svgEl.removeAttribute('height');
+          svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+          svgEl.style.width = '100%';
+          svgEl.style.maxWidth = '680px';
+          svgEl.style.height = 'auto';
+          svgEl.style.display = 'block';
+        }
+        console.log('✅ CP Monitor: 100% automated live SVG loaded from Pri8899/CP');
+      }
+    } catch (err) {
+      console.warn('Live SVG fetch fallback to image:', err);
+      const img = document.getElementById('codesync-live-img');
+      if (img) img.src = SVG_URL;
     }
   }
 
-  autoSyncCPStats();
+  autoSyncCPFromRepo();
 })();

@@ -1012,16 +1012,41 @@ a {
   overflow-y: auto;
 }
 
-.cp-card-inner {
+.cp-card-wrapper {
   width: 100%;
   max-width: 680px;
-  background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
-  border: 1px solid #30363d;
-  border-radius: 12px;
-  padding: 24px 28px;
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.cp-svg-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: transform 0.25s var(--spring-ease), filter 0.25s ease;
+}
+
+.cp-svg-link:hover {
+  transform: translateY(-2px) scale(1.008);
+  filter: drop-shadow(0 14px 30px rgba(88, 166, 255, 0.18));
+}
+
+.cp-svg-mount {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cp-svg-mount svg,
+.cp-svg-mount img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(88, 166, 255, 0.08);
 }
 
