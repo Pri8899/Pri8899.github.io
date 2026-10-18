@@ -868,35 +868,48 @@ Location: Dhaka, Bangladesh`;
   // Final fallback: The hardcoded HTML values remain untouched.
 
   async function syncFromCodeSyncSVG() {
-    const SVG_URL = 'https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg';
+    // Append timestamp query parameter to bypass GitHub raw CDN cache (5 min default)
+    const SVG_URL = `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`;
     const res = await fetch(SVG_URL);
     if (!res.ok) throw new Error(`SVG fetch HTTP ${res.status}`);
     const svgText = await res.text();
 
-    // Parse the SVG as XML to extract stat values
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(svgText, 'image/svg+xml');
+    let totalSolved, streak, accuracy, totalSubs;
+    let pillValues = [];
 
-    // The SVG has 4 stat-val <text> elements in order: Solved, Streak, Accuracy, Submissions
-    const statVals = doc.querySelectorAll('text.stat-val');
-    if (statVals.length < 4) throw new Error('SVG stat-val count mismatch');
+    // 1. Try DOMParser (image/svg+xml)
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(svgText, 'image/svg+xml');
+      const statVals = doc.querySelectorAll('text.stat-val');
+      if (statVals.length >= 4) {
+        totalSolved = parseInt(statVals[0].textContent.trim(), 10);
+        streak = parseInt(statVals[1].textContent.trim(), 10);
+        accuracy = parseFloat(statVals[2].textContent.trim().replace('%', ''));
+        totalSubs = parseInt(statVals[3].textContent.trim(), 10);
+      }
+    } catch (_) {}
 
-    const totalSolved = parseInt(statVals[0].textContent.trim(), 10);
-    const streak = parseInt(statVals[1].textContent.trim(), 10);
-    const accuracyRaw = statVals[2].textContent.trim().replace('%', '');
-    const accuracy = parseFloat(accuracyRaw);
-    const totalSubs = parseInt(statVals[3].textContent.trim(), 10);
+    // 2. Bulletproof regex fallback
+    if (!totalSolved || isNaN(totalSolved)) {
+      totalSolved = parseInt(svgText.match(/x="0"[^>]*class="stat-val"[^>]*>(\d+)/)?.[1] || svgText.match(/class="stat-val"[^>]*>(\d+)/)?.[1] || "55", 10);
+    }
+    if (!streak || isNaN(streak)) {
+      streak = parseInt(svgText.match(/x="120"[^>]*class="stat-val"[^>]*>(\d+)/)?.[1] || "15", 10);
+    }
+    if (!accuracy || isNaN(accuracy)) {
+      accuracy = parseFloat(svgText.match(/x="245"[^>]*class="stat-val"[^>]*>([0-9.]+)/)?.[1] || "54.5");
+    }
+    if (!totalSubs || isNaN(totalSubs)) {
+      totalSubs = parseInt(svgText.match(/x="360"[^>]*class="stat-val"[^>]*>(\d+)/)?.[1] || "101", 10);
+    }
 
-    // Parse platform pill values from the bold text elements
-    // The SVG has 5 pill values (CF, CSES, AC, LC, Toph) as font-weight="700" texts after the platform names
-    const boldTexts = doc.querySelectorAll('text[font-weight="700"]');
-    // Filter out non-pill texts (like "AUTO-SYNC" label) by checking parent group transforms
-    const pillValues = [];
-    boldTexts.forEach((el) => {
-      const val = parseInt(el.textContent.trim(), 10);
-      if (!isNaN(val)) pillValues.push(val);
-    });
-    // pillValues should be: [CF, CSES, AC, LC, Toph]
+    // Platform pills (CF, CSES, AC, LC, Toph)
+    const pillMatches = [...svgText.matchAll(/font-weight="700"[^>]*>(\d+)<\/text>/g)].map(m => parseInt(m[1], 10));
+    if (pillMatches.length > 0) {
+      pillValues = pillMatches;
+    }
+
     const cfSolved = pillValues.length >= 1 ? pillValues[0] : totalSolved - 6;
     const csesSolved = pillValues.length >= 2 ? pillValues[1] : 6;
 
