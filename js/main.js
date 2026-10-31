@@ -1148,11 +1148,14 @@ Location: Dhaka, Bangladesh`;
 
   function checkCPHashMode() {
     const hash = (window.location.hash || '').toLowerCase();
+    const btnOther = document.getElementById('btn-show-other');
+    const isOtherVisible = btnOther && btnOther.style.display !== 'none';
+
     if (hash.includes('/lc') || hash.includes('-lc')) setCPMode('lc', false);
     else if (hash.includes('/cf') || hash.includes('-cf')) setCPMode('cf', false);
-    else if (hash.includes('/other') || hash.includes('-other')) setCPMode('other', false);
     else if (hash.includes('/svg') || hash.includes('-svg')) setCPMode('svg', false);
-    else if (hash === '#cp') setCPMode('unified', false);
+    else if ((hash.includes('/other') || hash.includes('/cses')) && isOtherVisible) setCPMode('other', false);
+    else setCPMode('unified', false);
   }
   checkCPHashMode();
   window.addEventListener('hashchange', checkCPHashMode);
@@ -1506,35 +1509,60 @@ Location: Dhaka, Bangladesh`;
     if (img) img.src = `codesync-stats.svg?t=${Date.now()}`;
   }
 
-  // 9. Fully Dynamic Multi-Platform Visibility Auto-Detection from Pri8899/CP
+  // 9. Fully Dynamic Multi-Platform Visibility Auto-Detection from codesync-stats.svg
   async function syncActivePlatforms() {
     try {
-      const res = await fetch('https://api.github.com/repos/Pri8899/CP/contents');
-      if (res.ok) {
-        const contents = await res.json();
-        const dirs = contents.filter(item => item.type === 'dir').map(item => item.name.toLowerCase());
+      const urls = [
+        `codesync-stats.svg?t=${Date.now()}`,
+        `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`
+      ];
+      let svgText = '';
+      for (const url of urls) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (res.ok) {
+            const text = await res.text();
+            if (text.includes('<svg') && text.includes('</svg>')) {
+              svgText = text;
+              break;
+            }
+          }
+        } catch (e) {}
+      }
 
-        const hasAtCoder = dirs.includes('atcoder');
-        const hasToph = dirs.includes('toph');
-        const hasCSES = dirs.includes('cses');
+      // Ground strictly in the platforms enabled in your CodeSync Pro extension card:
+      // Active platforms in CodeSync Pro have pills with >CF<, >LC<, >CSES<, >AC<, >TP<
+      const hasCF = !svgText || svgText.includes('>CF<');
+      const hasLC = !svgText || svgText.includes('>LC<');
+      const hasCSES = svgText ? svgText.includes('>CSES<') : false;
+      const hasAC = svgText ? (svgText.includes('>AC<') || svgText.includes('>AtCoder<')) : false;
+      const hasTP = svgText ? (svgText.includes('>TP<') || svgText.includes('>Toph<')) : false;
 
-        const cardAC = document.getElementById('card-platform-atcoder');
-        const cardTP = document.getElementById('card-platform-toph');
-        const cardCSES = document.getElementById('card-platform-cses');
-        const btnOther = document.getElementById('btn-show-other');
+      const btnCF = document.getElementById('btn-show-cf');
+      const btnLC = document.getElementById('btn-show-lc');
+      const btnOther = document.getElementById('btn-show-other');
+      const cardCSES = document.getElementById('card-platform-cses');
+      const cardCSESInfo = document.getElementById('card-platform-cses-info');
+      const cardAC = document.getElementById('card-platform-atcoder');
+      const cardTP = document.getElementById('card-platform-toph');
 
-        // If inactive or off, keep strictly hidden
-        if (cardAC) cardAC.style.display = hasAtCoder ? 'flex' : 'none';
-        if (cardTP) cardTP.style.display = hasToph ? 'flex' : 'none';
-        if (cardCSES) cardCSES.style.display = hasCSES ? 'flex' : 'none';
+      if (btnCF) btnCF.style.display = hasCF ? 'inline-flex' : 'none';
+      if (btnLC) btnLC.style.display = hasLC ? 'inline-flex' : 'none';
 
-        if (btnOther) {
-          if (hasAtCoder || hasToph) {
-            btnOther.querySelector('span').textContent = 'More Platforms';
-          } else if (hasCSES) {
-            btnOther.querySelector('span').textContent = 'CSES (6)';
+      if (cardCSES) cardCSES.style.display = hasCSES ? 'flex' : 'none';
+      if (cardCSESInfo) cardCSESInfo.style.display = hasCSES ? 'flex' : 'none';
+      if (cardAC) cardAC.style.display = hasAC ? 'flex' : 'none';
+      if (cardTP) cardTP.style.display = hasTP ? 'flex' : 'none';
+
+      // Only show the secondary platforms tab if at least one secondary platform is active in the extension!
+      const hasAnySecondary = hasCSES || hasAC || hasTP;
+      if (btnOther) {
+        btnOther.style.display = hasAnySecondary ? 'inline-flex' : 'none';
+        if (hasAnySecondary) {
+          if (hasCSES && !hasAC && !hasTP) {
+            btnOther.querySelector('span').textContent = 'CSES';
           } else {
-            btnOther.style.display = 'none';
+            btnOther.querySelector('span').textContent = 'More Platforms';
           }
         }
       }
