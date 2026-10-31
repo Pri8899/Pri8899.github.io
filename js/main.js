@@ -1555,7 +1555,9 @@ Location: Dhaka, Bangladesh`;
     }
 
     const img = document.getElementById('codesync-live-img');
-    if (img) img.src = `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`;
+    if (img && !mount.querySelector('svg')) {
+      img.src = `codesync-stats.svg?t=${Date.now()}`;
+    }
   }
 
   const csesSolves = [
