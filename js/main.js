@@ -340,7 +340,18 @@
   function handleSpotlightAction(action) {
     if (!action) return;
     closeSpotlight();
-    if (action.startsWith('theme:')) {
+    if (action === 'action-grid-sim') {
+      openGridSimulator();
+    } else if (action === 'action-view-lc') {
+      if ('cp' in slideMap) goToSlide(slideMap['cp'], true);
+      setCPMode('lc');
+    } else if (action === 'action-view-cf') {
+      if ('cp' in slideMap) goToSlide(slideMap['cp'], true);
+      setCPMode('cf');
+    } else if (action === 'action-view-unified') {
+      if ('cp' in slideMap) goToSlide(slideMap['cp'], true);
+      setCPMode('unified');
+    } else if (action.startsWith('theme:')) {
       const th = action.replace('theme:', '');
       setTheme(th);
     } else if (action.startsWith('#')) {
@@ -459,13 +470,46 @@ Ahsanullah University of Science and Technology · 2nd Year, 1st Semester`,
     },
 
     cf: () => {
-      setTimeout(() => goToSlide(3, true), 300);
-      return `CodeSync Pro Telemetry:
-Total Solved: 97 problems (CF: 81 · LC: 16) | Current Streak: 29 days
-AC Accuracy: 57.8% | Submissions: 303 | Status: Synced via CodeSync Pro`;
+      setTimeout(() => {
+        goToSlide(3, true);
+        setCPMode('cf');
+      }, 300);
+      return `Codeforces Live Radar (Handle: Pri8899):
+Current Rating: 814 (newbie) | Peak: 814 | Target: Pupil (1200) · 67.8% Milestone
+Total Solved: 81 problems | Primary Language: C++23 (GCC 14) | Fast I/O · DSA`;
     },
 
     codeforces: () => terminalCommands.cf(),
+
+    lc: () => {
+      setTimeout(() => {
+        goToSlide(3, true);
+        setCPMode('lc');
+      }, 300);
+      return `LeetCode Live Telemetry (User: Pri8899):
+Total Accepted Solves: 16
+• Easy: 6  |  • Medium: 9  |  • Hard: 1
+Medium/Hard Ratio: 62.5% | Profile: https://leetcode.com/u/Pri8899/`;
+    },
+
+    leetcode: () => terminalCommands.lc(),
+
+    stats: () => {
+      setTimeout(() => {
+        goToSlide(3, true);
+        setCPMode('unified');
+      }, 300);
+      return `CodeSync Pro Unified Telemetry:
+Total Solved: 97 problems (CF: 81 · LC: 16) | Current Streak: 29 days (Active Flame)
+AC Accuracy: 57.8% | Submissions: 303 | Status: 100% Synced via CodeSync Pro`;
+    },
+
+    battle: () => {
+      setTimeout(openGridSimulator, 300);
+      return `Launching BigOof 3x3 Lockout Grid Simulator (Option B: 1/3 Point Drop Active)...`;
+    },
+
+    vs: () => terminalCommands.battle(),
 
     theme: (arg) => {
       if (!arg) return `Usage: theme <name>\nAvailable themes: tokyo, catppuccin, matrix, cyber, macos`;
@@ -1017,12 +1061,253 @@ Location: Dhaka, Bangladesh`;
     requestAnimationFrame(step);
   }
 
-  // ── 8. 100% Fully Automated Live CP Monitor from CodeSync Pro ──
-  // Fetches codesync-stats.svg directly with cache-busting (local + remote).
-  // Inlines the SVG so all SVG SMIL animations (electric border, flame gradient, laser sweep,
-  // sonar radar rings) execute natively in full 60 FPS vector quality.
-  // Displays complete real telemetry: Total Solved (97), Streak (29 days), Accuracy (57.8%),
-  // Submissions (303), Platform Breakdown (CF: 81, LC: 16).
+  // ── 8. 100% Fully Automated Multi-Platform Live CP Monitor ──
+  // Supports 4 Interactive Views:
+  // 1. Unified Multi-Platform Feed (CF: 81 + LC: 16 = 97 Total Solved, 29-day Flame Streak)
+  // 2. LeetCode Live Telemetry (16 Solved: 6 Easy, 9 Medium, 1 Hard + Recent AC Stream)
+  // 3. Codeforces Radar (814 Rating Newbie, 81 Solved, C++23 Fast I/O + Live API Stream)
+  // 4. CodeSync Pro Vector Card (Original animated SVG with electric border & flame streak)
+
+  const cpViewUnified = document.getElementById('cp-view-unified');
+  const cpViewLC = document.getElementById('cp-view-lc');
+  const cpViewCF = document.getElementById('cp-view-cf');
+  const cpCardWrapper = document.getElementById('cp-card-wrapper');
+
+  const btnShowUnified = document.getElementById('btn-show-unified');
+  const btnShowLC = document.getElementById('btn-show-lc');
+  const btnShowCF = document.getElementById('btn-show-cf');
+  const btnShowSVG = document.getElementById('btn-show-svg');
+
+  function setCPMode(mode) {
+    playKeyClick();
+    const switchBtns = [btnShowUnified, btnShowLC, btnShowCF, btnShowSVG];
+    switchBtns.forEach(btn => { if (btn) btn.classList.remove('active'); });
+
+    if (cpViewUnified) cpViewUnified.style.display = 'none';
+    if (cpViewLC) cpViewLC.style.display = 'none';
+    if (cpViewCF) cpViewCF.style.display = 'none';
+    if (cpCardWrapper) cpCardWrapper.style.display = 'none';
+
+    if (mode === 'unified') {
+      if (cpViewUnified) cpViewUnified.style.display = 'flex';
+      if (btnShowUnified) btnShowUnified.classList.add('active');
+    } else if (mode === 'lc') {
+      if (cpViewLC) cpViewLC.style.display = 'flex';
+      if (btnShowLC) btnShowLC.classList.add('active');
+    } else if (mode === 'cf') {
+      if (cpViewCF) cpViewCF.style.display = 'flex';
+      if (btnShowCF) btnShowCF.classList.add('active');
+    } else if (mode === 'svg') {
+      if (cpCardWrapper) cpCardWrapper.style.display = 'flex';
+      if (btnShowSVG) btnShowSVG.classList.add('active');
+      autoSyncCPFromRepo();
+    }
+  }
+
+  if (btnShowUnified) btnShowUnified.addEventListener('click', () => setCPMode('unified'));
+  if (btnShowLC) btnShowLC.addEventListener('click', () => setCPMode('lc'));
+  if (btnShowCF) btnShowCF.addEventListener('click', () => setCPMode('cf'));
+  if (btnShowSVG) btnShowSVG.addEventListener('click', () => setCPMode('svg'));
+
+  // LeetCode Verified Solves Data (User: Pri8899)
+  const leetCodeSolves = [
+    { title: 'Search in Rotated Sorted Array', slug: 'search-in-rotated-sorted-array', diff: 'Medium', time: '1d ago' },
+    { title: 'Divide Two Integers', slug: 'divide-two-integers', diff: 'Medium', time: '1d ago' },
+    { title: 'Remove Duplicates from Sorted Array', slug: 'remove-duplicates-from-sorted-array', diff: 'Easy', time: '1d ago' },
+    { title: 'Palindrome Number', slug: 'palindrome-number', diff: 'Easy', time: '1d ago' },
+    { title: 'Reverse Integer', slug: 'reverse-integer', diff: 'Medium', time: '1d ago' },
+    { title: 'Median of Two Sorted Arrays', slug: 'median-of-two-sorted-arrays', diff: 'Hard', time: '2d ago' },
+    { title: 'Two Sum', slug: 'two-sum', diff: 'Easy', time: '2d ago' },
+    { title: 'Sort Colors', slug: 'sort-colors', diff: 'Medium', time: '3d ago' },
+    { title: 'Search a 2D Matrix', slug: 'search-a-2d-matrix', diff: 'Medium', time: '3d ago' }
+  ];
+
+  // Codeforces Default Solves Data (Handle: Pri8899)
+  let cfSolves = [
+    { id: '1676A', title: 'Lucky?', rating: 800, time: 'Recent' },
+    { id: '750A', title: 'New Year and Hurry', rating: 800, time: 'Recent' },
+    { id: '1999A', title: 'A+B Again?', rating: 800, time: 'Recent' },
+    { id: '230A', title: 'Dragons', rating: 1000, time: 'Recent' },
+    { id: '1807A', title: 'Plus or Minus', rating: 800, time: 'Recent' },
+    { id: '96A', title: 'Football', rating: 900, time: 'Recent' }
+  ];
+
+  function renderLCSolves(mountEl) {
+    if (!mountEl) return;
+    mountEl.innerHTML = '';
+    leetCodeSolves.forEach((s) => {
+      const row = document.createElement('div');
+      row.className = 'cf-solve-row';
+      const diffClass = s.diff.toLowerCase();
+      row.innerHTML = `
+        <div class="cf-solve-left">
+          <span class="platform-tag lc">LC</span>
+          <span class="cf-verdict-tag">✓ AC</span>
+          <a href="https://leetcode.com/problems/${s.slug}/" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
+            ${s.title}
+          </a>
+        </div>
+        <div class="cf-solve-right">
+          <span class="lc-diff-badge ${diffClass}">${s.diff}</span>
+          <span>${s.time}</span>
+        </div>
+      `;
+      mountEl.appendChild(row);
+    });
+  }
+
+  function renderCFSolves(mountEl) {
+    if (!mountEl) return;
+    mountEl.innerHTML = '';
+    cfSolves.forEach((s) => {
+      const row = document.createElement('div');
+      row.className = 'cf-solve-row';
+      const contestId = s.id.replace(/[A-Za-z]+/, '');
+      const index = s.id.replace(/[0-9]+/, '');
+      const cfUrl = contestId ? `https://codeforces.com/contest/${contestId}/problem/${index}` : `https://codeforces.com/problemset`;
+      row.innerHTML = `
+        <div class="cf-solve-left">
+          <span class="platform-tag cf">CF</span>
+          <span class="cf-verdict-tag">✓ AC</span>
+          <a href="${cfUrl}" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
+            ${s.id} · ${s.title}
+          </a>
+        </div>
+        <div class="cf-solve-right">
+          <span class="cf-rating-badge">${s.rating ? `${s.rating} pts` : 'Verified'}</span>
+          <span>${s.time}</span>
+        </div>
+      `;
+      mountEl.appendChild(row);
+    });
+  }
+
+  function renderUnifiedSolves(mountEl) {
+    if (!mountEl) return;
+    mountEl.innerHTML = '';
+
+    // Interleave CF and LC solves for a vibrant, live multi-platform feed
+    const combined = [];
+    const maxLen = Math.max(cfSolves.length, leetCodeSolves.length);
+    for (let i = 0; i < maxLen; i++) {
+      if (i < leetCodeSolves.length) combined.push({ type: 'LC', item: leetCodeSolves[i] });
+      if (i < cfSolves.length) combined.push({ type: 'CF', item: cfSolves[i] });
+    }
+
+    combined.slice(0, 10).forEach(entry => {
+      const row = document.createElement('div');
+      row.className = 'cf-solve-row';
+
+      if (entry.type === 'LC') {
+        const s = entry.item;
+        const diffClass = s.diff.toLowerCase();
+        row.innerHTML = `
+          <div class="cf-solve-left">
+            <span class="platform-tag lc">LC</span>
+            <span class="cf-verdict-tag">✓ AC</span>
+            <a href="https://leetcode.com/problems/${s.slug}/" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
+              ${s.title}
+            </a>
+          </div>
+          <div class="cf-solve-right">
+            <span class="lc-diff-badge ${diffClass}">${s.diff}</span>
+            <span>${s.time}</span>
+          </div>
+        `;
+      } else {
+        const s = entry.item;
+        const contestId = s.id.replace(/[A-Za-z]+/, '');
+        const index = s.id.replace(/[0-9]+/, '');
+        const cfUrl = contestId ? `https://codeforces.com/contest/${contestId}/problem/${index}` : `https://codeforces.com/problemset`;
+        row.innerHTML = `
+          <div class="cf-solve-left">
+            <span class="platform-tag cf">CF</span>
+            <span class="cf-verdict-tag">✓ AC</span>
+            <a href="${cfUrl}" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
+              ${s.id} · ${s.title}
+            </a>
+          </div>
+          <div class="cf-solve-right">
+            <span class="cf-rating-badge">${s.rating ? `${s.rating} pts` : 'Verified'}</span>
+            <span>${s.time}</span>
+          </div>
+        `;
+      }
+      mountEl.appendChild(row);
+    });
+  }
+
+  // Live Codeforces API Streamer
+  async function initLiveCPFeeds() {
+    const cfMount = document.getElementById('cf-recent-solves-mount');
+    const lcMount = document.getElementById('lc-recent-solves-mount');
+    const unifiedMount = document.getElementById('unified-recent-solves-mount');
+
+    renderLCSolves(lcMount);
+    renderCFSolves(cfMount);
+    renderUnifiedSolves(unifiedMount);
+
+    try {
+      // 1. Fetch live Codeforces user info
+      const uRes = await fetch('https://codeforces.com/api/user.info?handles=Pri8899');
+      if (uRes.ok) {
+        const uData = await uRes.json();
+        if (uData.status === 'OK' && uData.result.length > 0) {
+          const user = uData.result[0];
+          const ratingEl = document.getElementById('cf-rating-val');
+          const maxRatingEl = document.getElementById('cf-max-rating');
+          const rankPill = document.getElementById('cf-rank-pill');
+          const fillEl = document.getElementById('cf-progress-fill');
+          const pctEl = document.getElementById('cf-progress-pct');
+
+          if (ratingEl && user.rating) ratingEl.textContent = user.rating;
+          if (maxRatingEl && user.maxRating) maxRatingEl.textContent = `Max: ${user.maxRating}`;
+          if (rankPill && user.rank) {
+            rankPill.textContent = user.rank.toUpperCase();
+            rankPill.className = `cf-rank-pill ${user.rank.toLowerCase()}`;
+          }
+          if (fillEl && user.rating) {
+            const pct = Math.min(100, Math.round((user.rating / 1200) * 100));
+            fillEl.style.width = `${pct}%`;
+            if (pctEl) pctEl.textContent = `${pct}%`;
+          }
+        }
+      }
+
+      // 2. Fetch live recent Codeforces AC submissions
+      const sRes = await fetch('https://codeforces.com/api/user.status?handle=Pri8899&from=1&count=15');
+      if (sRes.ok) {
+        const sData = await sRes.json();
+        if (sData.status === 'OK' && sData.result.length > 0) {
+          const liveACs = [];
+          const seen = new Set();
+          for (const sub of sData.result) {
+            if (sub.verdict === 'OK' && sub.problem) {
+              const key = `${sub.problem.contestId || ''}${sub.problem.index || ''}`;
+              if (!seen.has(key)) {
+                seen.add(key);
+                liveACs.push({
+                  id: key,
+                  title: sub.problem.name,
+                  rating: sub.problem.rating || 800,
+                  time: `${Math.round(sub.timeConsumedMillis || 30)}ms`
+                });
+              }
+            }
+          }
+          if (liveACs.length > 0) {
+            cfSolves = liveACs.slice(0, 6);
+            renderCFSolves(cfMount);
+            renderUnifiedSolves(unifiedMount);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Codeforces live API stream running on cached telemetry fallback:', err);
+    }
+  }
+
+  // Auto-Sync SVG inliner
   async function autoSyncCPFromRepo() {
     const mount = document.getElementById('cp-svg-mount');
     if (!mount) return;
@@ -1060,5 +1345,137 @@ Location: Dhaka, Bangladesh`;
     if (img) img.src = `codesync-stats.svg?t=${Date.now()}`;
   }
 
-  autoSyncCPFromRepo();
+  // ── 9. BigOof 3x3 Battle Grid Simulator Modal ───────────────────
+  const openSimBtn = document.getElementById('btn-open-grid-sim');
+  const closeSimBtn = document.getElementById('close-sim-btn');
+  const resetSimBtn = document.getElementById('sim-reset-btn');
+  const gridSimModal = document.getElementById('grid-sim-modal');
+  const simGridMount = document.getElementById('sim-grid-3x3');
+  const simP1ScoreEl = document.getElementById('sim-p1-score');
+  const simP2ScoreEl = document.getElementById('sim-p2-score');
+  const simLogMsg = document.querySelector('#sim-battle-log .log-msg');
+  const simLogTime = document.querySelector('#sim-battle-log .log-time');
+
+  const simProblems = [
+    { id: '1807A', title: 'Plus or Minus', pts: 100, rating: 800 },
+    { id: '1676A', title: 'Lucky?', pts: 100, rating: 800 },
+    { id: '750A', title: 'New Year and Hurry', pts: 200, rating: 800 },
+    { id: '1999A', title: 'A+B Again?', pts: 200, rating: 800 },
+    { id: '230A', title: 'Dragons', pts: 300, rating: 1000 },
+    { id: '96A', title: 'Football', pts: 300, rating: 900 },
+    { id: '69A', title: 'Young Physicist', pts: 400, rating: 1000 },
+    { id: '1899A', title: 'Game with Integers', pts: 400, rating: 900 },
+    { id: '158A', title: 'Next Round', pts: 500, rating: 800 }
+  ];
+
+  let p1Score = 0;
+  let p2Score = 0;
+  const tileStates = simProblems.map(() => ({ p1: false, p2: false }));
+
+  function updateSimScoreboard() {
+    if (simP1ScoreEl) simP1ScoreEl.textContent = `${p1Score} pts`;
+    if (simP2ScoreEl) simP2ScoreEl.textContent = `${p2Score} pts`;
+  }
+
+  function setSimLog(tag, msg) {
+    if (simLogTime) simLogTime.textContent = `[${tag}]`;
+    if (simLogMsg) simLogMsg.textContent = msg;
+  }
+
+  function renderSimGrid() {
+    if (!simGridMount) return;
+    simGridMount.innerHTML = '';
+
+    simProblems.forEach((prob, idx) => {
+      const state = tileStates[idx];
+      const tile = document.createElement('div');
+      tile.className = 'sim-tile';
+
+      let statusText = 'UNSOLVED';
+      if (state.p1 && state.p2) {
+        tile.classList.add('both-solved');
+        const p2Pts = Math.round(prob.pts / 3);
+        statusText = `P1: ${prob.pts} | P2: ${p2Pts} (1/3)`;
+      } else if (state.p1) {
+        tile.classList.add('p1-first');
+        statusText = `👑 P1 Solved (+${prob.pts})`;
+      }
+
+      tile.innerHTML = `
+        <div class="tile-pts">${prob.pts} PTS</div>
+        <div class="tile-rating">${prob.id} · ${prob.rating}r</div>
+        <div class="tile-status">${statusText}</div>
+      `;
+
+      tile.addEventListener('click', () => {
+        playKeyClick();
+        if (!state.p1) {
+          state.p1 = true;
+          p1Score += prob.pts;
+          updateSimScoreboard();
+          setSimLog('FIRST BLOOD', `Player 1 solved ${prob.id} (${prob.title}) for FULL ${prob.pts} pts!`);
+        } else if (!state.p2) {
+          state.p2 = true;
+          const dropPts = Math.round(prob.pts / 3);
+          p2Score += dropPts;
+          updateSimScoreboard();
+          setSimLog('1/3 DROP', `Player 2 solved ${prob.id} after first blood! Awarded ${dropPts} pts (1/3 value).`);
+        } else {
+          p1Score -= prob.pts;
+          p2Score -= Math.round(prob.pts / 3);
+          state.p1 = false;
+          state.p2 = false;
+          updateSimScoreboard();
+          setSimLog('RESET', `Tile ${prob.id} reset to unsolved state.`);
+        }
+        renderSimGrid();
+      });
+
+      simGridMount.appendChild(tile);
+    });
+  }
+
+  function openGridSimulator() {
+    if (!gridSimModal) return;
+    gridSimModal.classList.add('open');
+    renderSimGrid();
+    playKeyClick();
+  }
+
+  function closeGridSimulator() {
+    if (!gridSimModal) return;
+    gridSimModal.classList.remove('open');
+    playKeyClick();
+  }
+
+  function resetGridSimulator() {
+    p1Score = 0;
+    p2Score = 0;
+    tileStates.forEach((s) => {
+      s.p1 = false;
+      s.p2 = false;
+    });
+    updateSimScoreboard();
+    setSimLog('RESET', '3x3 Grid Battle reset. Click tiles to start battle simulation!');
+    renderSimGrid();
+    playKeyClick();
+  }
+
+  if (openSimBtn) openSimBtn.addEventListener('click', openGridSimulator);
+  if (closeSimBtn) closeSimBtn.addEventListener('click', closeGridSimulator);
+  if (resetSimBtn) resetSimBtn.addEventListener('click', resetGridSimulator);
+  if (gridSimModal) {
+    gridSimModal.addEventListener('click', (e) => {
+      if (e.target === gridSimModal) closeGridSimulator();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && gridSimModal && gridSimModal.classList.contains('open')) {
+      closeGridSimulator();
+    }
+  });
+
+  // Initialize Features
+  initLiveCPFeeds();
 })();

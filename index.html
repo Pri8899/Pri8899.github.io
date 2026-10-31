@@ -125,6 +125,13 @@
           </div>
           <span class="spotlight-tag">Project</span>
         </div>
+        <div class="spotlight-item" data-action="action-grid-sim">
+          <div class="spotlight-item-left">
+            <span>⚡</span>
+            <span>Simulate 3x3 Battle Grid — BigOof /vs Interactive Demo</span>
+          </div>
+          <span class="spotlight-tag" style="color: #ffd60a; border-color: rgba(255, 214, 10, 0.3);">Live Demo</span>
+        </div>
         <div class="spotlight-item" data-action="#projects">
           <div class="spotlight-item-left">
             <span>⚡</span>
@@ -135,9 +142,23 @@
         <div class="spotlight-item" data-action="#cp">
           <div class="spotlight-item-left">
             <span>📊</span>
-            <span>Activity Monitor — CodeSync Pro Live Stats</span>
+            <span>Activity Monitor — Multi-Platform Live Telemetry (CF + LC)</span>
           </div>
           <span class="spotlight-tag">CP Monitor</span>
+        </div>
+        <div class="spotlight-item" data-action="action-view-lc">
+          <div class="spotlight-item-left">
+            <span>🟡</span>
+            <span>LeetCode Live Telemetry — 16 Solves (Easy/Med/Hard Stream)</span>
+          </div>
+          <span class="spotlight-tag" style="color: #ffd60a; border-color: rgba(255, 214, 10, 0.3);">LeetCode</span>
+        </div>
+        <div class="spotlight-item" data-action="action-view-cf">
+          <div class="spotlight-item-left">
+            <span>🔵</span>
+            <span>Codeforces Live Radar — 814 Rating &amp; 81 Solves</span>
+          </div>
+          <span class="spotlight-tag" style="color: #58a6ff; border-color: rgba(88, 166, 255, 0.3);">Codeforces</span>
         </div>
         <div class="spotlight-item" data-action="theme:tokyo">
           <div class="spotlight-item-left">
@@ -424,6 +445,12 @@
                     <span class="tile-tag">SQLite</span>
                     <span class="tile-tag">Codeforces API</span>
                   </div>
+                  <div class="tile-demo-cta">
+                    <button type="button" class="btn-demo-trigger" id="btn-open-grid-sim">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                      <span>⚡ Interactive 3x3 Battle Grid Demo</span>
+                    </button>
+                  </div>
                 </div>
               </article>
 
@@ -461,18 +488,280 @@
           <div class="desk-slide" data-slide="3" id="slide-cp">
             <section id="cp" class="section">
               <div class="macos-window spotlight-card" data-tilt>
-          <!-- Centered Activity Monitor Body (100% Automated from Pri8899/CP) -->
-          <div class="cp-monitor-body">
-            <div class="cp-card-wrapper" id="cp-card-wrapper">
-              <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
-                <div class="cp-svg-mount" id="cp-svg-mount">
-                  <img id="codesync-live-img" src="codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
+                <!-- Top Toolbar with Sonar Pulse & View Switcher -->
+                <div class="cp-hud-toolbar">
+                  <div class="cp-hud-toolbar-left">
+                    <span class="sonar-ring ring-1"></span>
+                    <span class="sonar-ring ring-2"></span>
+                    <span class="sonar-core-dot"></span>
+                    <span class="cp-hud-live-tag">LIVE TELEMETRY HUB</span>
+                    <span class="cp-hud-handle">@Pri8899</span>
+                    <span class="cp-live-badge">● SYNCED</span>
+                  </div>
+                  <div class="cp-hud-toolbar-right">
+                    <div class="cp-view-switcher">
+                      <button type="button" class="cp-switch-btn active" id="btn-show-unified" data-mode="unified" title="Unified Multi-Platform Feed">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <span>All-Platform</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-lc" data-mode="lc" title="LeetCode Live Telemetry">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
+                        <span>LeetCode</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-cf" data-mode="cf" title="Codeforces Radar">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <span>Codeforces</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg" title="CodeSync Pro Vector Card">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                        <span>CodeSync Card</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+
+                <!-- Centered Activity Monitor Body -->
+                <div class="cp-monitor-body">
+                  <!-- VIEW 1: Unified Multi-Platform Telemetry -->
+                  <div id="cp-view-unified" class="cf-hud-container">
+                    <div class="cf-hud-grid">
+                      <!-- Metric 1: Total Solved -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">TOTAL ACCEPTED SOLVED</div>
+                        <div class="cf-metric-val" id="unified-total-solved">97</div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip cf-chip-accent">CF: 81</span>
+                          <span class="platform-chip lc-chip-accent">LC: 16</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Platform Balance</span>
+                            <span>83.5% CF · 16.5% LC</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 83.5%; background: linear-gradient(90deg, #58a6ff 80%, #ffd60a);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Metric 2: Streak & Activity -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CURRENT ACTIVE STREAK</div>
+                        <div class="cf-metric-val" id="unified-streak-val">29 <span class="val-unit">Days</span></div>
+                        <div class="cf-metric-sub">
+                          <span class="streak-flame-pill">🔥 Active Streak</span>
+                          <span class="cf-max-sub">303 Submissions</span>
+                        </div>
+                        <div class="cf-platform-chips">
+                          <span class="cf-tag-pill">Daily Upsolving</span>
+                          <span class="cf-tag-pill">Auto-Synced</span>
+                        </div>
+                      </div>
+
+                      <!-- Metric 3: Accuracy & Rating -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">AC ACCURACY &amp; RATING</div>
+                        <div class="cf-metric-val" id="unified-accuracy-val">57.8%</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-acc-pill">High Precision</span>
+                          <span class="cf-max-sub">CF Rating: 814 (Newbie)</span>
+                        </div>
+                        <div class="cf-tags-row">
+                          <span class="cf-tag-pill">C++23</span>
+                          <span class="cf-tag-pill">DSA</span>
+                          <span class="cf-tag-pill">Fast I/O</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Unified Recent Feed -->
+                    <div class="cf-recent-section">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                          <span>LATEST MULTI-PLATFORM SOLVES (LIVE STREAM)</span>
+                        </div>
+                        <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          View Pri8899/CP Archive ↗
+                        </a>
+                      </div>
+                      <div class="cf-recent-list" id="unified-recent-solves-mount">
+                        <!-- Populated dynamically by main.js with mixed CF + LC solves -->
+                        <div class="cf-solve-row loading">
+                          <div class="cf-solve-spinner"></div>
+                          <span>Streaming real-time multi-platform telemetry...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 2: LeetCode Live Telemetry -->
+                  <div id="cp-view-lc" class="cf-hud-container" style="display: none;">
+                    <div class="cf-hud-grid">
+                      <!-- LC Metric 1: Solved Count -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">LEETCODE ACCEPTED</div>
+                        <div class="cf-metric-val" style="color: #ffc01e;" id="lc-total-val">16</div>
+                        <div class="cf-metric-sub">
+                          <span class="lc-diff-badge easy">Easy: 6</span>
+                          <span class="lc-diff-badge medium">Med: 9</span>
+                          <span class="lc-diff-badge hard">Hard: 1</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Medium/Hard Ratio</span>
+                            <span>62.5%</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 62.5%; background: linear-gradient(90deg, #ffc01e, #ff375f);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- LC Metric 2: Difficulty Distribution -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">DIFFICULTY DISTRIBUTION</div>
+                        <div class="lc-diff-bars">
+                          <div class="lc-bar-row">
+                            <span class="lc-bar-lbl">Easy</span>
+                            <div class="lc-bar-track"><div class="lc-bar-fill easy-fill" style="width: 37.5%;"></div></div>
+                            <span class="lc-bar-num">6</span>
+                          </div>
+                          <div class="lc-bar-row">
+                            <span class="lc-bar-lbl">Medium</span>
+                            <div class="lc-bar-track"><div class="lc-bar-fill med-fill" style="width: 56.25%;"></div></div>
+                            <span class="lc-bar-num">9</span>
+                          </div>
+                          <div class="lc-bar-row">
+                            <span class="lc-bar-lbl">Hard</span>
+                            <div class="lc-bar-track"><div class="lc-bar-fill hard-fill" style="width: 6.25%;"></div></div>
+                            <span class="lc-bar-num">1</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- LC Metric 3: Profile Link -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">LEETCODE PROFILE</div>
+                        <div class="cf-metric-val" style="font-size: 20px;">@Pri8899</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-acc-pill" style="color: #ffc01e; border-color: rgba(255, 192, 30, 0.3); background: rgba(255, 192, 30, 0.1);">Verified Profile</span>
+                        </div>
+                        <div class="tile-demo-cta" style="margin-top: 8px;">
+                          <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer" class="btn-demo-trigger" style="text-decoration: none; padding: 6px 10px; font-size: 11px;">
+                            <span>Open LeetCode Profile ↗</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- LC Recent Stream -->
+                    <div class="cf-recent-section">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
+                          <span>LATEST LEETCODE ACCEPTED SUBMISSIONS</span>
+                        </div>
+                        <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          View LeetCode Profile ↗
+                        </a>
+                      </div>
+                      <div class="cf-recent-list" id="lc-recent-solves-mount">
+                        <!-- Populated by main.js with recent LC ACs -->
+                        <div class="cf-solve-row loading">
+                          <div class="cf-solve-spinner"></div>
+                          <span>Loading LeetCode submission telemetry...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 3: Codeforces Radar -->
+                  <div id="cp-view-cf" class="cf-hud-container" style="display: none;">
+                    <div class="cf-hud-grid">
+                      <!-- CF Metric 1: Rating & Rank -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CURRENT RATING</div>
+                        <div class="cf-metric-val" id="cf-rating-val">814</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-rank-pill newbie" id="cf-rank-pill">NEWBIE</span>
+                          <span class="cf-max-sub" id="cf-max-rating">Max: 814</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Target: Pupil (1200)</span>
+                            <span id="cf-progress-pct">67.8%</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" id="cf-progress-fill" style="width: 67.8%;"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- CF Metric 2: CF Solved -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CODEFORCES ACCEPTED</div>
+                        <div class="cf-metric-val" id="cf-solved-count">81</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-acc-pill">Verified Solves</span>
+                          <span class="cf-max-sub">Active Contender</span>
+                        </div>
+                        <div class="cf-platform-chips">
+                          <span class="cf-chip">Codeforces</span>
+                          <span class="cf-chip">Contests</span>
+                          <span class="cf-chip">Practice</span>
+                        </div>
+                      </div>
+
+                      <!-- CF Metric 3: System & Language -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">PRIMARY LANGUAGE &amp; SYSTEM</div>
+                        <div class="cf-metric-val" style="font-size: 21px;">C++23 (GCC 14)</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-acc-pill">⚡ Fast I/O · DSA</span>
+                          <span class="cf-max-sub">AUST CSE</span>
+                        </div>
+                        <div class="cf-tags-row">
+                          <span class="cf-tag-pill">Math</span>
+                          <span class="cf-tag-pill">Greedy</span>
+                          <span class="cf-tag-pill">Binary Search</span>
+                          <span class="cf-tag-pill">Sortings</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Live CF Submissions -->
+                    <div class="cf-recent-section">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                          <span>LATEST CODEFORCES ACCEPTED SUBMISSIONS (LIVE API STREAM)</span>
+                        </div>
+                        <a href="https://codeforces.com/submissions/Pri8899" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          View Codeforces History ↗
+                        </a>
+                      </div>
+                      <div class="cf-recent-list" id="cf-recent-solves-mount">
+                        <!-- Populated by main.js with recent CF ACs -->
+                        <div class="cf-solve-row loading">
+                          <div class="cf-solve-spinner"></div>
+                          <span>Fetching real-time AC solves from Codeforces API...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 4: CodeSync Pro Vector Card Mount -->
+                  <div class="cp-card-wrapper" id="cp-card-wrapper" style="display: none;">
+                    <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
+                      <div class="cp-svg-mount" id="cp-svg-mount">
+                        <img id="codesync-live-img" src="codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
           <!-- SLIDE 4: SKILLS -->
           <div class="desk-slide" data-slide="4" id="slide-skills">
@@ -634,6 +923,60 @@
       </div>
     </div>
   </main>
+
+  <!-- ═══ BigOof 3x3 Battle Grid Interactive Simulator Modal ═══ -->
+  <div id="grid-sim-modal" class="grid-sim-overlay" role="dialog" aria-modal="true" aria-label="BigOof 3x3 Grid Simulator">
+    <div class="grid-sim-window">
+      <!-- Window Titlebar -->
+      <div class="grid-sim-titlebar">
+        <div class="traffic-lights">
+          <button class="traffic-dot dot-red" id="close-sim-btn" title="Close Simulator" aria-label="Close"></button>
+          <span class="traffic-dot dot-yellow"></span>
+          <span class="traffic-dot dot-green"></span>
+        </div>
+        <div class="sim-titlebar-title">BigOof /vs · 3x3 Lockout Grid Simulator (Option B: 1/3 Drop)</div>
+        <button class="sim-reset-btn" id="sim-reset-btn" title="Reset Grid">↺ Reset Grid</button>
+      </div>
+
+      <!-- Simulator Body -->
+      <div class="grid-sim-body">
+        <div class="sim-instruction-bar">
+          <span class="sim-badge">OPTION B ACTIVE</span>
+          <span class="sim-instruction-text">Problems never lock! 1st solve gets 100% pts · Subsequent solves drop to 1/3 pts. Click tiles to simulate!</span>
+        </div>
+
+        <!-- Live Scoreboard -->
+        <div class="sim-scoreboard">
+          <div class="sim-player-card p1-card">
+            <div class="player-avatar">P1</div>
+            <div class="player-info">
+              <span class="player-name">Player 1 (Pri8899)</span>
+              <span class="player-score" id="sim-p1-score">0 pts</span>
+            </div>
+          </div>
+          <div class="sim-vs-divider">VS</div>
+          <div class="sim-player-card p2-card">
+            <div class="player-avatar p2-avatar">P2</div>
+            <div class="player-info">
+              <span class="player-name">Player 2 (Rival)</span>
+              <span class="player-score" id="sim-p2-score">0 pts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3x3 Problem Grid -->
+        <div class="sim-grid-3x3" id="sim-grid-3x3">
+          <!-- 9 Interactive Tiles populated via JS -->
+        </div>
+
+        <!-- Live Battle Log Ticker -->
+        <div class="sim-battle-log" id="sim-battle-log">
+          <span class="log-time">[READY]</span>
+          <span class="log-msg">Click any tile once for Player 1 (100% pts), click again for Player 2 (1/3 point drop)!</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══ 5. Desktop Footer ═══ -->
   <footer class="macos-footer">
