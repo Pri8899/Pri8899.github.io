@@ -497,9 +497,17 @@
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
                         <span>LeetCode (16)</span>
                       </button>
-                      <button type="button" class="cp-switch-btn" id="btn-show-other" data-mode="other" title="Additional Platforms" style="display: none;">
+                      <button type="button" class="cp-switch-btn" id="btn-show-cses" data-mode="cses" title="CSES Problem Set" style="display: none;">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                         <span>CSES (6)</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-ac" data-mode="ac" title="AtCoder Telemetry" style="display: none;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>AtCoder (0)</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-toph" data-mode="toph" title="Toph National Arena" style="display: none;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>Toph (0)</span>
                       </button>
                       <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg" title="CodeSync Pro Vector Card">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
@@ -770,100 +778,268 @@
                     </div>
                   </div>
 
-                  <!-- VIEW 4: CSES Problem Set & Multi-Platform Integration -->
-                  <div id="cp-view-other" class="cf-hud-container" style="display: none;">
-                    <div class="cp-other-grid">
-                      <!-- CSES Problem Set Solves (Hidden while turned off in extension) -->
-                      <div class="cp-platform-card" id="card-platform-cses" style="display: none;">
-                        <div class="platform-card-header">
-                          <div class="platform-title-group">
-                            <span class="platform-title">🔷 CSES</span>
-                            <span class="platform-subtitle">Problem Set</span>
+                  <!-- VIEW 4: CSES Problem Set -->
+                  <div id="cp-view-cses" class="cf-hud-container" style="display: none;">
+                    <div class="cf-hud-grid">
+                      <!-- CSES Metric 1 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CSES ACCEPTED</div>
+                        <div class="cf-metric-val" id="cses-solved-count" style="color: #58a6ff;">6</div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip cf-chip-accent">6 Solves</span>
+                          <span class="cf-acc-pill">100% Unique AC</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Introductory Solves</span>
+                            <span>5 / 5 Done (100%)</span>
                           </div>
-                          <span class="platform-status-badge synced">6 Solves</span>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #58a6ff, #388bfd);"></div>
+                          </div>
                         </div>
-                        <div class="platform-solves-list">
-                          <span class="platform-solve-item">1068 · Weird Algorithm</span>
-                          <span class="platform-solve-item">1069 · Repetitions</span>
-                          <span class="platform-solve-item">1070 · Permutations</span>
-                          <span class="platform-solve-item">1083 · Missing Number</span>
-                          <span class="platform-solve-item">1094 · Increasing Array</span>
-                          <span class="platform-solve-item">1621 · Distinct Numbers</span>
-                        </div>
-                        <a href="https://github.com/Pri8899/CP/tree/main/CSES" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
-                          View in Pri8899/CP (6 files) ↗
-                        </a>
                       </div>
 
-                      <!-- CSES Architecture & Status (Hidden while turned off in extension) -->
-                      <div class="cp-platform-card" id="card-platform-cses-info" style="display: none;">
-                        <div class="platform-card-header">
-                          <div class="platform-title-group">
-                            <span class="platform-title">⚡ CSES Architecture</span>
-                            <span class="platform-subtitle">CodeSync Pipeline</span>
+                      <!-- CSES Metric 2 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">PROBLEM TOPICS</div>
+                        <div class="cf-metric-val" style="color: #ffd60a;">2 <span class="val-unit">Tracks</span></div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip lc-chip-accent">Introductory</span>
+                          <span class="cf-max-sub">Sorting &amp; Searching</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Topic Distribution</span>
+                            <span>83.3% Intro · 16.7% Sort</span>
                           </div>
-                          <span class="platform-status-badge synced">C++20 GCC</span>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 83.3%; background: linear-gradient(90deg, #ffd60a, #f0883e);"></div>
+                          </div>
                         </div>
-                        <p class="platform-card-desc">
-                          Automated capture pipeline enabled in CodeSync Pro Extension. All accepted solutions are version-controlled and pushed directly into <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/CSES</code>.
-                        </p>
-                        <div class="platform-solves-list" style="margin-top: auto;">
-                          <span class="platform-solve-item">Introductory: 5 / 5 Done (100%)</span>
-                          <span class="platform-solve-item">Sorting &amp; Searching: 1 Solved</span>
-                          <span class="platform-solve-item">Platform: cses.fi/problemset</span>
-                        </div>
-                        <a href="https://cses.fi/problemset/" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
-                          Open CSES Problem Set ↗
-                        </a>
                       </div>
 
-                      <!-- AtCoder (Hidden while inactive / off) -->
-                      <div class="cp-platform-card" id="card-platform-atcoder" style="display: none;">
-                        <div class="platform-card-header">
-                          <div class="platform-title-group">
-                            <span class="platform-title">🟠 AtCoder</span>
-                            <span class="platform-subtitle">Contests &amp; Practice</span>
-                          </div>
-                          <span class="platform-status-badge ready">Configured</span>
+                      <!-- CSES Metric 3 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">COMPILER &amp; PIPELINE</div>
+                        <div class="cf-metric-val" style="color: #3fb950;">C++20 <span class="val-unit">GCC</span></div>
+                        <div class="cf-metric-sub">
+                          <span class="streak-flame-pill">⚡ Fast I/O</span>
+                          <span class="cf-max-sub">Pri8899/CP/CSES</span>
                         </div>
-                        <p class="platform-card-desc">
-                          Automated capture pipeline enabled in CodeSync Pro Extension. Syncs ABC and ARC contest solutions directly to <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/AtCoder</code> upon verdict.
-                        </p>
-                        <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
-                          Open AtCoder ↗
-                        </a>
-                      </div>
-
-                      <!-- Toph (Hidden while inactive / off) -->
-                      <div class="cp-platform-card" id="card-platform-toph" style="display: none;">
-                        <div class="platform-card-header">
-                          <div class="platform-title-group">
-                            <span class="platform-title">🟢 Toph</span>
-                            <span class="platform-subtitle">National Arena</span>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>CodeSync Pro Sync</span>
+                            <span>100% Version Controlled</span>
                           </div>
-                          <span class="platform-status-badge ready">Configured</span>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
+                          </div>
                         </div>
-                        <p class="platform-card-desc">
-                          Automated capture pipeline enabled in CodeSync Pro Extension. Syncs Bangladeshi university contests and ICPC preliminary submissions to <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/Toph</code>.
-                        </p>
-                        <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
-                          Open Toph ↗
-                        </a>
                       </div>
                     </div>
 
-                    <div class="cf-recent-section" style="margin-top: 10px;">
+                    <!-- CSES Solves Stream -->
+                    <div class="cf-recent-section">
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>VERIFIED MULTI-PLATFORM REPOSITORY ARCHIVE</span>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                          <span>ALL CSES ACCEPTED PROBLEMS (CODESYNC PRO PIPELINE)</span>
                         </div>
-                        <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
-                          Open Pri8899/CP ↗
+                        <a href="https://github.com/Pri8899/CP/tree/main/CSES" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          View in Pri8899/CP (6 files) ↗
                         </a>
                       </div>
-                      <div style="font-size: 11.5px; color: var(--text-secondary); line-height: 1.6; padding: 4px 6px;">
-                        <p style="margin: 0;">⚡ <strong>Active Verified Solves:</strong> Codeforces (81 AC) · LeetCode (16 AC) = <strong>97 Total Accepted Solves</strong>. All source code is version-controlled and synchronized in real time via <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" style="color: var(--apple-cyan);">CodeSync Pro Extension</a> into <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" style="color: var(--apple-cyan);">Pri8899/CP</a>.</p>
+                      <div class="cp-filter-bar">
+                        <input type="text" class="cp-search-input" id="cp-search-cses" placeholder="⚡ Filter CSES problems (e.g., Weird Algorithm, 1068, Sorting)..." />
+                        <span class="cp-count-badge" id="cp-count-cses">6 CSES Solves</span>
+                      </div>
+                      <div class="cf-recent-list" id="cses-recent-solves-mount">
+                        <!-- Populated dynamically by main.js with all CSES ACs -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 5: AtCoder Telemetry -->
+                  <div id="cp-view-ac" class="cf-hud-container" style="display: none;">
+                    <div class="cf-hud-grid">
+                      <!-- AC Metric 1 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">ATCODER ACCEPTED</div>
+                        <div class="cf-metric-val" id="ac-solved-count" style="color: #f0883e;">0</div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip" style="color: #f0883e; background: rgba(240, 136, 62, 0.15); border: 1px solid rgba(240, 136, 62, 0.3);">Contest Track</span>
+                          <span class="cf-acc-pill">Ready</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Status</span>
+                            <span>Listening for Verdicts</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 10%; background: linear-gradient(90deg, #f0883e, #ff7b72);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- AC Metric 2 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CONTEST TRACKS</div>
+                        <div class="cf-metric-val" style="color: #79c0ff;">ABC &amp; ARC</div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip cf-chip-accent">Beginner</span>
+                          <span class="cf-max-sub">Regular Contests</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Platform Arena</span>
+                            <span>AtCoder Japanese &amp; Global</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #79c0ff, #58a6ff);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- AC Metric 3 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">AUTOMATION PIPELINE</div>
+                        <div class="cf-metric-val" style="color: #3fb950;">CodeSync <span class="val-unit">Pro</span></div>
+                        <div class="cf-metric-sub">
+                          <span class="streak-flame-pill">⚡ Auto-Push</span>
+                          <span class="cf-max-sub">Pri8899/CP/AtCoder</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Capture Pipeline</span>
+                            <span>Zero Manual Overhead</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- AtCoder Section -->
+                    <div class="cf-recent-section">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                          <span>ATCODER LIVE CONTEST TELEMETRY (CODESYNC PRO PIPELINE)</span>
+                        </div>
+                        <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          Open AtCoder.jp ↗
+                        </a>
+                      </div>
+                      <div class="cp-other-grid" style="padding: 10px 0;">
+                        <div class="cp-platform-card" style="width: 100%;">
+                          <div class="platform-card-header">
+                            <div class="platform-title-group">
+                              <span class="platform-title">🟠 AtCoder Contest Hub</span>
+                              <span class="platform-subtitle">ABC &amp; ARC Rounds</span>
+                            </div>
+                            <span class="platform-status-badge ready">Configured</span>
+                          </div>
+                          <p class="platform-card-desc">
+                            Automated capture pipeline enabled in CodeSync Pro Extension. Syncs ABC and ARC contest solutions directly to <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/AtCoder</code> upon verdict.
+                          </p>
+                          <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
+                            Open AtCoder ↗
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 6: Toph National Arena -->
+                  <div id="cp-view-toph" class="cf-hud-container" style="display: none;">
+                    <div class="cf-hud-grid">
+                      <!-- Toph Metric 1 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">TOPH ACCEPTED</div>
+                        <div class="cf-metric-val" id="toph-solved-count" style="color: #3fb950;">0</div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip" style="color: #3fb950; background: rgba(63, 185, 80, 0.15); border: 1px solid rgba(63, 185, 80, 0.3);">National Arena</span>
+                          <span class="cf-acc-pill">Ready</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Status</span>
+                            <span>Listening for Submissions</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 10%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Toph Metric 2 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">REGIONAL ARENA</div>
+                        <div class="cf-metric-val" style="color: #a371f7;">ICPC <span class="val-unit">&amp; BD</span></div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip" style="color: #a371f7; background: rgba(163, 113, 247, 0.15); border: 1px solid rgba(163, 113, 247, 0.3);">Bangladesh</span>
+                          <span class="cf-max-sub">Intra-University &amp; ICPC</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Competition Scope</span>
+                            <span>National Programming Arena</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #a371f7, #8957e5);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Toph Metric 3 -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">AUTOMATION PIPELINE</div>
+                        <div class="cf-metric-val" style="color: #3fb950;">CodeSync <span class="val-unit">Pro</span></div>
+                        <div class="cf-metric-sub">
+                          <span class="streak-flame-pill">⚡ Auto-Capture</span>
+                          <span class="cf-max-sub">Pri8899/CP/Toph</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Capture Pipeline</span>
+                            <span>Pushes to Pri8899/CP/Toph</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Toph Section -->
+                    <div class="cf-recent-section">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                          <span>TOPH NATIONAL ARENA (CODESYNC PRO PIPELINE)</span>
+                        </div>
+                        <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          Open Toph.co ↗
+                        </a>
+                      </div>
+                      <div class="cp-other-grid" style="padding: 10px 0;">
+                        <div class="cp-platform-card" style="width: 100%;">
+                          <div class="platform-card-header">
+                            <div class="platform-title-group">
+                              <span class="platform-title">🟢 Toph National Arena</span>
+                              <span class="platform-subtitle">ICPC Preliminaries &amp; Contests</span>
+                            </div>
+                            <span class="platform-status-badge ready">Configured</span>
+                          </div>
+                          <p class="platform-card-desc">
+                            Automated capture pipeline enabled in CodeSync Pro Extension. Syncs Bangladeshi university contests and ICPC preliminary submissions to <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/Toph</code>.
+                          </p>
+                          <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
+                            Open Toph ↗
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>

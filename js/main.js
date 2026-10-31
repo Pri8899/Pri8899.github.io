@@ -1102,25 +1102,26 @@ Location: Dhaka, Bangladesh`;
   const cpViewUnified = document.getElementById('cp-view-unified');
   const cpViewCF = document.getElementById('cp-view-cf');
   const cpViewLC = document.getElementById('cp-view-lc');
-  const cpViewOther = document.getElementById('cp-view-other');
+  const cpViewCSES = document.getElementById('cp-view-cses');
+  const cpViewAC = document.getElementById('cp-view-ac');
+  const cpViewTP = document.getElementById('cp-view-toph');
   const cpCardWrapper = document.getElementById('cp-card-wrapper');
 
   const btnShowUnified = document.getElementById('btn-show-unified');
   const btnShowCF = document.getElementById('btn-show-cf');
   const btnShowLC = document.getElementById('btn-show-lc');
-  const btnShowOther = document.getElementById('btn-show-other');
+  const btnShowCSES = document.getElementById('btn-show-cses');
+  const btnShowAC = document.getElementById('btn-show-ac');
+  const btnShowTP = document.getElementById('btn-show-toph');
   const btnShowSVG = document.getElementById('btn-show-svg');
 
   function setCPMode(mode, updateHash = true) {
     playKeyClick();
-    const switchBtns = [btnShowUnified, btnShowCF, btnShowLC, btnShowOther, btnShowSVG];
+    const switchBtns = [btnShowUnified, btnShowCF, btnShowLC, btnShowCSES, btnShowAC, btnShowTP, btnShowSVG];
     switchBtns.forEach(btn => { if (btn) btn.classList.remove('active'); });
 
-    if (cpViewUnified) cpViewUnified.style.display = 'none';
-    if (cpViewCF) cpViewCF.style.display = 'none';
-    if (cpViewLC) cpViewLC.style.display = 'none';
-    if (cpViewOther) cpViewOther.style.display = 'none';
-    if (cpCardWrapper) cpCardWrapper.style.display = 'none';
+    const allViews = [cpViewUnified, cpViewCF, cpViewLC, cpViewCSES, cpViewAC, cpViewTP, cpCardWrapper];
+    allViews.forEach(v => { if (v) v.style.display = 'none'; });
 
     if (mode === 'unified') {
       if (cpViewUnified) cpViewUnified.style.display = 'flex';
@@ -1134,10 +1135,18 @@ Location: Dhaka, Bangladesh`;
       if (cpViewLC) cpViewLC.style.display = 'flex';
       if (btnShowLC) btnShowLC.classList.add('active');
       if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/lc');
-    } else if (mode === 'other') {
-      if (cpViewOther) cpViewOther.style.display = 'flex';
-      if (btnShowOther) btnShowOther.classList.add('active');
-      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/other');
+    } else if (mode === 'cses') {
+      if (cpViewCSES) cpViewCSES.style.display = 'flex';
+      if (btnShowCSES) btnShowCSES.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/cses');
+    } else if (mode === 'ac') {
+      if (cpViewAC) cpViewAC.style.display = 'flex';
+      if (btnShowAC) btnShowAC.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/ac');
+    } else if (mode === 'toph') {
+      if (cpViewTP) cpViewTP.style.display = 'flex';
+      if (btnShowTP) btnShowTP.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/toph');
     } else if (mode === 'svg') {
       if (cpCardWrapper) cpCardWrapper.style.display = 'flex';
       if (btnShowSVG) btnShowSVG.classList.add('active');
@@ -1148,13 +1157,34 @@ Location: Dhaka, Bangladesh`;
 
   function checkCPHashMode() {
     const hash = (window.location.hash || '').toLowerCase();
-    const btnOther = document.getElementById('btn-show-other');
-    const isOtherVisible = btnOther && btnOther.style.display !== 'none';
+    const btnCSES = document.getElementById('btn-show-cses');
+    const isCSESDisabled = btnCSES && btnCSES.dataset.synced === 'done' && btnCSES.style.display === 'none';
+    const btnAC = document.getElementById('btn-show-ac');
+    const isACDisabled = btnAC && btnAC.dataset.synced === 'done' && btnAC.style.display === 'none';
+    const btnTP = document.getElementById('btn-show-toph');
+    const isTPDisabled = btnTP && btnTP.dataset.synced === 'done' && btnTP.style.display === 'none';
 
     if (hash.includes('/lc') || hash.includes('-lc')) setCPMode('lc', false);
     else if (hash.includes('/cf') || hash.includes('-cf')) setCPMode('cf', false);
     else if (hash.includes('/svg') || hash.includes('-svg')) setCPMode('svg', false);
-    else if ((hash.includes('/other') || hash.includes('/cses') || hash.includes('/toph')) && isOtherVisible) setCPMode('other', false);
+    else if (hash.includes('/cses')) {
+      if (isCSESDisabled) setCPMode('unified', false);
+      else setCPMode('cses', false);
+    }
+    else if (hash.includes('/ac') || hash.includes('/atcoder')) {
+      if (isACDisabled) setCPMode('unified', false);
+      else setCPMode('ac', false);
+    }
+    else if (hash.includes('/toph')) {
+      if (isTPDisabled) setCPMode('unified', false);
+      else setCPMode('toph', false);
+    }
+    else if (hash.includes('/other')) {
+      if (!isTPDisabled) setCPMode('toph', false);
+      else if (!isCSESDisabled) setCPMode('cses', false);
+      else if (!isACDisabled) setCPMode('ac', false);
+      else setCPMode('unified', false);
+    }
     else setCPMode('unified', false);
   }
   checkCPHashMode();
@@ -1163,7 +1193,9 @@ Location: Dhaka, Bangladesh`;
   if (btnShowUnified) btnShowUnified.addEventListener('click', () => setCPMode('unified'));
   if (btnShowCF) btnShowCF.addEventListener('click', () => setCPMode('cf'));
   if (btnShowLC) btnShowLC.addEventListener('click', () => setCPMode('lc'));
-  if (btnShowOther) btnShowOther.addEventListener('click', () => setCPMode('other'));
+  if (btnShowCSES) btnShowCSES.addEventListener('click', () => setCPMode('cses'));
+  if (btnShowAC) btnShowAC.addEventListener('click', () => setCPMode('ac'));
+  if (btnShowTP) btnShowTP.addEventListener('click', () => setCPMode('toph'));
   if (btnShowSVG) btnShowSVG.addEventListener('click', () => setCPMode('svg'));
 
   // LeetCode Complete Verified Solves List (User: Pri8899 - Exactly 16 Solves: 6 Easy, 9 Med, 1 Hard)
@@ -1526,6 +1558,38 @@ Location: Dhaka, Bangladesh`;
     if (img) img.src = `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`;
   }
 
+  const csesSolves = [
+    { platform: 'CSES', id: '1068', title: 'Weird Algorithm', topic: 'Introductory Problems', time: 'Archive', path: '1068 - Weird Algorithm' },
+    { platform: 'CSES', id: '1069', title: 'Repetitions', topic: 'Introductory Problems', time: 'Archive', path: '1069 - Repetitions' },
+    { platform: 'CSES', id: '1070', title: 'Permutations', topic: 'Introductory Problems', time: 'Archive', path: '1070 - Permutations' },
+    { platform: 'CSES', id: '1083', title: 'Missing Number', topic: 'Introductory Problems', time: 'Archive', path: '1083 - Missing Number' },
+    { platform: 'CSES', id: '1094', title: 'Increasing Array', topic: 'Introductory Problems', time: 'Archive', path: '1094 - Increasing Array' },
+    { platform: 'CSES', id: '1621', title: 'Distinct Numbers', topic: 'Sorting and Searching', time: 'Archive', path: '1621 - Distinct Numbers' }
+  ];
+
+  function renderCSESList(mount, list) {
+    if (!mount) return;
+    if (list.length === 0) {
+      mount.innerHTML = `<div class="cf-solve-row" style="justify-content:center; color:var(--text-muted); padding:16px;">No CSES problems found matching search.</div>`;
+      return;
+    }
+    mount.innerHTML = list.map(item => `
+      <div class="cf-solve-row">
+        <div class="cf-solve-left">
+          <span class="platform-chip cf-chip-accent">CSES</span>
+          <span class="cf-solve-verdict">✓ AC</span>
+          <a href="https://github.com/Pri8899/CP/tree/main/CSES/${encodeURIComponent(item.path)}" target="_blank" rel="noopener noreferrer" class="cf-solve-title" style="text-decoration:none;">
+            ${item.id} · ${item.title}
+          </a>
+        </div>
+        <div class="cf-solve-right">
+          <span class="platform-chip lc-chip-accent">${item.topic}</span>
+          <span class="cf-solve-time">${item.time}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
   // 9. Fully Dynamic Multi-Platform Visibility & Real-Time Telemetry Auto-Detection from Pri8899/CP
   async function syncActivePlatforms() {
     try {
@@ -1630,36 +1694,67 @@ Location: Dhaka, Bangladesh`;
 
       const btnCF = document.getElementById('btn-show-cf');
       const btnLC = document.getElementById('btn-show-lc');
-      const btnOther = document.getElementById('btn-show-other');
-      const cardCSES = document.getElementById('card-platform-cses');
-      const cardCSESInfo = document.getElementById('card-platform-cses-info');
-      const cardAC = document.getElementById('card-platform-atcoder');
-      const cardTP = document.getElementById('card-platform-toph');
+      const btnCSES = document.getElementById('btn-show-cses');
+      const btnAC = document.getElementById('btn-show-ac');
+      const btnTP = document.getElementById('btn-show-toph');
 
       if (btnCF) btnCF.style.display = hasCF ? 'inline-flex' : 'none';
       if (btnLC) btnLC.style.display = hasLC ? 'inline-flex' : 'none';
-
-      if (cardCSES) cardCSES.style.display = hasCSES ? 'flex' : 'none';
-      if (cardCSESInfo) cardCSESInfo.style.display = hasCSES ? 'flex' : 'none';
-      if (cardAC) cardAC.style.display = hasAC ? 'flex' : 'none';
-      if (cardTP) cardTP.style.display = hasTP ? 'flex' : 'none';
-
-      // Only show the secondary platforms tab if at least one secondary platform is active in the extension!
-      const hasAnySecondary = hasCSES || hasAC || hasTP;
-      if (btnOther) {
-        btnOther.style.display = hasAnySecondary ? 'inline-flex' : 'none';
-        if (hasAnySecondary) {
-          if (hasTP && !hasCSES && !hasAC) {
-            const tpCount = platformCounts.TOPH !== undefined ? platformCounts.TOPH : (platformCounts.TP !== undefined ? platformCounts.TP : 0);
-            btnOther.querySelector('span').textContent = `Toph (${tpCount})`;
-          } else if (hasCSES && !hasAC && !hasTP) {
-            const csesCount = platformCounts.CSES !== undefined ? platformCounts.CSES : 6;
-            btnOther.querySelector('span').textContent = `CSES (${csesCount})`;
-          } else {
-            btnOther.querySelector('span').textContent = 'More Platforms';
-          }
-        }
+      if (btnCSES) {
+        btnCSES.style.display = hasCSES ? 'inline-flex' : 'none';
+        btnCSES.dataset.synced = 'done';
       }
+      if (btnAC) {
+        btnAC.style.display = hasAC ? 'inline-flex' : 'none';
+        btnAC.dataset.synced = 'done';
+      }
+      if (btnTP) {
+        btnTP.style.display = hasTP ? 'inline-flex' : 'none';
+        btnTP.dataset.synced = 'done';
+      }
+
+      if (hasCSES) {
+        const csesCount = platformCounts.CSES !== undefined ? platformCounts.CSES : 6;
+        if (btnCSES) btnCSES.querySelector('span').textContent = `CSES (${csesCount})`;
+        const csesCountEl = document.getElementById('cses-solved-count');
+        if (csesCountEl) csesCountEl.textContent = csesCount;
+      }
+
+      if (hasAC) {
+        const acCount = platformCounts.AC !== undefined ? platformCounts.AC : (platformCounts.ATCODER !== undefined ? platformCounts.ATCODER : 0);
+        if (btnAC) btnAC.querySelector('span').textContent = `AtCoder (${acCount})`;
+        const acCountEl = document.getElementById('ac-solved-count');
+        if (acCountEl) acCountEl.textContent = acCount;
+      }
+
+      if (hasTP) {
+        const tpCount = platformCounts.TOPH !== undefined ? platformCounts.TOPH : (platformCounts.TP !== undefined ? platformCounts.TP : 0);
+        if (btnTP) btnTP.querySelector('span').textContent = `Toph (${tpCount})`;
+        const tophCountEl = document.getElementById('toph-solved-count');
+        if (tophCountEl) tophCountEl.textContent = tpCount;
+      }
+
+      // Populate CSES solve list and connect search
+      const mountCSES = document.getElementById('cses-recent-solves-mount');
+      if (mountCSES && typeof renderCSESList === 'function') {
+        renderCSESList(mountCSES, csesSolves);
+      }
+      const searchCSES = document.getElementById('cp-search-cses');
+      const countCSES = document.getElementById('cp-count-cses');
+      if (searchCSES && mountCSES && !searchCSES.dataset.bound) {
+        searchCSES.dataset.bound = 'true';
+        searchCSES.addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase().trim();
+          const filtered = csesSolves.filter(item => 
+            item.title.toLowerCase().includes(q) ||
+            item.id.toLowerCase().includes(q) ||
+            item.topic.toLowerCase().includes(q)
+          );
+          renderCSESList(mountCSES, filtered);
+          if (countCSES) countCSES.textContent = `${filtered.length} of ${csesSolves.length} Solves`;
+        });
+      }
+
       checkCPHashMode();
     } catch (err) {
       console.warn('Repository platform visibility running on default verified baseline:', err);
