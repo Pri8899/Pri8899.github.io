@@ -248,9 +248,6 @@
       if (slideMap[targetKey] !== undefined) {
         goToSlide(slideMap[targetKey], false);
       }
-      if (targetKey === 'cp' && typeof checkCPHashMode === 'function') {
-        checkCPHashMode();
-      }
     }
   }
   syncFromHash();
