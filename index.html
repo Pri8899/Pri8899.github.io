@@ -76,6 +76,16 @@
         </svg>
       </span>
 
+      <!-- Audio FX Toggle -->
+      <button id="sound-btn" class="menubar-sound-btn" aria-label="Toggle Mechanical Keyboard Audio" title="Mechanical Sound: OFF">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <span class="sound-state-label" id="sound-state-label">FX: OFF</span>
+      </button>
+
       <!-- Spotlight Search Trigger -->
       <button id="spotlight-btn" class="spotlight-trigger" aria-label="Open Spotlight Search (Command + K)">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -115,6 +125,13 @@
           </div>
           <span class="spotlight-tag">Project</span>
         </div>
+        <div class="spotlight-item" data-action="action-grid-sim">
+          <div class="spotlight-item-left">
+            <span>⚡</span>
+            <span>Simulate 3x3 Battle Grid — BigOof /vs Interactive Demo</span>
+          </div>
+          <span class="spotlight-tag" style="color: #ffd60a; border-color: rgba(255, 214, 10, 0.3);">Live Demo</span>
+        </div>
         <div class="spotlight-item" data-action="#projects">
           <div class="spotlight-item-left">
             <span>⚡</span>
@@ -125,9 +142,37 @@
         <div class="spotlight-item" data-action="#cp">
           <div class="spotlight-item-left">
             <span>📊</span>
-            <span>Activity Monitor — Codeforces &amp; CSES Live Stats</span>
+            <span>Activity Monitor — Codeforces Live Telemetry HUD</span>
           </div>
           <span class="spotlight-tag">CP Monitor</span>
+        </div>
+        <div class="spotlight-item" data-action="theme:tokyo">
+          <div class="spotlight-item-left">
+            <span>🎨</span>
+            <span>Theme: Tokyo Night (Cyber Neon)</span>
+          </div>
+          <span class="spotlight-tag">Theme</span>
+        </div>
+        <div class="spotlight-item" data-action="theme:matrix">
+          <div class="spotlight-item-left">
+            <span>📟</span>
+            <span>Theme: Hacker Matrix (Phosphor Green)</span>
+          </div>
+          <span class="spotlight-tag">Theme</span>
+        </div>
+        <div class="spotlight-item" data-action="theme:catppuccin">
+          <div class="spotlight-item-left">
+            <span>🌸</span>
+            <span>Theme: Catppuccin Mocha</span>
+          </div>
+          <span class="spotlight-tag">Theme</span>
+        </div>
+        <div class="spotlight-item" data-action="theme:macos">
+          <div class="spotlight-item-left">
+            <span>🍎</span>
+            <span>Theme: Default Apple Sonoma Dark</span>
+          </div>
+          <span class="spotlight-tag">Theme</span>
         </div>
         <div class="spotlight-item" data-action="#skills">
           <div class="spotlight-item-left">
@@ -378,13 +423,19 @@
                     <h3 class="tile-title">BigOof</h3>
                   </a>
                   <p class="tile-desc">
-                    Autonomous competitive programming Discord bot featuring contest countdowns, rating change alerts, server-wide AC solve feeds, and persistent SQLite storage.
+                    Autonomous competitive programming Discord bot featuring 3x3 Lockout Grid Battles (1/3 point drop system), 9AM Next-Day Upsolve Radar, contest countdowns, and server-wide AC solve feeds.
                   </p>
                   <div class="tile-tags">
                     <span class="tile-tag">Node.js</span>
                     <span class="tile-tag">discord.js v14</span>
                     <span class="tile-tag">SQLite</span>
                     <span class="tile-tag">Codeforces API</span>
+                  </div>
+                  <div class="tile-demo-cta">
+                    <button type="button" class="btn-demo-trigger" id="btn-open-grid-sim">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                      <span>⚡ Interactive 3x3 Battle Grid Demo</span>
+                    </button>
                   </div>
                 </div>
               </article>
@@ -423,18 +474,117 @@
           <div class="desk-slide" data-slide="3" id="slide-cp">
             <section id="cp" class="section">
               <div class="macos-window spotlight-card" data-tilt>
-          <!-- Centered Activity Monitor Body (100% Automated from Pri8899/CP) -->
-          <div class="cp-monitor-body">
-            <div class="cp-card-wrapper" id="cp-card-wrapper">
-              <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
-                <div class="cp-svg-mount" id="cp-svg-mount">
-                  <img id="codesync-live-img" src="https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
+                <!-- Top Toolbar with Sonar Pulse & View Switcher -->
+                <div class="cp-hud-toolbar">
+                  <div class="cp-hud-toolbar-left">
+                    <span class="sonar-ring ring-1"></span>
+                    <span class="sonar-ring ring-2"></span>
+                    <span class="sonar-core-dot"></span>
+                    <span class="cp-hud-live-tag">LIVE CODEFORCES RADAR</span>
+                    <span class="cp-hud-handle">@pri8899</span>
+                  </div>
+                  <div class="cp-hud-toolbar-right">
+                    <div class="cp-view-switcher">
+                      <button type="button" class="cp-switch-btn active" id="btn-show-hud" data-mode="hud">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <span>Live Telemetry</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                        <span>CodeSync SVG</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+
+                <!-- Centered Activity Monitor Body -->
+                <div class="cp-monitor-body">
+                  <!-- Mode 1: Live Codeforces HUD (Dynamic Client-side) -->
+                  <div id="cf-dynamic-hud" class="cf-hud-container">
+                    <div class="cf-hud-grid">
+                      <!-- Metric 1: Rating & Rank -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CURRENT RATING</div>
+                        <div class="cf-metric-val" id="cf-rating-val">814</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-rank-pill newbie" id="cf-rank-pill">NEWBIE</span>
+                          <span class="cf-max-sub" id="cf-max-rating">Max: 814</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Target: Pupil (1200)</span>
+                            <span id="cf-progress-pct">67.8%</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" id="cf-progress-fill" style="width: 67.8%;"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Metric 2: Solved & Accuracy -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">TOTAL ACCEPTED SOLVES</div>
+                        <div class="cf-metric-val stat-green" id="cf-solved-count">52+</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-acc-pill">✓ VERIFIED AC</span>
+                          <span class="cf-max-sub" id="cf-last-active-time">Active Today</span>
+                        </div>
+                        <div class="cf-platform-chips">
+                          <span class="cf-chip">Codeforces</span>
+                          <span class="cf-chip">CSES</span>
+                          <span class="cf-chip">C++23</span>
+                        </div>
+                      </div>
+
+                      <!-- Metric 3: Toolchain & Specialization -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">PRIMARY LANGUAGE & SYSTEM</div>
+                        <div class="cf-metric-val stat-blue" style="font-size: 20px; margin-top: 4px;">C++23 (GCC 14)</div>
+                        <div class="cf-metric-sub">
+                          <span class="cf-acc-pill" style="color: #79c0ff; border-color: rgba(121, 192, 255, 0.3);">⚡ Fast I/O · DSA</span>
+                          <span class="cf-max-sub">AUST CSE</span>
+                        </div>
+                        <div class="cf-tags-row">
+                          <span class="cf-tag-pill">Math</span>
+                          <span class="cf-tag-pill">Greedy</span>
+                          <span class="cf-tag-pill">Binary Search</span>
+                          <span class="cf-tag-pill">Sortings</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Live Recent Solves Stream -->
+                    <div class="cf-recent-section">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                          <span>LATEST ACCEPTED SUBMISSIONS (LIVE API STREAM)</span>
+                        </div>
+                        <a href="https://codeforces.com/submissions/Pri8899" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
+                          View Codeforces History ↗
+                        </a>
+                      </div>
+                      <div class="cf-recent-list" id="cf-recent-solves-mount">
+                        <!-- Populated dynamically by main.js with recent ACs -->
+                        <div class="cf-solve-row loading">
+                          <div class="cf-solve-spinner"></div>
+                          <span>Fetching real-time AC solves from Codeforces API...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Mode 2: CodeSync Pro Vector Card Mount -->
+                  <div class="cp-card-wrapper" id="cp-card-wrapper" style="display: none;">
+                    <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
+                      <div class="cp-svg-mount" id="cp-svg-mount">
+                        <img id="codesync-live-img" src="https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
           <!-- SLIDE 4: SKILLS -->
           <div class="desk-slide" data-slide="4" id="slide-skills">
@@ -596,6 +746,60 @@
       </div>
     </div>
   </main>
+
+  <!-- ═══ BigOof 3x3 Battle Grid Interactive Simulator Modal ═══ -->
+  <div id="grid-sim-modal" class="grid-sim-overlay" role="dialog" aria-modal="true" aria-label="BigOof 3x3 Grid Simulator">
+    <div class="grid-sim-window">
+      <!-- Window Titlebar -->
+      <div class="grid-sim-titlebar">
+        <div class="traffic-lights">
+          <button class="traffic-dot dot-red" id="close-sim-btn" title="Close Simulator" aria-label="Close"></button>
+          <span class="traffic-dot dot-yellow"></span>
+          <span class="traffic-dot dot-green"></span>
+        </div>
+        <div class="sim-titlebar-title">BigOof /vs · 3x3 Lockout Grid Simulator (Option B: 1/3 Drop)</div>
+        <button class="sim-reset-btn" id="sim-reset-btn" title="Reset Grid">↺ Reset Grid</button>
+      </div>
+
+      <!-- Simulator Body -->
+      <div class="grid-sim-body">
+        <div class="sim-instruction-bar">
+          <span class="sim-badge">OPTION B ACTIVE</span>
+          <span class="sim-instruction-text">Problems never lock! 1st solve gets 100% pts · Subsequent solves drop to 1/3 pts. Click tiles to simulate!</span>
+        </div>
+
+        <!-- Live Scoreboard -->
+        <div class="sim-scoreboard">
+          <div class="sim-player-card p1-card">
+            <div class="player-avatar">P1</div>
+            <div class="player-info">
+              <span class="player-name">Player 1 (Pri8899)</span>
+              <span class="player-score" id="sim-p1-score">0 pts</span>
+            </div>
+          </div>
+          <div class="sim-vs-divider">VS</div>
+          <div class="sim-player-card p2-card">
+            <div class="player-avatar p2-avatar">P2</div>
+            <div class="player-info">
+              <span class="player-name">Player 2 (Rival)</span>
+              <span class="player-score" id="sim-p2-score">0 pts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3x3 Problem Grid -->
+        <div class="sim-grid-3x3" id="sim-grid-3x3">
+          <!-- 9 Interactive Tiles populated via JS -->
+        </div>
+
+        <!-- Live Battle Log Ticker -->
+        <div class="sim-battle-log" id="sim-battle-log">
+          <span class="log-time">[READY]</span>
+          <span class="log-msg">Click any tile once for Player 1 (100% pts), click again for Player 2 (1/3 point drop)!</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══ 5. Desktop Footer ═══ -->
   <footer class="macos-footer">
