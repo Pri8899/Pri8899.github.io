@@ -125,13 +125,6 @@
           </div>
           <span class="spotlight-tag">Project</span>
         </div>
-        <div class="spotlight-item" data-action="action-grid-sim">
-          <div class="spotlight-item-left">
-            <span>⚡</span>
-            <span>Simulate 3x3 Battle Grid — BigOof /vs Interactive Demo</span>
-          </div>
-          <span class="spotlight-tag" style="color: #ffd60a; border-color: rgba(255, 214, 10, 0.3);">Live Demo</span>
-        </div>
         <div class="spotlight-item" data-action="#projects">
           <div class="spotlight-item-left">
             <span>⚡</span>
@@ -445,12 +438,6 @@
                     <span class="tile-tag">SQLite</span>
                     <span class="tile-tag">Codeforces API</span>
                   </div>
-                  <div class="tile-demo-cta">
-                    <button type="button" class="btn-demo-trigger" id="btn-open-grid-sim">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                      <span>⚡ Interactive 3x3 Battle Grid Demo</span>
-                    </button>
-                  </div>
                 </div>
               </article>
 
@@ -502,15 +489,19 @@
                     <div class="cp-view-switcher">
                       <button type="button" class="cp-switch-btn active" id="btn-show-unified" data-mode="unified" title="Unified Multi-Platform Feed">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        <span>All-Platform</span>
-                      </button>
-                      <button type="button" class="cp-switch-btn" id="btn-show-lc" data-mode="lc" title="LeetCode Live Telemetry">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
-                        <span>LeetCode</span>
+                        <span>All Solves (97)</span>
                       </button>
                       <button type="button" class="cp-switch-btn" id="btn-show-cf" data-mode="cf" title="Codeforces Radar">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        <span>Codeforces</span>
+                        <span>Codeforces (81)</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-lc" data-mode="lc" title="LeetCode Live Telemetry">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
+                        <span>LeetCode (16)</span>
+                      </button>
+                      <button type="button" class="cp-switch-btn" id="btn-show-other" data-mode="other" title="CSES, AtCoder &amp; Toph Integrations">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                        <span>More Platforms</span>
                       </button>
                       <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg" title="CodeSync Pro Vector Card">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
@@ -579,11 +570,15 @@
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>LATEST MULTI-PLATFORM SOLVES (LIVE STREAM)</span>
+                          <span>ALL ACCEPTED SOLVES (LIVE MULTI-PLATFORM API STREAM)</span>
                         </div>
                         <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
                           View Pri8899/CP Archive ↗
                         </a>
+                      </div>
+                      <div class="cp-filter-bar">
+                        <input type="text" class="cp-search-input" id="cp-search-unified" placeholder="⚡ Filter all 97 problems by title, ID, difficulty or tag..." />
+                        <span class="cp-count-badge" id="cp-count-unified">81 CF + 16 LC = 97 Solves</span>
                       </div>
                       <div class="cf-recent-list" id="unified-recent-solves-mount">
                         <!-- Populated dynamically by main.js with mixed CF + LC solves -->
@@ -660,17 +655,21 @@
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
-                          <span>LATEST LEETCODE ACCEPTED SUBMISSIONS</span>
+                          <span>ALL LEETCODE ACCEPTED PROBLEMS (LIVE API)</span>
                         </div>
                         <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
                           View LeetCode Profile ↗
                         </a>
                       </div>
+                      <div class="cp-filter-bar">
+                        <input type="text" class="cp-search-input" id="cp-search-lc" placeholder="⚡ Filter LeetCode problems (e.g., Two Sum, Median, Medium)..." />
+                        <span class="cp-count-badge" id="cp-count-lc">16 LeetCode Solves</span>
+                      </div>
                       <div class="cf-recent-list" id="lc-recent-solves-mount">
                         <!-- Populated by main.js with recent LC ACs -->
                         <div class="cf-solve-row loading">
                           <div class="cf-solve-spinner"></div>
-                          <span>Loading LeetCode submission telemetry...</span>
+                          <span>Loading all LeetCode submissions...</span>
                         </div>
                       </div>
                     </div>
@@ -735,18 +734,81 @@
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>LATEST CODEFORCES ACCEPTED SUBMISSIONS (LIVE API STREAM)</span>
+                          <span>ALL CODEFORCES ACCEPTED PROBLEMS (LIVE OFFICIAL API)</span>
                         </div>
                         <a href="https://codeforces.com/submissions/Pri8899" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
                           View Codeforces History ↗
                         </a>
                       </div>
+                      <div class="cp-filter-bar">
+                        <input type="text" class="cp-search-input" id="cp-search-cf" placeholder="⚡ Filter Codeforces problems (e.g., Dragons, 800, Math, Greedy)..." />
+                        <span class="cp-count-badge" id="cp-count-cf">81 Codeforces Solves</span>
+                      </div>
                       <div class="cf-recent-list" id="cf-recent-solves-mount">
-                        <!-- Populated by main.js with recent CF ACs -->
+                        <!-- Populated by main.js with all CF ACs -->
                         <div class="cf-solve-row loading">
                           <div class="cf-solve-spinner"></div>
-                          <span>Fetching real-time AC solves from Codeforces API...</span>
+                          <span>Fetching all 81 accepted problems from Codeforces API...</span>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW 4: More Platforms Integration (CSES, AtCoder, Toph) -->
+                  <div id="cp-view-other" class="cf-hud-container" style="display: none;">
+                    <div class="cp-other-grid">
+                      <!-- CSES Problem Set -->
+                      <div class="cp-platform-card">
+                        <div class="platform-card-header">
+                          <span class="platform-title">🔷 CSES Problem Set</span>
+                          <span class="platform-status-badge ready">Ready to Sync</span>
+                        </div>
+                        <p class="platform-card-desc">
+                          Algorithmic problems covering Dynamic Programming, Graph Algorithms, Range Queries, Tree Algorithms, and Mathematics.
+                        </p>
+                        <div class="platform-card-meta">
+                          <span>Integration: CodeSync Pro Extension</span>
+                        </div>
+                      </div>
+
+                      <!-- AtCoder -->
+                      <div class="cp-platform-card">
+                        <div class="platform-card-header">
+                          <span class="platform-title">🟠 AtCoder</span>
+                          <span class="platform-status-badge ready">Ready to Sync</span>
+                        </div>
+                        <p class="platform-card-desc">
+                          AtCoder Beginner Contests (ABC) and Regular Contests (ARC). Automated submission capture and GitHub archival.
+                        </p>
+                        <div class="platform-card-meta">
+                          <span>Integration: CodeSync Pro Extension</span>
+                        </div>
+                      </div>
+
+                      <!-- Toph -->
+                      <div class="cp-platform-card">
+                        <div class="platform-card-header">
+                          <span class="platform-title">🟢 Toph</span>
+                          <span class="platform-status-badge ready">Ready to Sync</span>
+                        </div>
+                        <p class="platform-card-desc">
+                          Competitive programming platform hosting national, divisional, and university ICPC preliminary rounds in Bangladesh.
+                        </p>
+                        <div class="platform-card-meta">
+                          <span>Integration: CodeSync Pro Extension</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="cf-recent-section" style="margin-top: 10px;">
+                      <div class="cf-recent-header">
+                        <div class="cf-recent-title">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                          <span>MULTI-PLATFORM EXTENSION AUTO-DISCOVERY</span>
+                        </div>
+                      </div>
+                      <div style="font-size: 11.5px; color: var(--text-secondary); line-height: 1.6; padding: 4px 6px;">
+                        <p>⚡ <strong>How auto-detection works:</strong> When you enable CSES, AtCoder, or Toph in your <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" style="color: var(--apple-cyan);">CodeSync Pro Extension</a> and solve any problem, CodeSync Pro automatically saves your code to <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" style="color: var(--apple-cyan);">Pri8899/CP</a> and updates your stats. This website automatically detects those new platform folders in your repo and unlocks dedicated live stats cards and solve feeds for them immediately.</p>
                       </div>
                     </div>
                   </div>
@@ -923,60 +985,6 @@
       </div>
     </div>
   </main>
-
-  <!-- ═══ BigOof 3x3 Battle Grid Interactive Simulator Modal ═══ -->
-  <div id="grid-sim-modal" class="grid-sim-overlay" role="dialog" aria-modal="true" aria-label="BigOof 3x3 Grid Simulator">
-    <div class="grid-sim-window">
-      <!-- Window Titlebar -->
-      <div class="grid-sim-titlebar">
-        <div class="traffic-lights">
-          <button class="traffic-dot dot-red" id="close-sim-btn" title="Close Simulator" aria-label="Close"></button>
-          <span class="traffic-dot dot-yellow"></span>
-          <span class="traffic-dot dot-green"></span>
-        </div>
-        <div class="sim-titlebar-title">BigOof /vs · 3x3 Lockout Grid Simulator (Option B: 1/3 Drop)</div>
-        <button class="sim-reset-btn" id="sim-reset-btn" title="Reset Grid">↺ Reset Grid</button>
-      </div>
-
-      <!-- Simulator Body -->
-      <div class="grid-sim-body">
-        <div class="sim-instruction-bar">
-          <span class="sim-badge">OPTION B ACTIVE</span>
-          <span class="sim-instruction-text">Problems never lock! 1st solve gets 100% pts · Subsequent solves drop to 1/3 pts. Click tiles to simulate!</span>
-        </div>
-
-        <!-- Live Scoreboard -->
-        <div class="sim-scoreboard">
-          <div class="sim-player-card p1-card">
-            <div class="player-avatar">P1</div>
-            <div class="player-info">
-              <span class="player-name">Player 1 (Pri8899)</span>
-              <span class="player-score" id="sim-p1-score">0 pts</span>
-            </div>
-          </div>
-          <div class="sim-vs-divider">VS</div>
-          <div class="sim-player-card p2-card">
-            <div class="player-avatar p2-avatar">P2</div>
-            <div class="player-info">
-              <span class="player-name">Player 2 (Rival)</span>
-              <span class="player-score" id="sim-p2-score">0 pts</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3x3 Problem Grid -->
-        <div class="sim-grid-3x3" id="sim-grid-3x3">
-          <!-- 9 Interactive Tiles populated via JS -->
-        </div>
-
-        <!-- Live Battle Log Ticker -->
-        <div class="sim-battle-log" id="sim-battle-log">
-          <span class="log-time">[READY]</span>
-          <span class="log-msg">Click any tile once for Player 1 (100% pts), click again for Player 2 (1/3 point drop)!</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ═══ 5. Desktop Footer ═══ -->
   <footer class="macos-footer">
