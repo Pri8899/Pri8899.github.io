@@ -1506,6 +1506,44 @@ Location: Dhaka, Bangladesh`;
     if (img) img.src = `codesync-stats.svg?t=${Date.now()}`;
   }
 
+  // 9. Fully Dynamic Multi-Platform Visibility Auto-Detection from Pri8899/CP
+  async function syncActivePlatforms() {
+    try {
+      const res = await fetch('https://api.github.com/repos/Pri8899/CP/contents');
+      if (res.ok) {
+        const contents = await res.json();
+        const dirs = contents.filter(item => item.type === 'dir').map(item => item.name.toLowerCase());
+
+        const hasAtCoder = dirs.includes('atcoder');
+        const hasToph = dirs.includes('toph');
+        const hasCSES = dirs.includes('cses');
+
+        const cardAC = document.getElementById('card-platform-atcoder');
+        const cardTP = document.getElementById('card-platform-toph');
+        const cardCSES = document.getElementById('card-platform-cses');
+        const btnOther = document.getElementById('btn-show-other');
+
+        // If inactive or off, keep strictly hidden
+        if (cardAC) cardAC.style.display = hasAtCoder ? 'flex' : 'none';
+        if (cardTP) cardTP.style.display = hasToph ? 'flex' : 'none';
+        if (cardCSES) cardCSES.style.display = hasCSES ? 'flex' : 'none';
+
+        if (btnOther) {
+          if (hasAtCoder || hasToph) {
+            btnOther.querySelector('span').textContent = 'More Platforms';
+          } else if (hasCSES) {
+            btnOther.querySelector('span').textContent = 'CSES (6)';
+          } else {
+            btnOther.style.display = 'none';
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Repository platform visibility running on default verified baseline:', err);
+    }
+  }
+
   initLiveCPFeeds();
+  syncActivePlatforms();
   checkCPHashMode();
 })();

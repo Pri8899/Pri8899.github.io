@@ -497,9 +497,9 @@
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
                         <span>LeetCode (16)</span>
                       </button>
-                      <button type="button" class="cp-switch-btn" id="btn-show-other" data-mode="other" title="CSES, AtCoder &amp; Toph Integrations">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-                        <span>More Platforms</span>
+                      <button type="button" class="cp-switch-btn" id="btn-show-other" data-mode="other" title="CSES Problem Set Archive">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        <span>CSES (6)</span>
                       </button>
                       <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg" title="CodeSync Pro Vector Card">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
@@ -770,11 +770,11 @@
                     </div>
                   </div>
 
-                  <!-- VIEW 4: More Platforms Integration (CSES, AtCoder, Toph) -->
+                  <!-- VIEW 4: CSES Problem Set & Multi-Platform Integration -->
                   <div id="cp-view-other" class="cf-hud-container" style="display: none;">
                     <div class="cp-other-grid">
-                      <!-- CSES Problem Set -->
-                      <div class="cp-platform-card">
+                      <!-- CSES Problem Set Solves -->
+                      <div class="cp-platform-card" id="card-platform-cses">
                         <div class="platform-card-header">
                           <div class="platform-title-group">
                             <span class="platform-title">🔷 CSES</span>
@@ -795,8 +795,30 @@
                         </a>
                       </div>
 
-                      <!-- AtCoder -->
-                      <div class="cp-platform-card">
+                      <!-- CSES Architecture & Status -->
+                      <div class="cp-platform-card" id="card-platform-cses-info">
+                        <div class="platform-card-header">
+                          <div class="platform-title-group">
+                            <span class="platform-title">⚡ CSES Architecture</span>
+                            <span class="platform-subtitle">CodeSync Pipeline</span>
+                          </div>
+                          <span class="platform-status-badge synced">C++20 GCC</span>
+                        </div>
+                        <p class="platform-card-desc">
+                          Automated capture pipeline enabled in CodeSync Pro Extension. All accepted solutions are version-controlled and pushed directly into <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/CSES</code>.
+                        </p>
+                        <div class="platform-solves-list" style="margin-top: auto;">
+                          <span class="platform-solve-item">Introductory: 5 / 5 Done (100%)</span>
+                          <span class="platform-solve-item">Sorting &amp; Searching: 1 Solved</span>
+                          <span class="platform-solve-item">Platform: cses.fi/problemset</span>
+                        </div>
+                        <a href="https://cses.fi/problemset/" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
+                          Open CSES Problem Set ↗
+                        </a>
+                      </div>
+
+                      <!-- AtCoder (Hidden while inactive / off) -->
+                      <div class="cp-platform-card" id="card-platform-atcoder" style="display: none;">
                         <div class="platform-card-header">
                           <div class="platform-title-group">
                             <span class="platform-title">🟠 AtCoder</span>
@@ -812,8 +834,8 @@
                         </a>
                       </div>
 
-                      <!-- Toph -->
-                      <div class="cp-platform-card">
+                      <!-- Toph (Hidden while inactive / off) -->
+                      <div class="cp-platform-card" id="card-platform-toph" style="display: none;">
                         <div class="platform-card-header">
                           <div class="platform-title-group">
                             <span class="platform-title">🟢 Toph</span>
