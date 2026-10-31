@@ -1538,6 +1538,41 @@ Location: Dhaka, Bangladesh`;
       const hasAC = svgText ? (svgText.includes('>AC<') || svgText.includes('>AtCoder<')) : false;
       const hasTP = svgText ? (svgText.includes('>TP<') || svgText.includes('>Toph<')) : false;
 
+      // Extract dynamic live metrics directly from your repository's codesync-stats.svg
+      if (svgText) {
+        const streakMatch = svgText.match(/>(\d+)<tspan[^>]*>\s*days<\/tspan><\/text>\s*<text[^>]*>CURRENT STREAK<\/text>/i);
+        const subsMatch = svgText.match(/>(\d+)<\/text>\s*<text[^>]*>SUBMISSIONS<\/text>/i);
+        const accMatch = svgText.match(/>([\d\.]+%?)<\/text>\s*<text[^>]*>AC ACCURACY<\/text>/i);
+
+        const streakEl = document.getElementById('unified-streak-val');
+        const subsEl = document.getElementById('unified-subs-val');
+        const accEl = document.getElementById('unified-accuracy-val');
+        const accBarEl = document.getElementById('unified-acc-bar');
+        const accPctLabelEl = document.getElementById('unified-acc-pct-label');
+        const accSubEl = document.getElementById('unified-acc-sub');
+
+        if (streakMatch && streakEl) {
+          streakEl.innerHTML = `${streakMatch[1]} <span class="val-unit">Days</span>`;
+        }
+        if (subsMatch && subsEl) {
+          subsEl.textContent = `${subsMatch[1]} Submissions`;
+        }
+        if (accMatch && accEl) {
+          const accVal = accMatch[1].endsWith('%') ? accMatch[1] : `${accMatch[1]}%`;
+          accEl.innerHTML = `${accVal} <span class="val-unit">AC</span>`;
+          if (accBarEl) accBarEl.style.width = accVal;
+          if (accPctLabelEl) accPctLabelEl.textContent = `${accVal} Verified`;
+          if (accSubEl && subsMatch) {
+            const subsNum = parseInt(subsMatch[1], 10);
+            const accNum = parseFloat(accVal.replace('%', ''));
+            if (!isNaN(subsNum) && !isNaN(accNum)) {
+              const acCount = Math.round((accNum / 100) * subsNum);
+              accSubEl.textContent = `${acCount} AC of ${subsNum} Subs`;
+            }
+          }
+        }
+      }
+
       const btnCF = document.getElementById('btn-show-cf');
       const btnLC = document.getElementById('btn-show-lc');
       const btnOther = document.getElementById('btn-show-other');
