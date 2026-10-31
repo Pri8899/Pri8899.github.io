@@ -1154,7 +1154,7 @@ Location: Dhaka, Bangladesh`;
     if (hash.includes('/lc') || hash.includes('-lc')) setCPMode('lc', false);
     else if (hash.includes('/cf') || hash.includes('-cf')) setCPMode('cf', false);
     else if (hash.includes('/svg') || hash.includes('-svg')) setCPMode('svg', false);
-    else if ((hash.includes('/other') || hash.includes('/cses')) && isOtherVisible) setCPMode('other', false);
+    else if ((hash.includes('/other') || hash.includes('/cses') || hash.includes('/toph')) && isOtherVisible) setCPMode('other', false);
     else setCPMode('unified', false);
   }
   checkCPHashMode();
@@ -1471,85 +1471,111 @@ Location: Dhaka, Bangladesh`;
     setupSearchInputs();
   }
 
+  // 8. Robust Real-Time CP Stats SVG Fetcher directly from Pri8899/CP repository
+  async function fetchLatestCPStatsSVG() {
+    const ts = Date.now();
+    const sources = [
+      `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${ts}`,
+      'https://api.github.com/repos/Pri8899/CP/contents/codesync-stats.svg',
+      `codesync-stats.svg?t=${ts}`
+    ];
+
+    for (const src of sources) {
+      try {
+        const headers = src.includes('api.github.com') ? { 'Accept': 'application/vnd.github.v3.raw' } : {};
+        const res = await fetch(src, { cache: 'no-store', headers });
+        if (res.ok) {
+          const text = await res.text();
+          if (text.includes('<svg') && text.includes('</svg>')) {
+            return text;
+          }
+        }
+      } catch (e) {
+        console.warn('CP SVG fetch fallback from:', src, e);
+      }
+    }
+    return '';
+  }
+
   // Auto-Sync SVG inliner
-  async function autoSyncCPFromRepo() {
+  async function autoSyncCPFromRepo(svgTextProvided) {
     const mount = document.getElementById('cp-svg-mount');
     if (!mount) return;
 
-    const urls = [
-      `codesync-stats.svg?t=${Date.now()}`,
-      `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`
-    ];
+    let svgText = svgTextProvided;
+    if (!svgText) {
+      svgText = await fetchLatestCPStatsSVG();
+    }
 
-    for (const url of urls) {
-      try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) continue;
-        const svgText = await res.text();
-
-        if (svgText.includes('<svg') && svgText.includes('</svg>')) {
-          mount.innerHTML = svgText;
-          const svgEl = mount.querySelector('svg');
-          if (svgEl) {
-            svgEl.removeAttribute('width');
-            svgEl.removeAttribute('height');
-            svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-            svgEl.style.width = '100%';
-            svgEl.style.maxWidth = '680px';
-            svgEl.style.height = 'auto';
-            svgEl.style.display = 'block';
-          }
-          console.log('✅ CP Monitor: 100% automated live SVG loaded from CodeSync Pro');
-          return;
-        }
-      } catch (err) {}
+    if (svgText && svgText.includes('<svg') && svgText.includes('</svg>')) {
+      mount.innerHTML = svgText;
+      const svgEl = mount.querySelector('svg');
+      if (svgEl) {
+        svgEl.removeAttribute('width');
+        svgEl.removeAttribute('height');
+        svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svgEl.style.width = '100%';
+        svgEl.style.maxWidth = '680px';
+        svgEl.style.height = 'auto';
+        svgEl.style.display = 'block';
+      }
+      console.log('✅ CP Monitor: 100% automated live SVG loaded from CodeSync Pro');
     }
 
     const img = document.getElementById('codesync-live-img');
-    if (img) img.src = `codesync-stats.svg?t=${Date.now()}`;
+    if (img) img.src = `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`;
   }
 
-  // 9. Fully Dynamic Multi-Platform Visibility Auto-Detection from codesync-stats.svg
+  // 9. Fully Dynamic Multi-Platform Visibility & Real-Time Telemetry Auto-Detection from Pri8899/CP
   async function syncActivePlatforms() {
     try {
-      const urls = [
-        `codesync-stats.svg?t=${Date.now()}`,
-        `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`
-      ];
-      let svgText = '';
-      for (const url of urls) {
-        try {
-          const res = await fetch(url, { cache: 'no-store' });
-          if (res.ok) {
-            const text = await res.text();
-            if (text.includes('<svg') && text.includes('</svg>')) {
-              svgText = text;
-              break;
-            }
-          }
-        } catch (e) {}
+      const svgText = await fetchLatestCPStatsSVG();
+
+      // Immediately render live SVG card
+      if (svgText) {
+        autoSyncCPFromRepo(svgText);
+      }
+
+      // Parse Platform Solves Pills (e.g. CF: 81, LC: 16, Toph: 0)
+      const pillRegex = />(CF|LC|CSES|AtCoder|AC|Toph|TP)<\/text>\s*<text[^>]*>(\d+)<\/text>/gi;
+      let pillMatch;
+      const platformCounts = {};
+      if (svgText) {
+        while ((pillMatch = pillRegex.exec(svgText)) !== null) {
+          platformCounts[pillMatch[1].toUpperCase()] = parseInt(pillMatch[2], 10);
+        }
       }
 
       // Ground strictly in the platforms enabled in your CodeSync Pro extension card:
-      // Active platforms in CodeSync Pro have pills with >CF<, >LC<, >CSES<, >AC<, >TP<
-      const hasCF = !svgText || svgText.includes('>CF<');
-      const hasLC = !svgText || svgText.includes('>LC<');
-      const hasCSES = svgText ? svgText.includes('>CSES<') : false;
-      const hasAC = svgText ? (svgText.includes('>AC<') || svgText.includes('>AtCoder<')) : false;
-      const hasTP = svgText ? (svgText.includes('>TP<') || svgText.includes('>Toph<')) : false;
+      const hasCF = !svgText || 'CF' in platformCounts || svgText.includes('>CF<');
+      const hasLC = !svgText || 'LC' in platformCounts || svgText.includes('>LC<');
+      const hasCSES = svgText ? ('CSES' in platformCounts || svgText.includes('>CSES<')) : false;
+      const hasAC = svgText ? ('AC' in platformCounts || 'ATCODER' in platformCounts || svgText.includes('>AC<') || svgText.includes('>AtCoder<')) : false;
+      const hasTP = svgText ? ('TOPH' in platformCounts || 'TP' in platformCounts || svgText.includes('>TP<') || svgText.includes('>Toph<')) : false;
 
       // Extract dynamic live metrics directly from your repository's codesync-stats.svg
       if (svgText) {
+        const totalMatch = svgText.match(/>(\d+)<\/text>\s*<text[^>]*>TOTAL SOLVED<\/text>/i);
         const streakMatch = svgText.match(/>(\d+)<tspan[^>]*>\s*days<\/tspan><\/text>\s*<text[^>]*>CURRENT STREAK<\/text>/i);
         const subsMatch = svgText.match(/>(\d+)<\/text>\s*<text[^>]*>SUBMISSIONS<\/text>/i);
         const accMatch = svgText.match(/>([\d\.]+%?)<\/text>\s*<text[^>]*>AC ACCURACY<\/text>/i);
 
+        const totalEl = document.getElementById('unified-total-solved');
         const streakEl = document.getElementById('unified-streak-val');
         const subsEl = document.getElementById('unified-subs-val');
         const accEl = document.getElementById('unified-accuracy-val');
         const accBarEl = document.getElementById('unified-acc-bar');
         const accPctLabelEl = document.getElementById('unified-acc-pct-label');
         const accSubEl = document.getElementById('unified-acc-sub');
+
+        let totalSolvesNum = null;
+        if (totalMatch && totalEl) {
+          totalSolvesNum = parseInt(totalMatch[1], 10);
+          totalEl.textContent = totalSolvesNum;
+          if (btnShowUnified) {
+            btnShowUnified.querySelector('span').textContent = `All Solves (${totalSolvesNum})`;
+          }
+        }
 
         if (streakMatch && streakEl) {
           streakEl.innerHTML = `${streakMatch[1]} <span class="val-unit">Days</span>`;
@@ -1570,6 +1596,35 @@ Location: Dhaka, Bangladesh`;
               accSubEl.textContent = `${acCount} AC of ${subsNum} Subs`;
             }
           }
+        }
+
+        // Dynamically update individual platform solve counters from live SVG
+        const cfCount = platformCounts.CF !== undefined ? platformCounts.CF : null;
+        if (cfCount !== null) {
+          const cfSolvedCountEl = document.getElementById('cf-solved-count');
+          if (cfSolvedCountEl) cfSolvedCountEl.textContent = cfCount;
+          if (btnShowCF) btnShowCF.querySelector('span').textContent = `Codeforces (${cfCount})`;
+          const cfChip = document.querySelector('.cf-chip-accent');
+          if (cfChip) cfChip.textContent = `CF: ${cfCount} Solves`;
+        }
+
+        const lcCount = platformCounts.LC !== undefined ? platformCounts.LC : null;
+        if (lcCount !== null) {
+          const lcTotalValEl = document.getElementById('lc-total-val');
+          if (lcTotalValEl) lcTotalValEl.textContent = lcCount;
+          if (btnShowLC) btnShowLC.querySelector('span').textContent = `LeetCode (${lcCount})`;
+          const lcChip = document.querySelector('.lc-chip-accent');
+          if (lcChip) lcChip.textContent = `LC: ${lcCount} Solves`;
+        }
+
+        // Update platform proportion bar in Unified view
+        if (totalSolvesNum && cfCount !== null) {
+          const cfPct = Math.round((cfCount / totalSolvesNum) * 100);
+          const otherPct = 100 - cfPct;
+          const balanceHeader = document.querySelector('#cp-view-unified .cf-progress-header span:last-child');
+          if (balanceHeader) balanceHeader.textContent = `${cfPct}% CF · ${otherPct}% Others`;
+          const balanceBar = document.querySelector('#cp-view-unified .cf-progress-track .cf-progress-bar');
+          if (balanceBar) balanceBar.style.width = `${cfPct}%`;
         }
       }
 
@@ -1594,13 +1649,18 @@ Location: Dhaka, Bangladesh`;
       if (btnOther) {
         btnOther.style.display = hasAnySecondary ? 'inline-flex' : 'none';
         if (hasAnySecondary) {
-          if (hasCSES && !hasAC && !hasTP) {
-            btnOther.querySelector('span').textContent = 'CSES';
+          if (hasTP && !hasCSES && !hasAC) {
+            const tpCount = platformCounts.TOPH !== undefined ? platformCounts.TOPH : (platformCounts.TP !== undefined ? platformCounts.TP : 0);
+            btnOther.querySelector('span').textContent = `Toph (${tpCount})`;
+          } else if (hasCSES && !hasAC && !hasTP) {
+            const csesCount = platformCounts.CSES !== undefined ? platformCounts.CSES : 6;
+            btnOther.querySelector('span').textContent = `CSES (${csesCount})`;
           } else {
             btnOther.querySelector('span').textContent = 'More Platforms';
           }
         }
       }
+      checkCPHashMode();
     } catch (err) {
       console.warn('Repository platform visibility running on default verified baseline:', err);
     }
