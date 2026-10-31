@@ -478,9 +478,7 @@
                 <!-- Top Toolbar with Sonar Pulse & View Switcher -->
                 <div class="cp-hud-toolbar">
                   <div class="cp-hud-toolbar-left">
-                    <span class="sonar-ring ring-1"></span>
-                    <span class="sonar-ring ring-2"></span>
-                    <span class="sonar-core-dot"></span>
+                    <span class="cp-live-dot" aria-hidden="true"></span>
                     <span class="cp-hud-live-tag">LIVE TELEMETRY HUB</span>
                     <span class="cp-hud-handle">@Pri8899</span>
                     <span class="cp-live-badge">● SYNCED</span>
@@ -521,8 +519,8 @@
                         <div class="cf-metric-label">TOTAL ACCEPTED SOLVED</div>
                         <div class="cf-metric-val" id="unified-total-solved">97</div>
                         <div class="cf-metric-sub">
-                          <span class="platform-chip cf-chip-accent">CF: 81</span>
-                          <span class="platform-chip lc-chip-accent">LC: 16</span>
+                          <span class="platform-chip cf-chip-accent">CF: 81 Solves</span>
+                          <span class="platform-chip lc-chip-accent">LC: 16 Solves</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
@@ -543,22 +541,28 @@
                           <span class="streak-flame-pill">🔥 Active Streak</span>
                           <span class="cf-max-sub">303 Submissions</span>
                         </div>
-                        <div class="cf-platform-chips">
-                          <span class="cf-tag-pill">Daily Upsolving</span>
-                          <span class="cf-tag-pill">Auto-Synced</span>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Upsolving Momentum</span>
+                            <span>100% Consistent</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #f0883e, #3fb950);"></div>
+                          </div>
                         </div>
                       </div>
 
                       <!-- Metric 3: Accuracy & Rating -->
                       <div class="cf-metric-card">
-                        <div class="cf-metric-label">AC ACCURACY &amp; RATING</div>
-                        <div class="cf-metric-val" id="unified-accuracy-val">57.8%</div>
+                        <div class="cf-metric-label">PIPELINE &amp; ACCURACY</div>
+                        <div class="cf-metric-val" id="unified-accuracy-val">57.8% <span class="val-unit">AC</span></div>
                         <div class="cf-metric-sub">
                           <span class="cf-acc-pill">High Precision</span>
-                          <span class="cf-max-sub">CF Rating: 814 (Newbie)</span>
+                          <span class="cf-max-sub">CodeSync Pro</span>
                         </div>
                         <div class="cf-tags-row">
                           <span class="cf-tag-pill">C++23</span>
+                          <span class="cf-tag-pill">Java</span>
                           <span class="cf-tag-pill">DSA</span>
                           <span class="cf-tag-pill">Fast I/O</span>
                         </div>
@@ -598,14 +602,33 @@
                         <div class="cf-metric-label">LEETCODE ACCEPTED</div>
                         <div class="cf-metric-val" style="color: #ffc01e;" id="lc-total-val">16</div>
                         <div class="cf-metric-sub">
-                          <span class="lc-diff-badge easy">Easy: 6</span>
-                          <span class="lc-diff-badge medium">Med: 9</span>
-                          <span class="lc-diff-badge hard">Hard: 1</span>
+                          <span class="lc-diff-badge easy">6 Easy</span>
+                          <span class="lc-diff-badge medium">9 Med</span>
+                          <span class="lc-diff-badge hard">1 Hard</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
-                            <span>Medium/Hard Ratio</span>
-                            <span>62.5%</span>
+                            <span>Difficulty Distribution</span>
+                            <span>37.5% E · 56.3% M · 6.2% H</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #00b8a3 37.5%, #ffc01e 37.5% 93.8%, #ff375f 93.8% 100%);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- LC Metric 2: Difficulty Distribution -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">ADVANCED PROBLEM TIER</div>
+                        <div class="cf-metric-val" style="color: #ffc01e;">62.5%</div>
+                        <div class="cf-metric-sub">
+                          <span class="lc-diff-badge medium">Medium/Hard Solves</span>
+                          <span class="cf-max-sub">10 Advanced</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Medium &amp; Hard Proportion</span>
+                            <span>10 of 16 Solves</span>
                           </div>
                           <div class="cf-progress-track">
                             <div class="cf-progress-bar" style="width: 62.5%; background: linear-gradient(90deg, #ffc01e, #ff375f);"></div>
@@ -613,39 +636,19 @@
                         </div>
                       </div>
 
-                      <!-- LC Metric 2: Difficulty Distribution -->
-                      <div class="cf-metric-card">
-                        <div class="cf-metric-label">DIFFICULTY DISTRIBUTION</div>
-                        <div class="lc-diff-bars">
-                          <div class="lc-bar-row">
-                            <span class="lc-bar-lbl">Easy</span>
-                            <div class="lc-bar-track"><div class="lc-bar-fill easy-fill" style="width: 37.5%;"></div></div>
-                            <span class="lc-bar-num">6</span>
-                          </div>
-                          <div class="lc-bar-row">
-                            <span class="lc-bar-lbl">Medium</span>
-                            <div class="lc-bar-track"><div class="lc-bar-fill med-fill" style="width: 56.25%;"></div></div>
-                            <span class="lc-bar-num">9</span>
-                          </div>
-                          <div class="lc-bar-row">
-                            <span class="lc-bar-lbl">Hard</span>
-                            <div class="lc-bar-track"><div class="lc-bar-fill hard-fill" style="width: 6.25%;"></div></div>
-                            <span class="lc-bar-num">1</span>
-                          </div>
-                        </div>
-                      </div>
-
                       <!-- LC Metric 3: Profile Link -->
                       <div class="cf-metric-card">
-                        <div class="cf-metric-label">LEETCODE PROFILE</div>
-                        <div class="cf-metric-val" style="font-size: 20px;">@Pri8899</div>
+                        <div class="cf-metric-label">PROFILE &amp; PATTERNS</div>
+                        <div class="cf-metric-val" style="font-size: 22px; color: #ffc01e;">@Pri8899</div>
                         <div class="cf-metric-sub">
-                          <span class="cf-acc-pill" style="color: #ffc01e; border-color: rgba(255, 192, 30, 0.3); background: rgba(255, 192, 30, 0.1);">Verified Profile</span>
+                          <span class="cf-acc-pill" style="color: #ffc01e; border-color: rgba(255, 192, 30, 0.3); background: rgba(255, 192, 30, 0.1);">C++ &amp; Java</span>
+                          <span class="cf-max-sub">CodeSync Pro</span>
                         </div>
-                        <div class="tile-demo-cta" style="margin-top: 8px;">
-                          <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer" class="btn-demo-trigger" style="text-decoration: none; padding: 6px 10px; font-size: 11px;">
-                            <span>Open LeetCode Profile ↗</span>
-                          </a>
+                        <div class="cf-tags-row">
+                          <span class="cf-tag-pill">Binary Search</span>
+                          <span class="cf-tag-pill">Two Pointers</span>
+                          <span class="cf-tag-pill">Arrays</span>
+                          <span class="cf-tag-pill">Math</span>
                         </div>
                       </div>
                     </div>
@@ -678,9 +681,28 @@
                   <!-- VIEW 3: Codeforces Radar -->
                   <div id="cp-view-cf" class="cf-hud-container" style="display: none;">
                     <div class="cf-hud-grid">
-                      <!-- CF Metric 1: Rating & Rank -->
+                      <!-- CF Metric 1: CF Solves -->
                       <div class="cf-metric-card">
-                        <div class="cf-metric-label">CURRENT RATING</div>
+                        <div class="cf-metric-label">CODEFORCES ACCEPTED</div>
+                        <div class="cf-metric-val" id="cf-solved-count">81</div>
+                        <div class="cf-metric-sub">
+                          <span class="platform-chip cf-chip-accent">83 Submissions</span>
+                          <span class="cf-acc-pill">97.6% Unique AC</span>
+                        </div>
+                        <div class="cf-progress-wrap">
+                          <div class="cf-progress-header">
+                            <span>Solve Velocity</span>
+                            <span>81 Problems Done</span>
+                          </div>
+                          <div class="cf-progress-track">
+                            <div class="cf-progress-bar" style="width: 81%; background: linear-gradient(90deg, #58a6ff, #388bfd);"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- CF Metric 2: Rating & Rank -->
+                      <div class="cf-metric-card">
+                        <div class="cf-metric-label">CURRENT RATING &amp; RANK</div>
                         <div class="cf-metric-val" id="cf-rating-val">814</div>
                         <div class="cf-metric-sub">
                           <span class="cf-rank-pill newbie" id="cf-rank-pill">NEWBIE</span>
@@ -692,32 +714,17 @@
                             <span id="cf-progress-pct">67.8%</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" id="cf-progress-fill" style="width: 67.8%;"></div>
+                            <div class="cf-progress-bar" id="cf-progress-fill" style="width: 67.8%; background: linear-gradient(90deg, #58a6ff, #39d353);"></div>
                           </div>
-                        </div>
-                      </div>
-
-                      <!-- CF Metric 2: CF Solved -->
-                      <div class="cf-metric-card">
-                        <div class="cf-metric-label">CODEFORCES ACCEPTED</div>
-                        <div class="cf-metric-val" id="cf-solved-count">81</div>
-                        <div class="cf-metric-sub">
-                          <span class="cf-acc-pill">Verified Solves</span>
-                          <span class="cf-max-sub">Active Contender</span>
-                        </div>
-                        <div class="cf-platform-chips">
-                          <span class="cf-chip">Codeforces</span>
-                          <span class="cf-chip">Contests</span>
-                          <span class="cf-chip">Practice</span>
                         </div>
                       </div>
 
                       <!-- CF Metric 3: System & Language -->
                       <div class="cf-metric-card">
-                        <div class="cf-metric-label">PRIMARY LANGUAGE &amp; SYSTEM</div>
-                        <div class="cf-metric-val" style="font-size: 21px;">C++23 (GCC 14)</div>
+                        <div class="cf-metric-label">PRIMARY SYSTEM &amp; TOPICS</div>
+                        <div class="cf-metric-val" style="font-size: 22px;">C++23 <span class="val-unit">GCC 14</span></div>
                         <div class="cf-metric-sub">
-                          <span class="cf-acc-pill">⚡ Fast I/O · DSA</span>
+                          <span class="cf-acc-pill">⚡ Fast I/O</span>
                           <span class="cf-max-sub">AUST CSE</span>
                         </div>
                         <div class="cf-tags-row">

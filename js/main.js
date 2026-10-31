@@ -171,7 +171,7 @@
 
     // Sync URL hash smoothly without jump
     const slideKeys = ['terminal', 'about', 'projects', 'cp', 'skills', 'contact'];
-    if (slideKeys[index] && window.location.hash !== '#' + slideKeys[index]) {
+    if (slideKeys[index] && !window.location.hash.startsWith('#' + slideKeys[index])) {
       history.replaceState(null, '', '#' + slideKeys[index]);
     }
 
@@ -243,9 +243,13 @@
   // Deep-linking & Browser Refresh on specific slide
   function syncFromHash() {
     if (window.location.hash) {
-      const targetKey = window.location.hash.replace('#', '').toLowerCase();
+      const fullHash = window.location.hash.replace('#', '').toLowerCase();
+      const targetKey = fullHash.split('/')[0];
       if (slideMap[targetKey] !== undefined) {
         goToSlide(slideMap[targetKey], false);
+      }
+      if (targetKey === 'cp' && typeof checkCPHashMode === 'function') {
+        checkCPHashMode();
       }
     }
   }
@@ -1110,7 +1114,7 @@ Location: Dhaka, Bangladesh`;
   const btnShowOther = document.getElementById('btn-show-other');
   const btnShowSVG = document.getElementById('btn-show-svg');
 
-  function setCPMode(mode) {
+  function setCPMode(mode, updateHash = true) {
     playKeyClick();
     const switchBtns = [btnShowUnified, btnShowCF, btnShowLC, btnShowOther, btnShowSVG];
     switchBtns.forEach(btn => { if (btn) btn.classList.remove('active'); });
@@ -1124,21 +1128,37 @@ Location: Dhaka, Bangladesh`;
     if (mode === 'unified') {
       if (cpViewUnified) cpViewUnified.style.display = 'flex';
       if (btnShowUnified) btnShowUnified.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp');
     } else if (mode === 'cf') {
       if (cpViewCF) cpViewCF.style.display = 'flex';
       if (btnShowCF) btnShowCF.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/cf');
     } else if (mode === 'lc') {
       if (cpViewLC) cpViewLC.style.display = 'flex';
       if (btnShowLC) btnShowLC.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/lc');
     } else if (mode === 'other') {
       if (cpViewOther) cpViewOther.style.display = 'flex';
       if (btnShowOther) btnShowOther.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/other');
     } else if (mode === 'svg') {
       if (cpCardWrapper) cpCardWrapper.style.display = 'flex';
       if (btnShowSVG) btnShowSVG.classList.add('active');
+      if (updateHash && currentSlideIndex === 3) history.replaceState(null, '', '#cp/svg');
       autoSyncCPFromRepo();
     }
   }
+
+  function checkCPHashMode() {
+    const hash = (window.location.hash || '').toLowerCase();
+    if (hash.includes('/lc') || hash.includes('-lc')) setCPMode('lc', false);
+    else if (hash.includes('/cf') || hash.includes('-cf')) setCPMode('cf', false);
+    else if (hash.includes('/other') || hash.includes('-other')) setCPMode('other', false);
+    else if (hash.includes('/svg') || hash.includes('-svg')) setCPMode('svg', false);
+    else if (hash === '#cp') setCPMode('unified', false);
+  }
+  checkCPHashMode();
+  window.addEventListener('hashchange', checkCPHashMode);
 
   if (btnShowUnified) btnShowUnified.addEventListener('click', () => setCPMode('unified'));
   if (btnShowCF) btnShowCF.addEventListener('click', () => setCPMode('cf'));
@@ -1146,21 +1166,43 @@ Location: Dhaka, Bangladesh`;
   if (btnShowOther) btnShowOther.addEventListener('click', () => setCPMode('other'));
   if (btnShowSVG) btnShowSVG.addEventListener('click', () => setCPMode('svg'));
 
-  // LeetCode Complete Verified Solves List (User: Pri8899)
+  // LeetCode Complete Verified Solves List (User: Pri8899 - Exactly 16 Solves: 6 Easy, 9 Med, 1 Hard)
+  const LEETCODE_DIFFICULTY_MAP = {
+    'search-in-rotated-sorted-array': 'Medium',
+    'divide-two-integers': 'Medium',
+    'remove-duplicates-from-sorted-array': 'Easy',
+    'palindrome-number': 'Easy',
+    'reverse-integer': 'Medium',
+    'median-of-two-sorted-arrays': 'Hard',
+    'two-sum': 'Easy',
+    'sort-colors': 'Medium',
+    'search-a-2d-matrix': 'Medium',
+    'powx-n': 'Medium',
+    'sqrtx': 'Easy',
+    'best-time-to-buy-and-sell-stock': 'Easy',
+    'valid-palindrome': 'Easy',
+    'search-in-rotated-sorted-array-ii': 'Medium',
+    'strictly-palindromic-number': 'Medium',
+    'two-sum-ii-input-array-is-sorted': 'Medium'
+  };
+
   let leetCodeSolves = [
-    { title: 'Search in Rotated Sorted Array', slug: 'search-in-rotated-sorted-array', diff: 'Medium', tags: ['Binary Search', 'Array'], time: 'Recent' },
-    { title: 'Divide Two Integers', slug: 'divide-two-integers', diff: 'Medium', tags: ['Math', 'Bit Manipulation'], time: 'Recent' },
-    { title: 'Remove Duplicates from Sorted Array', slug: 'remove-duplicates-from-sorted-array', diff: 'Easy', tags: ['Array', 'Two Pointers'], time: 'Recent' },
-    { title: 'Palindrome Number', slug: 'palindrome-number', diff: 'Easy', tags: ['Math'], time: 'Recent' },
-    { title: 'Reverse Integer', slug: 'reverse-integer', diff: 'Medium', tags: ['Math'], time: 'Recent' },
-    { title: 'Median of Two Sorted Arrays', slug: 'median-of-two-sorted-arrays', diff: 'Hard', tags: ['Binary Search', 'Divide and Conquer'], time: 'Recent' },
-    { title: 'Two Sum', slug: 'two-sum', diff: 'Easy', tags: ['Array', 'Hash Table'], time: 'Recent' },
-    { title: 'Sort Colors', slug: 'sort-colors', diff: 'Medium', tags: ['Array', 'Sorting'], time: 'Recent' },
-    { title: 'Search a 2D Matrix', slug: 'search-a-2d-matrix', diff: 'Medium', tags: ['Matrix', 'Binary Search'], time: 'Recent' },
-    { title: 'Pow(x, n)', slug: 'powx-n', diff: 'Medium', tags: ['Math', 'Recursion'], time: 'Recent' },
-    { title: 'Sqrt(x)', slug: 'sqrtx', diff: 'Easy', tags: ['Math', 'Binary Search'], time: 'Recent' },
-    { title: 'Best Time to Buy and Sell Stock', slug: 'best-time-to-buy-and-sell-stock', diff: 'Easy', tags: ['Dynamic Programming', 'Array'], time: 'Recent' },
-    { title: 'Valid Palindrome', slug: 'valid-palindrome', diff: 'Easy', tags: ['Two Pointers', 'String'], time: 'Recent' }
+    { platform: 'LC', id: '33', title: 'Search in Rotated Sorted Array', slug: 'search-in-rotated-sorted-array', diff: 'Medium', tags: ['Binary Search', 'Array'], time: 'Feb 24' },
+    { platform: 'LC', id: '29', title: 'Divide Two Integers', slug: 'divide-two-integers', diff: 'Medium', tags: ['Math', 'Bit Manipulation'], time: 'Feb 24' },
+    { platform: 'LC', id: '26', title: 'Remove Duplicates from Sorted Array', slug: 'remove-duplicates-from-sorted-array', diff: 'Easy', tags: ['Array', 'Two Pointers'], time: 'Feb 24' },
+    { platform: 'LC', id: '9', title: 'Palindrome Number', slug: 'palindrome-number', diff: 'Easy', tags: ['Math'], time: 'Feb 24' },
+    { platform: 'LC', id: '7', title: 'Reverse Integer', slug: 'reverse-integer', diff: 'Medium', tags: ['Math'], time: 'Feb 24' },
+    { platform: 'LC', id: '4', title: 'Median of Two Sorted Arrays', slug: 'median-of-two-sorted-arrays', diff: 'Hard', tags: ['Binary Search', 'Divide and Conquer'], time: 'Feb 24' },
+    { platform: 'LC', id: '1', title: 'Two Sum', slug: 'two-sum', diff: 'Easy', tags: ['Array', 'Hash Table'], time: 'Feb 24' },
+    { platform: 'LC', id: '75', title: 'Sort Colors', slug: 'sort-colors', diff: 'Medium', tags: ['Array', 'Sorting'], time: 'Feb 10' },
+    { platform: 'LC', id: '74', title: 'Search a 2D Matrix', slug: 'search-a-2d-matrix', diff: 'Medium', tags: ['Matrix', 'Binary Search'], time: 'Feb 10' },
+    { platform: 'LC', id: '50', title: 'Pow(x, n)', slug: 'powx-n', diff: 'Medium', tags: ['Math', 'Recursion'], time: 'Feb 10' },
+    { platform: 'LC', id: '69', title: 'Sqrt(x)', slug: 'sqrtx', diff: 'Easy', tags: ['Math', 'Binary Search'], time: 'Feb 10' },
+    { platform: 'LC', id: '121', title: 'Best Time to Buy and Sell Stock', slug: 'best-time-to-buy-and-sell-stock', diff: 'Easy', tags: ['Dynamic Programming', 'Array'], time: 'Feb 10' },
+    { platform: 'LC', id: '125', title: 'Valid Palindrome', slug: 'valid-palindrome', diff: 'Easy', tags: ['Two Pointers', 'String'], time: 'Feb 10' },
+    { platform: 'LC', id: '81', title: 'Search in Rotated Sorted Array II', slug: 'search-in-rotated-sorted-array-ii', diff: 'Medium', tags: ['Binary Search', 'Array'], time: 'Feb 10' },
+    { platform: 'LC', id: '2396', title: 'Strictly Palindromic Number', slug: 'strictly-palindromic-number', diff: 'Medium', tags: ['Math', 'Two Pointers'], time: 'Feb 10' },
+    { platform: 'LC', id: '167', title: 'Two Sum II - Input Array Is Sorted', slug: 'two-sum-ii-input-array-is-sorted', diff: 'Medium', tags: ['Two Pointers', 'Binary Search'], time: 'Feb 10' }
   ];
 
   let cfSolves = [];
@@ -1176,7 +1218,7 @@ Location: Dhaka, Bangladesh`;
       const tagsHtml = (s.tags || []).slice(0, 2).map(t => `<span class="cf-tag-micro">${t}</span>`).join('');
       row.innerHTML = `
         <div class="cf-solve-left">
-          <span class="platform-tag lc">LC</span>
+          <span class="platform-badge-micro lc-platform-tag">LC</span>
           <span class="cf-verdict-tag">✓ AC</span>
           <a href="https://leetcode.com/problems/${s.slug}/" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
             ${s.title}
@@ -1184,19 +1226,19 @@ Location: Dhaka, Bangladesh`;
           <span class="cf-solve-tags">${tagsHtml}</span>
         </div>
         <div class="cf-solve-right">
-          <span class="lc-diff-badge ${diffClass}">${s.diff || 'Medium'}</span>
+          <span class="cf-solve-diff ${diffClass}">${s.diff || 'Medium'}</span>
           <span>${s.time || 'Recent'}</span>
         </div>
       `;
     } else {
       const s = entry;
-      const contestId = s.contestId || s.id.replace(/[A-Za-z]+/, '');
-      const index = s.index || s.id.replace(/[0-9]+/, '');
+      const contestId = s.contestId || (s.id ? s.id.replace(/[A-Za-z]+/, '') : '');
+      const index = s.index || (s.id ? s.id.replace(/[0-9]+/, '') : '');
       const cfUrl = contestId ? `https://codeforces.com/contest/${contestId}/problem/${index}` : `https://codeforces.com/problemset`;
       const tagsHtml = (s.tags || []).slice(0, 2).map(t => `<span class="cf-tag-micro">${t}</span>`).join('');
       row.innerHTML = `
         <div class="cf-solve-left">
-          <span class="platform-tag cf">CF</span>
+          <span class="platform-badge-micro cf-platform-tag">CF</span>
           <span class="cf-verdict-tag">✓ AC</span>
           <a href="${cfUrl}" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
             ${s.id} · ${s.title}
@@ -1204,7 +1246,7 @@ Location: Dhaka, Bangladesh`;
           <span class="cf-solve-tags">${tagsHtml}</span>
         </div>
         <div class="cf-solve-right">
-          <span class="cf-rating-badge">${s.rating ? `${s.rating} pts` : 'Verified'}</span>
+          <span class="cf-solve-diff">${s.rating ? `${s.rating} pts` : 'Verified'}</span>
           <span>${s.time || 'Recent'}</span>
         </div>
       `;
@@ -1359,33 +1401,35 @@ Location: Dhaka, Bangladesh`;
       ];
     }
 
-    // 3. Try live LeetCode API
+    // 3. Try live LeetCode API to refresh recent solve timestamps and capture new ACs
     try {
       const lcRes = await fetch('https://alfa-leetcode-api.onrender.com/Pri8899/acSubmission?limit=50');
       if (lcRes.ok) {
         const lcData = await lcRes.json();
         if (lcData.submission && lcData.submission.length > 0) {
-          const lcSeen = new Set();
-          const liveLC = [];
           lcData.submission.forEach(s => {
-            if (!lcSeen.has(s.titleSlug)) {
-              lcSeen.add(s.titleSlug);
-              liveLC.push({
+            const existing = leetCodeSolves.find(p => p.slug === s.titleSlug);
+            const formattedTime = s.timestamp ? new Date(s.timestamp * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recent';
+            if (existing) {
+              if (s.timestamp) existing.time = formattedTime;
+              if (s.lang && !existing.tags.includes(s.lang)) existing.tags.push(s.lang);
+            } else {
+              // Brand new solve on LeetCode: prepend to the verified solves array!
+              leetCodeSolves.unshift({
                 platform: 'LC',
                 title: s.title,
                 slug: s.titleSlug,
-                diff: 'Medium',
+                diff: LEETCODE_DIFFICULTY_MAP[s.titleSlug] || 'Medium',
                 tags: [s.lang || 'cpp'],
-                time: s.timestamp ? new Date(s.timestamp * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Recent'
+                time: formattedTime
               });
             }
           });
-          if (liveLC.length > 0) {
-            leetCodeSolves = liveLC;
-          }
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('LeetCode live API using verified archive baseline:', e);
+    }
 
     // 4. Update KPI counts dynamically
     const cfSolvedCountEl = document.getElementById('cf-solved-count');
@@ -1466,4 +1510,5 @@ Location: Dhaka, Bangladesh`;
   }
 
   initLiveCPFeeds();
+  checkCPHashMode();
 })();
