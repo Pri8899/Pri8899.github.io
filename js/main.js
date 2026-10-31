@@ -169,6 +169,12 @@
       m.classList.toggle('active', slideMap[targetKey] === index);
     });
 
+    // Sync URL hash smoothly without jump
+    const slideKeys = ['terminal', 'about', 'projects', 'cp', 'skills', 'contact'];
+    if (slideKeys[index] && window.location.hash !== '#' + slideKeys[index]) {
+      history.replaceState(null, '', '#' + slideKeys[index]);
+    }
+
     // Update status counter
     if (deskCounter) {
       deskCounter.textContent = `DESK 0${index + 1} / 06 · ${slideTitles[index]}`;
@@ -210,6 +216,41 @@
       goToSlide(idx, false);
     });
   });
+
+  // Menubar & In-page Hash Navigation
+  menuNavItems.forEach((m) => {
+    m.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = m.getAttribute('href');
+      const targetKey = href ? href.replace('#', '') : '';
+      if (slideMap[targetKey] !== undefined) {
+        goToSlide(slideMap[targetKey], true);
+      }
+    });
+  });
+
+  // Handle all internal slide hash links (e.g. CTA buttons like "Explore Projects")
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    const targetKey = link.getAttribute('href').replace('#', '').toLowerCase();
+    if (slideMap[targetKey] !== undefined && !link.classList.contains('menubar-item')) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSlide(slideMap[targetKey], true);
+      });
+    }
+  });
+
+  // Deep-linking & Browser Refresh on specific slide
+  function syncFromHash() {
+    if (window.location.hash) {
+      const targetKey = window.location.hash.replace('#', '').toLowerCase();
+      if (slideMap[targetKey] !== undefined) {
+        goToSlide(slideMap[targetKey], false);
+      }
+    }
+  }
+  syncFromHash();
+  window.addEventListener('hashchange', syncFromHash);
 
   // Next & Prev Chevrons (Pill arrows & Floating Side arrows)
   const prevBtns = document.querySelectorAll('.desk-prev-action, #desk-prev-btn');
