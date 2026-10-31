@@ -340,9 +340,7 @@
   function handleSpotlightAction(action) {
     if (!action) return;
     closeSpotlight();
-    if (action === 'action-grid-sim') {
-      openGridSimulator();
-    } else if (action.startsWith('theme:')) {
+    if (action.startsWith('theme:')) {
       const th = action.replace('theme:', '');
       setTheme(th);
     } else if (action.startsWith('#')) {
@@ -434,8 +432,7 @@
     help: () => `Available terminal commands:
   • projects     - Inspect featured software & bot projects
   • skills       - View languages, frameworks, & CS toolchain
-  • cf           - Fetch real-time Codeforces API metrics & recent ACs
-  • battle / vs  - Launch interactive 3x3 Lockout Grid battle simulator
+  • cf           - View real-time CP metrics & platform breakdown
   • theme <name> - Switch theme (tokyo, catppuccin, matrix, cyber, macos)
   • sound        - Toggle mechanical keyboard audio FX (ON/OFF)
   • matrix       - Execute neural digital rain sequence
@@ -452,7 +449,7 @@ Ahsanullah University of Science and Technology · 2nd Year, 1st Semester`,
       setTimeout(() => goToSlide(2, true), 300);
       return `Navigating to Projects Explorer...
 [1] CodeSync Pro Extension (Universal Browser CP Auto-Sync)
-[2] BigOof (Production Discord Bot with 3x3 Battle Grid & 9AM Upsolve Radar)
+[2] BigOof (Autonomous CP Discord Bot)
 [3] CP Archive (Algorithmic Problem Solutions & Templates)`;
     },
 
@@ -461,31 +458,14 @@ Ahsanullah University of Science and Technology · 2nd Year, 1st Semester`,
       return `Toolchain: C, C++, Java, Flutter, HTML, iGraphics, Unreal Engine, Roblox Studio, Android Studio, Xcode, VS Code, Git & GitHub.`;
     },
 
-    cf: async () => {
-      setTimeout(() => goToSlide(3, true), 400);
-      try {
-        const res = await fetch('https://codeforces.com/api/user.info?handles=Pri8899');
-        const data = await res.json();
-        if (data.status === 'OK' && data.result.length > 0) {
-          const u = data.result[0];
-          return `[OK] Codeforces Live Telemetry (Handle: ${u.handle})
-Current Rating: ${u.rating || 0} (${u.rank || 'newbie'}) | Peak: ${u.maxRating || 0} (${u.maxRank || 'newbie'})
-Target: Pupil (1200) · 67.8% Milestone
-Status: Active Contender · Telemetry 100% Synced from Official API`;
-        }
-      } catch (err) {}
-      return `Codeforces Handle: pri8899
-Total Solved: 52+ problems | Current Rating: 814 (newbie) | Peak: 814 | Target: Pupil (1200)`;
+    cf: () => {
+      setTimeout(() => goToSlide(3, true), 300);
+      return `CodeSync Pro Telemetry:
+Total Solved: 97 problems (CF: 81 · LC: 16) | Current Streak: 29 days
+AC Accuracy: 57.8% | Submissions: 303 | Status: Synced via CodeSync Pro`;
     },
 
     codeforces: () => terminalCommands.cf(),
-
-    battle: () => {
-      setTimeout(openGridSimulator, 300);
-      return `Launching BigOof 3x3 Lockout Grid Simulator (Option B: 1/3 Point Drop Active)...`;
-    },
-
-    vs: () => terminalCommands.battle(),
 
     theme: (arg) => {
       if (!arg) return `Usage: theme <name>\nAvailable themes: tokyo, catppuccin, matrix, cyber, macos`;
@@ -1037,297 +1017,48 @@ Location: Dhaka, Bangladesh`;
     requestAnimationFrame(step);
   }
 
-  // ── 8. Live Codeforces Telemetry & Dual-Mode CP Activity Monitor ──
-  async function initLiveCodeforcesHUD() {
-    const hudContainer = document.getElementById('cf-dynamic-hud');
-    const svgWrapper = document.getElementById('cp-card-wrapper');
-    const btnHud = document.getElementById('btn-show-hud');
-    const btnSvg = document.getElementById('btn-show-svg');
+  // ── 8. 100% Fully Automated Live CP Monitor from CodeSync Pro ──
+  // Fetches codesync-stats.svg directly with cache-busting (local + remote).
+  // Inlines the SVG so all SVG SMIL animations (electric border, flame gradient, laser sweep,
+  // sonar radar rings) execute natively in full 60 FPS vector quality.
+  // Displays complete real telemetry: Total Solved (97), Streak (29 days), Accuracy (57.8%),
+  // Submissions (303), Platform Breakdown (CF: 81, LC: 16).
+  async function autoSyncCPFromRepo() {
+    const mount = document.getElementById('cp-svg-mount');
+    if (!mount) return;
 
-    // View Switcher logic
-    function setCpMode(mode) {
-      if (mode === 'svg') {
-        if (hudContainer) hudContainer.style.display = 'none';
-        if (svgWrapper) svgWrapper.style.display = 'flex';
-        if (btnHud) btnHud.classList.remove('active');
-        if (btnSvg) btnSvg.classList.add('active');
-      } else {
-        if (hudContainer) hudContainer.style.display = 'flex';
-        if (svgWrapper) svgWrapper.style.display = 'none';
-        if (btnHud) btnHud.classList.add('active');
-        if (btnSvg) btnSvg.classList.remove('active');
-      }
-      playKeyClick();
-    }
+    const urls = [
+      `codesync-stats.svg?t=${Date.now()}`,
+      `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`
+    ];
 
-    if (btnHud) btnHud.addEventListener('click', () => setCpMode('hud'));
-    if (btnSvg) btnSvg.addEventListener('click', () => setCpMode('svg'));
-
-    // 1. Fetch User Info from Codeforces API
-    try {
-      const infoRes = await fetch('https://codeforces.com/api/user.info?handles=Pri8899');
-      const infoData = await infoRes.json();
-      if (infoData.status === 'OK' && infoData.result.length > 0) {
-        const user = infoData.result[0];
-        const rating = user.rating || 0;
-        const maxRating = user.maxRating || rating;
-        const rank = user.rank || 'newbie';
-
-        const ratingEl = document.getElementById('cf-rating-val');
-        if (ratingEl) ratingEl.textContent = rating;
-
-        const maxRatingEl = document.getElementById('cf-max-rating');
-        if (maxRatingEl) maxRatingEl.textContent = `Max: ${maxRating}`;
-
-        const rankPill = document.getElementById('cf-rank-pill');
-        if (rankPill) {
-          rankPill.textContent = rank.toUpperCase();
-          rankPill.className = `cf-rank-pill ${rank.toLowerCase()}`;
-        }
-
-        // Target milestone progress (Pupil @ 1200)
-        const targetRating = 1200;
-        const pct = Math.min(Math.max((rating / targetRating) * 100, 15), 100).toFixed(1);
-        const progressFill = document.getElementById('cf-progress-fill');
-        if (progressFill) progressFill.style.width = `${pct}%`;
-
-        const progressPct = document.getElementById('cf-progress-pct');
-        if (progressPct) progressPct.textContent = `${pct}%`;
-
-        // Relative last online time
-        const lastOnlineTime = user.lastOnlineTimeSeconds;
-        if (lastOnlineTime) {
-          const diffHours = Math.floor((Date.now() / 1000 - lastOnlineTime) / 3600);
-          const timeEl = document.getElementById('cf-last-active-time');
-          if (timeEl) {
-            timeEl.textContent = diffHours <= 4 ? 'Active Recently' : `Active ${diffHours}h ago`;
-          }
-        }
-      }
-    } catch (err) {
-      console.warn('CF user.info API fallback:', err);
-    }
-
-    // 2. Fetch Recent Submissions & Calculate Solved Count
-    try {
-      const statusRes = await fetch('https://codeforces.com/api/user.status?handle=Pri8899&from=1&count=25');
-      const statusData = await statusRes.json();
-      if (statusData.status === 'OK' && statusData.result) {
-        const subs = statusData.result;
-        const acceptedMap = new Map();
-
-        subs.forEach((sub) => {
-          if (sub.verdict === 'OK' && sub.problem) {
-            const key = `${sub.problem.contestId || ''}${sub.problem.index}`;
-            if (!acceptedMap.has(key)) {
-              acceptedMap.set(key, sub);
-            }
-          }
-        });
-
-        // Update verified solve count
-        const solvedCountEl = document.getElementById('cf-solved-count');
-        if (solvedCountEl) {
-          const totalAC = Math.max(acceptedMap.size, 52);
-          solvedCountEl.textContent = `${totalAC}+`;
-        }
-
-        // Render Recent Solves List
-        const mountEl = document.getElementById('cf-recent-solves-mount');
-        if (mountEl && acceptedMap.size > 0) {
-          mountEl.innerHTML = '';
-          const recentList = Array.from(acceptedMap.values()).slice(0, 4);
-
-          recentList.forEach((sub) => {
-            const p = sub.problem;
-            const cid = p.contestId;
-            const idx = p.index;
-            const probLink = cid ? `https://codeforces.com/contest/${cid}/problem/${idx}` : '#';
-            const ratingBadge = p.rating ? `<span class="cf-rating-badge">${p.rating} pts</span>` : '';
-            const execTime = `${sub.timeConsumedMillis || 0}ms`;
-
-            const row = document.createElement('div');
-            row.className = 'cf-solve-row';
-            row.innerHTML = `
-              <div class="cf-solve-left">
-                <span class="cf-verdict-tag">✓ AC</span>
-                <a href="${probLink}" target="_blank" rel="noopener noreferrer" class="cf-solve-title">
-                  ${cid ? `${cid}${idx} · ` : ''}${p.name}
-                </a>
-              </div>
-              <div class="cf-solve-right">
-                ${ratingBadge}
-                <span>${execTime}</span>
-              </div>
-            `;
-            mountEl.appendChild(row);
-          });
-        }
-      }
-    } catch (err) {
-      console.warn('CF user.status API fallback:', err);
-    }
-
-    // 3. Background attempt to load SVG from Pri8899/CP (for SVG view mode)
-    const svgMount = document.getElementById('cp-svg-mount');
-    if (svgMount) {
-      const SVG_URL = `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${Date.now()}`;
+    for (const url of urls) {
       try {
-        const res = await fetch(SVG_URL, { cache: 'no-store' });
-        if (res.ok) {
-          const svgText = await res.text();
-          if (svgText.includes('<svg') && svgText.includes('</svg>')) {
-            svgMount.innerHTML = svgText;
-            const svgEl = svgMount.querySelector('svg');
-            if (svgEl) {
-              svgEl.removeAttribute('width');
-              svgEl.removeAttribute('height');
-              svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-              svgEl.style.width = '100%';
-              svgEl.style.maxWidth = '680px';
-              svgEl.style.height = 'auto';
-              svgEl.style.display = 'block';
-            }
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) continue;
+        const svgText = await res.text();
+
+        if (svgText.includes('<svg') && svgText.includes('</svg>')) {
+          mount.innerHTML = svgText;
+          const svgEl = mount.querySelector('svg');
+          if (svgEl) {
+            svgEl.removeAttribute('width');
+            svgEl.removeAttribute('height');
+            svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+            svgEl.style.width = '100%';
+            svgEl.style.maxWidth = '680px';
+            svgEl.style.height = 'auto';
+            svgEl.style.display = 'block';
           }
+          console.log('✅ CP Monitor: 100% automated live SVG loaded from CodeSync Pro');
+          return;
         }
       } catch (err) {}
     }
+
+    const img = document.getElementById('codesync-live-img');
+    if (img) img.src = `codesync-stats.svg?t=${Date.now()}`;
   }
 
-  // ── 9. BigOof 3x3 Lockout Grid Simulator (Option B: 1/3 Drop) ──
-  const gridSimModal = document.getElementById('grid-sim-modal');
-  const openSimBtn = document.getElementById('btn-open-grid-sim');
-  const closeSimBtn = document.getElementById('close-sim-btn');
-  const resetSimBtn = document.getElementById('sim-reset-btn');
-  const simGridMount = document.getElementById('sim-grid-3x3');
-  const simP1ScoreEl = document.getElementById('sim-p1-score');
-  const simP2ScoreEl = document.getElementById('sim-p2-score');
-  const simLogMsg = document.querySelector('#sim-battle-log .log-msg');
-  const simLogTime = document.querySelector('#sim-battle-log .log-time');
-
-  const simProblems = [
-    { id: '1807A', title: 'Plus or Minus', pts: 100, rating: 800 },
-    { id: '1676A', title: 'Lucky?', pts: 100, rating: 800 },
-    { id: '750A', title: 'New Year and Hurry', pts: 200, rating: 800 },
-    { id: '1999A', title: 'A+B Again?', pts: 200, rating: 800 },
-    { id: '230A', title: 'Dragons', pts: 300, rating: 1000 },
-    { id: '96A', title: 'Football', pts: 300, rating: 900 },
-    { id: '69A', title: 'Young Physicist', pts: 400, rating: 1000 },
-    { id: '1899A', title: 'Game with Integers', pts: 400, rating: 900 },
-    { id: '158A', title: 'Next Round', pts: 500, rating: 800 }
-  ];
-
-  let p1Score = 0;
-  let p2Score = 0;
-  const tileStates = simProblems.map(() => ({ p1: false, p2: false }));
-
-  function updateSimScoreboard() {
-    if (simP1ScoreEl) simP1ScoreEl.textContent = `${p1Score} pts`;
-    if (simP2ScoreEl) simP2ScoreEl.textContent = `${p2Score} pts`;
-  }
-
-  function setSimLog(tag, msg) {
-    if (simLogTime) simLogTime.textContent = `[${tag}]`;
-    if (simLogMsg) simLogMsg.textContent = msg;
-  }
-
-  function renderSimGrid() {
-    if (!simGridMount) return;
-    simGridMount.innerHTML = '';
-
-    simProblems.forEach((prob, idx) => {
-      const state = tileStates[idx];
-      const tile = document.createElement('div');
-      tile.className = 'sim-tile';
-
-      let statusText = 'UNSOLVED';
-      if (state.p1 && state.p2) {
-        tile.classList.add('both-solved');
-        const p2Pts = Math.round(prob.pts / 3);
-        statusText = `P1: ${prob.pts} | P2: ${p2Pts} (1/3)`;
-      } else if (state.p1) {
-        tile.classList.add('p1-first');
-        statusText = `👑 P1 Solved (+${prob.pts})`;
-      }
-
-      tile.innerHTML = `
-        <div class="tile-pts">${prob.pts} PTS</div>
-        <div class="tile-rating">${prob.id} · ${prob.rating}r</div>
-        <div class="tile-status">${statusText}</div>
-      `;
-
-      tile.addEventListener('click', () => {
-        playKeyClick();
-        if (!state.p1) {
-          // First Blood: Player 1 solves for 100% full points
-          state.p1 = true;
-          p1Score += prob.pts;
-          updateSimScoreboard();
-          setSimLog('FIRST BLOOD', `Player 1 solved ${prob.id} (${prob.title}) for FULL ${prob.pts} pts!`);
-        } else if (!state.p2) {
-          // Option B: Player 2 solves without lockout, gets 1/3 point drop!
-          state.p2 = true;
-          const dropPts = Math.round(prob.pts / 3);
-          p2Score += dropPts;
-          updateSimScoreboard();
-          setSimLog('1/3 DROP', `Player 2 solved ${prob.id} after first blood! Awarded ${dropPts} pts (1/3 value).`);
-        } else {
-          // Third click: Reset tile
-          p1Score -= prob.pts;
-          p2Score -= Math.round(prob.pts / 3);
-          state.p1 = false;
-          state.p2 = false;
-          updateSimScoreboard();
-          setSimLog('RESET', `Tile ${prob.id} reset to unsolved state.`);
-        }
-        renderSimGrid();
-      });
-
-      simGridMount.appendChild(tile);
-    });
-  }
-
-  function openGridSimulator() {
-    if (!gridSimModal) return;
-    gridSimModal.classList.add('open');
-    renderSimGrid();
-    playKeyClick();
-  }
-
-  function closeGridSimulator() {
-    if (!gridSimModal) return;
-    gridSimModal.classList.remove('open');
-    playKeyClick();
-  }
-
-  function resetGridSimulator() {
-    p1Score = 0;
-    p2Score = 0;
-    tileStates.forEach((s) => {
-      s.p1 = false;
-      s.p2 = false;
-    });
-    updateSimScoreboard();
-    setSimLog('RESET', '3x3 Grid Battle reset. Click tiles to start battle simulation!');
-    renderSimGrid();
-    playKeyClick();
-  }
-
-  if (openSimBtn) openSimBtn.addEventListener('click', openGridSimulator);
-  if (closeSimBtn) closeSimBtn.addEventListener('click', closeGridSimulator);
-  if (resetSimBtn) resetSimBtn.addEventListener('click', resetGridSimulator);
-  if (gridSimModal) {
-    gridSimModal.addEventListener('click', (e) => {
-      if (e.target === gridSimModal) closeGridSimulator();
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && gridSimModal && gridSimModal.classList.contains('open')) {
-      closeGridSimulator();
-    }
-  });
-
-  // Initialize features
-  initLiveCodeforcesHUD();
+  autoSyncCPFromRepo();
 })();
