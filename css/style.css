@@ -2324,6 +2324,8 @@ a {
   gap: 6px;
   min-height: 20px;
   margin: 2px 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .platform-chip {
   font-size: 9.5px;
@@ -2331,6 +2333,8 @@ a {
   padding: 2px 7px;
   border-radius: 99px;
   letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .cf-chip-accent {
   color: #79c0ff;
@@ -2350,6 +2354,8 @@ a {
   border: 1px solid rgba(255, 123, 114, 0.3);
   padding: 2px 7px;
   border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .cf-rank-pill {
   font-size: 9.5px;
@@ -2358,6 +2364,8 @@ a {
   border-radius: 99px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .cf-rank-pill.newbie {
   color: #a0a0a0;
@@ -2372,6 +2380,10 @@ a {
 .cf-max-sub {
   font-size: 11px;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
 }
 .cf-progress-wrap {
   margin-top: 6px;
@@ -2404,6 +2416,8 @@ a {
   border: 1px solid rgba(63, 185, 80, 0.25);
   padding: 1px 6px;
   border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .cf-platform-chips,
 .cf-tags-row {
@@ -2428,6 +2442,8 @@ a {
   font-weight: 700;
   padding: 2px 6px;
   border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .lc-diff-badge.easy {
   color: #00b8a3;
