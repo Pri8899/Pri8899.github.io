@@ -729,8 +729,14 @@ Location: Dhaka, Bangladesh`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      setTimeout(() => {
+        if (!card.matches(':hover')) {
+          card.style.transform = '';
+          card.style.transition = '';
+        }
+      }, 500);
     });
 
     card.addEventListener('mouseenter', () => {
