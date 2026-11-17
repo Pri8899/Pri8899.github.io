@@ -1560,7 +1560,67 @@ Location: Dhaka, Bangladesh`;
     if (img && !mount.querySelector('svg')) {
       img.src = `assets/codesync-stats.svg?t=${Date.now()}`;
     }
+
+    const overviewMount = document.getElementById('cp-overview-mount');
+    if (overviewMount) {
+      const ovText = await fetchLatestOverviewSVG();
+      if (ovText && ovText.includes('<svg')) {
+        overviewMount.innerHTML = ovText;
+        const ovSvg = overviewMount.querySelector('svg');
+        if (ovSvg) {
+          ovSvg.removeAttribute('width');
+          ovSvg.removeAttribute('height');
+          ovSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+          ovSvg.style.width = '100%';
+          ovSvg.style.maxWidth = '780px';
+          ovSvg.style.height = 'auto';
+          ovSvg.style.display = 'block';
+        }
+      }
+    }
   }
+
+  async function fetchLatestOverviewSVG() {
+    const ts = Date.now();
+    const sources = [
+      `https://raw.githubusercontent.com/Pri8899/CP/main/assets/overview.svg?t=${ts}`,
+      'https://api.github.com/repos/Pri8899/CP/contents/assets/overview.svg',
+      `assets/overview.svg?t=${ts}`
+    ];
+    for (const src of sources) {
+      try {
+        const headers = src.includes('api.github.com') ? { 'Accept': 'application/vnd.github.v3.raw' } : {};
+        const res = await fetch(src, { cache: 'no-store', headers });
+        if (res.ok) {
+          const text = await res.text();
+          if (text.includes('<svg') && text.includes('</svg>')) {
+            return text;
+          }
+        }
+      } catch (e) {}
+    }
+    return '';
+  }
+
+  // CodeSync Card Sub-Switcher (All Cards, Performance, Overview)
+  const btnToggleBoth = document.getElementById('btn-toggle-both');
+  const btnToggleStats = document.getElementById('btn-toggle-stats');
+  const btnToggleOverview = document.getElementById('btn-toggle-overview');
+  const secStats = document.getElementById('section-card-stats');
+  const secOverview = document.getElementById('section-card-overview');
+
+  function setCardToggle(mode) {
+    if (btnToggleBoth) btnToggleBoth.classList.toggle('active', mode === 'both');
+    if (btnToggleStats) btnToggleStats.classList.toggle('active', mode === 'stats');
+    if (btnToggleOverview) btnToggleOverview.classList.toggle('active', mode === 'overview');
+
+    if (secStats) secStats.style.display = (mode === 'both' || mode === 'stats') ? 'flex' : 'none';
+    if (secOverview) secOverview.style.display = (mode === 'both' || mode === 'overview') ? 'flex' : 'none';
+  }
+
+  if (btnToggleBoth) btnToggleBoth.addEventListener('click', () => setCardToggle('both'));
+  if (btnToggleStats) btnToggleStats.addEventListener('click', () => setCardToggle('stats'));
+  if (btnToggleOverview) btnToggleOverview.addEventListener('click', () => setCardToggle('overview'));
 
   const csesSolves = [
     { platform: 'CSES', id: '1068', title: 'Weird Algorithm', topic: 'Introductory Problems', time: 'Archive', path: '1068 - Weird Algorithm' },

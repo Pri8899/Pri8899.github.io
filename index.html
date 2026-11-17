@@ -1048,11 +1048,30 @@
 
                   <!-- VIEW 4: CodeSync Pro Vector Card Mount -->
                   <div class="cp-card-wrapper" id="cp-card-wrapper" style="display: none;">
-                    <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
-                      <div class="cp-svg-mount" id="cp-svg-mount">
-                        <img id="codesync-live-img" src="assets/codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
-                      </div>
-                    </a>
+                    <!-- Segmented sub-switcher -->
+                    <div class="cp-card-subswitch">
+                      <button type="button" class="cp-card-toggle-btn active" id="btn-toggle-both" data-toggle="both">🗂️ All Cards</button>
+                      <button type="button" class="cp-card-toggle-btn" id="btn-toggle-stats" data-toggle="stats">⚡ Performance</button>
+                      <button type="button" class="cp-card-toggle-btn" id="btn-toggle-overview" data-toggle="overview">📊 Platform Overview</button>
+                    </div>
+
+                    <!-- 1. Performance Stats Card -->
+                    <div class="cp-card-section" id="section-card-stats" style="width: 100%; max-width: 680px; display: flex; justify-content: center;">
+                      <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
+                        <div class="cp-svg-mount" id="cp-svg-mount">
+                          <img id="codesync-live-img" src="assets/codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
+                        </div>
+                      </a>
+                    </div>
+
+                    <!-- 2. Problem Solved Overview Card -->
+                    <div class="cp-card-section" id="section-card-overview" style="width: 100%; max-width: 780px; display: flex; justify-content: center;">
+                      <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Problem Solved by Platform & Division Overview">
+                        <div class="cp-svg-mount" id="cp-overview-mount">
+                          <img id="overview-live-img" src="assets/overview.svg" alt="Problem Solved by Platform & Division Overview" />
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
