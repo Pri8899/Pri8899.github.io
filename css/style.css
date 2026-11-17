@@ -2255,18 +2255,13 @@ a {
 .cp-hud-toolbar-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   position: relative;
   padding-left: 0;
   flex-shrink: 0;
 }
 .cp-hud-live-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: #3fb950;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
+  display: none;
 }
 .cp-hud-handle {
   font-size: 11.5px;
