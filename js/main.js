@@ -1507,9 +1507,11 @@ Location: Dhaka, Bangladesh`;
   async function fetchLatestCPStatsSVG() {
     const ts = Date.now();
     const sources = [
-      `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${ts}`,
-      'https://api.github.com/repos/Pri8899/CP/contents/codesync-stats.svg',
-      `codesync-stats.svg?t=${ts}`
+      `https://raw.githubusercontent.com/Pri8899/CP/main/assets/codesync-stats.svg?t=${ts}`,
+      'https://api.github.com/repos/Pri8899/CP/contents/assets/codesync-stats.svg',
+      `assets/codesync-stats.svg?t=${ts}`,
+      `codesync-stats.svg?t=${ts}`,
+      `https://raw.githubusercontent.com/Pri8899/CP/main/codesync-stats.svg?t=${ts}`
     ];
 
     for (const src of sources) {
@@ -1556,7 +1558,7 @@ Location: Dhaka, Bangladesh`;
 
     const img = document.getElementById('codesync-live-img');
     if (img && !mount.querySelector('svg')) {
-      img.src = `codesync-stats.svg?t=${Date.now()}`;
+      img.src = `assets/codesync-stats.svg?t=${Date.now()}`;
     }
   }
 

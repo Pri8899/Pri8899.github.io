@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 270" width="200" height="270" role="img" aria-label="Codeforces profile">
+  <defs>
+    <!-- Card Clip Path -->
+    <clipPath id="card-clip-cf">
+      <rect width="200" height="270" rx="18" />
+    </clipPath>
+
+    <!-- Neon Glow Filter -->
+    <filter id="filter-glow-cf" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Card Background -->
+  <rect width="200" height="270" rx="18" fill="#0d1117" />
+  <rect width="200" height="270" rx="18" fill="#161b22" fill-opacity="0.5" />
+
+  <!-- Outer Neon Glow Border with Continuous Pulse Animation -->
+  <rect x="1" y="1" width="198" height="268" rx="17" fill="none" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.8" filter="url(#filter-glow-cf)">
+    <animate attributeName="stroke-opacity" values="0.35; 0.95; 0.35" dur="2.4s" repeatCount="indefinite" />
+    <animate attributeName="stroke-width" values="1.6; 2.6; 1.6" dur="2.4s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Top Curved Accent Bar with Continuous Sliding Laser Beam -->
+  <g clip-path="url(#card-clip-cf)">
+    <rect x="0" y="0" width="200" height="4.5" fill="#3b82f6" fill-opacity="0.45" />
+    <!-- Sliding Neon Laser Shimmer Beam -->
+    <rect y="0" width="80" height="4.5" fill="#ffffff" fill-opacity="0.95">
+      <animate attributeName="x" values="-80; 200; -80" dur="2.8s" repeatCount="indefinite" />
+    </rect>
+    <rect y="0" width="80" height="4.5" fill="#3b82f6" fill-opacity="0.75">
+      <animate attributeName="x" values="-80; 200; -80" dur="2.8s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Center Icon Frame with Animated Glowing Aura -->
+  <circle cx="100" cy="62" r="34" fill="#3b82f6" fill-opacity="0.22">
+    <animate attributeName="r" values="28; 38; 28" dur="2.6s" repeatCount="indefinite" />
+    <animate attributeName="fill-opacity" values="0.15; 0.38; 0.15" dur="2.6s" repeatCount="indefinite" />
+  </circle>
+  <rect x="68" y="30" width="64" height="64" rx="18" fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.45" stroke-width="1.4">
+    <animate attributeName="stroke-opacity" values="0.3; 0.8; 0.3" dur="2.4s" repeatCount="indefinite" />
+  </rect>
+  <image x="78" y="45.5" width="44" height="33" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA8CAYAAADxJz2MAAASrElEQVR4nO1cCXgURb7/V1V3T8+VkyQkhCPKIjeKKMpjF/IB6rJ8roITQQIuoHiA4lPfPvTb3cm4T/F7qMhbUDw5vTI+UcRjERcil2gQP58gojEEMRBCIMlM5ujuqnpf9UwwxwzMRCF4/L+v0unuqurqX/3vqh4EnUxutxt7PB42avX/jT7GLJ5wWPs3jQHhnLeuiBBYCKIWRd6WjY0HN0/rv+Fvbo49HsQ6a+zmsDrz4cA5BoTY5Wv2Tqg1LK8EDWYDLQgIxR4W4wBIUUHFoOUptGhLcd83wFVKwFtE4RcHIOdIPN1V+lWXT+q1PSFsyUJ6yAAA6TQNDSapko2Hj15ZkN5/6bhux0EwK0JtWPbsEIZOIpdXPBvxgyH6B0OxZ4EWoKcHTxCSkBakhsWZXV7jHyv6iPTVOdRpDz6atdnk/uMhlmdyD8IJcxDCmDNA3K/R7uLcuyfSV2dQAjN+Zqhsc+QYpkyIbRytd0pCRjtL8wviwJ8L/QrgD6RfAfyB9CuAnWVEuNuNoWTAqXW/1wtQ5GUITE/tZ0kdApCXuggq8lDwJFjf7cbI4+nUkOucAZBzEWl5Kf9mYU+Q6OU01JgGmsGBtK5HZCsHkvIVFNy9GXkQ45wj1EnRwjkDIOdujJCHGfs88xk0zMcIpRIVA1iVNhWFl0YBaD2wSk8Z1xfPQghVNLeHXyKAptgiD+Vfeu6FNFjA6zWgIU7jusAmiJyTNOsoGj76Jj+xfATAjIafGyfihHVYkZc27V+czyBcwhqaGGNAEUIEAcQuSByRRI8HdZIq96PHvp2FkIC16Idbfh4tp+FlN7hFfEg4AC4FIG1L83XucgkFhM4cB5bsRcJg2LD/UpCxnfo5Qxi10XpxCCEMusERgzEA8Ch4Y9Rp5seTfNmaQXmMk9NFcQIcBB6WkJ0T3kKkjZAnfuaMCG1QgEg86blCQpiZPfZNZoLBRbKvHfH4pwJAxk4BHrDya64/n3/33WQt4O9nBIMMtxi4aIkJRorTGZBSHP8aumljqVAtyYKYFIDU4JwoDAGnwhhDImQyCqeixByUwAAJ8FpxlDiPphiaOa4tVzIeU4Kbwdsxeswktm/f04qhZyDGQEUxNId4bn0DYJ9/9s6LL7vp8393Xw+LPCeS0dNJ6iMBhAGcG+YREikgjhSAxUsaRzkwyoWREsGTM3EvUiIXBNdFiinCNIauBmC7xl/Tjx+pXWOEghn1hqE3cU59jLUrfnHknNZrmm5v8I1t+GDDP0SqLG5K/McBsCPFiBzjdHkSGN66tD6NghsFO5YIez0e88WDR2tuVzVdDSOkA0KyMCQQo5y8jrF03NAp9fkmfzJpSn8xCWak9eM70hoAlyIcmKgIg2AyDLEFLqKMmoE5fUff/xOrfpHoDSEwmoL9tYhOSDRLiyhCYOMcBw8dGgwAezdv3iwAZD8ugCfFUBwT5HJTBwoOjDcWgWAbQEz9F98qR/rkIHyptpeFGWBayFx/SirfGpUC2tSYeJvkOVDoMoEFTQo/4CjuVOqUcyLAbWuFYxrlKPeJPzGtdnM1wdGm05kUifrJLu8lD6CpfxIXYZM4jisMdhlZwuJlo3Y97ku3vWECyE7raydDHQmPkjIi1JwfA3jChZpFtORcb9XXxXlOcwbybEoawljowYjEtTQoUYvbzsCY5wBMjw9ER0uylKQjLURY2CghwklwIMNt/LwWt0zkoq6K4MF2UUkbar4ex4k2b/0ADjzzIgxCtyRuRLg5LBz/dUxJFOzU3GX8erFCunhdni0RThJAYUEEl5x82wRIvHl8wE1uienGnAxB4nQrDA/9iQFIhR9ITglIbACFEYmjboUoNus2s7pwQCKWu1UfJy169NGn8dDOURGOxLWcJynCHEd1XKz730cZJ7uM+CntK7ZqJDgwdp9McHQCGZvW/QspYEkjmLwRaU4OJMuBPE59AUK7ZELL1m2VX/MN4UjHfWKHOLAjqfIOGJHmY0tATgVms78WT4SbHd8Yr9vuUsto5cz4gWfBkRZjTxxAbjYQkUg8l7OFDoxUjW9ueQzL/ZMwIt6WAHbECqO4oZdpQ6JprFOHIokTa+ELnmNujOC85iRFEgAmVf+H0+l88dO1O4NGJGr9kuZAfopszJkhdi7qwEgsLHJ7iQ+NdwIHtgrlEnVlogncM8uBprKCDnAgM9eV4CwRZ5RzRJLzA8+KFcYSATBaBq4JUIQDOcdnZyeYSHJIssSpyAQlR6a5w2JZJXFK7KVc0cqWjMaO7cblDGH5RMsrjmqf+X7+sNHAqFixS65f4QtYZNKKYUqis4pVtSlq9yMZsgSKWBw0gCOL3WGOszY7OyH8E+QKr+lkaDzto0CYHJdlUx6NRNQKEqkbScJIsr3RcjLK9taaA7RK+GOghsAjYZYWDQnTUbZd2W12OSDS12gYJWJGIKptHcEEc8YSApEBGGK1W1eUmpzhF35o9un1sh8NQHNLRqkLpwxdXsul9PmKTUWqDJIZQbRbS/t+EQ0jjmyZihLwkXe/dfZ8MZJ0jg7MWyTkGu26MPC+DYW3gS2VcM50MxMbycC2LuY1MDhnBranSVaubdyS9fVWcLuxtyjyoc1oKDNZecJ/rVgVcto/SJUkRTyjRaq2zRhNAoVzyaJakDU7856LFi+ud0fWln9MDgQQe2PEUp9j2BvP+JscxUCs+2VZApkgFLNIGGHJ0hRucj5r6zn+uj59/hE+ORkR4lACCBUWGoO7OKalQOhj2Z4mg+qQQLETUB2ti2IjYHVIkj1VdkJge98s5wxUVNSKS5pfGo3vEx54g+tqLTP9WcliaZKIhAjGSGpbCEFEkoDY7V/Qrl2njN+y+QXz07MkwmLUsf2BwA9uf9TaPe2zIf7Gb2xiBbylNTIoR5IlnXP1ggrboMe+bdkuRodIfCeyfz+3THp79+SQboyk1HAK6RPbaiJVGGDxwopab8V866fzKl5CSHCdEPv21r3l9oxN107N1+pPnBc8foyQNnWxRcEpeV0bcgpHft5n3rxwR/bGdIjEVreE63LAp90HIkCMEo4WFON/FKdNzC4BkBDFRMcpdmlBB6jD3m0EFDcC7974fezpzxPe2ss5GlWymZjGpf+e2FywdwAa1T8LlXlGi0WZhDhFgDjA5UIxd4W5AFz9+3PweMwIP6Fx/kq/0jlFLcWveZdmMyuj5vRBJ43tpwkkIWKzUivd21a5ttTv8a631P8tqe39FvXM7QlRhzpaOEfCrWj5DHEeudbWiLRvG8s5F3v/hO/Y3gi1aQ/t6zW3NY+t3gpjuOiiiy7PzMwsyc7OXpmRkbEkPz//Bs55y+336BRgnoo6ZN3akkt8mZ7AtbbUPAGRY5sta+ZkiAWb01IEzNaNzYkUXjrOzs5+tKGh4S4BpCzLRxhjhDGWhRA6kJub+9iCBQueKioq0oQjt2zZMtvKlStzZVlu2rZt2xHDMCM6VFxcnKUoitVqtZobLvx+P1uxYkUtQuJ7B4AJEybYMjMzs1VV1SVJMtWCLMv8wIEDNp/PV58/cC49cLRCynb20E9AJGzGFJPcLo6UXuq+g+J3FQhG4LrthTyqSKj0MddhhMTvJXB0x+J3lMo9J5zc30D9spXLFo1biAOvf+IGH0LIaOkv3v3Iui579zWoF56f3vTwfRPMB41yb5Kch6vTRPuwowsDOAGSxcYxbbAVZOXjpZ5rqkW9+U9sSf/ko68cQ/ukBR6+f2Kd+eLdu3e/69ChQ4tsNts748aNu2P9+vUVAqjBgwcP2r9//7NWq3VXTU3NnJKSEsuyZcv+0tjYeLMsy9mGYVCM8ea+ffv+R3l5+e4xY8bM/vTTTxcLB5gQomiaRjVN+zYrK+v5gwcPLpgyZUp2WVnZ9kAg0JUQYjO9as45kSQk8caRY2e/mV9Tc3QR1YNid79FLDBKkixhoDvefW7GVUV3rpoc0PBftXC4j/jkWpLlCqcN/f2Vx4tXuxe/nfLRZ0fXaxTOR5xaok67bLVZq9Ic8n2rF7rWz3Ov7VVZG3xE1/QJum7Isiz5ZYn8y+m0PDa1cMhHS9buWKMZ6DJGNVtUajRZsTozHNhzT/HkRx9c/uKyYJhOZozaCMZBSZa2dUm1LkY2m+0bXde7TJo0qe/LL78skD65sXDJkiWOjz/+2Fi1alUoIyPj2YaGhlkpKSlPDxo0yFtZWVlw+PDh/5ZlWXe5XH0OHjw4YtOmTW/l5uY+MmjQoA1VVVXWI0eOzG5qavpDly5dbqytrV1FKf0uIyMjcMkll9xVV1eHLRaLHAwb3Ruqd77W/xrvUI6k143giTmqjMuBIEVR7OnUCBmqguX6oPwG0OCutFT1AQyI1TUE/4xl+29TFTrxhUVFa8fNeO5rRZYNo0n7I1E5LuiRnf9VVd06BGj/3XdeNWLx0g07GVIGWCX9wexMe1mDL5znCxj/qUjI98aT04aPufH5Ny2qZQLBbGxTUAsTriBZtXTvmaPuqznuGxrU5WdsijENQvoHFqe1d71fd6syek+SJKmAc77vpZdeOnb48GGprKzMFLlRo0ZJc+fO9Yv/p06dml9aWjpTVdV1jY2Nt5SVlZki1q9fv8qKior3Nm7c6Bo+fPiXQiQDgcC2DRs2vCfuc87fsVqttYFAYIZhGKsxxob4tqS+vj4rEAhY6urq6g5UHVws8rMX0KaRgKzcbld6OaxqmAFORUD/uerx4j2/n7V8M0PU55pwXuFN14z0ib4reeXG22dvPVQXMu7lnL9+5czlQcaYDWTcN6BB6GhtYwZGCkHIqH75xa2/A8kxwIqa7l77xPRFzVpsXXm5d93a73JEyoYgsV+TUsRRJgPQc7PVLvOKClYMGzZMv+6ONVeKIC8YCo8ghHQ1QvqhC3qn3/vIvb/fLVFKD1FKc+fMmZNRVlZ2JMq+rKyszCgtLXVMnjzZHwqFMgghSJKk8qjOc4iv9Z1O5z5ZlmkgEOhOCPlCWCfGmLgnm+lXSQqnpaWJ9umqqoqt71pjY2NBRUXFQs65yjkvv27SX9Z5vR5Tb3LGka9JKw6FDA1Lil2V0RG3m3+x9cDz2TLRvxPgXTz7KdE3nIcKQlfMeO4gRygnujE1oFPcHyP6P7KEezQZKtisfAORlTtqjvkvB0sKzUyz7wBwkctcLkVPP2FcPWxYQMyF+WwMTKcINBp+CAEmPn+ILH/z+FsA/PDF/bYu2/HZgSEBHc1UkGSRiAW++NoPE+esWYAdDsdSXddTV69e/cT06dO7EUKoUPIjR44879Zbb12fk5Oz8NVXX93DGKsPBoOTy8vLbRhjvyRJemVl5TRN00h6evqHuq4L4A1FURoRQjrGODxgwIDh9fX13RRF2R1dPLfm5eXtQAhlGYbhrKuru3Lt2oc0jM2sIQVMKAN29VvP/KnXuiem5OT3TH9X/LCO3SaXI9ned/qfSy/d9fQtuig33/+/Q5FkvdCiSLuFMUEInEC1Xe+vvKlnZpplIhc/xcACW7yLir7OzLB/DZySmuP+uQR76YfeoqDoY+ZfX7t88l0v3hgxsyBzI3Rk44qber+/YmbB2qXFBUs9V1SLzx2O1BzjhcPz53+wZpY677ZCR/88+28MPbAFiOU+9PnnnyuFhYXP19fXTxWa1+FwHKaUonA43BUAfDk5OYuqq6vd3bp1m15dXb2SEFLndDrfDgaDvUKh0G9TU1M31tbWXjFixIjinTt3rsIYV4giy3IXwzCGSpJ0bMiQISPHjRtX+cADD9QRQhyMsXeFpUcIhSwWa26qGvAU3rZRDQQMb6Ch+qqNK2ZsAChBAGYcjWbMf7Wg5nhoM+Oou4yN1wkmPGTwa2VJOpafa/ndsb7G/sZ3/ccMyk+8v3Lm+YIh/3j7ypXI0nW6wk7c+Mrj168ef/OKJ2Vr5i1G6PiXFkXaphksH2H5ChkbZa8tKS68ataKD7DiGMl13ybggCjnIVlWnaoK6x2KdMinSavDQd/blLLdskyyOMizFYm9jQcOHKjV1dUVFxQUjLXb7Q9TSrcCwHupqalzZ82aVVBVVeXWdR1XVVWt6tmz53Cr1fqKz+fLM3+5JCvrT7W1tePFLAmLm5mZ+ZDD4XjNarUK0S5LS0u7Y/To0Rdu3779y6qqqpy+ffuuyM3NfaZbt251PXr0qO3Ro0d9dnb2oe69B1t6ZDt9KRbt+d49M3UBgNtdEmUMDssfvu6b3j3xJTYF3W8wpIQ0XbXJpOQ3eerQJ/828Yuuexx2hNAjsoyeWrhqg024LblZGQuDTQ0PhjUt9+En30p759kZtzqUpklEVnYGQ0YvAFTjUMnEO68rHvv007skWQKvEQ4+pGv0M81gnzGDfck4/jTTaVdGXZr7T4kY02RZqUEIjQCO8m0quufaqwcW/T92aDn1yMnyiAAAAABJRU5ErkJggg==" />
+
+  <!-- Platform Name & Handle -->
+  <text x="100" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18.5" font-weight="700" fill="#f0f6fc">Codeforces</text>
+  <text x="100" y="153" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e">@Pri8899</text>
+
+  <!-- Divider -->
+  <line x1="36" y1="173" x2="164" y2="173" stroke="#21262d" />
+
+  <!-- Solved Count & Label -->
+  <text x="100" y="209" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="32" font-weight="800" fill="#f0f6fc">126</text>
+  <text x="100" y="228" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" letter-spacing="2" fill="#8b949e">SOLUTIONS</text>
+
+  <!-- Bottom Badge with Pulse Animation -->
+  <g transform="translate(100, 254)">
+    <rect x="-56" y="-14" width="112" height="22" rx="11" fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-opacity="0.35" stroke-width="1">
+      <animate attributeName="stroke-opacity" values="0.2; 0.65; 0.2" dur="2.2s" repeatCount="indefinite" />
+    </rect>
+    <text text-anchor="middle" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#3b82f6">
+      View profile →
+      <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2s" repeatCount="indefinite" />
+    </text>
+  </g>
+</svg>

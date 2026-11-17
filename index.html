@@ -18,7 +18,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="icon" href="https://github.com/Pri8899.png" type="image/png" />
+  <link rel="icon" href="assets/bear.jpg" type="image/jpeg" />
+  <meta property="og:image" content="https://pri8899.github.io/assets/bear.jpg" />
+  <meta name="twitter:image" content="https://pri8899.github.io/assets/bear.jpg" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -314,7 +316,7 @@
               <div class="about-avatar-wrapper">
                 <div class="about-avatar-ring"></div>
                 <div class="about-avatar-img">
-                  <span>P</span>
+                  <img src="assets/bear.jpg" alt="Partho Paul" />
                 </div>
               </div>
               <h3 class="about-name-hero">Partho Paul</h3>
@@ -525,18 +527,18 @@
                       <!-- Metric 1: Total Solved -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">TOTAL ACCEPTED SOLVED</div>
-                        <div class="cf-metric-val" id="unified-total-solved">99</div>
+                        <div class="cf-metric-val" id="unified-total-solved">148</div>
                         <div class="cf-metric-sub">
-                          <span class="platform-chip cf-chip-accent">CF: 83 Solves</span>
+                          <span class="platform-chip cf-chip-accent">CF: 126 Solves</span>
                           <span class="platform-chip lc-chip-accent">LC: 16 Solves</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Platform Balance</span>
-                            <span>83.5% CF · 16.5% LC</span>
+                            <span>85.1% CF · 14.9% Others</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 83.5%; background: linear-gradient(90deg, #58a6ff 80%, #ffd60a);"></div>
+                            <div class="cf-progress-bar" style="width: 85.1%; background: linear-gradient(90deg, #58a6ff 85%, #ffd60a);"></div>
                           </div>
                         </div>
                       </div>
@@ -544,10 +546,10 @@
                       <!-- Metric 2: Streak & Activity -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">CURRENT ACTIVE STREAK</div>
-                        <div class="cf-metric-val" id="unified-streak-val">29 <span class="val-unit">Days</span></div>
+                        <div class="cf-metric-val" id="unified-streak-val">46 <span class="val-unit">Days</span></div>
                         <div class="cf-metric-sub">
                           <span class="streak-flame-pill">🔥 Active Streak</span>
-                          <span class="cf-max-sub" id="unified-subs-val">303 Submissions</span>
+                          <span class="cf-max-sub" id="unified-subs-val">209 Submissions</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
@@ -563,18 +565,18 @@
                       <!-- Metric 3: Global Accuracy & Precision -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">GLOBAL AC ACCURACY</div>
-                        <div class="cf-metric-val" id="unified-accuracy-val">57.8% <span class="val-unit">AC</span></div>
+                        <div class="cf-metric-val" id="unified-accuracy-val">60.3% <span class="val-unit">AC</span></div>
                         <div class="cf-metric-sub">
                           <span class="cf-acc-pill">High Precision</span>
-                          <span class="cf-max-sub" id="unified-acc-sub">177 AC of 303 Subs</span>
+                          <span class="cf-max-sub" id="unified-acc-sub">126 AC of 209 Subs</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Submission Accuracy</span>
-                            <span id="unified-acc-pct-label">57.8% Verified</span>
+                            <span id="unified-acc-pct-label">60.3% Verified</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" id="unified-acc-bar" style="width: 57.8%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
+                            <div class="cf-progress-bar" id="unified-acc-bar" style="width: 60.3%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
                           </div>
                         </div>
                       </div>
@@ -592,8 +594,8 @@
                         </a>
                       </div>
                       <div class="cp-filter-bar">
-                        <input type="text" class="cp-search-input" id="cp-search-unified" placeholder="⚡ Filter all 99 problems by title, ID, difficulty or tag..." />
-                        <span class="cp-count-badge" id="cp-count-unified">83 CF + 16 LC = 99 Solves</span>
+                        <input type="text" class="cp-search-input" id="cp-search-unified" placeholder="⚡ Filter all 148 problems by title, ID, difficulty or tag..." />
+                        <span class="cp-count-badge" id="cp-count-unified">126 CF + 16 LC + 6 CSES = 148 Solves</span>
                       </div>
                       <div class="cf-recent-list" id="unified-recent-solves-mount">
                         <!-- Populated dynamically by main.js with mixed CF + LC solves -->
@@ -1048,9 +1050,14 @@
                   <div class="cp-card-wrapper" id="cp-card-wrapper" style="display: none;">
                     <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
                       <div class="cp-svg-mount" id="cp-svg-mount">
-                        <img id="codesync-live-img" src="codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
+                        <img id="codesync-live-img" src="assets/codesync-stats.svg" alt="CodeSync Pro Live CP Stats" />
                       </div>
                     </a>
+                    <div style="margin-top: 20px; width: 100%; max-width: 680px; margin-left: auto; margin-right: auto;">
+                      <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Problem Solved by Platform & Division Overview">
+                        <img src="assets/overview.svg" alt="Problem Solved Overview" style="width: 100%; height: auto; border-radius: 14px; border: 1px solid #30363d; display: block;" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
