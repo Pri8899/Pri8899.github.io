@@ -1470,7 +1470,7 @@ Location: Dhaka, Bangladesh`;
 
     if (cfSolvedCountEl) cfSolvedCountEl.textContent = cfSolves.length;
     if (lcTotalValEl) lcTotalValEl.textContent = leetCodeSolves.length;
-    const totalCount = cfSolves.length + leetCodeSolves.length;
+    const totalCount = cfSolves.length + leetCodeSolves.length + (typeof csesSolves !== 'undefined' ? csesSolves.length : 0);
     if (unifiedTotalSolvedEl) unifiedTotalSolvedEl.textContent = totalCount;
 
     // Update tab labels
@@ -1704,16 +1704,19 @@ Location: Dhaka, Bangladesh`;
 
       if (btnCF) btnCF.style.display = hasCF ? 'inline-flex' : 'none';
       if (btnLC) btnLC.style.display = hasLC ? 'inline-flex' : 'none';
+      const csesCount = platformCounts.CSES !== undefined ? platformCounts.CSES : (typeof csesSolves !== 'undefined' ? csesSolves.length : 0);
       if (btnCSES) {
-        btnCSES.style.display = hasCSES ? 'inline-flex' : 'none';
+        btnCSES.style.display = (hasCSES && csesCount > 0) ? 'inline-flex' : 'none';
         btnCSES.dataset.synced = 'done';
       }
+      const acCount = platformCounts.AC !== undefined ? platformCounts.AC : (platformCounts.ATCODER !== undefined ? platformCounts.ATCODER : 0);
       if (btnAC) {
-        btnAC.style.display = hasAC ? 'inline-flex' : 'none';
+        btnAC.style.display = (hasAC && acCount > 0) ? 'inline-flex' : 'none';
         btnAC.dataset.synced = 'done';
       }
+      const tpCount = platformCounts.TOPH !== undefined ? platformCounts.TOPH : (platformCounts.TP !== undefined ? platformCounts.TP : 0);
       if (btnTP) {
-        btnTP.style.display = hasTP ? 'inline-flex' : 'none';
+        btnTP.style.display = (hasTP && tpCount > 0) ? 'inline-flex' : 'none';
         btnTP.dataset.synced = 'done';
       }
 
