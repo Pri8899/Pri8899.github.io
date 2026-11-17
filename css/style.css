@@ -155,11 +155,11 @@ a {
 
 .ambient-aurora {
   position: absolute;
-  border-radius: 54% 46% 42% 58% / 58% 50% 50% 42%;
-  filter: blur(140px);
-  opacity: 0.26;
-  will-change: transform, border-radius;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.22;
+  will-change: transform, opacity;
+  pointer-events: none;
   mix-blend-mode: screen;
 }
 .aurora-1 {
@@ -167,7 +167,7 @@ a {
   left: 14%;
   width: 750px;
   height: 580px;
-  background: radial-gradient(circle at 40% 40%, rgba(0, 242, 254, 0.75), rgba(0, 122, 255, 0.5), transparent 70%);
+  background: radial-gradient(circle at 40% 40%, rgba(0, 242, 254, 0.7), rgba(0, 122, 255, 0.45), transparent 70%);
   animation: auroraMorph1 22s ease-in-out infinite alternate;
 }
 .aurora-2 {
@@ -175,7 +175,7 @@ a {
   right: 5%;
   width: 680px;
   height: 540px;
-  background: radial-gradient(circle at 50% 50%, rgba(191, 90, 242, 0.7), rgba(121, 40, 202, 0.45), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(191, 90, 242, 0.65), rgba(121, 40, 202, 0.4), transparent 70%);
   animation: auroraMorph2 26s ease-in-out infinite alternate;
   animation-delay: -6s;
 }
@@ -184,7 +184,7 @@ a {
   left: 5%;
   width: 700px;
   height: 560px;
-  background: radial-gradient(circle at 45% 45%, rgba(0, 210, 255, 0.6), rgba(58, 123, 213, 0.45), transparent 70%);
+  background: radial-gradient(circle at 45% 45%, rgba(0, 210, 255, 0.55), rgba(58, 123, 213, 0.4), transparent 70%);
   animation: auroraMorph3 28s ease-in-out infinite alternate;
   animation-delay: -12s;
 }
@@ -193,80 +193,68 @@ a {
   left: 45%;
   width: 550px;
   height: 460px;
-  background: radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.4), rgba(139, 92, 246, 0.45), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.35), rgba(139, 92, 246, 0.4), transparent 70%);
   animation: auroraMorph4 30s ease-in-out infinite alternate;
   animation-delay: -18s;
 }
 
 @keyframes auroraMorph1 {
   0% {
-    border-radius: 54% 46% 42% 58% / 58% 50% 50% 42%;
-    filter: blur(100px) hue-rotate(0deg);
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.22;
   }
-  33% {
-    border-radius: 68% 32% 59% 41% / 44% 63% 37% 56%;
-    filter: blur(115px) hue-rotate(12deg);
-  }
-  66% {
-    border-radius: 38% 62% 35% 65% / 65% 38% 62% 35%;
-    filter: blur(95px) hue-rotate(-8deg);
+  50% {
+    transform: translate3d(35px, 40px, 0) scale(1.1);
+    opacity: 0.28;
   }
   100% {
-    border-radius: 48% 52% 61% 39% / 52% 43% 57% 48%;
-    filter: blur(105px) hue-rotate(5deg);
+    transform: translate3d(-25px, 20px, 0) scale(0.95);
+    opacity: 0.22;
   }
 }
 
 @keyframes auroraMorph2 {
   0% {
-    border-radius: 62% 38% 48% 52% / 45% 58% 42% 55%;
-    filter: blur(105px) hue-rotate(0deg);
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.2;
   }
-  33% {
-    border-radius: 40% 60% 65% 35% / 60% 40% 60% 40%;
-    filter: blur(120px) hue-rotate(-15deg);
-  }
-  66% {
-    border-radius: 58% 42% 38% 62% / 38% 62% 38% 62%;
-    filter: blur(95px) hue-rotate(10deg);
+  50% {
+    transform: translate3d(-40px, -30px, 0) scale(1.12);
+    opacity: 0.26;
   }
   100% {
-    border-radius: 46% 54% 52% 48% / 55% 45% 55% 45%;
-    filter: blur(110px) hue-rotate(-5deg);
+    transform: translate3d(25px, -20px, 0) scale(0.96);
+    opacity: 0.2;
   }
 }
 
 @keyframes auroraMorph3 {
   0% {
-    border-radius: 48% 52% 58% 42% / 52% 45% 55% 48%;
-    filter: blur(95px) hue-rotate(0deg);
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.18;
   }
-  33% {
-    border-radius: 65% 35% 42% 58% / 40% 60% 40% 60%;
-    filter: blur(110px) hue-rotate(15deg);
-  }
-  66% {
-    border-radius: 42% 58% 62% 38% / 58% 42% 58% 42%;
-    filter: blur(125px) hue-rotate(-12deg);
+  50% {
+    transform: translate3d(35px, -25px, 0) scale(1.08);
+    opacity: 0.24;
   }
   100% {
-    border-radius: 55% 45% 45% 55% / 48% 52% 48% 52%;
-    filter: blur(100px) hue-rotate(6deg);
+    transform: translate3d(-30px, 35px, 0) scale(0.92);
+    opacity: 0.18;
   }
 }
 
 @keyframes auroraMorph4 {
   0% {
-    border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
-    filter: blur(110px);
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.15;
   }
   50% {
-    border-radius: 65% 35% 60% 40% / 40% 60% 40% 60%;
-    filter: blur(125px);
+    transform: translate3d(-25px, 30px, 0) scale(1.06);
+    opacity: 0.22;
   }
   100% {
-    border-radius: 40% 60% 35% 65% / 60% 40% 60% 40%;
-    filter: blur(100px);
+    transform: translate3d(20px, -25px, 0) scale(0.94);
+    opacity: 0.15;
   }
 }
 
@@ -2946,6 +2934,17 @@ a {
     height: auto;
     padding: 10px 14px;
     gap: 8px;
+  }
+  /* Extreme Mobile Performance Boost: 60-120fps silky smooth scrolling */
+  .ambient-aurora,
+  .cursor-spotlight,
+  .bg-canvas {
+    display: none !important;
+  }
+  .macos-window {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    background: rgba(13, 17, 23, 0.92) !important;
   }
 }
 

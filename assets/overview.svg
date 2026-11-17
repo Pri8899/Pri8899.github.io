@@ -44,7 +44,7 @@
   <!-- Header -->
   <g transform="translate(40, 50)">
     <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Problem Solved by platform</text>
-    <text x="920" y="0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b949e">148 total</text>
+    <text x="920" y="0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b949e">149 total</text>
   </g>
 
   <!-- Platform Progress Bars -->
@@ -56,14 +56,14 @@
       <rect x="150" y="0" width="730" height="10" rx="5" fill="#3b82f6">
         <animate attributeName="width" from="0" to="730" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
       </rect>
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">126</text>
+      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">127</text>
     </g>
     <!-- LeetCode -->
     <g transform="translate(40, 134)">
       <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">LeetCode</text>
       <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="93" height="10" rx="5" fill="#f59e0b">
-        <animate attributeName="width" from="0" to="93" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+      <rect x="150" y="0" width="92" height="10" rx="5" fill="#f59e0b">
+        <animate attributeName="width" from="0" to="92" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
       </rect>
       <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">16</text>
     </g>
@@ -78,8 +78,8 @@
     <g transform="translate(40, 206)">
       <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">CSES</text>
       <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="35" height="10" rx="5" fill="#10b981">
-        <animate attributeName="width" from="0" to="35" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+      <rect x="150" y="0" width="34" height="10" rx="5" fill="#10b981">
+        <animate attributeName="width" from="0" to="34" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
       </rect>
       <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">6</text>
     </g>
@@ -97,7 +97,7 @@
     <g transform="translate(0, 10)">
       <rect width="920" height="10" rx="5" fill="#161b22" />
       <g clip-path="url(#cf-bar-clip)">
-        <rect x="0" y="0" width="7" height="10" fill="#ef4444" /><rect x="7" y="0" width="475" height="10" fill="#3b82f6" /><rect x="482" y="0" width="146" height="10" fill="#10b981" /><rect x="628" y="0" width="226" height="10" fill="#f59e0b" /><rect x="854" y="0" width="66" height="10" fill="#8b5cf6" />
+        <rect x="0" y="0" width="7" height="10" fill="#ef4444" /><rect x="7" y="0" width="471" height="10" fill="#3b82f6" /><rect x="478" y="0" width="152" height="10" fill="#10b981" /><rect x="630" y="0" width="225" height="10" fill="#f59e0b" /><rect x="855" y="0" width="65" height="10" fill="#8b5cf6" />
       </g>
     </g>
     <g transform="translate(0, 34)">
@@ -112,7 +112,7 @@
     </g>
     <g transform="translate(368, 0)">
       <circle cx="5" cy="5" r="4.5" fill="#10b981" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 3: <tspan font-weight="700" fill="#ffffff">20</tspan></text>
+      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 3: <tspan font-weight="700" fill="#ffffff">21</tspan></text>
     </g>
     <g transform="translate(552, 0)">
       <circle cx="5" cy="5" r="4.5" fill="#f59e0b" />

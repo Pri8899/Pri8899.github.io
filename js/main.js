@@ -760,12 +760,20 @@ Location: Dhaka, Bangladesh`;
 
   // ── 6B. Dynamic Background Hover & Fluid Particle Matrix ────────
   (function initBackgroundInteractive() {
-    const root = document.documentElement;
+    const isMobile = window.innerWidth < 768 || ('ontouchstart' in window) || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    const canvas = document.getElementById('bg-canvas');
+
+    if (isMobile) {
+      // Zero CPU overhead on phones & tablets
+      if (canvas) canvas.style.display = 'none';
+      return;
+    }
+
+    const spotlight = document.querySelector('.cursor-spotlight');
     const aurora1 = document.getElementById('aurora-1');
     const aurora2 = document.getElementById('aurora-2');
     const aurora3 = document.getElementById('aurora-3');
     const aurora4 = document.getElementById('aurora-4');
-    const canvas = document.getElementById('bg-canvas');
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -774,6 +782,7 @@ Location: Dhaka, Bangladesh`;
     let prevMouseX = mouseX;
     let prevMouseY = mouseY;
     let mouseSpeed = 0;
+    let lightingRaf = null;
 
     // Interactive Shockwaves, Sparks & Fluid Cursor Wake
     const ripples = [];
@@ -790,44 +799,54 @@ Location: Dhaka, Bangladesh`;
       prevMouseX = mouseX;
       prevMouseY = mouseY;
 
+      // Start lerp loop only when cursor moves
+      if (!lightingRaf) {
+        lightingRaf = requestAnimationFrame(updateCursorLighting);
+      }
+
       // Spawn fluid cursor trailing stardust when sweeping across background
-      if (mouseSpeed > 2 && cursorTrails.length < 50) {
-        const count = Math.min(3, Math.max(1, Math.floor(mouseSpeed / 10)));
-        for (let i = 0; i < count; i++) {
-          cursorTrails.push({
-            x: mouseX + (Math.random() - 0.5) * 10,
-            y: mouseY + (Math.random() - 0.5) * 10,
-            vx: vx * 0.12 + (Math.random() - 0.5) * 1.4,
-            vy: vy * 0.12 + (Math.random() - 0.5) * 1.4,
-            radius: Math.random() * 2.2 + 1.2,
-            alpha: 0.85,
-            decay: Math.random() * 0.025 + 0.02,
-            color: Math.random() > 0.45 ? '0, 242, 254' : '191, 90, 242'
-          });
-        }
+      if (mouseSpeed > 4 && cursorTrails.length < 15) {
+        cursorTrails.push({
+          x: mouseX + (Math.random() - 0.5) * 8,
+          y: mouseY + (Math.random() - 0.5) * 8,
+          vx: vx * 0.1 + (Math.random() - 0.5),
+          vy: vy * 0.1 + (Math.random() - 0.5),
+          radius: Math.random() * 2 + 1,
+          alpha: 0.8,
+          decay: Math.random() * 0.03 + 0.02,
+          color: Math.random() > 0.5 ? '0, 242, 254' : '191, 90, 242'
+        });
       }
     }, { passive: true });
 
     // Smooth Lerp Engine for Aurora Parallax & Spotlight Aura
     function updateCursorLighting() {
-      targetX += (mouseX - targetX) * 0.12;
-      targetY += (mouseY - targetY) * 0.12;
+      const dx = mouseX - targetX;
+      const dy = mouseY - targetY;
+      targetX += dx * 0.14;
+      targetY += dy * 0.14;
 
-      root.style.setProperty('--cursor-x', `${targetX.toFixed(1)}px`);
-      root.style.setProperty('--cursor-y', `${targetY.toFixed(1)}px`);
+      if (spotlight) {
+        spotlight.style.setProperty('--cursor-x', `${targetX.toFixed(1)}px`);
+        spotlight.style.setProperty('--cursor-y', `${targetY.toFixed(1)}px`);
+      }
 
       // Gentle organic parallax shift on ambient aurora orbs
       const normX = (targetX / window.innerWidth) - 0.5;
       const normY = (targetY / window.innerHeight) - 0.5;
 
-      if (aurora1) aurora1.style.transform = `translate3d(${(normX * 45).toFixed(1)}px, ${(normY * 35).toFixed(1)}px, 0)`;
-      if (aurora2) aurora2.style.transform = `translate3d(${(-normX * 55).toFixed(1)}px, ${(normY * 40).toFixed(1)}px, 0)`;
-      if (aurora3) aurora3.style.transform = `translate3d(${(normX * 35).toFixed(1)}px, ${(-normY * 45).toFixed(1)}px, 0)`;
-      if (aurora4) aurora4.style.transform = `translate3d(${(-normX * 40).toFixed(1)}px, ${(-normY * 30).toFixed(1)}px, 0)`;
+      if (aurora1) aurora1.style.transform = `translate3d(${(normX * 35).toFixed(1)}px, ${(normY * 25).toFixed(1)}px, 0)`;
+      if (aurora2) aurora2.style.transform = `translate3d(${(-normX * 45).toFixed(1)}px, ${(normY * 30).toFixed(1)}px, 0)`;
+      if (aurora3) aurora3.style.transform = `translate3d(${(normX * 25).toFixed(1)}px, ${(-normY * 35).toFixed(1)}px, 0)`;
+      if (aurora4) aurora4.style.transform = `translate3d(${(-normX * 30).toFixed(1)}px, ${(-normY * 20).toFixed(1)}px, 0)`;
 
-      requestAnimationFrame(updateCursorLighting);
+      // Stop rAF loop once cursor stops to drop CPU usage to 0%!
+      if (Math.hypot(dx, dy) > 0.6) {
+        lightingRaf = requestAnimationFrame(updateCursorLighting);
+      } else {
+        lightingRaf = null;
+      }
     }
-    requestAnimationFrame(updateCursorLighting);
 
     function triggerShockwave(x, y) {
       ripples.push({
@@ -881,8 +900,8 @@ Location: Dhaka, Bangladesh`;
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, { passive: true });
 
-    // 80 Deep Cyber Cosmic Nodes with 3D Depth Planes
-    const particleCount = Math.min(85, Math.max(45, Math.floor(window.innerWidth / 18)));
+    // Lightweight particle count — optimal 60fps on desktop
+    const particleCount = Math.min(28, Math.max(16, Math.floor(window.innerWidth / 50)));
     const particles = [];
     const colors = [
       'rgba(0, 242, 254, ',   // Neon Cyan
@@ -964,10 +983,7 @@ Location: Dhaka, Bangladesh`;
         ctx.beginPath();
         ctx.arc(t.x, t.y, t.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${t.color}, ${t.alpha.toFixed(3)})`;
-        ctx.shadowColor = `rgba(${t.color}, 0.8)`;
-        ctx.shadowBlur = 8;
         ctx.fill();
-        ctx.shadowBlur = 0;
       }
 
       // 3. Draw Sparks Burst
@@ -1044,19 +1060,15 @@ Location: Dhaka, Bangladesh`;
           p.fy += tangentY * prox * 0.35;
         }
 
-        // Draw particle dot with glow
+        // Draw particle dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
         ctx.fillStyle = `${p.colorBase}${alpha.toFixed(3)})`;
-        if (dist < maxDist) {
-          ctx.shadowColor = 'rgba(0, 242, 254, 0.7)';
-          ctx.shadowBlur = 12;
-        }
         ctx.fill();
-        ctx.shadowBlur = 0;
 
-        // Constellation filaments between neighboring particles
-        for (let j = i + 1; j < particles.length; j++) {
+        // Constellation filaments — only check a small window of neighbors
+        const jEnd = Math.min(i + 6, particles.length);
+        for (let j = i + 1; j < jEnd; j++) {
           const p2 = particles[j];
           const pDist = Math.hypot(p.x - p2.x, p.y - p2.y);
           if (pDist < 95) {
