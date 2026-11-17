@@ -2241,7 +2241,7 @@ a {
 /* ── Live Multi-Platform Telemetry HUD (Slide 3) ────────────── */
 .cp-hud-toolbar {
   height: 48px;
-  padding: 0 20px;
+  padding: 0 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2250,6 +2250,7 @@ a {
   flex-shrink: 0;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
+  gap: 8px;
 }
 .cp-hud-toolbar-left {
   display: flex;
@@ -2257,6 +2258,7 @@ a {
   gap: 8px;
   position: relative;
   padding-left: 0;
+  flex-shrink: 0;
 }
 .cp-hud-live-tag {
   font-family: var(--font-mono);
@@ -2264,12 +2266,14 @@ a {
   font-weight: 700;
   color: #3fb950;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 .cp-hud-handle {
   font-size: 11.5px;
   color: var(--apple-cyan);
   font-family: var(--font-mono);
   font-weight: 600;
+  white-space: nowrap;
 }
 .cp-live-badge {
   font-size: 9.5px;
@@ -2280,13 +2284,14 @@ a {
   padding: 1px 7px;
   border-radius: 4px;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .cp-view-switcher {
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 7px;
@@ -2296,14 +2301,14 @@ a {
 .cp-switch-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 9px;
+  gap: 4px;
+  padding: 4px 7.5px;
   border-radius: 5px;
   background: transparent;
   border: none;
   color: var(--text-secondary);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
@@ -2926,6 +2931,12 @@ a {
 }
 @keyframes cfSpin {
   to { transform: rotate(360deg); }
+}
+
+@media (max-width: 992px) {
+  .cp-hud-live-tag {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
