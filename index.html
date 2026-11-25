@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Partho Paul</title>
-  <meta name="description" content="Portfolio of Partho Paul. CS Undergrad at Ahsanullah University of Science and Technology, competitive programmer, and developer of CodeSync Pro &amp; BigOof." />
+  <title>Partho Paul — Competitive Programmer &amp; Developer</title>
+  <meta name="description" content="Portfolio of Partho Paul (Pri8899). CS Undergrad at Ahsanullah University of Science and Technology, competitive programmer, and developer of CodeSync Pro &amp; BigOof." />
   <meta name="author" content="Partho Paul" />
+  <meta name="theme-color" content="#09090b" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Partho Paul" />
-  <meta property="og:description" content="CS Undergrad · Competitive Programmer · Flutter &amp; C++ Developer" />
+  <meta property="og:title" content="Partho Paul — Developer &amp; CP Portfolio" />
+  <meta property="og:description" content="CS Undergrad · Competitive Programmer · Flutter, C++ &amp; Game Developer" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pri8899.github.io" />
+  <meta property="og:image" content="https://pri8899.github.io/assets/bear.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://pri8899.github.io/assets/bear.jpg" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,26 +23,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="assets/bear.jpg" type="image/jpeg" />
-  <meta property="og:image" content="https://pri8899.github.io/assets/bear.jpg" />
-  <meta name="twitter:image" content="https://pri8899.github.io/assets/bear.jpg" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- ═══ 1. Ambient Fluid Aurora Lights & Interactive Waves ═══ -->
+  <!-- ═══ 1. Ambient Fluid Aurora Scene & Interactive Particle Matrix ═══ -->
   <div class="ambient-scene" id="ambient-scene" aria-hidden="true">
-    <div class="ambient-aurora aurora-1" id="aurora-1"></div>
-    <div class="ambient-aurora aurora-2" id="aurora-2"></div>
-    <div class="ambient-aurora aurora-3" id="aurora-3"></div>
-    <div class="ambient-aurora aurora-4" id="aurora-4"></div>
+    <div class="aurora-parallax" id="aurora-p1"><div class="ambient-aurora aurora-1"></div></div>
+    <div class="aurora-parallax" id="aurora-p2"><div class="ambient-aurora aurora-2"></div></div>
+    <div class="aurora-parallax" id="aurora-p3"><div class="ambient-aurora aurora-3"></div></div>
+    <div class="aurora-parallax" id="aurora-p4"><div class="ambient-aurora aurora-4"></div></div>
+    <div class="ambient-grid"></div>
     <div class="cursor-spotlight"></div>
     <canvas id="bg-canvas" class="bg-canvas"></canvas>
   </div>
 
-  <!-- ═══ 2. Top System Menu Bar ═══ -->
+  <!-- ═══ Floating Glass Toast HUD ═══ -->
+  <div id="toast-hud" class="toast-hud" role="status" aria-live="polite"></div>
+
+  <!-- ═══ 2. Top macOS System Menu Bar ═══ -->
   <header class="macos-menubar" role="banner">
     <div class="menubar-left">
-      <a href="#terminal" class="apple-icon" title="Terminal" aria-label="Terminal">
+      <a href="#terminal" class="apple-icon" title="Terminal Home" aria-label="Terminal Home">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="4 17 10 11 4 5"></polyline>
           <line x1="12" y1="19" x2="20" y2="19"></line>
@@ -56,8 +62,50 @@
     </div>
 
     <div class="menubar-right">
+      <!-- Live Streak Indicator -->
+      <a href="#cp" class="menubar-streak-pill" id="menubar-streak-badge" title="Active Competitive Programming Streak">
+        <span class="menubar-streak-dot" aria-hidden="true"></span>
+        <span id="menubar-streak-text">54d Streak</span>
+      </a>
+
+      <!-- Theme Switcher Control -->
+      <div class="theme-switcher-wrap">
+        <button id="theme-btn" class="menubar-theme-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Switch Workstation Theme">
+          <span class="theme-swatch-dot" aria-hidden="true"></span>
+          <span class="theme-btn-label" id="theme-current-label">Obsidian</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div id="theme-dropdown" class="theme-dropdown" role="menu" aria-label="Workstation Themes">
+          <button type="button" class="theme-option active" data-theme-choice="obsidian" role="menuitem">
+            <span class="theme-opt-swatch" style="background: linear-gradient(135deg, #f4f4f5 50%, #d97706 50%);"></span>
+            <span>Studio Obsidian</span>
+            <span class="theme-opt-check">✓</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-choice="daylight" role="menuitem">
+            <span class="theme-opt-swatch" style="background: linear-gradient(135deg, #f5f5f7 50%, #18181b 50%);"></span>
+            <span>Apple Daylight</span>
+            <span class="theme-opt-check">✓</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-choice="cobalt" role="menuitem">
+            <span class="theme-opt-swatch" style="background: linear-gradient(135deg, #0b101b 50%, #2563eb 50%);"></span>
+            <span>Cobalt Slate</span>
+            <span class="theme-opt-check">✓</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-choice="espresso" role="menuitem">
+            <span class="theme-opt-swatch" style="background: linear-gradient(135deg, #191512 50%, #e5b96f 50%);"></span>
+            <span>Nordic Espresso</span>
+            <span class="theme-opt-check">✓</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-choice="forest" role="menuitem">
+            <span class="theme-opt-swatch" style="background: linear-gradient(135deg, #0d1410 50%, #15803d 50%);"></span>
+            <span>Kyoto Forest</span>
+            <span class="theme-opt-check">✓</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Wi-Fi Icon -->
-      <span class="menubar-status-icon" title="Wi-Fi: Connected">
+      <span class="menubar-status-icon status-optional" title="Wi-Fi: Connected">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
           <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
@@ -67,19 +115,19 @@
       </span>
 
       <!-- Battery Icon -->
-      <span class="menubar-status-icon" title="Battery: 100% Charged">
+      <span class="menubar-status-icon status-optional" title="Battery: 100% Charged">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="1" y="6" width="18" height="12" rx="2" ry="2"></rect>
           <line x1="23" y1="13" x2="23" y2="11"></line>
-          <line x1="5" y1="10" x2="5" y2="14" stroke="currentColor" stroke-width="2"></line>
-          <line x1="8" y1="10" x2="8" y2="14" stroke="currentColor" stroke-width="2"></line>
-          <line x1="11" y1="10" x2="11" y2="14" stroke="currentColor" stroke-width="2"></line>
-          <line x1="14" y1="10" x2="14" y2="14" stroke="currentColor" stroke-width="2"></line>
+          <line x1="5" y1="10" x2="5" y2="14"></line>
+          <line x1="8" y1="10" x2="8" y2="14"></line>
+          <line x1="11" y1="10" x2="11" y2="14"></line>
+          <line x1="14" y1="10" x2="14" y2="14"></line>
         </svg>
       </span>
 
       <!-- Audio FX Toggle -->
-      <button id="sound-btn" class="menubar-sound-btn" aria-label="Toggle Mechanical Keyboard Audio" title="Mechanical Sound: OFF">
+      <button id="sound-btn" class="menubar-sound-btn" type="button" aria-label="Toggle Mechanical Keyboard Audio" title="Mechanical Sound: OFF">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
           <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -89,7 +137,7 @@
       </button>
 
       <!-- Spotlight Search Trigger -->
-      <button id="spotlight-btn" class="spotlight-trigger" aria-label="Open Spotlight Search (Command + K)">
+      <button id="spotlight-btn" class="spotlight-trigger" type="button" aria-label="Open Spotlight Search (Command + K)">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -98,19 +146,19 @@
       </button>
 
       <!-- System Clock -->
-      <span id="system-clock" class="system-clock" aria-label="System Clock">Fri Oct 16 4:30 PM</span>
+      <span id="system-clock" class="system-clock" aria-label="System Clock"></span>
     </div>
   </header>
 
   <!-- ═══ 3. Spotlight Search Palette (⌘K) ═══ -->
-  <div id="spotlight-overlay" class="spotlight-overlay" role="dialog" aria-modal="true" aria-label="Spotlight Search">
+  <div id="spotlight-overlay" class="spotlight-overlay" role="dialog" aria-modal="true" aria-label="Spotlight Search" aria-hidden="true" inert>
     <div class="spotlight-modal">
       <div class="spotlight-input-row">
         <svg class="spotlight-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="spotlight-input" class="spotlight-input" placeholder="Search projects, skills, stats, or navigate... (Esc to close)" autocomplete="off" />
+        <input type="text" id="spotlight-input" class="spotlight-input" placeholder="Search projects, skills, CP telemetry, themes, or commands... (Esc)" autocomplete="off" />
       </div>
       <div id="spotlight-results" class="spotlight-results">
         <div class="spotlight-item selected" data-action="#projects">
@@ -130,65 +178,93 @@
         <div class="spotlight-item" data-action="#projects">
           <div class="spotlight-item-left">
             <span>⚡</span>
-            <span>CP Archive — Systematic Algorithmic Repository</span>
+            <span>CP — Algorithmic Archive (Codeforces, LeetCode, CSES)</span>
           </div>
           <span class="spotlight-tag">Project</span>
         </div>
         <div class="spotlight-item" data-action="#cp">
           <div class="spotlight-item-left">
             <span>📊</span>
-            <span>Activity Monitor — Multi-Platform Live Telemetry (CF + LC)</span>
+            <span id="spotlight-unified-desc">Activity Monitor — 159 Total Solves (CF + LC + CSES)</span>
           </div>
           <span class="spotlight-tag">CP Monitor</span>
-        </div>
-        <div class="spotlight-item" data-action="action-view-lc">
-          <div class="spotlight-item-left">
-            <span>🟡</span>
-            <span>LeetCode Live Telemetry — 16 Solves (Easy/Med/Hard Stream)</span>
-          </div>
-          <span class="spotlight-tag" style="color: #ffd60a; border-color: rgba(255, 214, 10, 0.3);">LeetCode</span>
         </div>
         <div class="spotlight-item" data-action="action-view-cf">
           <div class="spotlight-item-left">
             <span>🔵</span>
-            <span>Codeforces Live Radar — 814 Rating &amp; 83 Solves</span>
+            <span id="spotlight-cf-desc">Codeforces Live Radar — 953 Rating &amp; 137 Solves</span>
           </div>
-          <span class="spotlight-tag" style="color: #58a6ff; border-color: rgba(88, 166, 255, 0.3);">Codeforces</span>
+          <span class="spotlight-tag tag-cf">Codeforces</span>
         </div>
-        <div class="spotlight-item" data-action="theme:tokyo">
+        <div class="spotlight-item" data-action="action-view-lc">
           <div class="spotlight-item-left">
-            <span>🎨</span>
-            <span>Theme: Tokyo Night (Cyber Neon)</span>
+            <span>🟡</span>
+            <span id="spotlight-lc-desc">LeetCode Live Telemetry — 16 Solves (Easy / Med / Hard)</span>
+          </div>
+          <span class="spotlight-tag tag-lc">LeetCode</span>
+        </div>
+        <div class="spotlight-item" data-action="action-view-cses">
+          <div class="spotlight-item-left">
+            <span>🟢</span>
+            <span>CSES Problem Set — 6 Archive Solutions</span>
+          </div>
+          <span class="spotlight-tag tag-cses">CSES</span>
+        </div>
+        <div class="spotlight-item" data-action="action-view-svg">
+          <div class="spotlight-item-left">
+            <span>💳</span>
+            <span>CodeSync Pro Live Vector &amp; Overview Cards</span>
+          </div>
+          <span class="spotlight-tag">SVG Cards</span>
+        </div>
+        <div class="spotlight-item" data-action="theme:obsidian">
+          <div class="spotlight-item-left">
+            <span>◼</span>
+            <span>Theme: Studio Obsidian (Charcoal &amp; Platinum)</span>
           </div>
           <span class="spotlight-tag">Theme</span>
         </div>
-        <div class="spotlight-item" data-action="theme:matrix">
+        <div class="spotlight-item" data-action="theme:daylight">
           <div class="spotlight-item-left">
-            <span>📟</span>
-            <span>Theme: Hacker Matrix (Phosphor Green)</span>
+            <span>◻</span>
+            <span>Theme: Apple Daylight (Crisp Light Studio)</span>
           </div>
           <span class="spotlight-tag">Theme</span>
         </div>
-        <div class="spotlight-item" data-action="theme:catppuccin">
+        <div class="spotlight-item" data-action="theme:cobalt">
           <div class="spotlight-item-left">
-            <span>🌸</span>
-            <span>Theme: Catppuccin Mocha</span>
+            <span>◆</span>
+            <span>Theme: Cobalt Slate (Steel &amp; Sapphire)</span>
           </div>
           <span class="spotlight-tag">Theme</span>
         </div>
-        <div class="spotlight-item" data-action="theme:macos">
+        <div class="spotlight-item" data-action="theme:espresso">
           <div class="spotlight-item-left">
-            <span>🍎</span>
-            <span>Theme: Default Apple Sonoma Dark</span>
+            <span>◉</span>
+            <span>Theme: Nordic Espresso (Walnut &amp; Amber)</span>
+          </div>
+          <span class="spotlight-tag">Theme</span>
+        </div>
+        <div class="spotlight-item" data-action="theme:forest">
+          <div class="spotlight-item-left">
+            <span>▲</span>
+            <span>Theme: Kyoto Forest (Pine Slate &amp; Emerald)</span>
           </div>
           <span class="spotlight-tag">Theme</span>
         </div>
         <div class="spotlight-item" data-action="#skills">
           <div class="spotlight-item-left">
             <span>🛠️</span>
-            <span>System Settings — C, C++, Java, Dart, Flutter Tech Stack</span>
+            <span>Tech Stack — C, C++, Java, Flutter, Unreal, Xcode &amp; Tools</span>
           </div>
           <span class="spotlight-tag">Skills</span>
+        </div>
+        <div class="spotlight-item" data-action="#about">
+          <div class="spotlight-item-left">
+            <span>👤</span>
+            <span>About Me — AUST CSE Batch 54 · System Specifications</span>
+          </div>
+          <span class="spotlight-tag">About</span>
         </div>
         <div class="spotlight-item" data-action="#terminal">
           <div class="spotlight-item-left">
@@ -197,12 +273,22 @@
           </div>
           <span class="spotlight-tag">Terminal</span>
         </div>
+        <div class="spotlight-item" data-action="action-copy-email">
+          <div class="spotlight-item-left">
+            <span>📋</span>
+            <span>Copy Email Address — parthopaul8899@gmail.com</span>
+          </div>
+          <span class="spotlight-tag">Action</span>
+        </div>
         <div class="spotlight-item" data-action="#contact">
           <div class="spotlight-item-left">
             <span>✉️</span>
-            <span>Contact — parthopaul8899@gmail.com</span>
+            <span>Contact — Email, GitHub &amp; Codeforces</span>
           </div>
           <span class="spotlight-tag">Contact</span>
+        </div>
+        <div id="spotlight-empty" class="spotlight-empty" style="display: none;">
+          No matching commands, projects, or views found.
         </div>
       </div>
     </div>
@@ -216,28 +302,28 @@
         <div class="sections-pill-wrapper">
           <div class="sections-box" id="sections-box">
             <div class="section-glider" id="section-glider"></div>
-            <button class="section-box-item active" data-index="0" data-target="terminal" aria-label="Slide to Terminal">
-              <span class="box-icon">&gt;_</span>
+            <button type="button" class="section-box-item active" data-index="0" data-target="terminal" aria-label="Slide to Terminal">
+              <span class="box-idx">01</span>
               <span class="box-label">Terminal</span>
             </button>
-            <button class="section-box-item" data-index="1" data-target="about" aria-label="Slide to About Me">
-              <span class="box-icon">👤</span>
+            <button type="button" class="section-box-item" data-index="1" data-target="about" aria-label="Slide to About Me">
+              <span class="box-idx">02</span>
               <span class="box-label">About Me</span>
             </button>
-            <button class="section-box-item" data-index="2" data-target="projects" aria-label="Slide to Projects">
-              <span class="box-icon">📁</span>
+            <button type="button" class="section-box-item" data-index="2" data-target="projects" aria-label="Slide to Projects">
+              <span class="box-idx">03</span>
               <span class="box-label">Projects</span>
             </button>
-            <button class="section-box-item" data-index="3" data-target="cp" aria-label="Slide to CP Monitor">
-              <span class="box-icon">⚡</span>
+            <button type="button" class="section-box-item" data-index="3" data-target="cp" aria-label="Slide to CP Monitor">
+              <span class="box-idx">04</span>
               <span class="box-label">CP Monitor</span>
             </button>
-            <button class="section-box-item" data-index="4" data-target="skills" aria-label="Slide to Tech Stack">
-              <span class="box-icon">🛠️</span>
+            <button type="button" class="section-box-item" data-index="4" data-target="skills" aria-label="Slide to Tech Stack">
+              <span class="box-idx">05</span>
               <span class="box-label">Tech Stack</span>
             </button>
-            <button class="section-box-item" data-index="5" data-target="contact" aria-label="Slide to Contact">
-              <span class="box-icon">✉️</span>
+            <button type="button" class="section-box-item" data-index="5" data-target="contact" aria-label="Slide to Contact">
+              <span class="box-idx">06</span>
               <span class="box-label">Contact</span>
             </button>
           </div>
@@ -246,260 +332,297 @@
 
       <!-- ── 2. Horizontal Sliding Info Desk Viewport ── -->
       <div class="desk-slider-viewport" id="desk-slider-viewport">
-        <!-- Floating Navigation Chevrons (Centered to uniform desk height) -->
-        <button class="desk-nav-btn desk-prev-btn desk-prev-action" id="desk-prev-btn" aria-label="Previous Slide" title="Previous Slide (←)">
+        <!-- Floating Navigation Chevrons -->
+        <button type="button" class="desk-nav-btn desk-prev-btn" id="desk-prev-btn" aria-label="Previous Slide" title="Previous Slide (←)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
-        <button class="desk-nav-btn desk-next-btn desk-next-action" id="desk-next-btn" aria-label="Next Slide" title="Next Slide (→)">
+        <button type="button" class="desk-nav-btn desk-next-btn" id="desk-next-btn" aria-label="Next Slide" title="Next Slide (→)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
 
         <div class="desk-slider-track" id="desk-slider-track">
-          <!-- SLIDE 0: TERMINAL -->
+
+          <!-- ════════ SLIDE 0: TERMINAL ════════ -->
           <div class="desk-slide active-slide" data-slide="0" id="slide-terminal">
-<section id="terminal" class="section hero-window">
-        <div class="macos-window spotlight-card" data-tilt>
-          <div class="terminal-body">
-            <div class="term-line">
-              <span class="term-prompt">pri8899@terminal:~$</span>
-              <span class="term-cmd">cat profile.json</span>
-            </div>
+            <section id="terminal" class="section hero-window">
+              <div class="macos-window spotlight-card" data-tilt>
+                <div class="window-chrome">
+                  <div class="chrome-dots" aria-hidden="true">
+                    <span class="c-dot c-red"></span>
+                    <span class="c-dot c-yellow"></span>
+                    <span class="c-dot c-green"></span>
+                  </div>
+                  <div class="chrome-title">zsh — pri8899@aust:~</div>
+                  <div class="chrome-status" id="term-status-pill">● 159 Solves</div>
+                </div>
+                <div class="terminal-body">
+                  <div class="term-top-block">
+                    <div class="term-line">
+                      <span class="term-prompt">pri8899@terminal:~$</span>
+                      <span class="term-cmd">cat profile.json</span>
+                    </div>
 
-            <div class="term-output-card">
-              <h1 class="term-name-hero">Partho Paul</h1>
-              <div class="term-subtitle">Undergraduate CSE Student · Ahsanullah University of Science and Technology</div>
-              <p class="term-bio">
-                B.Sc. in Computer Science and Engineering · 2nd Year, 1st Semester.<br />
-                Passionate about <strong>Competitive Programming</strong>, <strong>Mobile &amp; App Development</strong>, and <strong>Game Dev</strong>. Creator of <strong>CodeSync Pro</strong> and <strong>BigOof</strong>.
-              </p>
-              <div class="term-badges">
-                <span class="term-badge">📍 Dhaka, Bangladesh</span>
-                <span class="term-badge">🎓 CSE Batch 54</span>
-                <span class="term-badge">🏆 Codeforces: pri8899</span>
-                <span class="term-badge">💙 Flutter &amp; Mobile</span>
-                <span class="term-badge">⚡ C++ &amp; Algorithms</span>
-                <span class="term-badge">🎮 Unreal, Roblox &amp; iGraphics</span>
+                    <div class="term-output-card">
+                      <div class="term-hero-row">
+                        <div>
+                          <h1 class="term-name-hero">Partho Paul</h1>
+                          <div class="term-subtitle">Undergraduate CSE Student · Ahsanullah University of Science and Technology</div>
+                        </div>
+                        <div class="term-quick-cmds" aria-label="Quick terminal commands">
+                          <button type="button" class="term-quick-cmd" data-cmd="help">help</button>
+                          <button type="button" class="term-quick-cmd" data-cmd="neofetch">neofetch</button>
+                          <button type="button" class="term-quick-cmd" data-cmd="stats">stats</button>
+                          <button type="button" class="term-quick-cmd" data-cmd="matrix">matrix</button>
+                        </div>
+                      </div>
+                      <p class="term-bio">
+                        B.Sc. in Computer Science and Engineering · 2nd Year, 1st Semester.<br />
+                        Passionate about <strong>Competitive Programming</strong>, <strong>Mobile &amp; App Development</strong>, and <strong>Game Dev</strong>. Creator of <strong>CodeSync Pro</strong> and <strong>BigOof</strong>.
+                      </p>
+                      <div class="term-badges">
+                        <span class="term-badge">📍 Dhaka, Bangladesh</span>
+                        <span class="term-badge">🎓 CSE Batch 54</span>
+                        <span class="term-badge" id="term-cf-badge">🏆 Codeforces: pri8899 · 953</span>
+                        <span class="term-badge">💙 Flutter &amp; Mobile</span>
+                        <span class="term-badge">⚡ C++ &amp; Algorithms</span>
+                        <span class="term-badge">🎮 Unreal, Roblox &amp; iGraphics</span>
+                      </div>
+                    </div>
+
+                    <!-- Terminal Response Output Log -->
+                    <div id="term-history" class="term-history" aria-live="polite"></div>
+
+                    <!-- Interactive Terminal Prompt -->
+                    <div class="term-line term-input-line">
+                      <span class="term-prompt">pri8899@terminal:~$</span>
+                      <input type="text" id="term-input" class="term-input" placeholder="Type 'help', 'neofetch', 'cf', 'lc', 'stats', or 'matrix'..." autocomplete="off" spellcheck="false" aria-label="Interactive terminal input" />
+                    </div>
+                  </div>
+
+                  <div class="term-cta-row">
+                    <a href="#projects" class="mac-btn mac-btn-primary">
+                      <span>Explore Projects</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </a>
+                    <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="mac-btn mac-btn-secondary">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+                      <span>Codeforces (pri8899)</span>
+                    </a>
+                    <a href="#contact" class="mac-btn mac-btn-secondary">Get in Touch</a>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <!-- Interactive Terminal Prompt -->
-            <div class="term-line">
-              <span class="term-prompt">pri8899@terminal:~$</span>
-              <input type="text" id="term-input" class="term-input" placeholder="Type 'help', 'projects', 'cf', or 'skills'..." autocomplete="off" spellcheck="false" />
-              <span class="term-cursor"></span>
-            </div>
-
-            <!-- Terminal Response Output Log -->
-            <div id="term-history" class="term-history" aria-live="polite"></div>
-
-            <div class="term-cta-row">
-              <a href="#projects" class="mac-btn mac-btn-primary">
-                <span>Explore Projects</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-              </a>
-              <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="mac-btn mac-btn-secondary">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
-                <span>Codeforces (pri8899)</span>
-              </a>
-              <a href="#contact" class="mac-btn mac-btn-secondary">Get in Touch</a>
-            </div>
+            </section>
           </div>
-        </div>
-      </section>
-          </div>
-          <!-- SLIDE 1: ABOUT -->
-          <div class="desk-slide" data-slide="1" id="slide-about">
+
+          <!-- ════════ SLIDE 1: ABOUT ════════ -->
+          <div class="desk-slide" data-slide="1" id="slide-about" aria-hidden="true" inert>
             <section id="about" class="section">
               <div class="macos-window about-window spotlight-card" data-tilt>
-          <div class="about-body">
-            <div class="about-identity-pane">
-              <div class="about-avatar-wrapper">
-                <div class="about-avatar-ring"></div>
-                <div class="about-avatar-img">
-                  <img src="assets/bear.jpg" alt="Partho Paul" />
+                <div class="about-body">
+                  <div class="about-identity-pane">
+                    <div class="about-avatar-wrapper">
+                      <div class="about-avatar-ring"></div>
+                      <div class="about-avatar-img">
+                        <img src="assets/bear.jpg" alt="Partho Paul" />
+                      </div>
+                    </div>
+                    <h2 class="about-name-hero">Partho Paul</h2>
+                    <div class="about-subtitle-hero">Partho Prithom Paul Sujoy</div>
+                    <div class="about-chip">Competitive Programmer &amp; Developer</div>
+                    <div class="about-mini-kpis">
+                      <span class="about-kpi-pill" id="about-solved-pill">159 Solved</span>
+                      <span class="about-kpi-pill" id="about-streak-pill">54d Streak</span>
+                      <span class="about-kpi-pill" id="about-cf-pill">953 CF</span>
+                    </div>
+                    <div class="about-sync-meta" id="about-sync-meta">Auto-synced · Pri8899/CP</div>
+                  </div>
+
+                  <div class="about-specs-pane">
+                    <span class="specs-title">System Specifications</span>
+                    <div class="spec-row">
+                      <span class="spec-key">Institution</span>
+                      <span class="spec-val">Ahsanullah University of Science and Technology</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Degree</span>
+                      <span class="spec-val">B.Sc. in Computer Science and Engineering</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Academic Year</span>
+                      <span class="spec-val">2nd Year, 1st Semester · CSE Batch 54</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Location</span>
+                      <span class="spec-val">Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Core Languages</span>
+                      <span class="spec-val">C, C++, Java, HTML</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Frameworks &amp; Engines</span>
+                      <span class="spec-val">Flutter, Unreal Engine, Roblox Studio, iGraphics</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Developer Tools</span>
+                      <span class="spec-val">VS Code, Android Studio, Xcode, Git &amp; GitHub</span>
+                    </div>
+                    <div class="spec-row">
+                      <span class="spec-key">Online Profiles</span>
+                      <span class="spec-val">
+                        <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer">Codeforces (pri8899)</a> ·
+                        <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer">LeetCode (Pri8899)</a> ·
+                        <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer">GitHub (@Pri8899)</a>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <h3 class="about-name-hero">Partho Paul</h3>
-              <div class="about-subtitle-hero">Partho Prithom Paul Sujoy</div>
-              <div class="about-chip">Competitive Programmer &amp; Developer</div>
-            </div>
+            </section>
+          </div>
 
-            <div class="about-specs-pane">
-              <span class="specs-title">System Specifications</span>
-              <div class="spec-row">
-                <span class="spec-key">Institution</span>
-                <span class="spec-val">Ahsanullah University of Science and Technology</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Degree</span>
-                <span class="spec-val">B.Sc. in Computer Science and Engineering</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Academic Year</span>
-                <span class="spec-val">2nd Year, 1st Semester · CSE Batch 54</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Location</span>
-                <span class="spec-val">Dhaka, Bangladesh</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Core Languages</span>
-                <span class="spec-val">C, C++, Java, HTML</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Frameworks &amp; Engines</span>
-                <span class="spec-val">Flutter, Unreal Engine, Roblox Studio, iGraphics</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Developer Tools</span>
-                <span class="spec-val">VS Code, Android Studio, Xcode, Git &amp; GitHub</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-key">Online Profiles</span>
-                <span class="spec-val"><a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer">Codeforces (pri8899)</a> · <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer">GitHub (@Pri8899)</a></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-          </div>
-          <!-- SLIDE 2: PROJECTS -->
-          <div class="desk-slide" data-slide="2" id="slide-projects">
+          <!-- ════════ SLIDE 2: PROJECTS ════════ -->
+          <div class="desk-slide" data-slide="2" id="slide-projects" aria-hidden="true" inert>
             <section id="projects" class="section">
               <div class="macos-window spotlight-card" data-tilt>
-          <div class="finder-layout">
-            <!-- Finder Sidebar -->
-            <aside class="finder-sidebar">
-              <div class="sidebar-category-title">Favorites</div>
-              <div class="sidebar-item active" data-filter="all">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                <span>All Projects (3)</span>
-              </div>
-              <div class="sidebar-item" data-filter="tools">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                <span>Developer Tools</span>
-              </div>
-              <div class="sidebar-item" data-filter="bot">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
-                <span>Discord Bots</span>
-              </div>
-              <div class="sidebar-item" data-filter="algorithms">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                <span>Algorithmic Repos</span>
-              </div>
-            </aside>
+                <div class="finder-layout">
+                  <!-- Finder Sidebar -->
+                  <aside class="finder-sidebar">
+                    <div class="sidebar-header-row">
+                      <span class="sidebar-category-title">Favorites</span>
+                      <span class="finder-count-pill" id="finder-item-count">3 Items</span>
+                    </div>
+                    <button type="button" class="sidebar-item active" data-filter="all">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                      <span>All Projects (3)</span>
+                    </button>
+                    <button type="button" class="sidebar-item" data-filter="tools">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                      <span>Developer Tools</span>
+                    </button>
+                    <button type="button" class="sidebar-item" data-filter="bot">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8.01" y2="16"></line><line x1="16" y1="16" x2="16.01" y2="16"></line></svg>
+                      <span>Discord Bots</span>
+                    </button>
+                    <button type="button" class="sidebar-item" data-filter="algorithms">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                      <span>Algorithmic Repos</span>
+                    </button>
+                  </aside>
 
-            <!-- Finder Tiles Content -->
-            <div class="finder-content" id="finder-tiles">
-              <!-- Tile 1: CodeSync Pro Extension -->
-              <article class="project-tile" data-cat="tools">
-                <div class="tile-content">
-                  <div class="tile-header-row">
-                    <span class="tile-type-pill">Chrome Extension</span>
-                    <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="tile-source-btn" title="View Source on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                      <span>GitHub</span>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </a>
-                  </div>
-                  <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="tile-title-link">
-                    <h3 class="tile-title">CodeSync Pro Extension</h3>
-                  </a>
-                  <p class="tile-desc">
-                    Universal competitive programming auto-sync extension for Chrome. Automatically pushes accepted solutions directly to GitHub with integrated Monaco IDE test runner.
-                  </p>
-                  <div class="tile-tags">
-                    <span class="tile-tag">JavaScript</span>
-                    <span class="tile-tag">Manifest V3</span>
-                    <span class="tile-tag">Monaco Editor</span>
-                    <span class="tile-tag">GitHub API</span>
+                  <!-- Finder Tiles Content -->
+                  <div class="finder-content" id="finder-tiles">
+                    <!-- Tile 1: CodeSync Pro Extension -->
+                    <article class="project-tile" data-cat="tools">
+                      <div class="tile-content">
+                        <div class="tile-header-row">
+                          <span class="tile-type-pill">Chrome Extension</span>
+                          <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="tile-source-btn" title="View Source on GitHub">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>GitHub</span>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                          </a>
+                        </div>
+                        <a href="https://github.com/Pri8899/CodeSync-Pro-Extension" target="_blank" rel="noopener noreferrer" class="tile-title-link">
+                          <h3 class="tile-title">CodeSync Pro Extension</h3>
+                        </a>
+                        <p class="tile-desc">
+                          Universal competitive programming auto-sync extension for Chrome. Automatically pushes accepted solutions directly to GitHub with integrated Monaco IDE test runner.
+                        </p>
+                        <div class="tile-tags">
+                          <span class="tile-tag">JavaScript</span>
+                          <span class="tile-tag">Manifest V3</span>
+                          <span class="tile-tag">Monaco Editor</span>
+                          <span class="tile-tag">GitHub API</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <!-- Tile 2: BigOof -->
+                    <article class="project-tile" data-cat="bot">
+                      <div class="tile-content">
+                        <div class="tile-header-row">
+                          <span class="tile-type-pill pill-bot">Discord Bot</span>
+                          <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="tile-source-btn" title="View Source on GitHub">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>GitHub</span>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                          </a>
+                        </div>
+                        <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="tile-title-link">
+                          <h3 class="tile-title">BigOof</h3>
+                        </a>
+                        <p class="tile-desc">
+                          Autonomous competitive programming Discord bot featuring contest countdowns, rating change alerts, server-wide AC solve feeds, and persistent SQLite storage.
+                        </p>
+                        <div class="tile-tags">
+                          <span class="tile-tag">Node.js</span>
+                          <span class="tile-tag">discord.js v14</span>
+                          <span class="tile-tag">SQLite</span>
+                          <span class="tile-tag">Codeforces API</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <!-- Tile 3: CP Archive -->
+                    <article class="project-tile" data-cat="algorithms">
+                      <div class="tile-content">
+                        <div class="tile-header-row">
+                          <span class="tile-type-pill pill-algo">Algorithmic Archive</span>
+                          <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="tile-source-btn" title="View Source on GitHub">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            <span>GitHub</span>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                          </a>
+                        </div>
+                        <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="tile-title-link">
+                          <h3 class="tile-title">CP — Algorithmic Archive</h3>
+                        </a>
+                        <p class="tile-desc">
+                          Curated competitive programming problem solutions, automatically synchronized in real time via CodeSync Pro.
+                        </p>
+                        <div class="tile-tags">
+                          <span class="tile-tag">C++20</span>
+                          <span class="tile-tag">DSA</span>
+                          <span class="tile-tag">Codeforces</span>
+                          <span class="tile-tag">LeetCode</span>
+                          <span class="tile-tag">CSES</span>
+                        </div>
+                      </div>
+                    </article>
                   </div>
                 </div>
-              </article>
-
-              <!-- Tile 2: BigOof -->
-              <article class="project-tile" data-cat="bot">
-                <div class="tile-content">
-                  <div class="tile-header-row">
-                    <span class="tile-type-pill pill-bot">Discord Bot</span>
-                    <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="tile-source-btn" title="View Source on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                      <span>GitHub</span>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </a>
-                  </div>
-                  <a href="https://github.com/Pri8899/BigOof" target="_blank" rel="noopener noreferrer" class="tile-title-link">
-                    <h3 class="tile-title">BigOof</h3>
-                  </a>
-                  <p class="tile-desc">
-                    Autonomous competitive programming Discord bot featuring contest countdowns, rating change alerts, server-wide AC solve feeds, and persistent SQLite storage.
-                  </p>
-                  <div class="tile-tags">
-                    <span class="tile-tag">Node.js</span>
-                    <span class="tile-tag">discord.js v14</span>
-                    <span class="tile-tag">SQLite</span>
-                    <span class="tile-tag">Codeforces API</span>
-                  </div>
-                </div>
-              </article>
-
-              <!-- Tile 3: CP Archive -->
-              <article class="project-tile" data-cat="algorithms">
-                <div class="tile-content">
-                  <div class="tile-header-row">
-                    <span class="tile-type-pill pill-algo">Algorithmic Archive</span>
-                    <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="tile-source-btn" title="View Source on GitHub">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                      <span>GitHub</span>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </a>
-                  </div>
-                  <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="tile-title-link">
-                    <h3 class="tile-title">CP — Algorithmic Archive</h3>
-                  </a>
-                  <p class="tile-desc">
-                    Curated competitive programming problem solutions, automatically synchronized in real time via CodeSync Pro.
-                  </p>
-                  <div class="tile-tags">
-                    <span class="tile-tag">C++20</span>
-                    <span class="tile-tag">DSA</span>
-                    <span class="tile-tag">Codeforces</span>
-                    <span class="tile-tag">LeetCode</span>
-                  </div>
-                </div>
-              </article>
-            </div>
+              </div>
+            </section>
           </div>
-        </div>
-      </section>
-          </div>
-          <!-- SLIDE 3: CP -->
-          <div class="desk-slide" data-slide="3" id="slide-cp">
+
+          <!-- ════════ SLIDE 3: CP MONITOR ════════ -->
+          <div class="desk-slide" data-slide="3" id="slide-cp" aria-hidden="true" inert>
             <section id="cp" class="section">
               <div class="macos-window spotlight-card" data-tilt>
                 <!-- Top Toolbar with Sonar Pulse & View Switcher -->
                 <div class="cp-hud-toolbar">
                   <div class="cp-hud-toolbar-left">
                     <span class="cp-live-dot" aria-hidden="true"></span>
-                    <span class="cp-hud-live-tag">LIVE TELEMETRY HUB</span>
                     <span class="cp-hud-handle">@Pri8899</span>
-                    <span class="cp-live-badge">● SYNCED</span>
+                    <span class="cp-synced-badge" id="cp-sync-status">SYNCED</span>
                   </div>
                   <div class="cp-hud-toolbar-right">
                     <div class="cp-view-switcher">
                       <button type="button" class="cp-switch-btn active" id="btn-show-unified" data-mode="unified" title="Unified Multi-Platform Feed">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        <span>All Solves (149)</span>
+                        <span>All Solves (159)</span>
                       </button>
                       <button type="button" class="cp-switch-btn" id="btn-show-cf" data-mode="cf" title="Codeforces Radar">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        <span>Codeforces (127)</span>
+                        <span>Codeforces (137)</span>
                       </button>
                       <button type="button" class="cp-switch-btn" id="btn-show-lc" data-mode="lc" title="LeetCode Live Telemetry">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
                         <span>LeetCode (16)</span>
                       </button>
-                      <button type="button" class="cp-switch-btn" id="btn-show-cses" data-mode="cses" title="CSES Problem Set" style="display: none;">
+                      <button type="button" class="cp-switch-btn" id="btn-show-cses" data-mode="cses" title="CSES Problem Set">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                         <span>CSES (6)</span>
                       </button>
@@ -511,7 +634,7 @@
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         <span>Toph (0)</span>
                       </button>
-                      <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg" title="CodeSync Pro Vector Card">
+                      <button type="button" class="cp-switch-btn" id="btn-show-svg" data-mode="svg" title="CodeSync Pro Vector Cards">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
                         <span>CodeSync Card</span>
                       </button>
@@ -527,18 +650,19 @@
                       <!-- Metric 1: Total Solved -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">TOTAL ACCEPTED SOLVED</div>
-                        <div class="cf-metric-val" id="unified-total-solved">149</div>
+                        <div class="cf-metric-val" id="unified-total-solved">159</div>
                         <div class="cf-metric-sub">
-                          <span class="platform-chip cf-chip-accent">CF: 127 Solves</span>
-                          <span class="platform-chip lc-chip-accent">LC: 16 Solves</span>
+                          <span class="platform-chip cf-chip-accent" id="unified-cf-chip">CF: 137</span>
+                          <span class="platform-chip lc-chip-accent" id="unified-lc-chip">LC: 16</span>
+                          <span class="platform-chip cses-chip-accent" id="unified-cses-chip">CSES: 6</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Platform Balance</span>
-                            <span>85.2% CF · 14.8% Others</span>
+                            <span id="unified-balance-text">86.2% CF · 13.8% Others</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 85.2%; background: linear-gradient(90deg, #58a6ff 85%, #ffd60a);"></div>
+                            <div class="cf-progress-bar" id="unified-balance-bar" style="width: 86.2%; background: linear-gradient(90deg, #58a6ff 86%, #ffd60a 96%, #3fb950);"></div>
                           </div>
                         </div>
                       </div>
@@ -546,10 +670,10 @@
                       <!-- Metric 2: Streak & Activity -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">CURRENT ACTIVE STREAK</div>
-                        <div class="cf-metric-val" id="unified-streak-val">47 <span class="val-unit">Days</span></div>
+                        <div class="cf-metric-val" id="unified-streak-val">54 <span class="val-unit">Days</span></div>
                         <div class="cf-metric-sub">
                           <span class="streak-flame-pill">🔥 Active Streak</span>
-                          <span class="cf-max-sub" id="unified-subs-val">209 Submissions</span>
+                          <span class="cf-max-sub" id="unified-subs-val">417 Submissions</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
@@ -564,19 +688,19 @@
 
                       <!-- Metric 3: Global Accuracy & Precision -->
                       <div class="cf-metric-card">
-                        <div class="cf-metric-label">GLOBAL AC ACCURACY</div>
-                        <div class="cf-metric-val" id="unified-accuracy-val">60.3% <span class="val-unit">AC</span></div>
+                        <div class="cf-metric-label">GLOBAL SOLVE RATIO</div>
+                        <div class="cf-metric-val" id="unified-accuracy-val">38.1% <span class="val-unit">AC</span></div>
                         <div class="cf-metric-sub">
-                          <span class="cf-acc-pill">High Precision</span>
-                          <span class="cf-max-sub" id="unified-acc-sub">126 AC of 209 Subs</span>
+                          <span class="cf-acc-pill">CodeSync Verified</span>
+                          <span class="cf-max-sub" id="unified-acc-sub">159 AC of 417 Subs</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
-                            <span>Submission Accuracy</span>
-                            <span id="unified-acc-pct-label">60.3% Verified</span>
+                            <span>Submission Precision</span>
+                            <span id="unified-acc-pct-label">38.1% Verified</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" id="unified-acc-bar" style="width: 60.3%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
+                            <div class="cf-progress-bar" id="unified-acc-bar" style="width: 38.1%; background: linear-gradient(90deg, #3fb950, #2ea043);"></div>
                           </div>
                         </div>
                       </div>
@@ -587,22 +711,18 @@
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>ALL ACCEPTED SOLVES (LIVE MULTI-PLATFORM API STREAM)</span>
+                          <span>ALL ACCEPTED SOLVES (LIVE MULTI-PLATFORM STREAM)</span>
                         </div>
                         <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
                           View Pri8899/CP Archive ↗
                         </a>
                       </div>
                       <div class="cp-filter-bar">
-                        <input type="text" class="cp-search-input" id="cp-search-unified" placeholder="⚡ Filter all 148 problems by title, ID, difficulty or tag..." />
-                        <span class="cp-count-badge" id="cp-count-unified">126 CF + 16 LC + 6 CSES = 148 Solves</span>
+                        <input type="text" class="cp-search-input" id="cp-search-unified" placeholder="⚡ Filter all problems by title, ID, platform, difficulty or tag..." />
+                        <span class="cp-count-badge" id="cp-count-unified">137 CF + 16 LC + 6 CSES = 159 Solves</span>
                       </div>
                       <div class="cf-recent-list" id="unified-recent-solves-mount">
-                        <!-- Populated dynamically by main.js with mixed CF + LC solves -->
-                        <div class="cf-solve-row loading">
-                          <div class="cf-solve-spinner"></div>
-                          <span>Streaming real-time multi-platform telemetry...</span>
-                        </div>
+                        <!-- Populated immediately by main.js -->
                       </div>
                     </div>
                   </div>
@@ -610,46 +730,43 @@
                   <!-- VIEW 2: LeetCode Live Telemetry -->
                   <div id="cp-view-lc" class="cf-hud-container" style="display: none;">
                     <div class="cf-hud-grid">
-                      <!-- LC Metric 1: Solved Count -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">LEETCODE ACCEPTED</div>
                         <div class="cf-metric-val" style="color: #ffc01e;" id="lc-total-val">16</div>
                         <div class="cf-metric-sub">
-                          <span class="lc-diff-badge easy">6 Easy</span>
-                          <span class="lc-diff-badge medium">9 Med</span>
-                          <span class="lc-diff-badge hard">1 Hard</span>
+                          <span class="lc-diff-badge easy" id="lc-easy-badge">6 Easy</span>
+                          <span class="lc-diff-badge medium" id="lc-med-badge">9 Med</span>
+                          <span class="lc-diff-badge hard" id="lc-hard-badge">1 Hard</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
-                            <span>Difficulty Distribution</span>
-                            <span>37.5% E · 56.3% M · 6.2% H</span>
+                            <span>Difficulty Split</span>
+                            <span id="lc-dist-text">37.5% E · 56.3% M · 6.2% H</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #00b8a3 37.5%, #ffc01e 37.5% 93.8%, #ff375f 93.8% 100%);"></div>
+                            <div class="cf-progress-bar" id="lc-dist-bar" style="width: 100%; background: linear-gradient(90deg, #00b8a3 37.5%, #ffc01e 37.5% 93.8%, #ff375f 93.8% 100%);"></div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- LC Metric 2: Difficulty Distribution -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">ADVANCED PROBLEM TIER</div>
-                        <div class="cf-metric-val" style="color: #ffc01e;">62.5%</div>
+                        <div class="cf-metric-val" style="color: #ffc01e;" id="lc-adv-pct">62.5%</div>
                         <div class="cf-metric-sub">
                           <span class="lc-diff-badge medium">Medium &amp; Hard</span>
-                          <span class="cf-max-sub">10 Solves</span>
+                          <span class="cf-max-sub" id="lc-adv-sub">10 Solves</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
-                            <span>Medium &amp; Hard Proportion</span>
-                            <span>10 of 16 Solves</span>
+                            <span>Medium &amp; Hard Share</span>
+                            <span id="lc-adv-header">10 of 16 Solves</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 62.5%; background: linear-gradient(90deg, #ffc01e, #ff375f);"></div>
+                            <div class="cf-progress-bar" id="lc-adv-bar" style="width: 62.5%; background: linear-gradient(90deg, #ffc01e, #ff375f);"></div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- LC Metric 3: Peak Difficulty Solved -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">PEAK DIFFICULTY SOLVED</div>
                         <div class="cf-metric-val" style="color: #ff375f;">Hard <span class="val-unit">Tier</span></div>
@@ -659,22 +776,21 @@
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
-                            <span>Acceptance Rate</span>
-                            <span>59.9% (94 AC / 157)</span>
+                            <span>Tracked Archive</span>
+                            <span>100% Synced to GitHub</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 59.9%; background: linear-gradient(90deg, #ff375f, #ff7b72);"></div>
+                            <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #ff375f, #ff7b72);"></div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <!-- LC Recent Stream -->
                     <div class="cf-recent-section">
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
-                          <span>ALL LEETCODE ACCEPTED PROBLEMS (LIVE API)</span>
+                          <span>ALL LEETCODE ACCEPTED PROBLEMS</span>
                         </div>
                         <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
                           View LeetCode Profile ↗
@@ -684,83 +800,73 @@
                         <input type="text" class="cp-search-input" id="cp-search-lc" placeholder="⚡ Filter LeetCode problems (e.g., Two Sum, Median, Medium)..." />
                         <span class="cp-count-badge" id="cp-count-lc">16 LeetCode Solves</span>
                       </div>
-                      <div class="cf-recent-list" id="lc-recent-solves-mount">
-                        <!-- Populated by main.js with recent LC ACs -->
-                        <div class="cf-solve-row loading">
-                          <div class="cf-solve-spinner"></div>
-                          <span>Loading all LeetCode submissions...</span>
-                        </div>
-                      </div>
+                      <div class="cf-recent-list" id="lc-recent-solves-mount"></div>
                     </div>
                   </div>
 
                   <!-- VIEW 3: Codeforces Radar -->
                   <div id="cp-view-cf" class="cf-hud-container" style="display: none;">
                     <div class="cf-hud-grid">
-                      <!-- CF Metric 1: CF Solves -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">CODEFORCES ACCEPTED</div>
-                        <div class="cf-metric-val" id="cf-solved-count">83</div>
+                        <div class="cf-metric-val" id="cf-solved-count">137</div>
                         <div class="cf-metric-sub">
-                          <span class="platform-chip cf-chip-accent">85 Submissions</span>
-                          <span class="cf-acc-pill">97.6% Unique AC</span>
+                          <span class="platform-chip cf-chip-accent" id="cf-subs-chip">239 Submissions</span>
+                          <span class="cf-acc-pill" id="cf-unique-pill">141 AC</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Solve Velocity</span>
-                            <span>83 Problems Done</span>
+                            <span id="cf-velocity-sub">137 Problems Done</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 81%; background: linear-gradient(90deg, #58a6ff, #388bfd);"></div>
+                            <div class="cf-progress-bar" id="cf-velocity-bar" style="width: 91%; background: linear-gradient(90deg, #58a6ff, #388bfd);"></div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- CF Metric 2: Rating & Rank -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">CURRENT RATING &amp; RANK</div>
-                        <div class="cf-metric-val" id="cf-rating-val">814</div>
+                        <div class="cf-metric-val" id="cf-rating-val">953</div>
                         <div class="cf-metric-sub">
                           <span class="cf-rank-pill newbie" id="cf-rank-pill">NEWBIE</span>
-                          <span class="cf-max-sub" id="cf-max-rating">Max: 814</span>
+                          <span class="cf-max-sub" id="cf-max-rating">Max: 1001</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Target: Pupil (1200)</span>
-                            <span id="cf-progress-pct">67.8%</span>
+                            <span id="cf-progress-pct">79.4%</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" id="cf-progress-fill" style="width: 67.8%; background: linear-gradient(90deg, #58a6ff, #39d353);"></div>
+                            <div class="cf-progress-bar" id="cf-progress-fill" style="width: 79.4%; background: linear-gradient(90deg, #58a6ff, #39d353);"></div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- CF Metric 3: Peak Difficulty & Top Category -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">PEAK DIFFICULTY SOLVED</div>
-                        <div class="cf-metric-val">1300 <span class="val-unit">pts</span></div>
+                        <div class="cf-metric-val" id="cf-peak-val">1300 <span class="val-unit">pts</span></div>
                         <div class="cf-metric-sub">
-                          <span class="cf-acc-pill">Problem 25A</span>
-                          <span class="cf-max-sub">IQ test</span>
+                          <span class="cf-acc-pill" id="cf-peak-pill">Problem 25A</span>
+                          <span class="cf-max-sub" id="cf-peak-name">IQ test</span>
                         </div>
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Top Topic</span>
-                            <span>Implementation (56 AC)</span>
+                            <span id="cf-top-tag-label">Implementation (88 AC)</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 69.1%; background: linear-gradient(90deg, #79c0ff, #58a6ff);"></div>
+                            <div class="cf-progress-bar" id="cf-top-tag-bar" style="width: 64.2%; background: linear-gradient(90deg, #79c0ff, #58a6ff);"></div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <!-- Live CF Submissions -->
                     <div class="cf-recent-section">
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                          <span>ALL CODEFORCES ACCEPTED PROBLEMS (LIVE OFFICIAL API)</span>
+                          <span>ALL CODEFORCES ACCEPTED PROBLEMS (OFFICIAL API)</span>
                         </div>
                         <a href="https://codeforces.com/submissions/Pri8899" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
                           View Codeforces History ↗
@@ -768,22 +874,15 @@
                       </div>
                       <div class="cp-filter-bar">
                         <input type="text" class="cp-search-input" id="cp-search-cf" placeholder="⚡ Filter Codeforces problems (e.g., Dragons, 800, Math, Greedy)..." />
-                        <span class="cp-count-badge" id="cp-count-cf">83 Codeforces Solves</span>
+                        <span class="cp-count-badge" id="cp-count-cf">137 Codeforces Solves</span>
                       </div>
-                      <div class="cf-recent-list" id="cf-recent-solves-mount">
-                        <!-- Populated by main.js with all CF ACs -->
-                        <div class="cf-solve-row loading">
-                          <div class="cf-solve-spinner"></div>
-                          <span>Fetching all 83 accepted problems from Codeforces API...</span>
-                        </div>
-                      </div>
+                      <div class="cf-recent-list" id="cf-recent-solves-mount"></div>
                     </div>
                   </div>
 
                   <!-- VIEW 4: CSES Problem Set -->
                   <div id="cp-view-cses" class="cf-hud-container" style="display: none;">
                     <div class="cf-hud-grid">
-                      <!-- CSES Metric 1 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">CSES ACCEPTED</div>
                         <div class="cf-metric-val" id="cses-solved-count" style="color: #58a6ff;">6</div>
@@ -802,7 +901,6 @@
                         </div>
                       </div>
 
-                      <!-- CSES Metric 2 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">PROBLEM TOPICS</div>
                         <div class="cf-metric-val" style="color: #ffd60a;">2 <span class="val-unit">Tracks</span></div>
@@ -813,15 +911,14 @@
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Topic Distribution</span>
-                            <span>83.3% Intro · 16.7% Sort</span>
+                            <span id="cses-topic-dist">83.3% Intro · 16.7% Sort</span>
                           </div>
                           <div class="cf-progress-track">
-                            <div class="cf-progress-bar" style="width: 83.3%; background: linear-gradient(90deg, #ffd60a, #f0883e);"></div>
+                            <div class="cf-progress-bar" id="cses-topic-bar" style="width: 83.3%; background: linear-gradient(90deg, #ffd60a, #f0883e);"></div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- CSES Metric 3 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">COMPILER &amp; PIPELINE</div>
                         <div class="cf-metric-val" style="color: #3fb950;">C++20 <span class="val-unit">GCC</span></div>
@@ -841,7 +938,6 @@
                       </div>
                     </div>
 
-                    <!-- CSES Solves Stream -->
                     <div class="cf-recent-section">
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
@@ -849,23 +945,20 @@
                           <span>ALL CSES ACCEPTED PROBLEMS (CODESYNC PRO PIPELINE)</span>
                         </div>
                         <a href="https://github.com/Pri8899/CP/tree/main/CSES" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
-                          View in Pri8899/CP (6 files) ↗
+                          View in Pri8899/CP ↗
                         </a>
                       </div>
                       <div class="cp-filter-bar">
                         <input type="text" class="cp-search-input" id="cp-search-cses" placeholder="⚡ Filter CSES problems (e.g., Weird Algorithm, 1068, Sorting)..." />
                         <span class="cp-count-badge" id="cp-count-cses">6 CSES Solves</span>
                       </div>
-                      <div class="cf-recent-list" id="cses-recent-solves-mount">
-                        <!-- Populated dynamically by main.js with all CSES ACs -->
-                      </div>
+                      <div class="cf-recent-list" id="cses-recent-solves-mount"></div>
                     </div>
                   </div>
 
                   <!-- VIEW 5: AtCoder Telemetry -->
                   <div id="cp-view-ac" class="cf-hud-container" style="display: none;">
                     <div class="cf-hud-grid">
-                      <!-- AC Metric 1 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">ATCODER ACCEPTED</div>
                         <div class="cf-metric-val" id="ac-solved-count" style="color: #f0883e;">0</div>
@@ -884,7 +977,6 @@
                         </div>
                       </div>
 
-                      <!-- AC Metric 2 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">CONTEST TRACKS</div>
                         <div class="cf-metric-val" style="color: #79c0ff;">ABC &amp; ARC</div>
@@ -895,7 +987,7 @@
                         <div class="cf-progress-wrap">
                           <div class="cf-progress-header">
                             <span>Platform Arena</span>
-                            <span>AtCoder Japanese &amp; Global</span>
+                            <span>AtCoder Global</span>
                           </div>
                           <div class="cf-progress-track">
                             <div class="cf-progress-bar" style="width: 100%; background: linear-gradient(90deg, #79c0ff, #58a6ff);"></div>
@@ -903,7 +995,6 @@
                         </div>
                       </div>
 
-                      <!-- AC Metric 3 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">AUTOMATION PIPELINE</div>
                         <div class="cf-metric-val" style="color: #3fb950;">CodeSync <span class="val-unit">Pro</span></div>
@@ -923,16 +1014,13 @@
                       </div>
                     </div>
 
-                    <!-- AtCoder Section -->
                     <div class="cf-recent-section">
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                          <span>ATCODER LIVE CONTEST TELEMETRY (CODESYNC PRO PIPELINE)</span>
+                          <span>ATCODER LIVE CONTEST TELEMETRY</span>
                         </div>
-                        <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
-                          Open AtCoder.jp ↗
-                        </a>
+                        <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">Open AtCoder.jp ↗</a>
                       </div>
                       <div class="cp-other-grid" style="padding: 10px 0;">
                         <div class="cp-platform-card" style="width: 100%;">
@@ -944,11 +1032,9 @@
                             <span class="platform-status-badge ready">Configured</span>
                           </div>
                           <p class="platform-card-desc">
-                            Automated capture pipeline enabled in CodeSync Pro Extension. Syncs ABC and ARC contest solutions directly to <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/AtCoder</code> upon verdict.
+                            Automated capture pipeline enabled in CodeSync Pro Extension. Syncs ABC and ARC contest solutions directly to <code>Pri8899/CP/AtCoder</code> upon verdict.
                           </p>
-                          <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
-                            Open AtCoder ↗
-                          </a>
+                          <a href="https://atcoder.jp" target="_blank" rel="noopener noreferrer" class="platform-repo-link">Open AtCoder ↗</a>
                         </div>
                       </div>
                     </div>
@@ -957,7 +1043,6 @@
                   <!-- VIEW 6: Toph National Arena -->
                   <div id="cp-view-toph" class="cf-hud-container" style="display: none;">
                     <div class="cf-hud-grid">
-                      <!-- Toph Metric 1 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">TOPH ACCEPTED</div>
                         <div class="cf-metric-val" id="toph-solved-count" style="color: #3fb950;">0</div>
@@ -976,7 +1061,6 @@
                         </div>
                       </div>
 
-                      <!-- Toph Metric 2 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">REGIONAL ARENA</div>
                         <div class="cf-metric-val" style="color: #a371f7;">ICPC <span class="val-unit">&amp; BD</span></div>
@@ -995,7 +1079,6 @@
                         </div>
                       </div>
 
-                      <!-- Toph Metric 3 -->
                       <div class="cf-metric-card">
                         <div class="cf-metric-label">AUTOMATION PIPELINE</div>
                         <div class="cf-metric-val" style="color: #3fb950;">CodeSync <span class="val-unit">Pro</span></div>
@@ -1015,16 +1098,13 @@
                       </div>
                     </div>
 
-                    <!-- Toph Section -->
                     <div class="cf-recent-section">
                       <div class="cf-recent-header">
                         <div class="cf-recent-title">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                          <span>TOPH NATIONAL ARENA (CODESYNC PRO PIPELINE)</span>
+                          <span>TOPH NATIONAL ARENA</span>
                         </div>
-                        <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">
-                          Open Toph.co ↗
-                        </a>
+                        <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="cf-view-all-link">Open Toph.co ↗</a>
                       </div>
                       <div class="cp-other-grid" style="padding: 10px 0;">
                         <div class="cp-platform-card" style="width: 100%;">
@@ -1036,19 +1116,16 @@
                             <span class="platform-status-badge ready">Configured</span>
                           </div>
                           <p class="platform-card-desc">
-                            Automated capture pipeline enabled in CodeSync Pro Extension. Syncs Bangladeshi university contests and ICPC preliminary submissions to <code style="color: var(--apple-cyan); font-size: 10px;">Pri8899/CP/Toph</code>.
+                            Automated capture pipeline enabled in CodeSync Pro Extension. Syncs Bangladeshi university contests and ICPC preliminary submissions to <code>Pri8899/CP/Toph</code>.
                           </p>
-                          <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="platform-repo-link">
-                            Open Toph ↗
-                          </a>
+                          <a href="https://toph.co" target="_blank" rel="noopener noreferrer" class="platform-repo-link">Open Toph ↗</a>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <!-- VIEW 4: CodeSync Pro Vector Card Mount -->
+                  <!-- VIEW 7: CodeSync Pro Vector Cards -->
                   <div class="cp-card-wrapper" id="cp-card-wrapper" style="display: none;">
-                    <!-- Segmented sub-switcher -->
                     <div class="cp-card-subswitch">
                       <button type="button" class="cp-card-toggle-btn active" id="btn-toggle-both" data-toggle="both">🗂️ All Cards</button>
                       <button type="button" class="cp-card-toggle-btn" id="btn-toggle-stats" data-toggle="stats">⚡ Performance</button>
@@ -1056,18 +1133,15 @@
                     </div>
 
                     <!-- 1. Performance Stats Card -->
-                    <div class="cp-card-section" id="section-card-stats" style="width: 100%; max-width: 680px; display: flex; justify-content: center;">
+                    <div class="cp-card-section" id="section-card-stats">
                       <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Open Pri8899/CP Archive on GitHub">
                         <div class="cp-svg-mount" id="cp-svg-mount">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" fill="none" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;">
   <defs>
-    <!-- Background Gradient -->
     <linearGradient id="bg" x1="0" y1="0" x2="495" y2="195" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0d1117"/>
       <stop offset="100%" stop-color="#161b22"/>
     </linearGradient>
-
-    <!-- Electric Flowing Border -->
     <linearGradient id="border-flow" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1f6feb">
         <animate attributeName="stop-color" values="#1f6feb; #58a6ff; #3fb950; #1f6feb" dur="6s" repeatCount="indefinite"/>
@@ -1082,16 +1156,12 @@
         <animate attributeName="stop-color" values="#30363d; #30363d; #58a6ff; #30363d" dur="6s" repeatCount="indefinite"/>
       </stop>
     </linearGradient>
-
-    <!-- Ambient Aurora Glow -->
     <radialGradient id="aurora" cx="80%" cy="15%" r="65%">
       <stop offset="0%" stop-color="#1f6feb" stop-opacity="0.14">
         <animate attributeName="stop-opacity" values="0.06; 0.22; 0.06" dur="3.5s" repeatCount="indefinite"/>
       </stop>
       <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
     </radialGradient>
-
-    <!-- Animated Lightning Icon Gradient -->
     <linearGradient id="icon-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#1f6feb">
         <animate attributeName="stop-color" values="#1f6feb; #58a6ff; #388bfd; #1f6feb" dur="2.5s" repeatCount="indefinite"/>
@@ -1100,8 +1170,6 @@
         <animate attributeName="stop-color" values="#58a6ff; #79c0ff; #1f6feb; #58a6ff" dur="2.5s" repeatCount="indefinite"/>
       </stop>
     </linearGradient>
-
-    <!-- Living Flame Gradient for Streak -->
     <linearGradient id="streak-flame" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#f0883e">
         <animate attributeName="stop-color" values="#f0883e; #ff7b72; #f97316; #f0883e" dur="2.2s" repeatCount="indefinite"/>
@@ -1110,18 +1178,15 @@
         <animate attributeName="stop-color" values="#f97316; #f0883e; #ff7b72; #f97316" dur="2.2s" repeatCount="indefinite"/>
       </stop>
     </linearGradient>
-
-    <!-- Continuous Laser Shimmer Beam across Progress Bar -->
     <linearGradient id="laser-sweep" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.25"/>
       <stop offset="50%" stop-color="#ffffff" stop-opacity="0.9"/>
-      <stop offset="70%" stop-color="#58a6ff" stop-opacity="0.45"/>
+      <stop offset="65%" stop-color="#58a6ff" stop-opacity="0.45"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-      <animate attributeName="x1" values="-150%; 150%" dur="2.4s" repeatCount="indefinite"/>
-      <animate attributeName="x2" values="-50%; 250%" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="x1" values="-120%; 120%" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="-20%; 220%" dur="2.4s" repeatCount="indefinite"/>
     </linearGradient>
-
     <clipPath id="bar-clip">
       <rect x="24" y="118" width="447" height="7" rx="3.5"/>
     </clipPath>
@@ -1136,277 +1201,209 @@
     .stat-val { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-weight: 700; }
     .stat-lbl { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; font-size: 9.5px; font-weight: 600; fill: #8b949e; letter-spacing: 0.5px; }
   </style>
-
-  <!-- Card Background & Border -->
   <rect x="0.5" y="0.5" width="494" height="194" rx="10" fill="url(#bg)" stroke="url(#border-flow)" stroke-width="1.2"/>
-
-  <!-- Ambient Aurora Glow Overlay -->
   <rect x="1" y="1" width="493" height="193" rx="10" fill="url(#aurora)" pointer-events="none"/>
-
-  <!-- Logo Icon -->
   <g transform="translate(24, 20)">
     <rect width="24" height="24" rx="6" fill="#1c2129" stroke="#30363d" stroke-width="1"/>
     <path d="M13 3L6 13h5l-1 8 8-11h-5l1-7z" fill="url(#icon-grad)"/>
   </g>
-
-  <!-- Header Text -->
   <g>
     <text x="56" y="33" class="title">CodeSync Pro <tspan font-weight="400" fill="#6e7681">Workstation</tspan></text>
     <text x="56" y="47" class="subtitle">@Pri8899 • Competitive Programming Portfolio</text>
   </g>
-
-  <!-- Live Status Badge with Continuous Sonar Radar Rings -->
-  <g transform="translate(390, 21)">
-    <rect width="81" height="22" rx="11" fill="#1c2129" stroke="#30363d" stroke-width="1"/>
-    <!-- Core Green Dot -->
+  <g transform="translate(380, 21)">
+    <rect width="91" height="22" rx="11" fill="#1c2129" stroke="#30363d" stroke-width="1"/>
     <circle cx="11" cy="11" r="3.5" fill="#3fb950" filter="url(#glow)"/>
-    <!-- Sonar Radar Ring 1 -->
     <circle cx="11" cy="11" r="3.5" fill="none" stroke="#3fb950" stroke-width="1.6" opacity="0.8">
       <animate attributeName="r" values="3.5; 10" dur="2s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="0.85; 0" dur="2s" repeatCount="indefinite"/>
       <animate attributeName="stroke-width" values="1.6; 0.2" dur="2s" repeatCount="indefinite"/>
     </circle>
-    <!-- Sonar Radar Ring 2 (Staggered) -->
     <circle cx="11" cy="11" r="3.5" fill="none" stroke="#3fb950" stroke-width="1.6" opacity="0.8">
       <animate attributeName="r" values="3.5; 10" dur="2s" begin="1s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="0.85; 0" dur="2s" begin="1s" repeatCount="indefinite"/>
       <animate attributeName="stroke-width" values="1.6; 0.2" dur="2s" begin="1s" repeatCount="indefinite"/>
     </circle>
-    <text x="20" y="14.5" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#3fb950" letter-spacing="0.4px">AUTO-SYNC</text>
+    <text x="20" y="14.5" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="9" font-weight="700" fill="#3fb950" letter-spacing="0.3px">AUTO-SYNC</text>
   </g>
-
-  <!-- Separator -->
   <line x1="24" y1="58" x2="471" y2="58" stroke="#21262d" stroke-width="1"/>
-
-  <!-- 4 Primary Stat Columns -->
   <g transform="translate(24, 68)">
-    <!-- Solved -->
     <g>
-      <text x="0" y="20" class="stat-val" font-size="22" fill="#58a6ff">149</text>
+      <text x="0" y="20" class="stat-val" font-size="22" fill="#58a6ff">159</text>
       <text x="0" y="34" class="stat-lbl">TOTAL SOLVED</text>
     </g>
-
-    <!-- Streak (Animated Flame Gradient) -->
     <g>
-      <text x="120" y="20" class="stat-val" font-size="22" fill="url(#streak-flame)">47<tspan font-size="13" font-weight="500" fill="#8b949e"> days</tspan></text>
+      <text x="120" y="20" class="stat-val" font-size="22" fill="url(#streak-flame)">54<tspan font-size="13" font-weight="500" fill="#8b949e"> days</tspan></text>
       <text x="120" y="34" class="stat-lbl">CURRENT STREAK</text>
     </g>
-
-    <!-- AC Accuracy -->
     <g>
-      <text x="245" y="20" class="stat-val" font-size="22" fill="#3fb950">60.5%</text>
+      <text x="245" y="20" class="stat-val" font-size="22" fill="#3fb950">38.1%</text>
       <text x="245" y="34" class="stat-lbl">AC ACCURACY</text>
     </g>
-
-    <!-- Submissions -->
     <g>
-      <text x="360" y="20" class="stat-val" font-size="22" fill="#c9d1d9">210</text>
+      <text x="360" y="20" class="stat-val" font-size="22" fill="#c9d1d9">417</text>
       <text x="360" y="34" class="stat-lbl">SUBMISSIONS</text>
     </g>
   </g>
-
-  <!-- Segmented Progress Bar + Laser Sweep -->
   <g>
     <rect x="24" y="118" width="447" height="7" rx="3.5" fill="#21262d"/>
     <g clip-path="url(#bar-clip)">
-      <rect x="24" y="118" width="381" height="7" fill="#3b82f6"/><rect x="405" y="118" width="48" height="7" fill="#f59e0b"/><rect x="453" y="118" width="18" height="7" fill="#10b981"/>
-      <!-- Continuous Laser Shimmer Beam across Bar -->
+      <rect x="24" y="118" width="385.15" height="7" fill="#3b82f6"/>
+      <rect x="409.15" y="118" width="44.98" height="7" fill="#f59e0b"/>
+      <rect x="454.13" y="118" width="16.87" height="7" fill="#10b981"/>
       <rect x="24" y="118" width="447" height="7" fill="url(#laser-sweep)"/>
-      <rect y="118" width="90" height="7" fill="#ffffff" fill-opacity="0.8">
-        <animate attributeName="x" values="-66; 471; -66" dur="2.8s" repeatCount="indefinite"/>
-      </rect>
     </g>
   </g>
-
-  <!-- Platform Solved Pills (Breathing Indicator Dots) -->
-  
-    <g transform="translate(24, 137)">
-      <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <circle cx="12" cy="13" r="3.5" fill="#3b82f6">
-        <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2s" repeatCount="indefinite"/>
-      </circle>
-      <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">CF</text>
-      <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">127</text>
-    </g>
-    <g transform="translate(115, 137)">
-      <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <circle cx="12" cy="13" r="3.5" fill="#f59e0b">
-        <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2.25s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2.25s" repeatCount="indefinite"/>
-      </circle>
-      <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">LC</text>
-      <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">16</text>
-    </g>
-    <g transform="translate(206, 137)">
-      <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <circle cx="12" cy="13" r="3.5" fill="#e2e8f0">
-        <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2.5s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2.5s" repeatCount="indefinite"/>
-      </circle>
-      <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">AC</text>
-      <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">0</text>
-    </g>
-    <g transform="translate(297, 137)">
-      <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <circle cx="12" cy="13" r="3.5" fill="#10b981">
-        <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2.75s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2.75s" repeatCount="indefinite"/>
-      </circle>
-      <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">CSES</text>
-      <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">6</text>
-    </g>
-    <g transform="translate(388, 137)">
-      <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-      <circle cx="12" cy="13" r="3.5" fill="#f43f5e">
-        <animate attributeName="r" values="3.0; 4.3; 3.0" dur="3s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.75; 1; 0.75" dur="3s" repeatCount="indefinite"/>
-      </circle>
-      <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">Toph</text>
-      <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">0</text>
-    </g>
-
-  <!-- Footer Subtle Info -->
+  <g transform="translate(24, 137)">
+    <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#3b82f6">
+      <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">CF</text>
+    <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">137</text>
+  </g>
+  <g transform="translate(115, 137)">
+    <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#f59e0b">
+      <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2.25s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2.25s" repeatCount="indefinite"/>
+    </circle>
+    <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">LC</text>
+    <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">16</text>
+  </g>
+  <g transform="translate(206, 137)">
+    <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#e2e8f0">
+      <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">AC</text>
+    <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">0</text>
+  </g>
+  <g transform="translate(297, 137)">
+    <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#10b981">
+      <animate attributeName="r" values="3.0; 4.3; 3.0" dur="2.75s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.75; 1; 0.75" dur="2.75s" repeatCount="indefinite"/>
+    </circle>
+    <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">CSES</text>
+    <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">6</text>
+  </g>
+  <g transform="translate(388, 137)">
+    <rect width="83" height="26" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <circle cx="12" cy="13" r="3.5" fill="#f43f5e">
+      <animate attributeName="r" values="3.0; 4.3; 3.0" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.75; 1; 0.75" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="21" y="17" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#8b949e">Toph</text>
+    <text x="74" y="17" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#e6edf3">0</text>
+  </g>
   <text x="24" y="181" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">⚡ Auto-generated by CodeSync Pro</text>
-  <text x="471" y="181" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">Last Synced: Nov 18, 2026</text>
+  <text x="471" y="181" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="9" fill="#484f58">Last Synced: Nov 26, 2026</text>
 </svg>
                         </div>
                       </a>
                     </div>
 
                     <!-- 2. Problem Solved Overview Card -->
-                    <div class="cp-card-section" id="section-card-overview" style="width: 100%; max-width: 780px; display: flex; justify-content: center;">
-                      <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Problem Solved by Platform & Division Overview">
+                    <div class="cp-card-section" id="section-card-overview" style="max-width: 780px;">
+                      <a href="https://github.com/Pri8899/CP" target="_blank" rel="noopener noreferrer" class="cp-svg-link" title="Problems Solved by Platform &amp; Division Overview">
                         <div class="cp-svg-mount" id="cp-overview-mount">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 490" fill="none" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 587" fill="none" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;">
   <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="ov-bg" x1="0" y1="0" x2="1000" y2="490" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ov-bg" x1="0" y1="0" x2="1000" y2="587" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0d1117" />
       <stop offset="100%" stop-color="#161b22" />
     </linearGradient>
-
-    <!-- Top Laser Sweep Animation -->
     <linearGradient id="ov-laser" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#1f6feb" stop-opacity="0" />
-      <stop offset="50%" stop-color="#58a6ff" stop-opacity="1" />
+      <stop offset="45%" stop-color="#58a6ff" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="55%" stop-color="#3fb950" stop-opacity="0.85" />
       <stop offset="100%" stop-color="#3fb950" stop-opacity="0" />
-      <animate attributeName="x1" values="-100%; 100%" dur="4s" repeatCount="indefinite" />
-      <animate attributeName="x2" values="0%; 200%" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="x1" values="-100%; 100%" dur="3.4s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="0%; 200%" dur="3.4s" repeatCount="indefinite" />
     </linearGradient>
-
-    <!-- Clip paths for card and rounded segment bars -->
-    <clipPath id="ov-card-clip">
-      <rect width="1000" height="490" rx="16" />
-    </clipPath>
-    <clipPath id="cf-bar-clip">
-      <rect x="0" y="0" width="920" height="10" rx="5" />
-    </clipPath>
-    <clipPath id="cses-bar-clip">
-      <rect x="0" y="0" width="920" height="10" rx="5" />
-    </clipPath>
+    <clipPath id="ov-card-clip"><rect width="1000" height="587" rx="16" /></clipPath>
+    <clipPath id="cf-bar-clip"><rect x="0" y="0" width="920" height="10" rx="5" /></clipPath>
+    <clipPath id="lc-bar-clip"><rect x="0" y="0" width="920" height="10" rx="5" /></clipPath>
+    <clipPath id="cses-bar-clip"><rect x="0" y="0" width="920" height="10" rx="5" /></clipPath>
   </defs>
-
-  <!-- Card Border & Background -->
-  <rect width="1000" height="490" rx="16" fill="url(#ov-bg)" stroke="#30363d" stroke-width="1.5" />
-
-  <!-- Animated Top Curved Laser Accent with Continuous Moving Laser Beam -->
+  <rect width="1000" height="587" rx="16" fill="url(#ov-bg)" stroke="#30363d" stroke-width="1.5" />
   <g clip-path="url(#ov-card-clip)">
     <rect x="0" y="0" width="1000" height="4.5" fill="#1f6feb" fill-opacity="0.35" />
-    <rect y="0" width="240" height="4.5" fill="#ffffff" fill-opacity="0.95">
-      <animate attributeName="x" values="-240; 1000; -240" dur="3.2s" repeatCount="indefinite" />
-    </rect>
-    <rect y="0" width="240" height="4.5" fill="#58a6ff" fill-opacity="0.75">
-      <animate attributeName="x" values="-240; 1000; -240" dur="3.2s" repeatCount="indefinite" />
-    </rect>
+    <rect x="0" y="0" width="1000" height="4.5" fill="url(#ov-laser)" />
   </g>
-
-  <!-- Header -->
   <g transform="translate(40, 50)">
-    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Problem Solved by platform</text>
-    <text x="920" y="0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b949e">149 total</text>
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Problems Solved by Platform</text>
+    <text x="920" y="0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b949e">159 total</text>
   </g>
-
-  <!-- Platform Progress Bars -->
-  
-    <!-- Codeforces -->
-    <g transform="translate(40, 98)">
-      <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">Codeforces</text>
-      <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="730" height="10" rx="5" fill="#3b82f6">
-        <animate attributeName="width" from="0" to="730" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
-      </rect>
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">127</text>
-    </g>
-    <!-- LeetCode -->
-    <g transform="translate(40, 134)">
-      <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">LeetCode</text>
-      <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="92" height="10" rx="5" fill="#f59e0b">
-        <animate attributeName="width" from="0" to="92" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
-      </rect>
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">16</text>
-    </g>
-    <!-- AtCoder -->
-    <g transform="translate(40, 170)">
-      <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">AtCoder</text>
-      <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">0</text>
-    </g>
-    <!-- CSES -->
-    <g transform="translate(40, 206)">
-      <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">CSES</text>
-      <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="34" height="10" rx="5" fill="#10b981">
-        <animate attributeName="width" from="0" to="34" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
-      </rect>
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">6</text>
-    </g>
-    <!-- Toph -->
-    <g transform="translate(40, 242)">
-      <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">Toph</text>
-      <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">0</text>
-    </g>
-
-  <!-- Codeforces by Division Section -->
+  <g transform="translate(40, 98)">
+    <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">Codeforces</text>
+    <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
+    <rect x="150" y="0" width="730" height="10" rx="5" fill="#3b82f6">
+      <animate attributeName="width" from="0" to="730" dur="1.1s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+    </rect>
+    <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">137</text>
+  </g>
+  <g transform="translate(40, 134)">
+    <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">LeetCode</text>
+    <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
+    <rect x="150" y="0" width="85" height="10" rx="5" fill="#f59e0b">
+      <animate attributeName="width" from="0" to="85" dur="1.1s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+    </rect>
+    <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">16</text>
+  </g>
+  <g transform="translate(40, 170)">
+    <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">AtCoder</text>
+    <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
+    <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">0</text>
+  </g>
+  <g transform="translate(40, 206)">
+    <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">CSES</text>
+    <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
+    <rect x="150" y="0" width="32" height="10" rx="5" fill="#10b981">
+      <animate attributeName="width" from="0" to="32" dur="1.1s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+    </rect>
+    <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">6</text>
+  </g>
+  <g transform="translate(40, 242)">
+    <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">Toph</text>
+    <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
+    <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">0</text>
+  </g>
   <g transform="translate(40, 305)">
     <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8b949e">Codeforces by division</text>
     <g transform="translate(0, 10)">
       <rect width="920" height="10" rx="5" fill="#161b22" />
       <g clip-path="url(#cf-bar-clip)">
-        <rect x="0" y="0" width="7" height="10" fill="#ef4444" /><rect x="7" y="0" width="471" height="10" fill="#3b82f6" /><rect x="478" y="0" width="152" height="10" fill="#10b981" /><rect x="630" y="0" width="225" height="10" fill="#f59e0b" /><rect x="855" y="0" width="65" height="10" fill="#8b5cf6" />
+        <rect x="0" y="0" width="7" height="10" fill="#ef4444" /><rect x="7" y="0" width="470" height="10" fill="#3b82f6" /><rect x="477" y="0" width="148" height="10" fill="#10b981" /><rect x="625" y="0" width="215" height="10" fill="#f59e0b" /><rect x="840" y="0" width="80" height="10" fill="#8b5cf6" />
       </g>
     </g>
     <g transform="translate(0, 34)">
-      
-    <g transform="translate(0, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#ef4444" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 1: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
-    </g>
-    <g transform="translate(184, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#3b82f6" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 2: <tspan font-weight="700" fill="#ffffff">65</tspan></text>
-    </g>
-    <g transform="translate(368, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#10b981" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 3: <tspan font-weight="700" fill="#ffffff">21</tspan></text>
-    </g>
-    <g transform="translate(552, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#f59e0b" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 4: <tspan font-weight="700" fill="#ffffff">31</tspan></text>
-    </g>
-    <g transform="translate(736, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#8b5cf6" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">9</tspan></text>
-    </g>
+      <g transform="translate(0, 0)"><circle cx="5" cy="5" r="4.5" fill="#ef4444" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 1: <tspan font-weight="700" fill="#ffffff">1</tspan></text></g>
+      <g transform="translate(184, 0)"><circle cx="5" cy="5" r="4.5" fill="#3b82f6" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 2: <tspan font-weight="700" fill="#ffffff">70</tspan></text></g>
+      <g transform="translate(368, 0)"><circle cx="5" cy="5" r="4.5" fill="#10b981" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 3: <tspan font-weight="700" fill="#ffffff">22</tspan></text></g>
+      <g transform="translate(552, 0)"><circle cx="5" cy="5" r="4.5" fill="#f59e0b" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 4: <tspan font-weight="700" fill="#ffffff">32</tspan></text></g>
+      <g transform="translate(736, 0)"><circle cx="5" cy="5" r="4.5" fill="#8b5cf6" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">12</tspan></text></g>
     </g>
   </g>
-
-  <!-- CSES by Category Section (2 spacious rows, 3 columns each) -->
-  <g transform="translate(40, 395)">
+  <g transform="translate(40, 387)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8b949e">LeetCode by difficulty</text>
+    <g transform="translate(0, 10)">
+      <rect width="920" height="10" rx="5" fill="#161b22" />
+      <g clip-path="url(#lc-bar-clip)">
+        <rect x="0" y="0" width="345" height="10" fill="#22c55e" /><rect x="345" y="0" width="518" height="10" fill="#f59e0b" /><rect x="863" y="0" width="57" height="10" fill="#ef4444" />
+      </g>
+    </g>
+    <g transform="translate(0, 34)">
+      <g transform="translate(0, 0)"><circle cx="5" cy="5" r="4.5" fill="#22c55e" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Easy: <tspan font-weight="700" fill="#ffffff">6</tspan></text></g>
+      <g transform="translate(305, 0)"><circle cx="5" cy="5" r="4.5" fill="#f59e0b" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Medium: <tspan font-weight="700" fill="#ffffff">9</tspan></text></g>
+      <g transform="translate(610, 0)"><circle cx="5" cy="5" r="4.5" fill="#ef4444" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Hard: <tspan font-weight="700" fill="#ffffff">1</tspan></text></g>
+    </g>
+  </g>
+  <g transform="translate(40, 469)">
     <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8b949e">CSES by category</text>
     <g transform="translate(0, 10)">
       <rect width="920" height="10" rx="5" fill="#161b22" />
@@ -1415,31 +1412,12 @@
       </g>
     </g>
     <g transform="translate(0, 30)">
-      
-    <g transform="translate(0, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#58a6ff" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Introductory: <tspan font-weight="700" fill="#ffffff">5</tspan></text>
-    </g>
-    <g transform="translate(305, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#3fb950" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Sorting &amp; Searching: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
-    </g>
-    <g transform="translate(610, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#d29922" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Dynamic Programming: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
-    <g transform="translate(0, 22)">
-      <circle cx="5" cy="5" r="4.5" fill="#f85149" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Graphs &amp; Trees: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
-    <g transform="translate(305, 22)">
-      <circle cx="5" cy="5" r="4.5" fill="#bc8cff" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Math &amp; Queries: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
-    <g transform="translate(610, 22)">
-      <circle cx="5" cy="5" r="4.5" fill="#f778ba" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
+      <g transform="translate(0, 0)"><circle cx="5" cy="5" r="4.5" fill="#58a6ff" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Introductory: <tspan font-weight="700" fill="#ffffff">5</tspan></text></g>
+      <g transform="translate(305, 0)"><circle cx="5" cy="5" r="4.5" fill="#3fb950" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Sorting &amp; Searching: <tspan font-weight="700" fill="#ffffff">1</tspan></text></g>
+      <g transform="translate(610, 0)"><circle cx="5" cy="5" r="4.5" fill="#d29922" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Dynamic Programming: <tspan font-weight="700" fill="#ffffff">0</tspan></text></g>
+      <g transform="translate(0, 22)"><circle cx="5" cy="5" r="4.5" fill="#f85149" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Graphs &amp; Trees: <tspan font-weight="700" fill="#ffffff">0</tspan></text></g>
+      <g transform="translate(305, 22)"><circle cx="5" cy="5" r="4.5" fill="#bc8cff" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Math &amp; Queries: <tspan font-weight="700" fill="#ffffff">0</tspan></text></g>
+      <g transform="translate(610, 22)"><circle cx="5" cy="5" r="4.5" fill="#f778ba" /><text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">0</tspan></text></g>
     </g>
   </g>
 </svg>
@@ -1451,163 +1429,150 @@
               </div>
             </section>
           </div>
-          <!-- SLIDE 4: SKILLS -->
-          <div class="desk-slide" data-slide="4" id="slide-skills">
+
+          <!-- ════════ SLIDE 4: TECH STACK / SKILLS ════════ -->
+          <div class="desk-slide" data-slide="4" id="slide-skills" aria-hidden="true" inert>
             <section id="skills" class="section">
               <div class="macos-window spotlight-card" data-tilt>
-          <div class="skills-wrapper">
-            <div class="skills-deck">
-              <!-- 1. C -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 128 128">
-                  <path fill="#A8B9CC" d="M116.6 86.8c-7.9 14.1-23.1 23.6-40.4 23.6-25.6 0-46.4-20.8-46.4-46.4s20.8-46.4 46.4-46.4c17.3 0 32.5 9.5 40.4 23.6l16.1-9.3C121.2 11.7 99.4 0 76.2 0 34.1 0 0 34.1 0 76.2s34.1 76.2 76.2 76.2c23.2 0 45-11.7 56.5-31.9l-16.1-9.3v-4.4z"/>
-                </svg>
-                <div class="tech-name">C</div>
-                <div class="tech-level">Systems &amp; Memory</div>
-              </div>
+                <div class="skills-wrapper">
+                  <div class="skills-header">
+                    <div>
+                      <span class="specs-title">System Settings · Developer Toolchain</span>
+                      <h2 class="skills-title">Languages, Engines &amp; Platforms</h2>
+                    </div>
+                    <span class="finder-count-pill" id="skills-live-pill">159 CP Solves · Auto-Synced</span>
+                  </div>
 
-              <!-- 2. C++ -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 128 128">
-                  <path fill="#00599C" d="M116.6 86.8c-7.9 14.1-23.1 23.6-40.4 23.6-25.6 0-46.4-20.8-46.4-46.4s20.8-46.4 46.4-46.4c17.3 0 32.5 9.5 40.4 23.6l16.1-9.3C121.2 11.7 99.4 0 76.2 0 34.1 0 0 34.1 0 76.2s34.1 76.2 76.2 76.2c23.2 0 45-11.7 56.5-31.9l-16.1-9.3v-4.4z"/>
-                  <path fill="#004482" d="M92.7 54.4h8.3v-8.3h7.2v8.3h8.3v7.2h-8.3v8.3h-7.2v-8.3h-8.3v-7.2zm23.6 14.4h8.3v-8.3h7.2v8.3h8.3v7.2h-8.3v8.3h-7.2v-8.3h-8.3v-7.2z"/>
-                </svg>
-                <div class="tech-name">C++</div>
-                <div class="tech-level">STL &amp; Core Performance</div>
-              </div>
+                  <div class="skills-cp-telemetry" id="skills-cp-strip">
+                    <div class="skills-cp-top">
+                      <span class="skills-cp-label">Pri8899/CP Live Repository Telemetry</span>
+                      <span class="skills-cp-stats" id="skills-cp-breakdown">C++ 94.3% (150) · Java 5.7% (9) · 159 Solved · 54d Streak</span>
+                    </div>
+                    <div class="skills-lang-bar" role="img" aria-label="Pri8899/CP language breakdown">
+                      <div class="skills-lang-seg seg-cpp" id="skills-bar-cpp" style="width: 94.3%;"></div>
+                      <div class="skills-lang-seg seg-java" id="skills-bar-java" style="width: 5.7%;"></div>
+                    </div>
+                  </div>
 
-              <!-- 3. Java -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 128 128">
-                  <path fill="#EA2D2E" d="M46.7 97.4s-8.1 4.7 5.8 6.3c16.8 1.9 25.5 1.7 44.2-1.9 0 0 3.7 2.3 8.8 4.2-22.3 8.3-51.5 5.5-67.9-2.2-6.5-3-2.7-7.4 9.1-6.4zm-1.8-13.8s-9.3 6.1 4.3 7.8c17.8 2.2 32.6 2.4 56.6-2.5 0 0 2.5 2.5 6.4 4-27.9 7.6-67.5 5.5-77.9-2.7-6.2-4.9 10.6-6.6 10.6-6.6zm33.8-31.6c5.7 6.5 1.4 12.4-7.4 18.5 7.1-1.7 13.9-6.3 12.1-13.1-2.2-8.3-15.6-12.7-18.7-22.1-1.3-4-1.2-7.5.3-11.2-11.7 7.2-12.7 16.3-5.2 21.6 8.3 5.9 13.2 8.7 18.9 6.3z"/>
-                  <path fill="#007396" d="M85.7 70.8c11.3-10.4-5.9-18.7-5.9-18.7 14.1 3.5 21.9 11.2 15.3 19.8-8.2 10.7-32.9 10.8-49.2 11.2-5.7.1-17.8-.5-24.1-2.9 0 0 3.3 2.1 8.8 3.5 18.1 4.6 57.8 3.5 69.4-4.8 5.6-4 4.5-6.8-14.3-8.1z"/>
-                </svg>
-                <div class="tech-name">Java</div>
-                <div class="tech-level">OOP &amp; Core Systems</div>
+                  <div class="skills-deck">
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 128 128"><path fill="#A8B9CC" d="M116.6 86.8c-7.9 14.1-23.1 23.6-40.4 23.6-25.6 0-46.4-20.8-46.4-46.4s20.8-46.4 46.4-46.4c17.3 0 32.5 9.5 40.4 23.6l16.1-9.3C121.2 11.7 99.4 0 76.2 0 34.1 0 0 34.1 0 76.2s34.1 76.2 76.2 76.2c23.2 0 45-11.7 56.5-31.9l-16.1-9.3v-4.4z"/></svg>
+                      <div class="tech-name">C</div>
+                      <div class="tech-level">Systems &amp; Memory</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 128 128"><path fill="#00599C" d="M116.6 86.8c-7.9 14.1-23.1 23.6-40.4 23.6-25.6 0-46.4-20.8-46.4-46.4s20.8-46.4 46.4-46.4c17.3 0 32.5 9.5 40.4 23.6l16.1-9.3C121.2 11.7 99.4 0 76.2 0 34.1 0 0 34.1 0 76.2s34.1 76.2 76.2 76.2c23.2 0 45-11.7 56.5-31.9l-16.1-9.3v-4.4z"/><path fill="#004482" d="M92.7 54.4h8.3v-8.3h7.2v8.3h8.3v7.2h-8.3v8.3h-7.2v-8.3h-8.3v-7.2zm23.6 14.4h8.3v-8.3h7.2v8.3h8.3v7.2h-8.3v8.3h-7.2v-8.3h-8.3v-7.2z"/></svg>
+                      <div class="tech-name">C++</div>
+                      <div class="tech-level" id="skill-cpp-stat">150 CP Files · 94.3%</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 128 128"><path fill="#EA2D2E" d="M46.7 97.4s-8.1 4.7 5.8 6.3c16.8 1.9 25.5 1.7 44.2-1.9 0 0 3.7 2.3 8.8 4.2-22.3 8.3-51.5 5.5-67.9-2.2-6.5-3-2.7-7.4 9.1-6.4zm-1.8-13.8s-9.3 6.1 4.3 7.8c17.8 2.2 32.6 2.4 56.6-2.5 0 0 2.5 2.5 6.4 4-27.9 7.6-67.5 5.5-77.9-2.7-6.2-4.9 10.6-6.6 10.6-6.6zm33.8-31.6c5.7 6.5 1.4 12.4-7.4 18.5 7.1-1.7 13.9-6.3 12.1-13.1-2.2-8.3-15.6-12.7-18.7-22.1-1.3-4-1.2-7.5.3-11.2-11.7 7.2-12.7 16.3-5.2 21.6 8.3 5.9 13.2 8.7 18.9 6.3z"/><path fill="#007396" d="M85.7 70.8c11.3-10.4-5.9-18.7-5.9-18.7 14.1 3.5 21.9 11.2 15.3 19.8-8.2 10.7-32.9 10.8-49.2 11.2-5.7.1-17.8-.5-24.1-2.9 0 0 3.3 2.1 8.8 3.5 18.1 4.6 57.8 3.5 69.4-4.8 5.6-4 4.5-6.8-14.3-8.1z"/></svg>
+                      <div class="tech-name">Java</div>
+                      <div class="tech-level" id="skill-java-stat">9 CP Files · 5.7%</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 128 128"><path fill="#02569B" d="M78.6 0L19.4 59.2l18.5 18.5L97.1 18.5z"/><path fill="#0175C2" d="M78.6 63L41.6 100l18.5 18.5 55.5-55.5z"/><path fill="#13B9FD" d="M41.6 100l18.5-18.5 18.5 18.5-18.5 18.5z"/></svg>
+                      <div class="tech-name">Flutter</div>
+                      <div class="tech-level">Cross-Platform UI</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 128 128"><path fill="#E44D26" d="M13.6 117.2L2.7 0h122.6l-10.9 117.2L64 128l-50.4-10.8z"/><path fill="#F16529" d="M64 117.2l40.4-8.7 8.9-98.3H64v107z"/><path fill="#EBEBEB" d="M64 51.5H45.7l-1.3-14.7H64V22.6H27.9l3.8 43.1H64V51.5zm0 37.8l-17.5-4.7-1.1-12.7H30.9l2.2 24.8L64 104.9V89.3z"/><path fill="#FFFFFF" d="M64 51.5h18.3l-1.7 19.3L64 75.5V89.3l25.3-7 3.5-39.6h-28.8V51.5zm0-28.9v14.2h35.2L100.5 22.6H64z"/></svg>
+                      <div class="tech-name">HTML</div>
+                      <div class="tech-level">Semantic Structure</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".8" fill="var(--accent-warm)"></circle><circle cx="17.5" cy="10.5" r=".8" fill="var(--accent-warm)"></circle><circle cx="8.5" cy="7.5" r=".8" fill="var(--accent-warm)"></circle><circle cx="6.5" cy="12.5" r=".8" fill="var(--accent-warm)"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+                      <div class="tech-name">iGraphics</div>
+                      <div class="tech-level">C/C++ 2D Canvas</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg tech-svg-mono" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.2c5.412 0 9.8 4.388 9.8 9.8 0 5.412-4.388 9.8-9.8 9.8-5.412 0-9.8-4.388-9.8-9.8 0-5.412 4.388-9.8 9.8-9.8zm-2.8 4.5v6.5c0 1.5 1.3 2.7 2.8 2.7s2.8-1.2 2.8-2.7V6.7h-1.8v6.5c0 .5-.4.9-1 .9s-1-.4-1-.9V6.7H9.2z"/></svg>
+                      <div class="tech-name">Unreal Engine</div>
+                      <div class="tech-level">Game Engine &amp; 3D</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 24 24" fill="#E2231A"><path d="M18.926 23.998L0 18.892 5.075 0l18.925 5.106-5.074 18.892zM15.348 10.09l-5.282-1.423-1.414 5.248 5.282 1.424 1.414-5.249z"/></svg>
+                      <div class="tech-name">Roblox Studio</div>
+                      <div class="tech-level">Lua &amp; Game Dev</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 24 24" fill="none"><path fill="#3DDC84" d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8 12 8s-3.5902.4116-5.1368.9497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+                      <div class="tech-name">Android Studio</div>
+                      <div class="tech-level">Android Development</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 24 24" fill="none" stroke="#147EFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                      <div class="tech-name">Xcode</div>
+                      <div class="tech-level">Apple &amp; iOS Dev</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg" viewBox="0 0 128 128"><path fill="#007ACC" d="M96.7 127.3L128 112V16L96.7.7 42.4 51.6 17.6 32.7 0 41.1l25.8 22.9L0 86.9l17.6 8.4 24.8-18.9 54.3 50.9zm13.3-88.7v50.8L72.9 64l37.1-25.4z"/></svg>
+                      <div class="tech-name">VS Code</div>
+                      <div class="tech-level" id="skill-vscode-stat">CF 137 · LC 16 · CSES 6</div>
+                    </div>
+                    <div class="tech-card">
+                      <svg class="tech-svg tech-svg-mono" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                      <div class="tech-name">Git &amp; GitHub</div>
+                      <div class="tech-level" id="skill-git-stat">159 Synced · 417 Subs</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <!-- 4. Flutter -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 128 128">
-                  <path fill="#02569B" d="M78.6 0L19.4 59.2l18.5 18.5L97.1 18.5z"/>
-                  <path fill="#0175C2" d="M78.6 63L41.6 100l18.5 18.5 55.5-55.5z"/>
-                  <path fill="#13B9FD" d="M41.6 100l18.5-18.5 18.5 18.5-18.5 18.5z"/>
-                </svg>
-                <div class="tech-name">Flutter</div>
-                <div class="tech-level">Cross-Platform UI</div>
-              </div>
-
-              <!-- 5. HTML -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 128 128">
-                  <path fill="#E44D26" d="M13.6 117.2L2.7 0h122.6l-10.9 117.2L64 128l-50.4-10.8z"/>
-                  <path fill="#F16529" d="M64 117.2l40.4-8.7 8.9-98.3H64v107z"/>
-                  <path fill="#EBEBEB" d="M64 51.5H45.7l-1.3-14.7H64V22.6H27.9l3.8 43.1H64V51.5zm0 37.8l-17.5-4.7-1.1-12.7H30.9l2.2 24.8L64 104.9V89.3z"/>
-                  <path fill="#FFFFFF" d="M64 51.5h18.3l-1.7 19.3L64 75.5V89.3l25.3-7 3.5-39.6h-28.8V51.5zm0-28.9v14.2h35.2L100.5 22.6H64z"/>
-                </svg>
-                <div class="tech-name">HTML</div>
-                <div class="tech-level">Semantic Structure</div>
-              </div>
-
-              <!-- 6. iGraphics -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="13.5" cy="6.5" r=".5" fill="#00f2fe"></circle>
-                  <circle cx="17.5" cy="10.5" r=".5" fill="#00f2fe"></circle>
-                  <circle cx="8.5" cy="7.5" r=".5" fill="#00f2fe"></circle>
-                  <circle cx="6.5" cy="12.5" r=".5" fill="#00f2fe"></circle>
-                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
-                </svg>
-                <div class="tech-name">iGraphics</div>
-                <div class="tech-level">C/C++ 2D Canvas</div>
-              </div>
-
-              <!-- 7. Unreal Engine -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 24 24" fill="#ffffff">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.2c5.412 0 9.8 4.388 9.8 9.8 0 5.412-4.388 9.8-9.8 9.8-5.412 0-9.8-4.388-9.8-9.8 0-5.412 4.388-9.8 9.8-9.8zm-2.8 4.5v6.5c0 1.5 1.3 2.7 2.8 2.7s2.8-1.2 2.8-2.7V6.7h-1.8v6.5c0 .5-.4.9-1 .9s-1-.4-1-.9V6.7H9.2z"/>
-                </svg>
-                <div class="tech-name">Unreal Engine</div>
-                <div class="tech-level">Game Engine &amp; 3D</div>
-              </div>
-
-              <!-- 8. Roblox Studio -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 24 24" fill="#E2231A">
-                  <path d="M18.926 23.998L0 18.892 5.075 0l18.925 5.106-5.074 18.892zM15.348 10.09l-5.282-1.423-1.414 5.248 5.282 1.424 1.414-5.249z"/>
-                </svg>
-                <div class="tech-name">Roblox Studio</div>
-                <div class="tech-level">Lua &amp; Game Dev</div>
-              </div>
-
-              <!-- 9. Android Studio -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 24 24" fill="none">
-                  <path fill="#3DDC84" d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8 12 8s-3.5902.4116-5.1368.9497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/>
-                </svg>
-                <div class="tech-name">Android Studio</div>
-                <div class="tech-level">Android Development</div>
-              </div>
-
-              <!-- 10. Xcode -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 24 24" fill="none" stroke="#147EFB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                </svg>
-                <div class="tech-name">Xcode</div>
-                <div class="tech-level">Apple &amp; iOS Dev</div>
-              </div>
-
-              <!-- 11. VS Code -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 128 128">
-                  <path fill="#007ACC" d="M96.7 127.3L128 112V16L96.7.7 42.4 51.6 17.6 32.7 0 41.1l25.8 22.9L0 86.9l17.6 8.4 24.8-18.9 54.3 50.9zm13.3-88.7v50.8L72.9 64l37.1-25.4z"/>
-                </svg>
-                <div class="tech-name">VS Code</div>
-                <div class="tech-level">Primary Editor</div>
-              </div>
-
-              <!-- 12. Git & GitHub -->
-              <div class="tech-card">
-                <svg class="tech-svg" viewBox="0 0 24 24" fill="#ffffff">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-                <div class="tech-name">Git &amp; GitHub</div>
-                <div class="tech-level">Version Control &amp; Collab</div>
-              </div>
-            </div>
+            </section>
           </div>
+
+          <!-- ════════ SLIDE 5: CONTACT ════════ -->
+          <div class="desk-slide" data-slide="5" id="slide-contact" aria-hidden="true" inert>
+            <section id="contact" class="section contact-window">
+              <div class="macos-window spotlight-card" data-tilt>
+                <div class="contact-body">
+                  <div class="contact-badge-top">Open for Collaborations · Dhaka, Bangladesh</div>
+                  <h2 class="contact-hero-text">Let's Build Something Exceptional</h2>
+                  <p class="contact-desc">
+                    Open for competitive programming collaborations, open-source development, and engineering opportunities. Reach out via email or connect across developer platforms.
+                  </p>
+                  <div class="contact-buttons">
+                    <a href="mailto:parthopaul8899@gmail.com" class="contact-btn contact-btn-email">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                      <span>parthopaul8899@gmail.com</span>
+                    </a>
+                    <button type="button" id="btn-copy-email" class="contact-btn contact-btn-copy" title="Copy Email Address">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                      <span>Copy Email</span>
+                    </button>
+                    <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-github">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                      <span>GitHub (@Pri8899)</span>
+                    </a>
+                    <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-cf">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
+                      <span>Codeforces (pri8899)</span>
+                    </a>
+                    <a href="https://leetcode.com/u/Pri8899/" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-lc">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 4.848 3.865 5.86 5.86 0 0 0 2.213-.198 5.677 5.677 0 0 0 1.948-1.049l3.854-4.126 5.406-5.788A1.374 1.374 0 0 0 19.746 8a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 0-1.943L14.444.438A1.374 1.374 0 0 0 13.483 0z"/></svg>
+                      <span>LeetCode (Pri8899)</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
         </div>
-      </section>
-          </div>
-          <!-- SLIDE 5: CONTACT -->
-          <div class="desk-slide" data-slide="5" id="slide-contact">
-<section id="contact" class="section contact-window">
-        <div class="macos-window spotlight-card" data-tilt>
-          <div class="contact-body">
-            <h2 class="contact-hero-text">Let's Build Something Exceptional</h2>
-            <p class="contact-desc">
-              Open for competitive programming collaborations, open-source development, and engineering opportunities. Reach out via email or connect across developer platforms.
-            </p>
-            <div class="contact-buttons">
-              <a href="mailto:parthopaul8899@gmail.com" class="contact-btn contact-btn-email">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                <span>parthopaul8899@gmail.com</span>
-              </a>
-              <a href="https://github.com/Pri8899" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-github">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                <span>GitHub (@Pri8899)</span>
-              </a>
-              <a href="https://codeforces.com/profile/pri8899" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-cf">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5a1.5 1.5 0 0 1-3 0V9a1.5 1.5 0 0 1 1.5-1.5zm7.5-3A1.5 1.5 0 0 1 13.5 6v13.5a1.5 1.5 0 0 1-3 0V6A1.5 1.5 0 0 1 12 4.5zm7.5 6A1.5 1.5 0 0 1 21 12v7.5a1.5 1.5 0 0 1-3 0V12a1.5 1.5 0 0 1 1.5-1.5z"/></svg>
-                <span>Codeforces (pri8899)</span>
-              </a>
-            </div>
-          </div>
+      </div>
+
+      <!-- ── 3. Desk Status Bar, Slide Dots & Keyboard Hints ── -->
+      <div class="desk-status-bar">
+        <span class="desk-counter" id="desk-counter">DESK 01 / 06 · TERMINAL &amp; PROFILE</span>
+        <div class="desk-dots" role="tablist" aria-label="Slide quick indicators">
+          <button type="button" class="desk-dot active" data-index="0" aria-label="Go to Terminal"></button>
+          <button type="button" class="desk-dot" data-index="1" aria-label="Go to About"></button>
+          <button type="button" class="desk-dot" data-index="2" aria-label="Go to Projects"></button>
+          <button type="button" class="desk-dot" data-index="3" aria-label="Go to CP Monitor"></button>
+          <button type="button" class="desk-dot" data-index="4" aria-label="Go to Tech Stack"></button>
+          <button type="button" class="desk-dot" data-index="5" aria-label="Go to Contact"></button>
         </div>
-      </section>
-          </div>
-        </div>
+        <span class="desk-kbd-hint"><kbd>←</kbd><kbd>→</kbd> Slide · <kbd>1–6</kbd> Jump · <kbd>⌘K</kbd> Search</span>
       </div>
     </div>
   </main>
@@ -1615,7 +1580,7 @@
   <!-- ═══ 5. Desktop Footer ═══ -->
   <footer class="macos-footer">
     <div class="container">
-      <p>Designed with high-performance glassmorphic UI &amp; real-time telemetry.</p>
+      <p>Designed with high-performance glassmorphic UI &amp; real-time competitive programming telemetry.</p>
       <p>&copy; <span id="current-year">2026</span> Partho Prithom Paul Sujoy · Ahsanullah University of Science and Technology · Dhaka, Bangladesh</p>
     </div>
   </footer>

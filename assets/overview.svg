@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="490" viewBox="0 0 1000 490" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="587" viewBox="0 0 1000 587" fill="none">
   <defs>
     <!-- Background Gradient -->
-    <linearGradient id="ov-bg" x1="0" y1="0" x2="1000" y2="490" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ov-bg" x1="0" y1="0" x2="1000" y2="587" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0d1117" />
       <stop offset="100%" stop-color="#161b22" />
     </linearGradient>
@@ -17,18 +17,15 @@
 
     <!-- Clip paths for card and rounded segment bars -->
     <clipPath id="ov-card-clip">
-      <rect width="1000" height="490" rx="16" />
+      <rect width="1000" height="587" rx="16" />
     </clipPath>
-    <clipPath id="cf-bar-clip">
-      <rect x="0" y="0" width="920" height="10" rx="5" />
-    </clipPath>
-    <clipPath id="cses-bar-clip">
-      <rect x="0" y="0" width="920" height="10" rx="5" />
-    </clipPath>
+    <clipPath id="cf-bar-clip"><rect x="0" y="0" width="920" height="10" rx="5" /></clipPath>
+    <clipPath id="lc-bar-clip"><rect x="0" y="0" width="920" height="10" rx="5" /></clipPath>
+    <clipPath id="cses-bar-clip"><rect x="0" y="0" width="920" height="10" rx="5" /></clipPath>
   </defs>
 
   <!-- Card Border & Background -->
-  <rect width="1000" height="490" rx="16" fill="url(#ov-bg)" stroke="#30363d" stroke-width="1.5" />
+  <rect width="1000" height="587" rx="16" fill="url(#ov-bg)" stroke="#30363d" stroke-width="1.5" />
 
   <!-- Animated Top Curved Laser Accent with Continuous Moving Laser Beam -->
   <g clip-path="url(#ov-card-clip)">
@@ -43,8 +40,8 @@
 
   <!-- Header -->
   <g transform="translate(40, 50)">
-    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Problem Solved by platform</text>
-    <text x="920" y="0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b949e">149 total</text>
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Problems Solved by Platform</text>
+    <text x="920" y="0" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#8b949e">159 total</text>
   </g>
 
   <!-- Platform Progress Bars -->
@@ -56,14 +53,14 @@
       <rect x="150" y="0" width="730" height="10" rx="5" fill="#3b82f6">
         <animate attributeName="width" from="0" to="730" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
       </rect>
-      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">127</text>
+      <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">137</text>
     </g>
     <!-- LeetCode -->
     <g transform="translate(40, 134)">
       <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">LeetCode</text>
       <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="92" height="10" rx="5" fill="#f59e0b">
-        <animate attributeName="width" from="0" to="92" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+      <rect x="150" y="0" width="85" height="10" rx="5" fill="#f59e0b">
+        <animate attributeName="width" from="0" to="85" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
       </rect>
       <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">16</text>
     </g>
@@ -78,8 +75,8 @@
     <g transform="translate(40, 206)">
       <text x="0" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#c9d1d9">CSES</text>
       <rect x="150" y="0" width="730" height="10" rx="5" fill="#161b22" />
-      <rect x="150" y="0" width="34" height="10" rx="5" fill="#10b981">
-        <animate attributeName="width" from="0" to="34" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
+      <rect x="150" y="0" width="32" height="10" rx="5" fill="#10b981">
+        <animate attributeName="width" from="0" to="32" dur="1.2s" fill="freeze" calcMode="spline" keySplines="0.25 0.1 0.25 1" />
       </rect>
       <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">6</text>
     </g>
@@ -90,43 +87,67 @@
       
       <text x="920" y="10" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">0</text>
     </g>
-
-  <!-- Codeforces by Division Section -->
+  
+  <!-- Codeforces by division -->
   <g transform="translate(40, 305)">
     <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8b949e">Codeforces by division</text>
     <g transform="translate(0, 10)">
       <rect width="920" height="10" rx="5" fill="#161b22" />
       <g clip-path="url(#cf-bar-clip)">
-        <rect x="0" y="0" width="7" height="10" fill="#ef4444" /><rect x="7" y="0" width="471" height="10" fill="#3b82f6" /><rect x="478" y="0" width="152" height="10" fill="#10b981" /><rect x="630" y="0" width="225" height="10" fill="#f59e0b" /><rect x="855" y="0" width="65" height="10" fill="#8b5cf6" />
+        <rect x="0" y="0" width="7" height="10" fill="#ef4444" /><rect x="7" y="0" width="470" height="10" fill="#3b82f6" /><rect x="477" y="0" width="148" height="10" fill="#10b981" /><rect x="625" y="0" width="215" height="10" fill="#f59e0b" /><rect x="840" y="0" width="80" height="10" fill="#8b5cf6" />
       </g>
     </g>
     <g transform="translate(0, 34)">
       
-    <g transform="translate(0, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#ef4444" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 1: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
-    </g>
-    <g transform="translate(184, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#3b82f6" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 2: <tspan font-weight="700" fill="#ffffff">65</tspan></text>
-    </g>
-    <g transform="translate(368, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#10b981" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 3: <tspan font-weight="700" fill="#ffffff">21</tspan></text>
-    </g>
-    <g transform="translate(552, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#f59e0b" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 4: <tspan font-weight="700" fill="#ffffff">31</tspan></text>
-    </g>
-    <g transform="translate(736, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#8b5cf6" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">9</tspan></text>
-    </g>
+      <g transform="translate(0, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#ef4444" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 1: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
+      </g>
+      <g transform="translate(184, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#3b82f6" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 2: <tspan font-weight="700" fill="#ffffff">70</tspan></text>
+      </g>
+      <g transform="translate(368, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#10b981" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 3: <tspan font-weight="700" fill="#ffffff">22</tspan></text>
+      </g>
+      <g transform="translate(552, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#f59e0b" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Div 4: <tspan font-weight="700" fill="#ffffff">32</tspan></text>
+      </g>
+      <g transform="translate(736, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#8b5cf6" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">12</tspan></text>
+      </g>
     </g>
   </g>
-
-  <!-- CSES by Category Section (2 spacious rows, 3 columns each) -->
-  <g transform="translate(40, 395)">
+  <!-- LeetCode by difficulty -->
+  <g transform="translate(40, 387)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8b949e">LeetCode by difficulty</text>
+    <g transform="translate(0, 10)">
+      <rect width="920" height="10" rx="5" fill="#161b22" />
+      <g clip-path="url(#lc-bar-clip)">
+        <rect x="0" y="0" width="345" height="10" fill="#22c55e" /><rect x="345" y="0" width="518" height="10" fill="#f59e0b" /><rect x="863" y="0" width="57" height="10" fill="#ef4444" />
+      </g>
+    </g>
+    <g transform="translate(0, 34)">
+      
+      <g transform="translate(0, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#22c55e" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Easy: <tspan font-weight="700" fill="#ffffff">6</tspan></text>
+      </g>
+      <g transform="translate(305, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#f59e0b" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Medium: <tspan font-weight="700" fill="#ffffff">9</tspan></text>
+      </g>
+      <g transform="translate(610, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#ef4444" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Hard: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
+      </g>
+    </g>
+  </g>
+  <!-- CSES by category -->
+  <g transform="translate(40, 469)">
     <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#8b949e">CSES by category</text>
     <g transform="translate(0, 10)">
       <rect width="920" height="10" rx="5" fill="#161b22" />
@@ -136,30 +157,30 @@
     </g>
     <g transform="translate(0, 30)">
       
-    <g transform="translate(0, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#58a6ff" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Introductory: <tspan font-weight="700" fill="#ffffff">5</tspan></text>
-    </g>
-    <g transform="translate(305, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#3fb950" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Sorting &amp; Searching: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
-    </g>
-    <g transform="translate(610, 0)">
-      <circle cx="5" cy="5" r="4.5" fill="#d29922" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Dynamic Programming: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
-    <g transform="translate(0, 22)">
-      <circle cx="5" cy="5" r="4.5" fill="#f85149" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Graphs &amp; Trees: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
-    <g transform="translate(305, 22)">
-      <circle cx="5" cy="5" r="4.5" fill="#bc8cff" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Math &amp; Queries: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
-    <g transform="translate(610, 22)">
-      <circle cx="5" cy="5" r="4.5" fill="#f778ba" />
-      <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
-    </g>
+      <g transform="translate(0, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#58a6ff" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Introductory: <tspan font-weight="700" fill="#ffffff">5</tspan></text>
+      </g>
+      <g transform="translate(305, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#3fb950" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Sorting &amp; Searching: <tspan font-weight="700" fill="#ffffff">1</tspan></text>
+      </g>
+      <g transform="translate(610, 0)">
+        <circle cx="5" cy="5" r="4.5" fill="#d29922" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Dynamic Programming: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
+      </g>
+      <g transform="translate(0, 22)">
+        <circle cx="5" cy="5" r="4.5" fill="#f85149" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Graphs &amp; Trees: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
+      </g>
+      <g transform="translate(305, 22)">
+        <circle cx="5" cy="5" r="4.5" fill="#bc8cff" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Math &amp; Queries: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
+      </g>
+      <g transform="translate(610, 22)">
+        <circle cx="5" cy="5" r="4.5" fill="#f778ba" />
+        <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#8b949e">Others: <tspan font-weight="700" fill="#ffffff">0</tspan></text>
+      </g>
     </g>
   </g>
 </svg>
