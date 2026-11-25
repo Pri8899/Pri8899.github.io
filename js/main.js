@@ -119,10 +119,10 @@
     dark: 'obsidian',
     light: 'daylight',
     white: 'daylight',
-    tokyo: 'cobalt',
-    catppuccin: 'cobalt',
-    matrix: 'forest',
-    cyber: 'espresso'
+    tokyo: 'obsidian',
+    catppuccin: 'obsidian',
+    matrix: 'obsidian',
+    cyber: 'obsidian'
   };
   let canvasThemeSyncCb = null;
 
@@ -137,10 +137,10 @@
 
     if (target === 'obsidian') {
       document.documentElement.removeAttribute('data-theme');
-      localStorage.removeItem('pri_theme');
+      localStorage.removeItem('pri_theme_v2');
     } else {
       document.documentElement.setAttribute('data-theme', target);
-      localStorage.setItem('pri_theme', target);
+      localStorage.setItem('pri_theme_v2', target);
     }
 
     const metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -162,7 +162,8 @@
     return `Theme switched to '${target}'.`;
   }
 
-  const savedTheme = localStorage.getItem('pri_theme');
+  localStorage.removeItem('pri_theme');
+  const savedTheme = localStorage.getItem('pri_theme_v2');
   setTheme(savedTheme || 'obsidian', true);
 
   const themeBtn = document.getElementById('theme-btn');
@@ -716,7 +717,6 @@
       ['Solved', `${cpState.totalSolved} (CF ${cpState.cfCount} · LC ${cpState.lcCount} · CSES ${cpState.csesCount})`],
       ['CF Rated', `${cpState.cfRating} (${cpState.cfRank} · max ${cpState.cfMaxRating})`],
       ['Streak', `${cpState.streakDays} Days Active`],
-      ['Repo Stack', `C++ ${cpState.langCppPct}% (${cpState.langCppCount}) · Java ${cpState.langJavaPct}% (${cpState.langJavaCount})`],
       ['Engines', 'Flutter · C++ · UE · Roblox']
     ];
     rows.forEach(([k, v]) => {
@@ -968,15 +968,6 @@ Location: Dhaka, Bangladesh`;
           termInput.value = '';
         }
       }
-    });
-  }
-
-  // Contact Email Copy Button
-  const copyEmailBtn = document.getElementById('btn-copy-email');
-  if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', () => {
-      playKeyClick();
-      copyEmailToClipboard();
     });
   }
 
@@ -1766,25 +1757,15 @@ Location: Dhaka, Bangladesh`;
     const aboutSyncMeta = document.getElementById('about-sync-meta');
     if (aboutSyncMeta) aboutSyncMeta.textContent = `Auto-synced · Pri8899/CP · ${cpState.lastSynced}`;
 
-    // Tech Stack live sync from Pri8899/CP
-    const skillsLivePill = document.getElementById('skills-live-pill');
-    if (skillsLivePill) skillsLivePill.textContent = `${cpState.totalSolved} CP Solves · Synced ${cpState.lastSynced}`;
-    const skillsBreakdown = document.getElementById('skills-cp-breakdown');
-    if (skillsBreakdown) {
-      skillsBreakdown.textContent = `C++ ${cpState.langCppPct}% (${cpState.langCppCount}) · Java ${cpState.langJavaPct}% (${cpState.langJavaCount}) · ${cpState.totalSolved} Solved · ${cpState.streakDays}d Streak`;
+    // CP Monitor Live Pri8899/CP Language Breakdown Strip
+    const repoBreakdown = document.getElementById('cp-repo-breakdown');
+    if (repoBreakdown) {
+      repoBreakdown.textContent = `C++ ${cpState.langCppPct}% (${cpState.langCppCount}) · Java ${cpState.langJavaPct}% (${cpState.langJavaCount}) · Synced ${cpState.lastSynced}`;
     }
-    const barCpp = document.getElementById('skills-bar-cpp');
+    const barCpp = document.getElementById('cp-bar-cpp');
     if (barCpp) barCpp.style.width = `${cpState.langCppPct}%`;
-    const barJava = document.getElementById('skills-bar-java');
+    const barJava = document.getElementById('cp-bar-java');
     if (barJava) barJava.style.width = `${cpState.langJavaPct}%`;
-    const cppCardStat = document.getElementById('skill-cpp-stat');
-    if (cppCardStat) cppCardStat.textContent = `${cpState.langCppCount} CP Files · ${cpState.langCppPct}%`;
-    const javaCardStat = document.getElementById('skill-java-stat');
-    if (javaCardStat) javaCardStat.textContent = `${cpState.langJavaCount} CP Files · ${cpState.langJavaPct}%`;
-    const vsStat = document.getElementById('skill-vscode-stat');
-    if (vsStat) vsStat.textContent = `CF ${cpState.cfCount} · LC ${cpState.lcCount} · CSES ${cpState.csesCount}`;
-    const gitStat = document.getElementById('skill-git-stat');
-    if (gitStat) gitStat.textContent = `${cpState.totalSolved} Synced · ${cpState.totalSubmissions} Subs`;
 
     // Switch buttons
     if (btnShowUnified) btnShowUnified.querySelector('span').textContent = `All Solves (${cpState.totalSolved})`;
